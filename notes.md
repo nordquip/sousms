@@ -30,4 +30,14 @@ http://stackoverflow.com/questions/428073/what-is-the-best-simplest-way-to-read-
 
 ?
 
+<<<<<<< HEAD
 test change
+=======
+Shaun's terms - 10/08/2012
+
+1. XML (Not very familiar with it)
+2. What information we get back from NASDAQ
+3. Where this information is stored
+4. Who we need to coordinate with most. (Database? Trade Engine?...)
+5. Timeline for goals
+>>>>>>> Added Shaun's terms for further explanation
