@@ -41,3 +41,5 @@ Shaun's terms - 10/08/2012
 4. Who we need to coordinate with most. (Database? Trade Engine?...)
 5. Timeline for goals
 >>>>>>> Added Shaun's terms for further explanation
+
+The Data Feed team recommends Java as a language for parsing the XML feed.
