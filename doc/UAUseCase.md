@@ -17,7 +17,7 @@
 4. Customer presses the LOGIN button
 5. The system locates the Customer’s Customer object
 6. The system verifies the Customer’s access rights
-7. The system displays the overview of Customer’s accounts (including the acct#, balance as of today)
+7. The system displays the overview of Customer’s accounts,including the acct#, balance as of today
 ###Alternative Paths			
 1.	1st Time customer clicks Register button.
 2.	The system displays registration page prompts for Customer ID and Password. Also a Register button.
@@ -35,8 +35,8 @@
 ###Precondition
 * User has already established user account
 ###Postcondition
-* User enters secure site (successful)
-* User account is locked (unsuccessful)
+* User enters secure site,successful
+* User account is locked, unsuccessful
 ###Dialog
 1. User enters the correct username and password and clicks submit
 2. Users credentials are compared to information stored in the database
