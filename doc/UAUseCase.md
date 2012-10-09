@@ -2,7 +2,9 @@
 
 							
 ##Authenticate
-###Actor						
+###Actor
+*User
+###Description						
 *Login
 *Register w/website
 ##Preconditions				
