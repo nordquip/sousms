@@ -1,7 +1,7 @@
+﻿
 
-
-###ID							
-*Authenticate
+							
+##Authenticate
 ###Actor						
 *Login
 *Register w/website
