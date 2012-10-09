@@ -19,12 +19,12 @@ Sell stock shares from user account
 
 ### Dialog
 1. User Logs into account with User ID and password.
-	*Output error if user does not have account, does not log in.
+	* Output error if user does not have account, does not log in.
 2.  Enters stock symbol, and amount of shares to sell.
 3.  Confirm transaction  
-	*Output error if system cannot locate appropriate stock symbol.
-	*Output error if user does not own number of shares being sold.
-	*Output transaction successful.
+	* Output error if system cannot locate appropriate stock symbol.
+	* Output error if user does not own number of shares being sold.
+	* Output transaction successful.
 
  
 
