@@ -80,3 +80,18 @@
 2. System will display the symbols owned by the account holder
 3. System will display the symbol name, how many shares are owned by the user, and their worth
 
+##Securities Total Value
+###Actor
+*User
+###Description
+*Display of total value of users owned securities
+###Preconditions
+*User has successfully logged into there account
+###PostConditions
+*Total value of owned securities display properly - successful
+
+*Securities not displayed ERROR - unsuccessful
+###Dialog
+1. User is successfully logged into their account
+2. System will display the total value of owned securities without details.
+3. User can select total value to display detailed information of owned stocks.
