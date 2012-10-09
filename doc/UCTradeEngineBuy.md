@@ -27,7 +27,7 @@ Buy stock
 	* Output transaction successful.
 	* Output receipt.
 4. Save or print receipt
-5. Logout or perform another transaction.
+5. Logout or perform another transaction starting again with number 2.
 
  
 

@@ -26,6 +26,6 @@ Sell stock shares from user account
 	* Output error if user does not own number of shares being sold.
 	* Output transaction successful.
 4. Save or print receipt
-5. Logout or perform another transaction.
+5. Logout or perform another transaction starting again with number 2.
  
 
