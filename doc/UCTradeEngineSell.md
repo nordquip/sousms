@@ -1,4 +1,4 @@
-## UCTradeEngineSell
+## ID  UCTradeEngineSell
 
 ### Actors
 User or Program 
@@ -12,13 +12,13 @@ Sell Stocks
 * Sufficient shares of stocks for transaction
 
 ### Post Conditions
-*Transaction successful reply with receipt
+* Transaction successful reply with receipt
 * Not an authorized user
-*User does not have stock to be sold
+* User does not have stock to be sold
 * User does not have enough shares for transaction
 
 ### Dialog
-1. User Log into account.
+1. User Log into account
 	Output error if user does not have account.
 2.  Enters stock symbol, and amount of shares.
 3.  Confirm transaction  
