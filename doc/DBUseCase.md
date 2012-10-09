@@ -101,3 +101,23 @@
 * System responds (database) stored data successfuly or not
 
 
+### ID
+	* User Login
+## Actors
+	* User, System
+## Description
+	* Verify user access priviledges
+## Preconditions
+	* User enters correct username and password
+	* User enters incorrect username and password
+## Postconditions
+	* Successful login
+	* Unsuccssful login
+## Dialog
+	1.  System prompts user for username and password
+	2.  User successfully enters information and allowed access
+	2.1 User is unsuccessfully enters information and access is denied
+	2.1.1  System logs unsuccesful attempt
+	2.1.2  System prompts user again for username and password
+	3.  System locks user account after three failed attempts
+
