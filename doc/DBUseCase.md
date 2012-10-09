@@ -50,3 +50,52 @@
 	3.3 Error message
 	4. User is givin an Error message 
 
+
+#Trade Engine: 
+
+##ID 
+0UCUsrPurchase 
+
+##Actors 
+EndUser, System 
+
+##Description 
+EndUser purchasing share(s) of a stock 
+
+##Preconditions 
+EndUser is authenticated to use software 
+
+##Postconditions 
+Money is deducted from cash, share(s) added to portfolio (successful) 
+No changes to database (unsuccessful)
+
+##Dialog
+1. EndUser requests to purchase share(s) of a stock 
+2. System requests current price of said stock, calculates total cost of purchase 
+3. If EndUser does not have the funds to make the trade, unsuccessful postconditions established (returns to step 1), if user can afford the purchase, successful postconditions established.  
+
+
+##ID 
+UCUsrSell 
+
+##Actors 
+EndUser, System 
+
+##Description 
+EndUser selling share(s) of a particular company 
+
+##Preconditions 
+EndUser is authenticated 
+EndUser owns at least 1 share 
+
+##Postconditions 
+Money is added to cash, share(s) deducted from portfolio (successful) 
+No changes to database, error message displayed (unsuccessful) 
+
+##Dialog 
+1. EndUser requests to sell share(s) 
+2. System requests current price of stock, calculates total 
+3. If the data does not get tampered with along the way?, succesful postconditions established, otherwise, unsuccessful postconditions established (return to step 1).
+
+
+
