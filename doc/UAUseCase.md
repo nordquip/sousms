@@ -95,3 +95,67 @@
 1. User is successfully logged into their account
 2. System will display the total value of owned securities without details.
 3. User can select total value to display detailed information of owned stocks.
+
+##Deposit
+###Actor
+*User
+###Description
+*User is validated and ready to make a deposit
+###Preconditions
+*User login was successfully executed
+###Postconditions
+*User deposits funds into acct. - successful
+
+*Funds not deposited into user acct. - unsuccessful
+###Dialog
+1. User requests deposit of funds into acct.
+2. System validates user funds for deposit
+3. If validation unsuccessful, display error message, back to step 1
+4. System calculates addition of funds into user acct.
+5. System displays new balance of funds into user acct.
+6. If new balance displays correctly, successful postconditions established, else unsuccessful postconditions established
+7. User logs out and closes system, or continues to use system for another action
+
+##StockSale
+###Actor
+*User
+###Description
+*User is validated and ready to sell desired stock
+###Preconditions
+*User login successfully executed
+###Postconditions
+*User completes sale of stock and receives funds - successful
+
+*User does not complete sale and/or does not receive funds - unsuccessful
+###Dialog
+1. User requests sale of desired stock
+2. System validates user ownership of stock
+3. If validation of user ownership unsuccessful, display error message, return to step 1
+4. System calculates addition of funds into user acct.
+5. System subtracts ownership of stock from user acct.
+6. System displays new balance of funds in user acct.
+7. System displays new ownership of stock in user acct.
+8. If new balance of funds and ownership of stock displays correctly, successful postconditions established, else unsuccessful postconditions established
+9. User logs out and closes system, or continues to use system for another action
+
+##StockPurchase
+###Actor
+*User
+###Description
+*User is validated and ready to purchase desired stock
+###Preconditions
+*User login was successfully executed
+###Postconditions
+*User receives purchased stock and funds decremented accordingly - successful
+
+*User does not receive stock and/or funds not decremented accordingly - unsuccessful
+###Dialog
+1. User requests purchase of desired stock
+2. System validates user funds for purchase of stock
+3. If validation of user funds unsuccessful, display error message, return to step 1
+4. System calculates subtraction of funds from user acct.
+5. System adds ownership of stock to user acct.
+6. System displays new balance of funds in user acct.
+7. System displays new ownership of stock in user acct.
+8. If new balnce of funds and ownership of stock display correctly, successful postconditions established, else unsuccessful postconditions established
+9. User logs out and closes system, or continues to use system for another action.
