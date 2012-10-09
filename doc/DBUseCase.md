@@ -79,5 +79,25 @@
 	2. System requests current price of stock, calculates total 
 	3. If the data does not get tampered with along the way?, succesful postconditions established, otherwise, unsuccessful postconditions established (return to step 1).
 
+### UCSubmitFeedData (Keith K)
+
+### Actors
+* DataFeed 
+* Database 
+
+### Description
+* Data feed sends one tick of data for one symbol to database
+
+### Preconditions
+* Database is up and running
+
+### Post Conditions
+* Successful Data from sms feed was stored in database 
+* Un-successful Data from sms feed was not stored in database
+
+### Dialog
+* Feed supplies symbol
+* Feed supplies all field values for one tick for supplied symbol
+* System responds (database) stored data successfuly or not
 
 
