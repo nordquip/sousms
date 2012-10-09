@@ -63,3 +63,20 @@
 5. User enters and confirms new password
 6. Password is verified and stored in the database
 7. User enters correct credentials, return to original path step 2
+
+##Securities Information
+###Actor
+*User
+###Description
+*How the Securities informtion will be displayed
+###Preconditions
+*User has successfully logged into theor account
+###PostConditions
+*Securities display properly - successful
+
+*Securities not displayed ERROR - unsuccessful
+###Dialog
+1. User is successfully logged into their account
+2. System will display the symbols owned by the account holder
+3. System will display the symbol name, how many shares are owned by the user, and their worth
+
