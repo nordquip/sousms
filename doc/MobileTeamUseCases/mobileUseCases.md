@@ -17,14 +17,14 @@
 
 #### Dialog
 1. User is in notification settings
-1. User requests to add a notification
-2. User specifies which stock they wish to be notified on
-3. User specifies the price range +/- a percentage or dollar amount that they will be notified for
-4. User requests to apply changes
-4. System 
-   + If 
-5. System displays confirmation
-6. Postcondition Successful
+2. User requests to add a notification
+3. User specifies which stock they wish to be notified on
+4. User specifies the price range +/- a percentage or dollar amount that they will be notified for
+5. User requests to apply changes
+6. System confirms accept or cancel of addNotification
+   + If cancel, postcondition unsuccessful
+7. System displays confirmation
+8. Postcondition Successful
 
 
 
