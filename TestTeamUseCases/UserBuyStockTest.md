@@ -1,4 +1,4 @@
-### UserBuyStock
+### UserBuyStockTest
 
 #### Actors
 * Tester / User
