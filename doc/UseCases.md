@@ -11,16 +11,16 @@ User comes across an unfamiliar term while using the site
 ###Preconditions
 * Successful log in
 * Glossary successfully built
-* Possible 
+
 
 ###Postconditions
-* Successful ? Glossary accessed and term defined
-* Unsuccessful ? Unable to access Glossary
+* Successful - Glossary accessed and term defined
+* Unsuccessful - Unable to access Glossary or find term
 
 ###Dialog
 1. User finds unfamiliar term in course of using website
 2. If term is linked, user is immediately taken to Glossary entry for term
-3. If not linked, user access Glossary and manually searches for term
+3. If not linked, user accesses Glossary and manually searches for term
 
 ##ID
 UCUserAccountsHelp
@@ -39,8 +39,8 @@ User requires information about using their sousms account.
 *There is access to the help section for account holders
 
 ###Postconditions
-*Successful – Help section found and account question located
-*Unsuccessful – User unable to access/find help section and/or account question not found
+*Successful ãƒ»Help section found and account question located
+*Unsuccessful ãƒ»User unable to access/find help section and/or account question not found
 
 ###Dialog
 1. User has a question about using the account
