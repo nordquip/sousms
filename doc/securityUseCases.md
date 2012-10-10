@@ -11,9 +11,9 @@ risks and help correct the weaknesses
 4.	Practice metasploit attacks on virtual server Security Group has set up
 
 ####PostConditions
-Creating a Metasploit attack on our practice virtual server that is able to get in (success)
+Creating a Metasploit attack on the server that is able to get in (success)
 
-Creating a Metasploit attack on our practice virtual server that is not able to get in (unsuccessful)
+Creating a Metasploit attack on the server that is not able to get in (unsuccessful)
 ###Dialog
 1. Actor is to watch videos and read through the "Metasploit Penetration Cookbook" to learn 
     how metasploit works and how to create attacks with Metasploit. 
