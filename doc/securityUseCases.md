@@ -133,11 +133,14 @@ Unless otherwise specified, all actions executed by Malicious Hacker:
 ### Actors
 * Attacker (Brandon Hawkins)
 * Description: Attacker exploits vulnerabilities in a system using MySQL injections
+
 ### Pre-conditions
 * Attacker detects that the system is vulnerable to MySQL attacks.
+
 ### Post-conditions
 * Successful – Hacker successfully pulls information from the database and is able to access information.
 * Unsuccessful -- Attacker doesn't penetrate the system.
+
 ### Dialog
 Unless otherwise specified, all actions executed by attacker:
 1. vulnerability in our PHP coding.
