@@ -90,3 +90,25 @@ Written By NickolausDS
 	* Stock is bought
 	* back to 1 and condition ceases to exist.
  7. Back to 5
+
+## ID  UCStockPriceQuery
+Written By NCHelix (Jeremy Barnes)
+
+### Actors
+ * User, Stock Market Simulator
+
+### Description
+ * User requests a price on a specific stock symbol
+
+### Preconditions
+ * User is Logged in
+
+### Postconditions
+ * Successful -- The stock price will be found, and returned to user
+ * Fail -- The stock price is not returned.
+
+### Dialogue
+ 1. User specifies stock symbol 
+ 2. If stock symbol doesn't exist
+	* back to 1
+ 3. Stock price is listed for user.
