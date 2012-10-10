@@ -107,3 +107,24 @@ Unless otherwise specified, all actions executed by Malicious Hacker:
 
 9. Sucessfull exploitation leads to full compromise of the target system.  Remote root/system access!!!
 10. Exfiltrate data from system, steal everything!
+
+
+##SQL Injections
+
+###Actors
+*SQL Injector (Blake Lykins)
+*Server
+
+###Description
+*SQL injector scanning the system to see where they can inject sql statements to receive any information they want from that systems database.
+
+###Postconditions
+*Successful - Inject sql and able to recieve all the records held in the database (Login usernames and passwords, accounts, etc.)
+*Unsuccessful - Unable to successfully inject sql and receive the information.
+
+###Dialog
+
+1. First you must run a static test on the code either by reading it yourself or using a static code analysis tool.
+2. If you have found vulnerabilites in the code you need to research and figure out what sql injection you can use to get into the system.
+3. Next you can run a dynamic test to generate random input (fuzzing). 
+4. If something is found, you can research the vulnerability again and see what injection you can use to get into the system.
