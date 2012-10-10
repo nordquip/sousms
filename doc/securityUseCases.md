@@ -127,8 +127,8 @@ Unless otherwise specified, all actions executed by Malicious Hacker:
 2. If you have found vulnerabilites in the code you need to research and figure out what sql injection you can use to get into the system.
 3. Next you can run a dynamic test to generate random input (fuzzing). 
 4. If something is found, you can research the vulnerability again and see what injection you can use to get into the system.
-MySQL Injections
-
+## MySQL Injections
+### (Brandon Hawkins)
 ### Actors
 •	Attacker 
 •	Description
