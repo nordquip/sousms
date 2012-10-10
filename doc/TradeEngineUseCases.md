@@ -134,3 +134,23 @@ Written by Ben Harris
 ### Dialog		
  * After successful login, TEU can submit to see how much cash is in their account
 
+## ID UCStockSymbolSearch
+Written By AnthonyKaiserman
+
+### Actors
+ * User, Stock Market Simulator
+
+### Description
+ * User requests a stock symbol for a company
+
+### Preconditions
+ * User is Logged in
+
+### Postconditions
+ * Successful- The stock symbol will be returned to the user
+ * Fail- an error message is returned
+
+###Dialogue 
+ 1. User specifies company to find a stock symbol for.
+ 2. If stock symbol is not found return an error message and return to step 1.
+ 3. If stock symbol is found return stock symbol for the company.
