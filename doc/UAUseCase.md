@@ -20,19 +20,28 @@
 6. The system verifies the User’s access rights
 7. The system displays the overview of User’s accounts,including the acct number, balance as of today  
 
-###Alternative Paths			
+##First time registration
+###Actor
+*user
+###Description	
+*User enters account information to register with the site
+###Pre Condition
+*Access to website
+###Post Condition
+*User account created - successful
+*user account is not created - unsuccessful
+###Dialog	
 1.	1st Time customer clicks Register button.
 2.	The system displays registration page prompts for Customer ID and Password. Also a Register button.
 3.	User enters desired User Name.
 4.	User enters desired password.
 5.	User enters desired password again.
-6.	User selects a recovery question.
-7.	User enters answer to recovery question.
-8.	User enters answer to recovery question again. 
+7.	User enters email address
+8.	User enters email address again
 9.	User presses Register button.
 10.	If User Name already exists, go to main dialog, step 1.
 11.	If password does not meet requirements, go to step 4.
-12.	If recovery question does not meet requirements, go to step 4. 
+12.	If email does not meet requirements, got step 4.
 13.	The system creates Customer’s Customer object.
 14.	The system displays login page.
 
