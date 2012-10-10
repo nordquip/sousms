@@ -118,7 +118,7 @@ Unless otherwise specified, all actions executed by Malicious Hacker:
 * SQL injector scanning the system to see where they can inject sql statements to receive any information they want from that systems database.
 
 ### Postconditions
-* Successful - Inject sql and able to recieve all the records held in the database (Login usernames and passwords, accounts, etc.)
+* Successful - Inject sql and be able to recieve all the records held in the database (Login usernames and passwords, accounts, etc.)
 * Unsuccessful - Unable to successfully inject sql and receive the information.
 
 ### Dialog
