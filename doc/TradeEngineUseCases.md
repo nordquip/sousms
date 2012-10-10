@@ -61,3 +61,32 @@ Sell stock shares from user account
 	* Output transaction successful.
 4. Save or print receipt
 5. Logout or perform another transaction starting again with number 2.
+
+## ID  UCConditionalBuyAtUserPrice 
+Written By NickolausDS
+
+### Actors
+ * User, Stock Market Simulator
+
+### Description
+ * User sets an automatic buy transaction to happen if a stock drops to a user-defined price (UDP).
+
+### Preconditions
+ * User is Logged in
+
+### Postconditions
+ * Successful -- The condition will be set, and automatically buy if stock price reaches UDP.
+ * Fail -- The condition is not set.
+
+### Dialogue
+ 1. User specifies stock symbol and number of shares to buy. 
+ 2. If stock symbol doesn't exist
+	* back to 1
+ 3. If user does not have the money to buy stock at UDP.
+	* back to 1
+ 4. The condition is set
+ 5. The condition waits for Stock price to lower to UDP.
+ 6. If stock price lowers to UDP.
+	* Stock is bought
+	* back to 1 and condition ceases to exist.
+ 7. Back to 5
