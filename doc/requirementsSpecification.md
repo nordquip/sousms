@@ -1,7 +1,7 @@
 ## WORK AS A TEAM
 http://www.youtube.com/watch?v=pGFGD5pj03M
 
-SOU Stock Market Simulator Requirements Specification
+## SOU Stock Market Simulator Requirements Specification
 # Introduction
 Provides an overview by describing the purpose, scope, references, and definitions of terms.
 # High-level description
