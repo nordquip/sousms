@@ -18,10 +18,10 @@
 
 ###Dialog
 * Actions Taken by User unless otherwise specified
-1. User browses for system login
-2. User enters their personal ID and password for their account
-3. Submit for Login
-4. If user account unrecognizable/ or not found	
+ 1. User browses for system login
+ 2. User enters their personal ID and password for their account
+ 3. Submit for Login
+ 4. If user account unrecognizable/ or not found	
 	1. User does not have an existing account and is redirected to Login help
 	2. Options consist of:
 		1. Forgot password or ID number
@@ -30,6 +30,6 @@
 	4. System sends email to the given address on how to recover user account
 	4. If option 1 unsuccessful jump to option 2 where User creates new account
 	5. If creation successful Jump to step 5
-5. If successful System retrieves stored user account
-6. If step 5 is successful System directs User to User's account home page
+ 5. If successful System retrieves stored user account
+ 6. If step 5 is successful System directs User to User's account home page
 
