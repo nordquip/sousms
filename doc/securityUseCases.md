@@ -127,3 +127,20 @@ Unless otherwise specified, all actions executed by Malicious Hacker:
 2. If you have found vulnerabilites in the code you need to research and figure out what sql injection you can use to get into the system.
 3. Next you can run a dynamic test to generate random input (fuzzing). 
 4. If something is found, you can research the vulnerability again and see what injection you can use to get into the system.
+MySQL Injections
+
+Actors
+•	Attacker 
+•	Description
+Attacker exploits vulnerabilities in a system using MySQL injections
+Pre-conditions
+•	Attacker detects that the system is vulnerable to MySQL attacks.
+.
+Post-conditions
+•	Successful – Hacker successfully pulls information from the database and is able to access information.
+•	Unsuccessful -- Attacker doesn't penetrate the system.
+Dialog
+Unless otherwise specified, all actions executed by attacker:
+1.	Detects vulnerability in our PHP coding.
+2.	Uses SQL injections/blind SQL injections to pull user/password information.
+3.	Logs into the system.
