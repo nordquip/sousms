@@ -121,3 +121,19 @@
 	2.1.2  System prompts user again for username and password
 	3.  System locks user account after three failed attempts
 
+##ID
+ ViewStockSnapshot
+###Actors
+ User, SOUSMS
+###Description
+ User can see a "snapshot" of selected stock info (on mobile device or pop-up).
+###Preconditions
+ User is logged in to SOUSMS.
+###Postconditions
+ Successful: User views desired stock info.
+ Unsuccessful: Error message.
+###Dialog
+ 1. User requests to view stock snapshot by symbol
+ 1.1 Requested symbol refers to valid stock.  Display stock info: symbol, company name, current price, high/low.
+ 1.2 Requtested symbold does not refer to valid stock.  Display error message.
+ 2. User can request additional symbol snapshots until done.
