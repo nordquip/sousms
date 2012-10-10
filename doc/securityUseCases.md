@@ -143,6 +143,7 @@ Unless otherwise specified, all actions executed by Malicious Hacker:
 
 ### Dialog
 Unless otherwise specified, all actions executed by attacker:
+
 1. vulnerability in our PHP coding.
 2. Uses SQL injections/blind SQL injections to pull user/password information.
 3. Logs into the system.
