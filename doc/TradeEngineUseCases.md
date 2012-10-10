@@ -97,7 +97,7 @@ Written By NickolausDS
 Written by Garrett Skelton
 
 ### Actors
-User or Program 
+User 
 
 ### Description
 Sell stock automatically based on price
@@ -194,3 +194,26 @@ Written By AnthonyKaiserman
  1. User specifies company to find a stock symbol for.
  2. If stock symbol is not found return an error message and return to step 1.
  3. If stock symbol is found return stock symbol for the company.
+
+
+## ID UCQueryTopStocks
+Written By Garrett Skelton
+
+### Actors
+ * User
+
+### Description
+ * User requests a list of top stocks
+
+### Preconditions
+ * User is logged on
+
+### Postconditions
+ * Successful: User is fed a page with information on top earning stocks
+ * Failure: User is fed an error page
+
+### Dialog
+1. User clicks a button to show top stocks
+2. User may choose a timeframe (day, week, month, year) and whether they want absolute or relative earnings
+3. Stocks are ranked based on the change in value over the user defined timeframe
+4. Top stocks are returned to the user
