@@ -106,3 +106,4 @@ Unless otherwise specified, all actions executed by Malicious Hacker:
   4. Backdoor for access at a later date.
 
 9. Sucessfull exploitation leads to full compromise of the target system.  Remote root/system access!!!
+10. Exfiltrate data from system, steal everything!
