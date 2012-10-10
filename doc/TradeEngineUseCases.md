@@ -1,6 +1,7 @@
 #Trading Engine Use Cases
 
 ## ID  UCTradeEngineBuy
+Written by Jeff Karmy
 
 ### Actors
 User or Program 
@@ -33,6 +34,7 @@ Buy stock
 
 
 ## ID  UCTradeEngineSell
+Written by Jeff Karmy
 
 ### Actors
 User or Program 
