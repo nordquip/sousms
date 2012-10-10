@@ -1,4 +1,4 @@
-#Trading Engine Use Cases
+﻿#Trading Engine Use Cases
 
 ## ID  UCTradeEngineBuy
 Written by Jeff Karmy
@@ -92,6 +92,46 @@ Written By NickolausDS
 	* Stock is bought
 	* back to 1 and condition ceases to exist.
  7. Back to 5
+
+## ID  UCConditionalSellAtUserPrice
+Written by Garrett Skelton
+
+### Actors
+User or Program 
+
+### Description
+Sell stock automatically based on price
+
+### Preconditions
+* Authorized User Account
+* Appropriate Stock Symbol 
+* Sufficient (>0) stocks to complete transaction
+
+### Post Conditions
+* Transaction successful output receipt.
+* Output Error, Not an authorized user, can't complete transaction.
+* Output Error, Incorrect stock symbol, can't complete transaction.
+* Output Error, User does not have any shares of stock specified, can't complete transaction
+
+### Dialog
+1. User Logs into account with User ID and password.
+	* Output error if user does not have account, does not log in.
+2.  User picks stock from a dropdown list of owned stocks
+3.  User designates a price point, number of shares to sell, and whether the rule is to sell when the value is greater or less than the price point.
+4.  Confirm Rule  
+	* Output error if system cannot locate appropriate stock symbol.
+	* Output error if user has fewer shares than the amount of shares they're trying to sell.
+	* Output rule successful.
+	* Output receipt.
+5. Save receipt
+6. Check stock value against user defined price point
+7. Reconfirm rule (to make sure the user hasn't already sold their stocks or anything)
+8. If the rule evaluates true:
+	sell the stock
+9. Else
+	goto 6
+10. delete the rule
+
 
 ## ID  UCStockPriceQuery
 Written By NCHelix (Jeremy Barnes)
