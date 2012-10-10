@@ -26,3 +26,39 @@ Creating a Metasploit attack on the server that is not able to get in (unsuccess
 	Stock Market Analyzer
 6. Continue with steps 2-5 until non of the attacks created are successful in penetrating
 	the Stock Market Analyzer.
+
+## AttackVulnerableSystem (ID of the use case)
+
+### Actors
+* Attacker (Hunter Blakely)
+
+### Description
+Attacker exploits vulnerabilities in a system using Metasploit
+
+### Preconditions
+* Attacker knows the IP of the vulnerable system.
+* BackTrack5r3 virtual machine is configured and running.
+
+### Postconditions
+* Successful -- Attacker gains shell access on vulnerable system.
+* Unsuccessful -- Attacker doesn't penetrate the system.
+
+### Dialog
+Unless otherwise specified, all actions executed by attacker:
+
+1. Click Applications -> Accessories -> Terminal
+2. In Terminal, type: armitage
+3. In armitage GUI, click Hosts
+        * Add host
+        * Type victim system's IP address
+4. Right click victim host's image,
+        * scan
+5. With victim system selected,
+        * Click Attacks -> Find Attacks
+6. Once attacks have been found
+        * Click Attacks -> Hail Marry
+                - This will run all of the attacks available.
+7. Success if a shell has been gained:
+        * Can run/upload code to manipulate the system.
+8. Failure if no shell has been granted:
+        * Search for alternative forms of attack.
