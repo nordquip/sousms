@@ -129,17 +129,17 @@ Unless otherwise specified, all actions executed by Malicious Hacker:
 4. If something is found, you can research the vulnerability again and see what injection you can use to get into the system.
 MySQL Injections
 
-Actors
+### Actors
 •	Attacker 
 •	Description
 Attacker exploits vulnerabilities in a system using MySQL injections
-Pre-conditions
+### Pre-conditions
 •	Attacker detects that the system is vulnerable to MySQL attacks.
 .
-Post-conditions
+### Post-conditions
 •	Successful – Hacker successfully pulls information from the database and is able to access information.
 •	Unsuccessful -- Attacker doesn't penetrate the system.
-Dialog
+### Dialog
 Unless otherwise specified, all actions executed by attacker:
 1.	Detects vulnerability in our PHP coding.
 2.	Uses SQL injections/blind SQL injections to pull user/password information.
