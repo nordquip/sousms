@@ -1,1 +1,0 @@
-These are notes added to the project to help stabalize the integrity of git. (sic)
