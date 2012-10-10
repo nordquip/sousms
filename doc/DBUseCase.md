@@ -126,7 +126,7 @@
 ###Actors
  User, SOUSMS
 ###Description
- User can see a "snapshot" of selected stock info (on mobile device or pop-up).
+ User can see a "snapshot" of selected stock info (on mobile device).
 ###Preconditions
  User is logged in to SOUSMS.
 ###Postconditions
