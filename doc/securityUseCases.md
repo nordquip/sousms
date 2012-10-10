@@ -132,8 +132,7 @@ Unless otherwise specified, all actions executed by Malicious Hacker:
 
 ### Actors
 *	Attacker (Brandon Hawkins)
-*	Description
-Attacker exploits vulnerabilities in a system using MySQL injections
+*	Description: Attacker exploits vulnerabilities in a system using MySQL injections
 ### Pre-conditions
 *	Attacker detects that the system is vulnerable to MySQL attacks.
 *
