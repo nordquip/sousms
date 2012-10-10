@@ -114,3 +114,23 @@ Written By NCHelix (Jeremy Barnes)
  2. If stock symbol doesn't exist
 	* back to 1
  3. Stock price is listed for user.
+
+## ID:	QueryPersonalAssets
+Written by Ben Harris
+
+### Actors
+ * Trade Engine User (TEU)
+ 
+### Description	
+ * TEU submits a request to see how much "money" is in their account
+ 
+### Preconditions	
+ * TEU has logged into valid account
+
+### Postconditions	
+ * Successful - TEU recieves balance of "cash" in their account
+ * Unsuccessful - There shouldn't be an unsuccessful result (assuming a successful login)
+
+### Dialog		
+ * After successful login, TEU can submit to see how much cash is in their account
+
