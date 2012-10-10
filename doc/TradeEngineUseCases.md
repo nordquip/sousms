@@ -79,6 +79,7 @@ Written By NickolausDS
 ### Postconditions
  * Successful -- The condition will be set, and automatically buy if stock price reaches UDP.
  * Fail -- The condition is not set.
+ * Timeout -- The condition is canceled. (See UCCancelTrade)
 
 ### Dialogue
  1. User specifies stock symbol and number of shares to buy. 
@@ -89,9 +90,10 @@ Written By NickolausDS
  4. The condition is set
  5. The condition waits for Stock price to lower to UDP.
  6. If stock price lowers to UDP.
-	* Stock is bought
-	* back to 1 and condition ceases to exist.
- 7. Back to 5
+	* Postcondition Success is met.
+ 7. If the stock has reached Timeout
+	* Postcondition Timeout.
+ 8. Back to 5.
 
 ## ID  UCConditionalSellAtUserPrice
 Written by Garrett Skelton
