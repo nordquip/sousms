@@ -128,10 +128,10 @@ Unless otherwise specified, all actions executed by Malicious Hacker:
 3. Next you can run a dynamic test to generate random input (fuzzing). 
 4. If something is found, you can research the vulnerability again and see what injection you can use to get into the system.
 
-### MySQL Injections
+## MySQL Injections
 
 ### Actors
-•	Attacker 
+•	Attacker (Brandon Hawkins)
 •	Description
 Attacker exploits vulnerabilities in a system using MySQL injections
 ### Pre-conditions
