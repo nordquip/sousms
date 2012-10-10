@@ -62,3 +62,47 @@ Unless otherwise specified, all actions executed by attacker:
         * Can run/upload code to manipulate the system.
 8. Failure if no shell has been granted:
         * Search for alternative forms of attack.
+
+
+## MEMORY C0RRUPTION
+ 
+### Actors
+* Hacker
+* Server/Target system
+ 
+### Description
+Hacker injects code into the target server to manipulate memory so that it executes a payload.
+ 
+### Preconditions
+* Information gathering (Target fingerprinting, scanning for services, application fingerprinting)
+* Hacker thinks a memory c0rruption vulnerability exists (through code auditing, penetration testing)
+* 
+ 
+### Postconditions
+* Successful – inject shellcode payload and get target system to execute the code, get remote root/system shell, etc...
+* Unsuccessful – unable to execute arbitrary code on remote system. Target may not be vulnerable.
+ 
+### Dialog
+Unless otherwise specified, all actions executed by Malicious Hacker:
+ 
+1. Fuzzing the target system to trigger some sort of unknown crash, output, or other unintended behavior (NOT A DOS, however one may occur).
+2. Is the error repeatable.
+3. Manipulate data being sent to the target system to try and isolate where the unintended behavior occurs.
+4. Once location of error is isolated, test if output can be manipulated (depending on unintended behavior this may not work)
+5. If output can be manipulated
+  1. Identify methods of controlling memory.
+  2. Identify usable characters for attack string.
+  3. Identify offsets and significant elements in attack string.
+6. Identify amount of usable space for the payload.
+7. Overwrite variables so they overflow into saved frame pointer and return address.
+8. If the overwite is sucessfull:
+  1. Hacker writes a memory address in the stack for return
+  2. The subroutine returns into payload on stack.
+  3. Payload is executed!
+8. when payload is executed on the target system:
+  1. Remote shell listening on port.
+  2. Keylogger dropped onto system.
+  3. Malware dropped.
+  4. Backdoor for access at a later date.
+
+9. Sucessfull exploitation leads to full compromise of the target system.  Remote root/system access!!!
