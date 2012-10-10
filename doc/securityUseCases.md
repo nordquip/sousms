@@ -128,6 +128,8 @@ Unless otherwise specified, all actions executed by Malicious Hacker:
 3. Next you can run a dynamic test to generate random input (fuzzing). 
 4. If something is found, you can research the vulnerability again and see what injection you can use to get into the system.
 5. Once we find the vulnerabilites we need to find a way to fix our code so that we can not hack into the system that way again.
+
+
 ## MySQL Injections
 
 ### Actors
