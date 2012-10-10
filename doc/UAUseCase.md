@@ -1,28 +1,9 @@
 ﻿#User Account Use Cases					
+ 
 
-##Authenticate
+##First Time Registration
 ###Actor
 *User
-###Description					
-*Login
-
-*Register w/website
-###Preconditions				
-*Access to website
-###Post Conditions			
-*User has created an account with valid username, password and recovery question
-###Dialog	
-1. The system displays prompts for the userName and password; The LOGIN button is displayed with a Register Button.
-2. User enters the User Name.
-3. User enters the User Password.
-4. User presses the LOGIN button
-5. The system locates the User’s user object
-6. The system verifies the User’s access rights
-7. The system displays the overview of User’s accounts,including the acct number, balance as of today  
-
-##First time registration
-###Actor
-*user
 ###Description	
 *User enters account information to register with the site
 ###Pre Condition
@@ -75,13 +56,26 @@
 
 ###Alternative Path 2
 1. User clicks forgot password
-2. User answers security question and clicks submit
-3. Answer is compared to information stored in database
-4. Answer is verified
-5. User enters and confirms new password
-6. Password is verified and stored in the database
+2. User inputs email address and submits
+4. Email is verified and temp password sent
+5. User inputs new password.
 7. User enters correct credentials, return to original path step 2
 
+
+##Password Recovery
+###Actor
+*User
+###PreCondtions
+*Exsisting Account
+###Post Condtions
+*Access User Account
+###Dialog
+1. User clicks Forgot username or password?
+2. Goes to recover screen.
+3. User enters email.
+4. User password compared to user object.
+5. If found temporary password or user name sent to user registered email.
+6. Return to login screen.
 
 
 ##Securities Information
