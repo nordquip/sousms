@@ -27,7 +27,7 @@ Creating a Metasploit attack on the server that is not able to get in (unsuccess
 6. Continue with steps 2-5 until non of the attacks created are successful in penetrating
 	the Stock Market Analyzer.
 
-## BackTrack5r3Metasploit
+## BackTrack5r3 Metasploit
 
 ### Actors
 * Attacker (Hunter Blakely)
