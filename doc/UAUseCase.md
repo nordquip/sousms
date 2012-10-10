@@ -10,24 +10,33 @@
 ###Preconditions				
 *Access to website
 ###Post Conditions			
-*Actor has information to register if 1st time
+*User has created an account with valid username, password and recovery question
 ###Dialog	
-1. The system displays prompts for the Customer ID and Customer password; The LOGIN button is displayed with a Register Button.
-2. Customer enters the Customer ID.
-3. Customer enters the Customer Password.
-4. Customer presses the LOGIN button
-5. The system locates the Customer’s Customer object
-6. The system verifies the Customer’s access rights
-7. The system displays the overview of Customer’s accounts,including the acct number, balance as of today  
+1. The system displays prompts for the userName and password; The LOGIN button is displayed with a Register Button.
+2. User enters the User Name.
+3. User enters the User Password.
+4. User presses the LOGIN button
+5. The system locates the User’s user object
+6. The system verifies the User’s access rights
+7. The system displays the overview of User’s accounts,including the acct number, balance as of today  
 
 ###Alternative Paths			
 1.	1st Time customer clicks Register button.
 2.	The system displays registration page prompts for Customer ID and Password. Also a Register button.
-3.	Customer enters desired User Name.
-4.	Customer enters desired password. 
-5.	Customer presses Register button.
-6.	The system creates Customer’s Customer object.
-7.	The system displays login page. 
+3.	User enters desired User Name.
+4.	User enters desired password.
+5.	User enters desired password again.
+6.	User selects a recovery question.
+7.	User enters answer to recovery question.
+8.	User enters answer to recovery question again. 
+9.	User presses Register button.
+10.	If User Name already exists, go to main dialog, step 1.
+11.	If password does not meet requirements, go to step 4.
+12.	If recovery question does not meet requirements, go to step 4. 
+13.	The system creates Customer’s Customer object.
+14.	The system displays login page.
+
+
 
 ##Validation
 ###Actor
@@ -63,6 +72,8 @@
 5. User enters and confirms new password
 6. Password is verified and stored in the database
 7. User enters correct credentials, return to original path step 2
+
+
 
 ##Securities Information
 ###Actor
