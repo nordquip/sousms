@@ -164,17 +164,19 @@ Written by Ben Harris
  * Stock Market Simulator User (SMSU)
  
 ### Description	
- * SMSU submits a request to see how much "money" is in their account
+ * Query is called on login and after every transaction to display amount of "cash" on account
  
 ### Preconditions	
  * SMSU has logged into valid account
 
 ### Postconditions	
- * Successful - SMSU recieves balance of "cash" in their account
+ * Successful - SMSU is shown their "cash" balance
  * Unsuccessful - There shouldn't be an unsuccessful result (assuming a successful login)
 
 ### Dialog		
- * After successful login, SMSU can submit to see how much cash is in their account
+ 1. SMSU logs onto their account, query is called and result is displayed on the UI
+ 2. If trade is successful, then query is re-called and result is displayed
+ 3. If cash is deposited/withdrawn, query is re-called and result is displayed
 
 ## ID UCStockSymbolSearch
 Written By AnthonyKaiserman
