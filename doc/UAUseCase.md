@@ -9,22 +9,22 @@
 ###Pre Condition
 *Access to website
 ###Post Condition
-* User account created - successful
-* user account is not created - unsuccessful
+*User account created - successful
+*user account is not created - unsuccessful
 ###Dialog	
-1.1st Time customer clicks Register button.
-2.The system displays registration page prompts for Customer ID and Password. Also a Register button.
-3.User enters desired User Name.
-4.User enters desired password.
-5.User enters desired password again.
-6.User enters email address
-7.User enters email address again
-8.User presses Register button.
+1. 1st Time customer clicks Register button.
+2. The system displays registration page prompts for Customer ID and Password. Also a Register button.
+3. User enters desired User Name.
+4. User enters desired password.
+5. User enters desired password again.
+6. User enters email address
+7. User enters email address again
+8. User presses Register button.
 9. If User Name already exists, go to main dialog, step 1.
-10.If password does not meet requirements, go to step 4.
-11.If email does not meet requirements, got step 4.
-12.The system creates Customer’s Customer object.
-13.The system displays login page.
+10. If password does not meet requirements, go to step 4.
+11. If email does not meet requirements, got step 4.
+12. The system creates Customer’s Customer object.
+13. The system displays login page.
 
 
 
