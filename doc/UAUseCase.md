@@ -9,22 +9,22 @@
 ###Pre Condition
 *Access to website
 ###Post Condition
-*User account created - successful
-*user account is not created - unsuccessful
+* User account created - successful
+* user account is not created - unsuccessful
 ###Dialog	
-1.	1st Time customer clicks Register button.
-2.	The system displays registration page prompts for Customer ID and Password. Also a Register button.
-3.	User enters desired User Name.
-4.	User enters desired password.
-5.	User enters desired password again.
-7.	User enters email address
-8.	User enters email address again
-9.	User presses Register button.
-10.	If User Name already exists, go to main dialog, step 1.
-11.	If password does not meet requirements, go to step 4.
-12.	If email does not meet requirements, got step 4.
-13.	The system creates Customer’s Customer object.
-14.	The system displays login page.
+1.1st Time customer clicks Register button.
+2.The system displays registration page prompts for Customer ID and Password. Also a Register button.
+3.User enters desired User Name.
+4.User enters desired password.
+5.User enters desired password again.
+6.User enters email address
+7.User enters email address again
+8.User presses Register button.
+9. If User Name already exists, go to main dialog, step 1.
+10.If password does not meet requirements, go to step 4.
+11.If email does not meet requirements, got step 4.
+12.The system creates Customer’s Customer object.
+13.The system displays login page.
 
 
 
@@ -57,9 +57,9 @@
 ###Alternative Path 2
 1. User clicks forgot password
 2. User inputs email address and submits
-4. Email is verified and temp password sent
-5. User inputs new password.
-7. User enters correct credentials, return to original path step 2
+3. Email is verified and temp password sent
+4. User inputs new password.
+5. User enters correct credentials, return to original path step 2
 
 
 ##Password Recovery
@@ -76,6 +76,16 @@
 4. User password compared to user object.
 5. If found temporary password or user name sent to user registered email.
 6. Return to login screen.
+
+###Logout
+*User
+### Precondition
+*User logged in on account page.
+### Post Conditions
+*User logged out of system
+###Dialog
+1. User clicks logout button.
+2. User logged out.
 
 
 ##Securities Information
@@ -128,7 +138,7 @@
 4. System calculates addition of funds into user acct.
 5. System displays new balance of funds into user acct.
 6. If new balance displays correctly, successful postconditions established, else unsuccessful postconditions established
-7. User logs out and closes system, or continues to use system for another action
+
 
 ##StockSale
 ###Actor
@@ -150,7 +160,7 @@
 6. System displays new balance of funds in user acct.
 7. System displays new ownership of stock in user acct.
 8. If new balance of funds and ownership of stock displays correctly, successful postconditions established, else unsuccessful postconditions established
-9. User logs out and closes system, or continues to use system for another action
+
 
 ##StockPurchase
 ###Actor
@@ -164,12 +174,12 @@
 
 *User does not receive stock and/or funds not decremented accordingly - unsuccessful
 ###Dialog
-1. User requests purchase of desired stock
+1. User requests purchase of desired stock and quantity
 2. System validates user funds for purchase of stock
 3. If validation of user funds unsuccessful, display error message, return to step 1
 4. System calculates subtraction of funds from user acct.
 5. System adds ownership of stock to user acct.
 6. System displays new balance of funds in user acct.
 7. System displays new ownership of stock in user acct.
-8. If new balnce of funds and ownership of stock display correctly, successful postconditions established, else unsuccessful postconditions established
-9. User logs out and closes system, or continues to use system for another action.
+8. If new balance of funds and ownership of stock display correctly, successful postconditions established, else unsuccessful postconditions established
+
