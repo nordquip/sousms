@@ -240,7 +240,7 @@ Written By Brittany Dighton
 ### Dialog
 1. User selects desired symbol
 2. If system unable to find symbol specified
-	*Error message displayed
-	*Return to 1.
+	* Error message displayed
+	* Return to 1.
 3. System displays available shares of symbol specified
 
