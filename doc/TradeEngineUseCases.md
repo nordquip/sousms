@@ -157,24 +157,24 @@ Written By NCHelix (Jeremy Barnes)
 	* back to 1
  3. Stock price is listed for user.
 
-## ID:	QueryPersonalAssets
+## ID UCQueryPersonalAssets
 Written by Ben Harris
 
 ### Actors
- * Trade Engine User (TEU)
+ * Stock Market Simulator User (SMSU)
  
 ### Description	
- * TEU submits a request to see how much "money" is in their account
+ * SMSU submits a request to see how much "money" is in their account
  
 ### Preconditions	
- * TEU has logged into valid account
+ * SMSU has logged into valid account
 
 ### Postconditions	
- * Successful - TEU recieves balance of "cash" in their account
+ * Successful - SMSU recieves balance of "cash" in their account
  * Unsuccessful - There shouldn't be an unsuccessful result (assuming a successful login)
 
 ### Dialog		
- * After successful login, TEU can submit to see how much cash is in their account
+ * After successful login, SMSU can submit to see how much cash is in their account
 
 ## ID UCStockSymbolSearch
 Written By AnthonyKaiserman
