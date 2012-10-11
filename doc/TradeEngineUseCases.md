@@ -219,3 +219,28 @@ Written By Garrett Skelton
 2. User may choose a timeframe (day, week, month, year) and whether they want absolute or relative earnings
 3. Stocks are ranked based on the change in value over the user defined timeframe
 4. Top stocks are returned to the user
+
+
+## ID UCQueryAvailableShares
+Written By Brittany Dighton
+
+### Actors
+ * User
+
+### Description
+ * User views available shares of selected symbol
+
+### Preconditions
+ * User is logged in
+
+### Postconditions
+ * Success: Available shares of selected symbol displayed
+ * Failure: Error message displayed
+
+### Dialog
+1. User selects desired symbol
+2. If system unable to find symbol specified
+	*Error message displayed
+	*Return to 1.
+3. System displays available shares of symbol specified
+
