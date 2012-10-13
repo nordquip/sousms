@@ -10,27 +10,21 @@ User or Program
 Buy stock
 
 ### Preconditions
-* Authorized User Account
-* Appropriate Stock Symbol 
-* Sufficient funds for stocks to complete transaction
+* User logged in to account
 
 ### Post Conditions
-* Transaction successful output receipt.
-* Output Error, Not an authorized user, can't complete transaction.
-* Output Error, Incorrect stock symbol, can't complete transaction.
-* Output Error, User does not have enough cash for amount of stocks requested, can't complete transaction
+* Successful:  User purchases stock.
+* Fail:  Incorrect stock symbol.
+* Fail: User does not have enough cash for amount of stocks requested.
 
 ### Dialog
-1. User Logs into account with User ID and password.
-	* Output error if user does not have account, does not log in.
-2.  Enters stock symbol, and amount of shares to buy.
-3.  Confirm transaction  
+
+1.  Enters stock symbol, and amount of shares to buy.
+2.  Confirm transaction  
 	* Output error if system cannot locate appropriate stock symbol.
 	* Output error if user does not have enough cash for amount of stocks.
 	* Output transaction successful.
-	* Output receipt.
-4. Save or print receipt
-5. Logout or perform another transaction starting again with number 2.
+3. Save or print receipt
 
 
 ## ID  UCTradeEngineSell
@@ -43,26 +37,22 @@ User or Program
 Sell stock shares from user account
 
 ### Preconditions
-* Authorized User Account
-* Appropriate Stock Symbol 
-* Sufficient shares of stocks to complete transaction
+* User logged in to account
 
 ### Post Conditions
-* Transaction successful output receipt.
-* Output Error, Not an authorized user, can't complete transaction.
-* Output Error, User does not have stock to be sold, can't complete transaction.
-* Output Error, User does not have enough shares, can't complete transaction
+* Successful:  User sells stocks.
+* Fail:  Incorrect stock symbol.
+* Fail: User is trying to sell more shares then user has.
 
 ### Dialog
-1. User Logs into account with User ID and password.
-	* Output error if user does not have account, does not log in.
-2.  Enters stock symbol, and amount of shares to sell.
-3.  Confirm transaction  
+
+1.  Enters stock symbol, and amount of shares to sell.
+2.  Confirm transaction  
 	* Output error if system cannot locate appropriate stock symbol.
 	* Output error if user does not own number of shares being sold.
 	* Output transaction successful.
-4. Save or print receipt
-5. Logout or perform another transaction starting again with number 2.
+3. Save or print receipt
+
 
 ## ID  UCConditionalBuyAtUserPrice 
 Written By NickolausDS
