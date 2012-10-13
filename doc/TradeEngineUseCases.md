@@ -236,3 +236,75 @@ Written By Brittany Dighton
 	* Return to 1.
 3. System displays available shares of symbol specified
 
+
+## ID UCQueryStockData
+Written By Jeff Miller 
+
+### Actors
+ * Authorized users
+
+### Description
+ * Return resultset for a given stock symbol
+
+### Preconditions
+ * TBA (what comes from remote vs. NASDAQ feed?)
+
+### Postconditions
+ * TBA
+
+### Dialog
+1. Calls UC:ueryRemoteDataForSymbol
+2. Merge data from returned DTO with NASDAQ data
+3. Return resultset
+
+## ID UCQueryRemoteDataForSymbol
+Written By Jeff Miller 
+
+### Actors
+ * Trade engine
+
+### Description
+ * Returns resultset compiled from remote sources
+
+### Preconditions
+ * Can't be exposed externally (IP restrictions at minimum)
+ * Valid symbol must be used
+ * Synchronous-mode defaults to asynchronous (for speed)
+ * Remote data sources for symbol info must be known in advance
+
+### Postconditions
+ * Data set is returned if any found (success)
+ * Empty data set returned if no data found (success, no data)
+ * Error status code and message set if exception. Empty data set returned. (failure)
+
+### Dialog
+1. Create a response Data Transfer Object (DTO) (fields needed)
+2. Validate symbol, if failure set error code/message in DTO and skip to end
+3. Create empty resultset
+4. Call UCFindRemoteDataForSymbol with symbol and wait depending on synchronous-mode
+5. Query database for records associated with symbol
+6. Fill resultset
+7. Add resultset to DTO
+8. Return serialized DTO
+
+## ID UCFindRemoteDataForSymbol
+Written By Jeff Miller 
+
+### Actors
+ * Trade engine
+
+### Description
+ * Query and compile data from remote data sources
+
+### Preconditions
+ * Can't be exposed externally (IP restrictions at minimum)
+ * Remote data sources for symbol info must be known in advance
+
+### Postconditions
+ * Returns true if data found
+ * Returns false if data not found
+
+### Dialog
+1. Queries twitter feed for any data associated with symbol
+2. Queries any other feed URLs stored in database
+3. Stores results for feeds associated with symbol in database if new
