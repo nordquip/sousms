@@ -31,10 +31,10 @@ Written By Jeff Karmy
 
 ### Actors
 * User Interface
-* Database
+* Database/Stock Market
 
 ### Description
-* Query (research) stock for a logged in user.  This interface can be called by the user through the user interface.
+* Query (research) stock for a logged in user.  This interface can be called by the user through the user interface or buy another program.
 
 ### Preconditions
 * User is logged in.
