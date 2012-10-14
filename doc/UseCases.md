@@ -61,16 +61,15 @@ User may need help learning how trades work or troubleshooting while using the s
 
 ###Preconditions
 * Successful log in
-* FAQ written
-* Trade guide written
+* FAQ present
+* Trade guide present
 
 ###Postconditions
 * Successful ? Help accessed and user finds needed information
-* Unsuccessful ? Unable to access help
+* Unsuccessful ? User cannot get the help that they wanted
 
 ###Dialog
-1. User needs to learn about trades or has a question about trading
-2. User finds help section in navigation and opens dialog
-3. User can read a FAQ to answer common questions
-4. If user wants to learn how trades work, a step by step guide is also included
-5. After finding the needed information, user can close the dialog and continue the session
+1. User finds help section in navigation and opens dialog
+2. User can read a FAQ to answer common questions by selecting from a topic list
+3. User can learn how trades work by following a step by step guide
+4. User finds information and can continue session
