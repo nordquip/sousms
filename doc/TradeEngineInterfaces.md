@@ -26,3 +26,26 @@ Written By NickolausDS
 ### Returns
 * An appropriate message (string) for success or failure.
 
+## ID IQueryStock
+Written By Jeff Karmy
+
+### Actors
+* User Interface
+* Database
+
+### Description
+* Query (research) stock for a logged in user.  This interface can be called by the user through the user interface.
+
+### Preconditions
+* User is logged in.
+
+### Post Conditions
+* Success: Returns stock being queried.
+* Fail:  Does not return stock being queried.
+
+### Imput Parameters
+* Stock Symbol -- The specific company for which stock is being queried.
+
+### Returns
+* An appropriate message (string) of stock being queried or error message.
+
