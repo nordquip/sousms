@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BasicData>
+<dataItems>
+<bestAskPrice>0</bestAskPrice>
+<bestAskQty>0</bestAskQty>
+<bestBidPrice>0</bestBidPrice>
+<bestBidQty>0</bestBidQty>
+<close>21.68</close>
+<high>21.91</high>
+<lastSale>21.6</lastSale>
+<low>21.52</low>
+<netChg>-0.16</netChg>
+<open>21.87</open>
+<pcl>21.76</pcl>
+<vol>36817009</vol>
+<date>20121011</date>
+<pctChg>-0.7353</pctChg>
+<class>Q</class>
+<symbol>INTC</symbol>
+<time>20:36:47.462</time>
+<tradingState>T</tradingState>
+<tradingStateReason></tradingStateReason>
+</dataItems>
+</BasicData>
