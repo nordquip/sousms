@@ -49,3 +49,31 @@ Written By Jeff Karmy
 ### Returns
 * An appropriate message (string) of stock being queried or error message.
 
+## ID  ISellStock
+Written by Brittany Dighton
+
+### Actors
+* User Interface
+* Database
+
+### Description
+* Sell stock for a user who is already logged in. 
+
+### Pre Conditions
+* User is logged in. 
+
+### Post Conditions
+* Success: Stock successfuly sold
+* Failure: Stock not successfuly sold.
+
+### Input Parameters 
+* UserID -- ID of the user selling stock.
+* Stock Symbol -- Symbol for stock being sold.
+* Stock Amount -- Amount of stock being sold.
+
+### Returns
+* An appropriate message (string) - either of a successful sell or an error message.
+
+
+
+
