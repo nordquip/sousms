@@ -22,3 +22,10 @@
 * use tokenizer to check info for malicious data
 * reject unsafe data with an error message
 * pass safe data to database
+
+###securitiesInfo(symbolName, sharesOwned, worth)
+####This Procedure must:
+* Call Users securities information from the DB
+* Display the Securities owned by the user by Name, Shares owned, and their worth
+
+
