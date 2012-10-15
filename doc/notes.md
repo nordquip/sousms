@@ -44,3 +44,5 @@ Shaun's terms - 10/08/2012
 
 The Data Feed team recommends Java as a language for parsing the XML feed.
 Edit: Most likely PHP
+
+Need to get SQL server info to start writing code
