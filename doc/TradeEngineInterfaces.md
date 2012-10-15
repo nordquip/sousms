@@ -98,4 +98,27 @@ Written By AnthonyKaiserman
 ### Returns
 * Stock symbol or error message
 
+## ID  IGetStockPrice
+Written By NCHelix (Jeremy Barnes)
+
+### Actors
+* User Interface
+* Database/Stock Market
+
+### Description
+* Query stock price for a single logged in user. 
+
+### Preconditions
+* User is logged in. 
+
+### Post Conditions
+* Success: Displays the stock price
+* Failure: Error Message
+
+### Input Parameters 
+* Stock Symbol -- String of the stock symbol user is requesting a price for.
+
+### Returns
+* The price of the specified stock, or an error message.
+
 
