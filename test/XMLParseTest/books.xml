@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<books>
+  <book isbn="978-1594489501">
+    <title>A Thousand Splendid Suns</title>
+    <author>Khaled Hosseini</author>
+    <publisher>Riverhead Hardcover</publisher>
+    <amazon_price>14.27</amazon_price>
+  </book>
+  <book isbn="978-1594489587">
+    <title>The Brief Wondrous Life of Oscar Wao</title>
+    <author>Junot Diaz</author>
+    <publisher>Riverhead Hardcover</publisher>
+    <amazon_price>14.97</amazon_price>
+  </book>
+  <book isbn="978-0545010221">
+    <title>Harry Potter and the Deathly Hallows</title>
+    <author>J. K. Rowling</author>
+    <publisher>Arthur A. Levine Books</publisher>
+    <amazon_price>19.24</amazon_price>
+  </book>
+</books>
