@@ -74,6 +74,28 @@ Written by Brittany Dighton
 ### Returns
 * An appropriate message (string) - either of a successful sell or an error message.
 
+## ID  IStockSymbolSearch
+Written By AnthonyKaiserman
 
+### Actors
+* User Interface
+* Database/Stock Market
+
+### Description
+* Search for a stock symbol for a logged in user
+
+### Preconditions
+* User is logged in. 
+
+### Post Conditions
+* Success: Displays the stock symbol.
+* Failure: Displays an error message.
+
+### Input Parameters 
+
+* CompanyName -- Name of company the user wants the stock symbol for.
+
+### Returns
+* Stock symbol or error message
 
 
