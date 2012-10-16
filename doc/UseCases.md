@@ -33,21 +33,20 @@ UCUserAccountsHelp
 User requires information about using their sousms account.
 
 ###Preconditions
-*User is an authorized user/member of the website
-*User has logged into account
-*Account help section has been created
-*There is access to the help section for account holders
+* Account help section has been created
+* There is access to the help section for account holders
 
 ###Postconditions
-*Successful ・Help section found and account question located
-*Unsuccessful ・User unable to access/find help section and/or account question not found
+* Successful - Information about using account located
+* Unsuccessful - User unable to find answer to account use question
 
 ###Dialog
-1. User has a question about using the account
-2. Website supplies access to account help section
-3. User accesses the help section
-4. Account help section has organized comprehensive list of account use questions
-5. User finds answer to account use question 
+1. User selects from a list of help topics
+2. System returns user's topic choice
+3. User selects help item from list inside topic choice
+4. System returns help topic
+5. If help topic not found user enters search term in dialog box
+6. System returns list of possible matches for help topic
 
 ##ID
 TradeHelpUC
