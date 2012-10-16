@@ -50,30 +50,30 @@ Written By Jeff Karmy
 ### Returns
 * An appropriate message (string) of stock being queried or error message.
 
-## ID  ISellStock
+## SellStock(stockSymbol, numShares, userID)
 Written by Brittany Dighton
 
-### Actors
-* User Interface
-* Database
-
 ### Description
-* Sell stock for a user who is already logged in. 
+This procedure will:
+* Verify that the user is logged in.
+* Ensure the user has enough shares to sell numShares.
+* If so, 
+	* decrement the user's shares accordingly
+	* increment the user's cash accordingly
+*If not, failure.
 
-### Pre Conditions
-* User is logged in. 
-
-### Post Conditions
-* Success: Stock successfuly sold
-* Failure: Stock not successfuly sold.
-
-### Input Parameters 
+### Input Parameters
 * UserID -- ID of the user selling stock.
-* Stock Symbol -- Symbol for stock being sold.
-* Stock Amount -- Amount of stock being sold.
+* stockSymbol -- Symbol for stock being sold.
+* numShares -- Amount of shares being sold.
 
 ### Returns
-* An appropriate message (string) - either of a successful sell or an error message.
+* If success, 
+	* 'Transaction Complete'
+* If failure, 
+	* 'Invalid UserID'
+	* 'Invalid Stock Symbol Entered'
+	* 'Insufficient Shares to Complete Transaction'
 
 ## ID  IStockSymbolSearch
 Written By AnthonyKaiserman
