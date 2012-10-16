@@ -60,7 +60,7 @@ This procedure will:
 * If so, 
 	* decrement the user's shares accordingly
 	* increment the user's cash accordingly
-*If not, failure.
+* If not, failure.
 
 ### Input Parameters
 * UserID -- ID of the user selling stock.
@@ -70,7 +70,7 @@ This procedure will:
 ### Returns
 * If success, 
 	* 'Transaction Complete'
-* If failure, 
+* If failure, one of the following
 	* 'Invalid UserID'
 	* 'Invalid Stock Symbol Entered'
 	* 'Insufficient Shares to Complete Transaction'
