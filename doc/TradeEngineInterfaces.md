@@ -1,30 +1,31 @@
 
 #Trading Engine Interfaces
 
-## ID  IBuyStock
+## BuyStock(UserID, StockSymbol, AmountOfStock)
 Written By NickolausDS
 
-### Actors
-* User Interface
-* Database/Stock Market
-
 ### Description
-* Buy stock for a single logged in user. This interface is expected to be called indirectly by the user through a user interface or by another script. As such it will check for bad parameter data.
+This procedure will:
 
-### Preconditions
-* User is logged in. 
+* Verify the user is logged in.
+* Verify the user has enough money to buy the stock. 
+* Verify the stock is valid. 
 
-### Post Conditions
-* Success: Buy completes successfully
-* Failure: Buy transaction does not go through.
+If the above conditions are met, it will decrement money from the user's account, and add the respective stock shares to their account.
 
-### Input Parameters 
+### Input Parameter definitions
 * UserID -- The id for the user who is buying stock.
 * Stock Symbol -- The specific company for which we are buying stock.
-* Stock Amount -- The amount of stock we are buying for the user.
+* Amount Of Stock -- The amount of stock we are buying for the user.
 
 ### Returns
-* An appropriate message (string) for success or failure.
+* Success:
+	* 'Transaction Approved'
+* Failure: 	
+	* 'User ID could not be validated'
+	* 'Invalid Stock Symbol'
+	* 'Not enough money to purchase stock'
+			
 
 ## ID IQueryStock
 Written By Jeff Karmy
