@@ -19,8 +19,11 @@
 1. User opens Application
 2. User is greeted with the login screen with option to create account.
 3. User creates account/logs in to application 
+	(unsuccessful if invalid password)
 4. User checks balance
 5. User searches for stock symbol
+	(unsuccessful if symbol isn't found)
 6. User defines amount to purchase
 7. User clicks buy
+	(unsuccessful if not enough funds)
 8. User confirms buy
