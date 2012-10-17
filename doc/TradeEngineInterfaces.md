@@ -27,29 +27,6 @@ If the above conditions are met, it will decrement money from the user's account
 	* 'Not enough money to purchase stock'
 			
 
-## ID IQueryStock
-Written By Jeff Karmy
-
-### Actors
-* User Interface
-* Database/Stock Market
-
-### Description
-* Query (research) stock for a logged in user.  This interface can be called by the user through the user interface or buy another program.
-
-### Preconditions
-* User is logged in.
-
-### Post Conditions
-* Success: Returns stock being queried.
-* Fail:  Does not return stock being queried.
-
-### Imput Parameters
-* Stock Symbol -- The specific company for which stock is being queried.
-
-### Returns
-* An appropriate message (string) of stock being queried or error message.
-
 ## SellStock(stockSymbol, numShares, userID)
 Written by Brittany Dighton
 
