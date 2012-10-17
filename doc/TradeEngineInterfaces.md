@@ -53,19 +53,19 @@ This procedure will:
 	* 'Insufficient Shares to Complete Transaction'
 
 
-### ShowCash(userID)
+## ShowCash(userID)
 Written by Ben Harris
 
-## Description
+### Description
 This procedure:
 * is not called directly by the user
 * is called automatically before/during/after most other trade functions
 
 
-## Input Parameters
+### Input Parameters
 * userID -- the ID of the account to show the balance of
 
-## Returns
+### Returns
 success:
 	*returns a float or double with "cash balance" on user's account
 if not successful:
