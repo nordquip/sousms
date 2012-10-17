@@ -1,4 +1,4 @@
-### UserSearchTest
+### TEUserSearchTest
 
 #### Actors
 * Tester / User

@@ -1,4 +1,4 @@
-### UserCheckBalanceTest
+### TEUserCheckBalanceTest
 
 #### Actors
 * Tester / User
