@@ -13,7 +13,7 @@
 
 #### Postconditions
 * Successful Buy - Tester bought stocks
-* Unsuccessful – Tester could not buy Stocks
+* Unsuccessful Buy – Tester could not buy Stocks
 
 #### Dialog
 1. User opens Application
