@@ -102,7 +102,7 @@ Written By NCHelix (Jeremy Barnes)
 
 ### Description
 This Procedure will:
-*Return the current stock price for a given stock symbol
+* Return the current stock price for the given stock symbol
 
 ### Input Parameters
 * stockSymbol - String representation of Stock symbol.  
