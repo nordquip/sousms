@@ -97,27 +97,19 @@ Written By AnthonyKaiserman
 ### Returns
 * Stock symbol or error message
 
-## ID  IGetStockPrice
+## getCurrentPrice(stockSymbol)
 Written By NCHelix (Jeremy Barnes)
 
-### Actors
-* User Interface
-* Database/Stock Market
-
 ### Description
-* Query stock price for a single logged in user. 
+This Procedure will:
+*Return the current stock price for a given stock symbol
 
-### Preconditions
-* User is logged in. 
-
-### Post Conditions
-* Success: Displays the stock price
-* Failure: Error Message
-
-### Input Parameters 
-* Stock Symbol -- String of the stock symbol user is requesting a price for.
+### Input Parameters
+* stockSymbol - String representation of Stock symbol.  
 
 ### Returns
-* The price of the specified stock, or an error message.
+* Success: Returns a double representing the current price of the given stock
+* Failure: Invalid stock symbol.
+
 
 
