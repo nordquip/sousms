@@ -52,6 +52,28 @@ This procedure will:
 	* 'Invalid Stock Symbol Entered'
 	* 'Insufficient Shares to Complete Transaction'
 
+
+### ShowCash(userID)
+Written by Ben Harris
+
+## Description
+This procedure:
+* is not called directly by the user
+* is called automatically before/during/after most other trade functions
+
+
+## Input Parameters
+* userID -- the ID of the account to show the balance of
+
+## Returns
+success:
+	*returns a float or double with "cash balance" on user's account
+if not successful:
+	* there is some administrative action on the account and the user should be booted
+	*** or ***
+	* the system is malfunctioning
+
+	
 ## ID  IStockSymbolSearch
 Written By AnthonyKaiserman
 
