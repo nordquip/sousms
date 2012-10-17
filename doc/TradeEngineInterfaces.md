@@ -66,11 +66,10 @@ This procedure:
 * userID -- the ID of the account to show the balance of
 
 ### Returns
-success:
-	*returns a float or double with "cash balance" on user's account
-if not successful:
+* success: returns a float or double with "cash balance" on user's account
+* if not successful:
 	* there is some administrative action on the account and the user should be booted
-	*** or ***
+	* - or -
 	* the system is malfunctioning
 
 	
