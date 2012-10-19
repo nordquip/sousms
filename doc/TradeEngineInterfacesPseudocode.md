@@ -11,13 +11,13 @@ Written by Brittany Dighton
 
 ***
   
-**1.** Call validateToken()
-**2.** IF token valid THEN
+1. Call validateToken()
+2. IF token valid THEN
 	* call getShareBalance() with *stockSymbol*, *userID*
 	* IF share balance >= *numShares* to be sold THEN
 		* Push sell request to OpenOrders in database
 		* Output "order queued" message
-**3.** Make trade
+3. Make trade
 	1. Pull sell request from OpenOrder
 	2. Call stored procedure to decrement share balance of *userID* for *stockSymbol* by *numShares*
 	3. Call getPrice() with *stockSymbol*
