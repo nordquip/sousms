@@ -1,19 +1,21 @@
 #Interface Specifications
 
-##Trade
-1. Needs to be able to buy and sell
-2. Provide confirmation that trade was successful
+##Buy:
+###Parameters: Needs available stocks and prices, ability to purchase stocks
+###Return: Confirmation of successful purchase
+
+##Sell:
+###Parameters: Ability to select stocks for sale and view current price
+###Return: Notification that stocks were sold when a buyer is found
 
 ##Lookup
-1. Needs access to the feed
-2. Needs the ability to search for stocks
-3. Needs to show results to user
+###Parameters; Needs access to the feed and the ability to search for stocks
+###Return: Display lookup results to user
 
 ##Settings
-1. Needs user account information
-2. Needs to be able to make and save changes
+###Parameters: Needs user account information and ability to make and save changes
+###Return: Confirmation of changed settings and saving of new settings
 
 ##Help
-1. Needs access to help files
-2. Help files must be created
-
+###Parameters: Needs access to help files
+###Return: Display help file for user to view
