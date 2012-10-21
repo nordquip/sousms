@@ -1,10 +1,10 @@
 #Pseudocode
 ##Password Recovery
-IF (UserName == EnteredUserName) Then
-#New Password Sent to registered email
-#ELSE
-#UserName Failed
-#ENDIF
+*IF (UserName == EnteredUserName) Then
+*New Password Sent to registered email
+*ELSE
+*UserName Failed
+*ENDIF
 
 ##Initial Account Access
 GET Username
