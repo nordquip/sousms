@@ -22,3 +22,10 @@
 * ELSE
 * Password Change Failed
 * ENDIF
+
+##Validation
+* IF (UserName == EnteredUserName && Passwork == EnteredPassword) Then
+* Set session cookie and enter site
+* ELSE
+* Display error message
+* ENDIF
