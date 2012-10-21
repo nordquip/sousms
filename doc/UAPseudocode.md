@@ -31,23 +31,17 @@
 * ENDIF
 
 ##Sanitize
-* IF (UserName != defaultUserName)
+* IF (infoType == string)
 * Remove whitespaces
-* Remove ASCII characters <32 (FILTER_SANITIZE_STRING)
+* Remove ASCII characters <32 //FILTER_SANITIZE_STRING
 * Remove ASCII characters >127
-* Return UserName
-* ELSE
-* Return defaultUserName (should trigger error in Validation stage)
-* 
-* IF (InputFloat != defaultInputFloat)
+* Return info
+* ELSE IF (infoType == float) //FILTER_SANITIZE_FLOAT
 * Remove all characters except digits, +-.
-* Return InputFloat
-* ELSE
-* Return defaultInputFloat (should trigger some error where ever)
-* 
-* IF (InputInt != defaultInputInt)
+* Return info
+* ELSE IF (infoType == integer) //FILTER_SANITIZE_INT
 * Remove all characters except digits, +-
-* Return InputInt
+* Return info
 * ELSE
-* Return defaultInputInt (error)
-* 
+* Return infoType error
+* ENDIF
