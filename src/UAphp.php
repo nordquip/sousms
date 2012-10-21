@@ -17,3 +17,7 @@ echo "Hello sellStock!!!";
 <?php
 echo "Hello deposit!!!";
 ?>
+
+<?php
+echo "Goodbye Cruel World!!!";
+?>
