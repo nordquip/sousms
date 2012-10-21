@@ -18,8 +18,8 @@
 
 ### sanitize (infoType, info)
 ####This procedure must:
-* check the information type > string, double, int
-* use tokenizer to check info for malicious data
+* check the information type > string, float, int
+* call built in function for sanitizing data type
 * reject unsafe data with an error message
 * pass safe data to database
 
