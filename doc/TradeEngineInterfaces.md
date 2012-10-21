@@ -1,7 +1,7 @@
 
 #Trading Engine Interfaces
 
-## BuyStock(UserID, StockSymbol, AmountOfStock)
+## BuyStock(stockSymbol, numShares, userID)
 Written By NickolausDS
 
 ### Description
@@ -15,8 +15,8 @@ If the above conditions are met, it will decrement money from the user's account
 
 ### Input Parameter definitions
 * UserID -- The id for the user who is buying stock.
-* Stock Symbol -- The specific company for which we are buying stock.
-* Amount Of Stock -- The amount of stock we are buying for the user.
+* stockSymbol -- The specific company for which we are buying stock.
+* numShares -- The amount of stock we are buying for the user.
 
 ### Returns
 * Success:
