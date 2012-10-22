@@ -67,3 +67,12 @@ Written By AnthonyKaiserman
 	* ELSE error message not enough money
    *ELSE RETURN error message cannot validate user
 3. Trade engine will pull from OpenConditionalOrders que and make trade when/if conditions are met
+
+## getShareWorth(stockSymbol)
+Written by NCHelix (Jeremy Barnes)
+
+1. tempStockSymbol = ""
+2. stockPrice = 0;
+2. WHILE (stockSymbol != tempStockSymbol) //Probably a compareTO statement
+	*Set tempStockSymbol = stockSymbolListItem
+	*Return price.StockSymbol
