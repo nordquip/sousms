@@ -76,3 +76,22 @@ Written by NCHelix (Jeremy Barnes)
 2. WHILE (stockSymbol != tempStockSymbol) //Probably a compareTO statement
 	* Set tempStockSymbol = stockSymbolListItem
 	* Return price.StockSymbol
+	
+## ConditionalSellStock(stockSymbol, numShares, userID, sellPrice)
+Written By Jeff Karmy
+
+**Web Services**
+
+ * validateToken() -- Validates the user is logged in.
+ * getUserShares() -- Returns the amount of shares the user currently has.
+
+***
+
+1. Call validateToken()
+2. IF token valid THEN
+	* IF getNumberOfShares() <= *numShares* THEN
+		* Push sell request to OpenConditionalOrders in database
+		* RETURN "Transaction queued" message
+	* ELSE error message not enough shares
+   *ELSE RETURN error message cannot validate user
+3. Trade engine will pull from OpenConditionalOrders que and make trade when/if conditions are met
