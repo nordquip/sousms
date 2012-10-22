@@ -51,3 +51,9 @@ and return 'successful'
 * if so, increment the user's cash in account accordingly,
 and return 'successful'
 * if not, return 'insuffecient funds' error
+
+###tradeHistory(date, buy/sell, symbol, amount)
+####This procedure must:
+* Identify the current user
+* Query data base for trade history information
+* Display trade history information
