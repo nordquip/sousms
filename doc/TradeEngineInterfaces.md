@@ -73,18 +73,28 @@ This procedure:
 	* the system is malfunctioning
 
 	
-## ID  IStockSymbolSearch
+## SearchStockSybol(companyName)
 Written By AnthonyKaiserman
 
-### Actors
-* User Interface
-* Database/Stock Market
-
 ### Description
-* Search for a stock symbol for a logged in user
 
-### Preconditions
-* User is logged in. 
+This procedure will:
+
+* Verify the user is logged in.
+
+If the condition is met it will take the argument and match it to its stock symbol and return it.
+If no match is found it will return an error message.
+
+### Input Parameter definitions
+
+* companyName -- The full name of the company that they are searching for the stock symbol of.
+
+### Returns
+
+* Success:
+	* stockSymbol
+* Failure:
+	* "No stock symbol for that company please check spelling and try again"
 
 ### Post Conditions
 * Success: Displays the stock symbol.
