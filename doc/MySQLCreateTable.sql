@@ -1,4 +1,4 @@
-/*My SQL*/
+/*MySQL*/
 
 
 /*Against my own wishes, I put bank information into the user table*/
