@@ -10,7 +10,7 @@ CREATE TABLE User (
 	LName char not null,
 	Email varchar not null,
 	Balance float(10,2) null
-)
+) Engine=InnoDB
 
 /*Stores user transaction data*/
 
@@ -23,7 +23,7 @@ CREATE TABLE Transaction(
 	Shares int not null,
 	Foreign Key (UserID) References User(UserId)
 		on update no action
-)
+)Engine=InnoDB
 
 /*Stores users current stock holdings */
 
