@@ -74,5 +74,5 @@ Written by NCHelix (Jeremy Barnes)
 1. tempStockSymbol = ""
 2. stockPrice = 0;
 2. WHILE (stockSymbol != tempStockSymbol) //Probably a compareTO statement
-	*Set tempStockSymbol = stockSymbolListItem
-	*Return price.StockSymbol
+	* Set tempStockSymbol = stockSymbolListItem
+	* Return price.StockSymbol
