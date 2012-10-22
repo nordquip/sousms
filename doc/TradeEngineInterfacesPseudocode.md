@@ -49,3 +49,21 @@ Written By NickolausDS
 		* IF user cash decrement is successful
 			* call stored procedure to increment *numShares*
 	
+## ConditionalBuyStock(stockSymbol, numShares, userID, buyPrice)
+Written By AnthonyKaiserman
+
+**Web Services**
+
+ * validateToken() -- validates the user is logged in
+ * getUserCash() -- get the user's current financial holdings
+
+***
+
+1. Call validateToken()
+2. IF token valid THEN
+	* IF getUserCash() >= *numShares* times *buyPrice* THEN
+		* Push buy request to OpenConditionalOrders in database
+		* RETURN "order queued" message
+	* ELSE error message not enough money
+   ELSE RETURN error message cannot validate user
+3. Trade engine will pull from OpenConditionalOrders que and make trade when/if conditions are met
