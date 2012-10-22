@@ -198,3 +198,20 @@
 7. System displays new ownership of stock in user acct.
 8. If new balance of funds and ownership of stock display correctly, successful postconditions established, else unsuccessful postconditions established
 
+
+##GetTradeHistory
+###Actor
+*User
+###Description
+*User sees trade history displayed 
+###Preconditions
+*User has successfully logged in
+###postconditions
+*User's correct trade history displayed - successful
+
+*User's trade history not displayed, or displayed incorrectly - unsuccessful
+###Dialog
+1. User clicks trade history button
+2. System queries data base for user's trade history information
+3. System displays information
+4. If information displays correctly, successful postconditions established, else unsuccessful postconditions established
