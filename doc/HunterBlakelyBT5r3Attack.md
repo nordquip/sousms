@@ -1,16 +1,15 @@
-Info gathering / Exploiting 140.211.89.15
+##Info gathering / Exploiting 140.211.89.15
 
 
 *****************************************************************************************
-October 19, 2012 3:22 PM
 
-DNS FINGERPRINTING TARGET (host 140.211.89.15):
+##DNS FINGERPRINTING TARGET (host 140.211.89.15): October 19, 2012 ~ 3:20 PM
 
 15.89.211.140.in-addr.arpa domain name pointer aenasdaq01v.sou.edu.
 
 
 
-NMAP SYN SCAN TARGET:
+##NMAP SYN SCAN TARGET: October 19, 2012 3:22 PM
 
 nmap -sS 140.211.89.15 -sV -A -T4 > /Users/compute/Desktop/140.211.89.15_nmap.txt
 
@@ -50,7 +49,7 @@ Nmap done: 1 IP address (1 host up) scanned in 20.22 seconds
 
 
 
-NMAP UDP SCAN OF TARGET:
+##NMAP UDP SCAN OF TARGET: October 19, 2012 ~ 3:20 PM
 
 nmap -sU 140.211.89.15 >> /Users/compute/Desktop/140.211.89.15_nmap.txt
 
@@ -66,9 +65,9 @@ Nmap done: 1 IP address (1 host up) scanned in 13.80 seconds
 
 
 
-October 21, 2012, ~11:50 AM
 
-SCANNING TARGET WITH METASPLOIT:
+
+##SCANNING TARGET WITH METASPLOIT: October 21, 2012, ~11:50 AM
 
 [*] Building list of scan ports and modules
 [*] Launching TCP scan
@@ -117,7 +116,7 @@ msf  auxiliary(http_version) > run -j
 
 
 
-LAUNCH HAIL MARRY ATTACK:
+##LAUNCH HAIL MARRY ATTACK: October 21, 2012, ~11:50 AM
 
 1) Finding exploits (via local magic)
 
@@ -133,7 +132,7 @@ No active sessions.
 
 
 
-##RESULTS OF ATTACK:
+##RESULTS OF ATTACK: October 21, 2012, ~11:50 AM
 
 SUCCESSFUL, no Shell was granted, the server remains protected. 
 
