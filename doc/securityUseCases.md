@@ -40,8 +40,8 @@ Attacker exploits vulnerabilities in a system using Metasploit
 * BackTrack5r3 virtual machine is configured and running.
 
 ### Postconditions
-* Successful -- Attacker gains shell access on vulnerable system.
-* Unsuccessful -- Attacker doesn't penetrate the system.
+* Unsuccessful -- Attacker gains shell access on vulnerable system.
+* Successful -- Attacker doesn't penetrate the system.
 
 ### Dialog
 Unless otherwise specified, all actions executed by attacker:
