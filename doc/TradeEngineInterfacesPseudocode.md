@@ -65,5 +65,5 @@ Written By AnthonyKaiserman
 		* Push buy request to OpenConditionalOrders in database
 		* RETURN "order queued" message
 	* ELSE error message not enough money
-   ELSE RETURN error message cannot validate user
+   *ELSE RETURN error message cannot validate user
 3. Trade engine will pull from OpenConditionalOrders que and make trade when/if conditions are met
