@@ -133,7 +133,7 @@ No active sessions.
 
 
 
-RESULTS OF ATTACK:
+##RESULTS OF ATTACK:
 
 SUCCESSFUL, no Shell was granted, the server remains protected. 
 
