@@ -45,3 +45,11 @@
 * ELSE
 * Return infoType error
 * ENDIF
+
+##Securities Info
+*do
+*if there are result in mysql
+*while(row  = result) //inner loop in if statement
+*foreach(row as value) 
+*printf() and echo <br/>
+*while mysql has more results //end loop
