@@ -1,10 +1,13 @@
 ANNOUNCEMENTS  *******************
 
-Our new website is
-under construction.
+The Home page now shows the web
+application, live, as it is
+right now, under construction.
 
-Major revisions and updates
-will be mentioned here.
+If the web app goes offline,
+an error message indicating this
+will appear on the Home page.
 
-Buttons and color schemes are
-undergoing adjustments this week.
+FAQ page and Glossary have
+updated content.
+

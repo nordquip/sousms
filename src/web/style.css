@@ -17,24 +17,9 @@ h1, h2, h3 {
 	margin: 0;
 	padding: 0;
 	font-weight: normal;
-	color: #003366;
+	color: #CCD6E0;
 	font-family: Arial, sans-serif;
 	font-size: 14px;
-}
-
-h1 {
-	color: #CCD6E0;
-	font-size: 2em;
-}
-
-h2 {
-	color: #CCD6E0;
-	font-size: 2.4em;
-}
-
-h3 {
-	color: #CCD6E0;
-	font-size: 1.6em;
 }
 
 p, ul, ol {
@@ -50,11 +35,12 @@ ul, ol {
 
 a {
 	text-decoration: none;
-	color: #003366;
+	color: #99cccc;
 }
 
 a:hover {
-	color: #99cccc;
+	color: #003366;
+	background-color: #CCC;
 }
 
 #wrapper {
