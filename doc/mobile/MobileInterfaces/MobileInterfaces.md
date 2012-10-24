@@ -48,7 +48,7 @@ If the condition is met, it take the arguement and return the current price of t
 
 ##DynamicSearchAvailableStocks(searchToken)
 
-Written By Cody Shilts
+Written By Nick Patterson
 
 ###Description
 
