@@ -1,0 +1,96 @@
+.basictab{
+	
+    display: block;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	border: none;
+	text-align: left; /*set to left, center, or right to align the menu as desired*/
+	
+
+}
+
+.basictab li{
+display: inline;
+margin: 0;
+}
+
+.basictab li a{
+text-decoration: none;
+padding: 3px 7px;
+margin-right: 2px;
+border: 1px solid gray;
+border-bottom: none;
+background-color: #66cc66;
+color: white;
+}
+
+
+.basictab li a:visited{
+color: white;
+}
+
+.basictab li a:hover{
+background-color: #00ccff;
+color: yellow;
+}
+
+.basictab li a:active{
+color: black;
+}
+
+.basictab li.selected a{ /*selected tab effect*/
+position: relative;
+top: 1px;
+padding-top: 4px;
+background-color: #00ccff;
+color: yellow;
+}
+
+
+.submenustyle{
+padding: 2px 1px;
+border: 1px solid black;
+border-top-width: 0;
+width: auto;
+display: none;
+filter:alpha(opacity=0);
+-moz-opacity:0;
+}
+
+* html .submenustyle{ /*IE only width definition*/
+width: 30%;
+}
+
+.submenustyle a{
+	
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 5px;
+padding-bottom: 5px;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	border: none;
+	background: #66CC66;
+	
+}
+
+.submenustyle a:hover{
+position: relative;
+top: 1px;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 5px;
+padding-bottom: 5px;
+background-color: #00ccff;
+color: yellow;
+}

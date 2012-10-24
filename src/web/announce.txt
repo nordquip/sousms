@@ -1,0 +1,13 @@
+ANNOUNCEMENTS  *******************
+
+The Home page now shows the web
+application, live, as it is
+right now, under construction.
+
+If the web app goes offline,
+an error message indicating this
+will appear on the Home page.
+
+FAQ page and Glossary have
+updated content.
+
