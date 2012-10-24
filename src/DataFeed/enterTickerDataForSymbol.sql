@@ -1,9 +1,3 @@
-/*
-	sousms Stored Procedure interfaces with their implementations
-	Pete Nordquist 121019
-*/
-
-
 /* enterTickerDataForSymbol(bestAskPrice, bestAskQty, bestBidPrice, bestBidQty, close, high, lastSale, low, netChg, open, pcl, vol, date, pctChg, symbol, time)
 
 This Procedure must:
@@ -35,6 +29,3 @@ select * from feed;
 end;
 //
 
-/* add other interfaces in the same format */
-
-delimiter ;
