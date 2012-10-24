@@ -1,6 +1,6 @@
 #Mobile Interfaces
 ##UserAuthentication(userID, password)
-Written By Sean Ewing
+Written By Sir Dr. Sean Ewing Jr. IV
 
 ###Description
 
