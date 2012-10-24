@@ -67,3 +67,31 @@ This procedure will:
 	
 * Failure:
 	* This technically can not fail as it is simply a list filter. However, a blank return could be considered by the user as a failure, thus on a blank return a string will be returned reading something like "Your search failed to return results, try another symbol."
+
+
+##BuyStock(stockSymbol, numShares, userID)
+
+Written By Jian Rossi
+
+###Description 
+This procedure will:
+
+* Verify the user has enough money to buy the stock.
+* Verify the stock is valid.
+
+	If the above conditions are met, account balance is decremented, account holdings is incremented, and the respective stock shares are added to their portfolio.
+	
+###Input Parameter definitions
+
+* UserID -- The ID for the user who is buying stock.
+* stockSymbol -- The specific security for which the user is buying stock.
+* numShares -- The number of stocks we are buying for the user. 
+	
+###Returns
+
+* Success:
+	* 'Transaction Approved'
+	
+* Failure:
+	* 'Invalid Stock Symbol'
+	* 'Not enough money to purchase stock'
