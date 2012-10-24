@@ -1,6 +1,7 @@
 #Mobile Interfaces
 ##UserAuthentication(username, password)
 Written By Sean Ewing
+
 ###Description
 
 This procedure will:
@@ -15,8 +16,8 @@ If these conditions are met it will allow the user to continue on into the appli
 * Password -- The login password that allows authentication to occur
 
 ###Returns
-* Success: 
-	*'User Authenticated'
+* Sucess
+	* 'User Authenticated'
 * Failure:
-	*'Invalid username'
-	*'Invalid password'
+	* 'Invalid username'
+	* 'Invalid password'
