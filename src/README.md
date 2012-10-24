@@ -27,3 +27,5 @@ build-team/buildSousms.sh '' /c/xampp/htdocs/sousms
 ```
 If you are on linux or mac or on windows and installed xampp in a
 directory other than C:, adjust accordingly.
+
+last test
