@@ -23,7 +23,7 @@ If these conditions are met it will allow the user to continue on into the appli
 	* 'Invalid password'
 	
 	
-##CurrentStockPriceUpdate(stockSymbol)
+##CurrentStockPrice(stockSymbol)
 
 Written By Cody Shilts
 
