@@ -3,10 +3,6 @@
 #### Description
 * Tester creates account and / or logs into program
 
-### Variables Needed
-* UserID -- The id for the user who is buying stock.
-* passWord -- The password for the user who is buying stock
-
 #### Dialog
 1. User opens Application
 2. User is greeted with the login screen with option to create account.
