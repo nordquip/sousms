@@ -45,3 +45,25 @@ If the condition is met, it take the arguement and return the current price of t
 	
 * Failure:
 	* Invalid Stock Symbol, please verify the stock symbol entered is correct
+
+##DynamicSearchAvailableStocks(searchToken)
+
+Written By Cody Shilts
+
+###Description
+
+This procedure will:
+
+* Search for a stock using an iTunes style search. Each letter will act as a filter, reducing the list displayed. If a user puts in MS they get a shortened list including both Microsoft and Morgan Stanley.
+
+###Input Parameter definitions
+
+* searchToken - The symbol or partial symbol of the stock you want to investigate.
+
+###Returns
+
+* Success:
+	* Returns list item(s) with stock symbols and current price.
+	
+* Failure:
+	* This technically can not fail as it is simply a list filter. However, a blank return could be considered by the user as a failure, thus on a blank return a string will be returned reading something like "Your search failed to return results, try another symbol."
