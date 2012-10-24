@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>User Accounts</title>
+</head>
+<body>
+<center>
+<h1>User Accounts</h1>
+<div style="background-image:url('rounded_fixed.gif');width:400px;height:400px;padding:10px;">
+<h3>User Name: Chuck Norris</h3>
+<img src="chucknorris.gif" height="300" width="380">
+</div>     
+</center>
+</body>
+</html>
