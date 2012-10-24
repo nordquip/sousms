@@ -1,7 +1,7 @@
 <?php
 // load SimpleXML
 $stocks = new SimpleXMLElement('DataFeedExample.xml', null, true);
-
+//create a table to store data into for now
 echo <<<EOF
 <table>
         <tr>
@@ -24,7 +24,7 @@ echo <<<EOF
         </tr>
 
 EOF;
-foreach($stocks as $dataItems) // loop through our books
+foreach($stocks as $dataItems) // loop through our stocks
 {
         echo <<<EOF
         <tr>
