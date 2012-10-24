@@ -8,6 +8,8 @@
 # /var/git/ contains both this script and the serverBuildScript
 # sousms-new does NOT exist
 
+# For changes in this file to take effect, it must be moved by hand on the server.
+
 # TODO verify that sousms-new does not exist
 
 # Pull the latest repository from GitHub
