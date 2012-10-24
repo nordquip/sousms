@@ -31,7 +31,7 @@ rm /var/www/html/* -r
 mv /var/git/sousms-new /var/git/sousms
 
 # Move files to correct server locations
-cp /var/git/sousms/src/web/html/* /var/www/html/
+cp /var/git/sousms/src/web/* /var/www/html/
 
 # TODO Run build/SQL scripts
 
