@@ -1,5 +1,5 @@
 #Mobile Interfaces
-##UserAuthentication(username, password)
+##UserAuthentication(userID, password)
 Written By Sean Ewing
 
 ###Description
