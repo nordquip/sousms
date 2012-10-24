@@ -1,0 +1,27 @@
+<html>
+
+ <head>
+  <title>Stock Market Simulator</title>
+ </head>        
+
+ <body>                                  
+
+  <h1> Welcome to the SOU Stock Market Simulator </h1> </hr>
+
+  <form action="transaction.php" method="post">                                                
+   <b>Please enter your user name:</b>           
+   <input type="text" size="45" name="username">  <br>
+   <b>Would you like to buy or sell stock:</b> <br>             
+   <input type="radio" name="type" value="buy">  Buy           
+   <input type="radio" name="type" value="sell">   Sell
+   <input type="radio" name="type" value="plunder">    Plunder <br>
+   <b>Please enter the <i>Stock Symbol</i> of the company you wish to buy/sell:</b>           
+   <input type="text" size="45" name="symbol"><br>
+   <b>Enter how much stock:
+   <input type="text" size="10" name="amount"><br>
+   <input type="submit" value="Submit This Form">
+ </form>            
+
+ </body>
+
+</html>
