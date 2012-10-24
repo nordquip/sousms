@@ -1,7 +1,6 @@
 SOU Stock Market Simulator Requirements Specification
 # Introduction
-This software simulates a trading platform where authorized users can 
-paper trade stocks.
+Provides an overview by describing the purpose, scope, references, and definitions of terms.
 # High-level description
 Provides a general description of the software product, its major functions, user characteristics, major constraints, and dependencies.
 # Detailed requirements 
