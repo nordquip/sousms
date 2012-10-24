@@ -4,8 +4,8 @@
 * Tester makes sure that buy features function.
 
 ### Variables Needed
-* stockSymbol -- The specific company for which we are buying stock.
-* numShares -- The amount of stock we are buying for the user.
+* stockSymbol - The specific company for which we are buying stock.
+* numShares - The amount of stock we are buying for the user.
 
 
 #### Preconditions
