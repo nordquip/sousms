@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">SOUSMS</string>
+
+    <string name="app_name">SchoolStockMarket</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="user_name">User Name</string>
+    <string name="user_password">Password</string>
+    <string name="button_login">Login</string>
+    <string name="title_activity_display_message">My Message</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>
