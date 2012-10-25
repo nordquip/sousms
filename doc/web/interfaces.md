@@ -21,9 +21,9 @@
 ###Return: Display help file for user to view
 
 ## Login:
-###Parameters: Sends input data to database for authentication
+###Parameters: Sends Username and Password to database for authentication
 ###Return: True or false
 
 ## ReclaimPassword:
-###Parameters: Sends input data to database for authentication
+###Parameters: Sends First Name, Last Name and E-mail to database for authentication
 ###Return: Message of not found or email sent.
