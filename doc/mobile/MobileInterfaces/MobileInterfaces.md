@@ -95,3 +95,30 @@ This procedure will:
 * Failure:
 	* 'Invalid Stock Symbol'
 	* 'Not enough money to purchase stock'
+ 
+
+##SellStock(stockSymbol, numShares, userID)
+
+Written By Terak Raines
+
+###Description
+This procedure will:
+
+*accept input from the user: The symbol of the stock you want to sell, and the number of shares you want to sell.
+*Checks to make sure the user has enough stock to sell.  StockOwned>=SellShares.
+	* If the user has enough shares, the account balance is incremented by sellShares*pricePerShare.
+ 	* The account holdings are decremented by sellShares*pricePerShare.
+  	* The number of owned shares is also decremented by sellShares.
+*UserID - the Id for the user who selling the shares of stock.
+*stockSymbol - The type of stock the user is wanting to sell.
+*numShares - the quantity of shares the user wants to sell.
+          
+###Returns
+
+*Success:
+	*'Transaction approved'
+*Failure:
+	*'Invalid Stock Symbol'
+	*'User doesn't own enough stock'
+	
+ 
