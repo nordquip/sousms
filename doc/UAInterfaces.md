@@ -52,8 +52,9 @@ and return 'successful'
 and return 'successful'
 * if not, return 'insuffecient funds' error
 
-###tradeHistory(date, buy/sell, symbol, amount)
+###tradeHistory(userID)
 ####This procedure must:
 * Identify the current user
 * Query data base for trade history information
+* Return numShares, price, symbol, date
 * Display trade history information
