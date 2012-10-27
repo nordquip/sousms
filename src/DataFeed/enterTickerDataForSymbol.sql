@@ -6,26 +6,29 @@ This Procedure must:
 drop procedure if exists enterTickerDataForSymbol;
 delimiter //
 create procedure enterTickerDataForSymbol(
+	IN symbol varchar(8),
 	IN bestAskPrice decimal(10,4),
 	IN bestAskQty int,
 	IN bestBidPrice decimal(10,4),
 	IN bestBidQty int,
 	IN close decimal(10,4),
 	IN high decimal(10,4),
+	IN date date,
+	IN time time,
+	IN ms decimal(3,3),
 	IN lastSale decimal(10,4),
 	IN low decimal(10,4),
 	IN netChg decimal(10,4),
 	IN open decimal(10,4),
 	IN pcl decimal(10,4),
-	IN vol decimal(10,4),
-	IN date DATE,
-	IN pctChg decimal(10,8),
-	IN symbol char(10),
-	IN time TIME) 
+	IN vol int,
+	IN pctChg decimal(10,8)
+	)
 
 begin
-insert into feed values (bestAskPrice, bestAskQty, bestBidPrice, bestBidQty, close, high, lastSale, low, netChg, open, pcl, vol, date, pctChg, symbol, time);
-select * from feed;
+insert into feed values (symbol, bestAskPrice, bestAskQty, bestBidPrice,
+	bestBidQty, close, high, date, time, ms, lastSale, low, netChg, open,
+	pcl, vol, pctChg);
 end;
 //
 

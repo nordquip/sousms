@@ -29,7 +29,7 @@ FOREIGN KEY (AcctNum) REFERENCES Bank (AcctNum)
 )
  
  
-Cole:
+-- Cole:
 
 CREATE TABLE User (
 	UserID int primary key auto_increment,
@@ -63,21 +63,4 @@ CREATE TABLE Portfolio(
 	Shares int not null,
 	Foreign Key (UserID, Symbol) References Transaction(UserID, Symbol)
 		on update cascade
-)
-
-CREATE TABLE Feed(
-	Symbol char primary key,
-	TS timestamp not null,
-	BestAskPrice float(5,2) not null,	
-	BestAskQty float(5,2) not null
-	BestBidPrice float (5,2) not null,	
-	BestBidQty float(5,2) not null,
-	Close float (5,2) not null,
-	High float(5,2) not null,			
-	Date timestamp not null,
-	LastSale float (5,2) not null,		
-	Low float(5,2) not null,			
-	NetChg float not null,			
-	Open float not null,			
-	Pcl float not null
 )

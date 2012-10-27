@@ -6,8 +6,8 @@
 
 /* Create DB */
 /* notice no drop here -- first must figure out how to back up the existing db */
-create database if not exists sousms;
-use sousms;
+-- create database if not exists sousms;
+-- use sousms;
 
 /* 
 the source command is a handy command that
