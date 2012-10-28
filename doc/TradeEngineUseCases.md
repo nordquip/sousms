@@ -10,27 +10,21 @@ User or Program
 Buy stock
 
 ### Preconditions
-* Authorized User Account
-* Appropriate Stock Symbol 
-* Sufficient funds for stocks to complete transaction
+* User logged in to account
 
 ### Post Conditions
-* Transaction successful output receipt.
-* Output Error, Not an authorized user, can't complete transaction.
-* Output Error, Incorrect stock symbol, can't complete transaction.
-* Output Error, User does not have enough cash for amount of stocks requested, can't complete transaction
+* Successful:  User purchases stock.
+* Fail:  Incorrect stock symbol.
+* Fail: User does not have enough cash for amount of stocks requested.
 
 ### Dialog
-1. User Logs into account with User ID and password.
-	* Output error if user does not have account, does not log in.
-2.  Enters stock symbol, and amount of shares to buy.
-3.  Confirm transaction  
+
+1.  Enters stock symbol, and amount of shares to buy.
+2.  Confirm transaction  
 	* Output error if system cannot locate appropriate stock symbol.
 	* Output error if user does not have enough cash for amount of stocks.
 	* Output transaction successful.
-	* Output receipt.
-4. Save or print receipt
-5. Logout or perform another transaction starting again with number 2.
+3. Save or print receipt
 
 
 ## ID  UCTradeEngineSell
@@ -43,26 +37,22 @@ User or Program
 Sell stock shares from user account
 
 ### Preconditions
-* Authorized User Account
-* Appropriate Stock Symbol 
-* Sufficient shares of stocks to complete transaction
+* User logged in to account
 
 ### Post Conditions
-* Transaction successful output receipt.
-* Output Error, Not an authorized user, can't complete transaction.
-* Output Error, User does not have stock to be sold, can't complete transaction.
-* Output Error, User does not have enough shares, can't complete transaction
+* Successful:  User sells stocks.
+* Fail:  Incorrect stock symbol.
+* Fail: User is trying to sell more shares then user has.
 
 ### Dialog
-1. User Logs into account with User ID and password.
-	* Output error if user does not have account, does not log in.
-2.  Enters stock symbol, and amount of shares to sell.
-3.  Confirm transaction  
+
+1.  Enters stock symbol, and amount of shares to sell.
+2.  Confirm transaction  
 	* Output error if system cannot locate appropriate stock symbol.
 	* Output error if user does not own number of shares being sold.
 	* Output transaction successful.
-4. Save or print receipt
-5. Logout or perform another transaction starting again with number 2.
+3. Save or print receipt
+
 
 ## ID  UCConditionalBuyAtUserPrice 
 Written By NickolausDS
@@ -79,6 +69,7 @@ Written By NickolausDS
 ### Postconditions
  * Successful -- The condition will be set, and automatically buy if stock price reaches UDP.
  * Fail -- The condition is not set.
+ * Timeout -- The condition is canceled. (See UCCancelTrade)
 
 ### Dialogue
  1. User specifies stock symbol and number of shares to buy. 
@@ -89,9 +80,10 @@ Written By NickolausDS
  4. The condition is set
  5. The condition waits for Stock price to lower to UDP.
  6. If stock price lowers to UDP.
-	* Stock is bought
-	* back to 1 and condition ceases to exist.
- 7. Back to 5
+	* Postcondition Success is met.
+ 7. If the stock has reached Timeout
+	* Postcondition Timeout.
+ 8. Back to 5.
 
 ## ID  UCConditionalSellAtUserPrice
 Written by Garrett Skelton
@@ -155,24 +147,26 @@ Written By NCHelix (Jeremy Barnes)
 	* back to 1
  3. Stock price is listed for user.
 
-## ID:	QueryPersonalAssets
+## ID UCQueryPersonalAssets
 Written by Ben Harris
 
 ### Actors
- * Trade Engine User (TEU)
+ * Stock Market Simulator User (SMSU)
  
 ### Description	
- * TEU submits a request to see how much "money" is in their account
+ * Query is called on login and after every transaction to display amount of "cash" on account
  
 ### Preconditions	
- * TEU has logged into valid account
+ * SMSU has logged into valid account
 
 ### Postconditions	
- * Successful - TEU recieves balance of "cash" in their account
+ * Successful - SMSU is shown their "cash" balance
  * Unsuccessful - There shouldn't be an unsuccessful result (assuming a successful login)
 
 ### Dialog		
- * After successful login, TEU can submit to see how much cash is in their account
+ 1. SMSU logs onto their account, query is called and result is displayed on the UI
+ 2. If trade is successful, then query is re-called and result is displayed
+ 3. If cash is deposited/withdrawn, query is re-called and result is displayed
 
 ## ID UCStockSymbolSearch
 Written By AnthonyKaiserman
@@ -217,3 +211,100 @@ Written By Garrett Skelton
 2. User may choose a timeframe (day, week, month, year) and whether they want absolute or relative earnings
 3. Stocks are ranked based on the change in value over the user defined timeframe
 4. Top stocks are returned to the user
+
+
+## ID UCQueryAvailableShares
+Written By Brittany Dighton
+
+### Actors
+ * User
+
+### Description
+ * User views available shares of selected symbol
+
+### Preconditions
+ * User is logged in
+
+### Postconditions
+ * Success: Available shares of selected symbol displayed
+ * Failure: Error message displayed
+
+### Dialog
+1. User selects desired symbol
+2. If system unable to find symbol specified
+	* Error message displayed
+	* Return to 1.
+3. System displays available shares of symbol specified
+
+
+## ID UCQueryStockData
+Written By Jeff Miller 
+
+### Actors
+ * Authorized users
+
+### Description
+ * Return resultset for a given stock symbol
+
+### Preconditions
+ * TBA (what comes from remote vs. NASDAQ feed?)
+
+### Postconditions
+ * TBA
+
+### Dialog
+1. Calls UC:ueryRemoteDataForSymbol
+2. Merge data from returned DTO with NASDAQ data
+3. Return resultset
+
+## ID UCQueryRemoteDataForSymbol
+Written By Jeff Miller 
+
+### Actors
+ * Trade engine
+
+### Description
+ * Returns resultset compiled from remote sources
+
+### Preconditions
+ * Can't be exposed externally (IP restrictions at minimum)
+ * Valid symbol must be used
+ * Synchronous-mode defaults to asynchronous (for speed)
+ * Remote data sources for symbol info must be known in advance
+
+### Postconditions
+ * Data set is returned if any found (success)
+ * Empty data set returned if no data found (success, no data)
+ * Error status code and message set if exception. Empty data set returned. (failure)
+
+### Dialog
+1. Create a response Data Transfer Object (DTO) (fields needed)
+2. Validate symbol, if failure set error code/message in DTO and skip to end
+3. Create empty resultset
+4. Call UCFindRemoteDataForSymbol with symbol and wait depending on synchronous-mode
+5. Query database for records associated with symbol
+6. Fill resultset
+7. Add resultset to DTO
+8. Return serialized DTO
+
+## ID UCFindRemoteDataForSymbol
+Written By Jeff Miller 
+
+### Actors
+ * Trade engine
+
+### Description
+ * Query and compile data from remote data sources
+
+### Preconditions
+ * Can't be exposed externally (IP restrictions at minimum)
+ * Remote data sources for symbol info must be known in advance
+
+### Postconditions
+ * Returns true if data found
+ * Returns false if data not found
+
+### Dialog
+1. Queries twitter feed for any data associated with symbol
+2. Queries any other feed URLs stored in database
+3. Stores results for feeds associated with symbol in database if new
