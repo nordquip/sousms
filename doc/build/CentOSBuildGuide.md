@@ -1,8 +1,8 @@
 CENTOS 6.3 INSTALL/CONFIGURATION INSTRUCTIONS
 
-1. Download Minimal ISO appropriate for your computer's architecture (x86 or 64)
+1. Download Minimal ISO appropriate for your computer's architecture (x86 or 64)  https://www.centos.org/modules/tinycontent/index.php?id=15
 
-2. Download and install Oracle VirtualBox
+2. Download and install Oracle VirtualBox  https://www.virtualbox.org/
 
 3. Create VirtualBox virtual machine
 	a. for OS option, choose Linux/Other
