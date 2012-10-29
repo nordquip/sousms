@@ -1,0 +1,17 @@
+p		   {color: #ffffff;
+		   font: Arial, sans-serif;
+		   font-size: 10pt;
+	      }
+	
+background {color: #333333;}
+		  
+h1, h2, h3 {font: Arial, sans-serif;
+		   font-size: 14pt;
+		   color: #003366;
+		  }
+		  
+a		   {text-decoration: none;
+		   color: #003366;
+		  }		  
+		  
+a:hover      {color: #99cccc;}
