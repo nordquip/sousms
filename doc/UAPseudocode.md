@@ -21,8 +21,9 @@
 * GET EnteredUserName
 * GET EnteredPassword
 * IF (EnteredUsername == Username && EnteredPassword == Password) THEN
+*   GET NewPassword
 *   Sanitize (NewPassword)
-*   IF (Sanitize returns EnteredUserName && EnteredPassword) THEN
+*   IF (NewPassword) THEN
 *     change password
 *   ELSE
 *     Display error message
