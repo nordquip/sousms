@@ -1,58 +1,46 @@
 #Pseudocode
 ##Password Recovery
 * GET EnteredUserName
-* Sanitize (EnteredUserName)
-* IF (Sanitize returns EnteredUserName) THEN
-* 	IF (EnteredUserName == UserName  ) THEN
-* 		New Password Sent to registered email
-* 	ELSE
-* 		UserName Failed
-* 	ENDIF
-* ELSE Display error message
+* IF (EnteredUserName == UserName) THEN
+* 	New Password Sent to registered email
+* ELSE
+* 	UserName Failed
 * ENDIF
 
 ##Initial Account Access
 * GET EnteredUserName
 * GET EnteredPassword
-* Sanitize (EnteredUserName)
-* Sanitize (EnteredPassword)
-* IF (Sanitize returns EnteredUserName && EnteredPassword) THEN
 * 	IF (EnteredUsername == Username && EnteredPassword == Password) THEN
 * 		Login Successful
-* 		Password Changed to new Password
+* 		CALL Password Change
 * 	ELSE
 * 		Login Failed.
 * 	ENDIF
-* ELSE Display error message
-* ENDIF
 
 ##Password Change
 * GET EnteredUserName
 * GET EnteredPassword
-* Sanitize (EnteredUserName)
-* Sanitize (EnteredPassword)
-* IF (Sanitize returns EnteredUserName && EnteredPassword) THEN
-* 	IF (EnteredUsername == Username && EnteredPassword == Password) THEN
-* 		Enter New Password
-* 	ELSE
-* 		Password Change Failed
-* 	ENDIF
-* ELSE Display error message
+* IF (EnteredUsername == Username && EnteredPassword == Password) THEN
+*   Sanitize (NewPassword)
+*   IF (Sanitize returns EnteredUserName && EnteredPassword) THEN
+*     change password
+*   ELSE
+*     Display error message
+*   ENDIF
+* ELSE
+* 	Password Change Failed
 * ENDIF
+
 
 ##Login 
 * GET EnteredUserName
 * GET EnteredPassword
-* Sanitize (EnteredUserName)
-* Sanitize (EnteredPassword)
-* IF (Sanitize returns EnteredUserName && EnteredPassword) Then
-* 	IF (EnteredUsername == Username && EnteredPassword == Password) THEN
-* 		Set session cookie and enter site
-* 	ELSE
-* 		Display error message
-* 	ENDIF
-* ELSE Display error message
-* ENDIF
+* IF (EnteredUsername == Username && EnteredPassword == Password) THEN
+* 	Set session cookie and enter site
+*	ELSE
+*		Display error message
+*	ENDIF
+
 
 ##Sanitize
 * IF (infoType == string)
