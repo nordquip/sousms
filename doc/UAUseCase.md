@@ -1,30 +1,28 @@
 ﻿#User Account Use Cases					
  
 
-##First Time Registration
+##Initial Account Access
 ###Actor
-*User
-###Description	
-*User enters account information to register with the site
-###Pre Condition
-*Access to website
+ *User
+###Descritpion
+	*User enters accoung information to register with website
+###Precondition
+	*Access to website
 ###Post Condition
-*User account created - successful
-*user account is not created - unsuccessful
-###Dialog	
+	*User account registered- succesful
+	*User not in databze no account registered - unsuccesful
+
+###Dialog
 1. 1st Time customer clicks Register button.
-2. The system displays registration page prompts for Customer ID and Password. Also a Register button.
-3. User enters desired User Name.
-4. User enters desired password.
-5. User enters desired password again.
-6. User enters email address
-7. User enters email address again
-8. User presses Register button.
-9. If User Name already exists, go to main dialog, step 1.
-10. If password does not meet requirements, go to step 4.
-11. If email does not meet requirements, got step 4.
-12. The system creates Customer’s Customer object.
-13. The system displays login page.
+2. The system displays registration page prompts for Customer ID and Password. Also a Activate button.
+3. User enters User Name.
+4. User enters first time use password.
+5. User enters new password.
+6. User enters new password to confirm.
+7. User presses Activate button.
+8. The system registers Customer’s Customer object from 0 to 1 shwoing its activated.
+9. The system displays login page.
+ 
 
 
 
@@ -76,6 +74,23 @@
 4. User password compared to user object.
 5. If found temporary password or user name sent to user registered email.
 6. Return to login screen.
+
+##Password Change
+###Actor
+ *User
+###PreCondtions
+	*Exsisting Account1. User
+###Post Condtions
+	*Access User Account
+###Dialog
+1. User clicks change password.
+2. Goes to change password screen.
+3. User Enters email and current password.
+4. User enters new password.
+5. User enters new password to confirm.
+6. User old password compared to user object.
+7. If found password is changed to new password.
+8. Return to login screen.
 
 ###Logout
 *User
@@ -183,3 +198,20 @@
 7. System displays new ownership of stock in user acct.
 8. If new balance of funds and ownership of stock display correctly, successful postconditions established, else unsuccessful postconditions established
 
+
+##GetTradeHistory
+###Actor
+*User
+###Description
+*User sees trade history displayed 
+###Preconditions
+*User has successfully logged in
+###postconditions
+*User's correct trade history displayed - successful
+
+*User's trade history not displayed, or displayed incorrectly - unsuccessful
+###Dialog
+1. User clicks trade history button
+2. System queries data base for user's trade history information
+3. System displays information
+4. If information displays correctly, successful postconditions established, else unsuccessful postconditions established
