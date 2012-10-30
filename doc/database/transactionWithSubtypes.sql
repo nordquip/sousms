@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS Stock(
 CREATE TABLE IF NOT EXISTS Cash(
 	UserID int not null,
 	Balance float(9,2) not null,
+	TStamp timestamp not null,
 	Primary Key(UserID, Balance),
 	Foreign Key (UserID) References User(UserID)
 )ENGINE = InnoDB;
