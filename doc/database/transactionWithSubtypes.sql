@@ -20,6 +20,10 @@ CREATE TABLE IF NOT EXISTS User(
 	Lname char (20) not null,
 	Email varchar (40) not null,
 	Phone varchar (20) not null,
+	/*Token Information*/
+	Token varchar (32) not null,
+	begTS timestamp not null,
+	endts timestamp not null,
 	PRIMARY KEY (UserID)
 )ENGINE = InnoDB;
 
