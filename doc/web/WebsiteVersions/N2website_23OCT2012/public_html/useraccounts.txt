@@ -32,8 +32,11 @@
    <li rel="contactsubs"><a href="contact_i0o9mwoi1lt.html"><img src="images/Contact_Us.jpg" 
       onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images/Contact_Us.jpg" 
    /></a></li>
+   <li rel="accountsubs"><a href="useraccount.html"><img src="images/Placeholder.jpg" 
+      onmouseover=this.src="images/Placeholderselected.jpg" onmouseout=this.src="images/Placeholder.jpg" 
+   /></a></li>
 </ul>
-</center>
+
 <div style="background-image:url("images/rounded_fixed.gif");width:400px;height:400px;padding:10px;">
 <h3>User Name: Chuck Norris</h3>
 <img src="images/chucknorris.gif" height="300" width="380">
@@ -43,20 +46,18 @@
 <br>
 <br>
 <br>
-<center><img alt="Ninja" height="358" src="images/ninja.png" width="303" /></center>
+<img alt="Ninja" height="358" src="images/ninja.png" width="303" />
 <br>
 <br>
 <br>
 <br>
 <br>
-<HR width=50% size=2 align=left>
-<center>
+</center>
 <div id="footer">
     <p> &copy; 2012 Southern Oregon University 1250 Siskiyou Boulevard Ashland, OR 97520 541-552-7672</p>
     <p> Webpages may include live content from third parties.</p>
     <p> Allergy Information:  Transmitted on a network that also transmits pictures of tree nuts.</p>
     <p> </p>
 </div>
-</center>
 </body>
 </html>

@@ -1,24 +1,25 @@
 #Interface Specifications
 
 ##Buy:
-###Parameters: Needs available stocks and prices, ability to purchase stocks
+###Parameters: A symbol and a number of shares
 ###Return: Confirmation of successful purchase
 
 ##Sell:
-###Parameters: Ability to select stocks for sale and view current price
+###Parameters: A symbol and a number of shares
 ###Return: Notification that stocks were sold when a buyer is found
 
-##Lookup:
-###Parameters; Needs access to the feed and the ability to search for stocks
+##getQuoteFor(symbol):
+###Description: Gets quote for a particular symbol
+###Parameters: Symbol and current price
 ###Return: Display lookup results to user
 
 ##Settings:
 ###Parameters: Needs user account information and ability to make and save changes
 ###Return: Confirmation of changed settings and saving of new settings
 
-##Help:
-###Parameters: Needs access to help files
-###Return: Display help file for user to view
+##FAQ:
+###Parameters: FAQ
+###Return: Display FAQ
 
 ## Login:
 ###Parameters: Sends Username and Password to database for authentication
