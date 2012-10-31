@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="-1">
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<title>N2 Trading</title>
+<META NAME="ROBOTS" CONTENT="NONE, NOARCHIVE">
+<META NAME="GOOGLEBOT" CONTENT="NOARCHIVE">
+<meta http-equiv="Expires" content="Tue, 04 Dec 1997 21:29:02 GMT">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript" src="jquery/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="jquery/jquery.gallerax-0.2.js"></script>
+<link rel="stylesheet" type="text/css" href="2leveltab.css" />
+<script type="text/javascript" src="2leveltab.js"></script>
+<style type="text/css">
+@import "gallery.css";
+</style>
+</head>
+<body>
+		<center><img src="images/tradestocks.jpg" width="810" height="160" alt="NASDAQ Ninja logo" 
+		
+/></center>
+	<!-- end #header -->
+    
+	<!-- this is where top menu at the top will go -->
+
+	<!-- end #menu -->
+	<div id="page">
+		<div id="page-bgtop">
+			<div id="page-bgbtm">
+				<div id="content">
+					
+					<div class="post">
+						<h2 class="title"><a href="#">Buy Stock</a>			</h2>
+<p class="meta"><span class="posted"><a href="#"></a></span></p>
+						<div style="clear: both;">&nbsp;</div>
+						<div class="entry">
+						  <p>Application for trading<br />
+					      </p>
+<p class="links">&nbsp;</p>
+						</div>
+					</div>
+					
+					
+					<link rel="stylesheet" href="css/html5demos.css">
+<script src="js/h5utils.js"></script></head>
+<body>
+<section id="wrapper">
+
+    <header>
+      <h1>Drag the stock you want to trade to the stock broker.</h1>
+    </header>
+
+<style type="text/css">
+li {
+  list-style: none;
+}
+
+li a {
+  text-decoration: none;
+  color: #000;
+  margin: 10px;
+  width: 150px;
+  border: 3px dashed #999;
+  background: #eee;
+  padding: 10px;
+  display: block;
+}
+
+*[draggable=true] {
+  -moz-user-select:none;
+  -khtml-user-drag: element;
+  cursor: move;
+}
+
+*:-khtml-drag {
+  background-color: rgba(238,238,238, 0.5);
+}
+
+li a:hover:after {
+  content: ' (drag me)';
+}
+
+ul {
+  margin-left: 200px;
+  min-height: 300px;
+}
+
+li.over {
+  border-color: #333;
+  background: #ccc;
+}
+
+#bin {
+  background: url(images/broker.jpg) top right no-repeat;
+  height: 347px;
+  width: 287px;
+  float: left;
+  border: 5px solid #000;
+  position: relative;
+  margin-top: 0;
+}
+
+#bin.over {
+  background: url(images/broker.jpg) top left no-repeat;
+}
+
+#bin p {
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  bottom: 20px;
+  width: 287px;
+  font-size: 32px;
+  color: #fff;
+  text-shadow: #000 2px 2px 2px;
+}
+</style>
+<article>
+  
+  <div id="bin"></div>
+  <ul>
+    <li><a id="one" href="#">Apple</a></li>
+    <li><a href="#" id="two">Microsoft</a></li>
+    <li><a href="#" id="three">Google</a></li>
+    <li><a href="#" id="four">Intel</a></li>
+    
+  </ul>
+</article>
+  <script>
+
+  var eat = ['yum!', 'gulp', 'burp!', 'nom'];
+  var yum = document.createElement('p');
+  var msie = /*@cc_on!@*/0;
+  yum.style.opacity = 1;
+
+  var links = document.querySelectorAll('li > a'), el = null;
+  for (var i = 0; i < links.length; i++) {
+    el = links[i];
+  
+    el.setAttribute('draggable', 'true');
+  
+    addEvent(el, 'dragstart', function (e) {
+      e.dataTransfer.effectAllowed = 'copy'; // only dropEffect='copy' will be dropable
+      e.dataTransfer.setData('Text', this.id); // required otherwise doesn't work
+    });
+  }
+
+  var bin = document.querySelector('#bin');
+
+  addEvent(bin, 'dragover', function (e) {
+    if (e.preventDefault) e.preventDefault(); // allows us to drop
+    this.className = 'over';
+    e.dataTransfer.dropEffect = 'copy';
+    return false;
+  });
+
+  // to get IE to work
+  addEvent(bin, 'dragenter', function (e) {
+    this.className = 'over';
+    return false;
+  });
+
+  addEvent(bin, 'dragleave', function () {
+    this.className = '';
+  });
+
+  addEvent(bin, 'drop', function (e) {
+    if (e.stopPropagation) e.stopPropagation(); // stops the browser from redirecting...why???
+
+    var el = document.getElementById(e.dataTransfer.getData('Text'));
+    
+    el.parentNode.removeChild(el);
+
+    // stupid nom text + fade effect
+    bin.className = '';
+    yum.innerHTML = eat[parseInt(Math.random() * eat.length)];
+
+    var y = yum.cloneNode(true);
+    bin.appendChild(y);
+
+    setTimeout(function () {
+      var t = setInterval(function () {
+        if (y.style.opacity <= 0) {
+          if (msie) { // don't bother with the animation
+            y.style.display = 'none';
+          }
+          clearInterval(t); 
+        } else {
+          y.style.opacity -= 0.1;
+        }
+      }, 50);
+    }, 250);
+
+    return false;
+  });
+
+  </script>
+					
+					
+					<div class="post">
+						<h2 class="title">Purchase Info</h2>
+						<p class="meta"><span class="date"> </span><span class="posted"> </span></p>
+						<div style="clear: both;">&nbsp;</div>
+						<div class="entry">
+							<p>&nbsp;</p>
+							<p class="links">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+						</div>
+					</div>
+					<div style="clear: both;">&nbsp;</div>
+				</div>
+				<!-- end #content -->
+				<div id="sidebar">
+					<ul>
+                                            <li>
+							<h2>Select to Buy or Sell</h2>
+						</li>
+                                            <li></li>
+						<li>
+							<div id="search" >
+								<iframe id="datamain" src="message.txt" width=284 height=300 marginwidth=10 marginheight=5 hspace=0 vspace=0 frameborder=1 scrolling=yes></iframe>
+							</div>
+							<div style="clear: both;">&nbsp;</div>
+						</li>
+                        <li></li>
+					</ul>
+	      </div>
+				<!-- end #sidebar -->
+				<div style="clear: both;">&nbsp;</div>
+			</div>
+		</div>
+	</div>
+	<!-- end #page -->
+</div>
+<div id="footer">
+	<p> &copy; 2012 Southern Oregon University 1250 Siskiyou Boulevard Ashland, OR 97520 541-552-7672</p>
+    <p> Webpages may include live content from third parties.</p>
+    
+    <p> </p>
+</div>
+<!-- end #footer -->
+</body>
+</html>
