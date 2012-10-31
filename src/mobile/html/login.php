@@ -18,7 +18,7 @@
 			
 			<form> <!--action="authenticationhandler.php" method="post"-->
 				<span id="user"> Username:</span><input type="text" id="username" value=""/><br />
-				<span id="pass"> Password:</span><input type="text" id="password" value=""/><br />
+				<span id="pass"> Password:</span><input type="Password" id="password" value=""/><br />
 				<input type="button" id="submit" value="Submit" onclick="Authenticate()"/>
 			</form>
 		</div><!-- end div login-->
