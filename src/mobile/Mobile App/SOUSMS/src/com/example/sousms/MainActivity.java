@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         myWebView = (WebView) findViewById(R.id.webview);
         myWebView.setWebViewClient(new WebViewClient());
-        myWebView.loadUrl("http://www.google.com");
+        myWebView.loadUrl("https://raw.github.com/TheMrNiceGuy/SOUSMS-Mobile-Team/master/src/mobile/html/JianRossiHTML5Page.html");
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
