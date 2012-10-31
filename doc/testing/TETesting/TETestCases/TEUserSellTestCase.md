@@ -32,6 +32,11 @@
 		<td>"Must enter a positive integer."</td>
 	</tr>
 	<tr>
+		<td>tester inputs a bad symbol</td>
+		<td>error returned</td>
+		<td>"Could not find symbol, please input a valid symbol."</td>
+	</tr>
+	<tr>
 		<td>tester enters negative numer as sell amount</td>
 		<td>error returned</td>
 		<td>"Must enter a positive integer."</td>
