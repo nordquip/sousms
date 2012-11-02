@@ -18,12 +18,12 @@
 # or 'Main' Note: Leave the '.class' part off the filename, java does not
 # like it.
 JAVA="java"
-PROGRAM=""
+PROGRAM="Engine"
 
 
 COMMAND="nohup $JAVA $PROGRAM"
-LOG="$PROGRAM.log"
 pidFile="$PROGRAM.pid"
+shutdownFile="shutdown"
  
  
 
@@ -34,7 +34,7 @@ function checkStatus {
     #Sends kill signal 0, basically the 'are you there?' signal.
     #Replacement for pgrep, since some systems don't have it.
     #pgrep "$pid"
-    kill -s 0 "$pid" > /dev/null 2>&1
+    kill -s 0 "$pid" &> /dev/null
     if [ $? -eq 1 ]; then return 1; fi
     return 0; 
 }
@@ -43,9 +43,11 @@ function checkStatus {
 function do_start {
     checkStatus
     if [ $? -eq 0 ]; then echo "$PROGRAM is already running."; return 0; fi
-    `$COMMAND` >> log 2>&1 & 
+    #Uncomment if you wish to use logging
+    `$COMMAND` &> /dev/null & 
+    # 
     echo $! > $pidFile
-    sleep 0.3
+    sleep 1.5
     pid="$(<$pidFile)"
     if checkStatus $pid; 
     then
@@ -60,18 +62,51 @@ function do_start {
  
 function do_stop {
     checkStatus
-    if [ $? -ne 0 ]; then echo "$PROGRAM is not running"; return 0; fi
+    if [ $? -ne 0 ]; 
+    then 
+        echo "$PROGRAM is not running";
+        rm $pidFile $shutdownFile &> /dev/null
+        return 1; 
+    fi
+    touch "$shutdownFile"
+    sleep 1.5
+    checkStatus
+    if [ $? -ne 1 ]
+    then
+        echo "$PROGRAM shutdown failed."
+        return 1;
+    else
+        echo "$PROGRAM STOPPED"
+        rm $pidFile $shutdownFile &> /dev/null
+        return 0;
+    fi
+   }
+   
+function do_force_stop {
+    checkStatus
+    if [ $? -ne 0 ]; 
+    then 
+        echo "$PROGRAM is not running";
+        rm $pidFile $shutdownFile &> /dev/null
+        return 1; 
+    fi
     #NOTE -- This will probably have to be changed in the future, since
     # outright murdering our executor will probably leave it in an unstable
     # state.
     local pid=$(<$pidFile)
     kill $pid
-    rm "$pidFile"
-    echo "$PROGRAM STOPPED"
-    #Instead, the executor will probably shutdown by itself when it detects
-    # this file
-    #echo "yes" > shutdown
-   }
+    checkStatus
+    if [ $? -ne 1 ]
+    then
+        echo "$PROGRAM force shutdown failed."
+        return 1;
+    else
+        echo "$PROGRAM STOPPED"
+        rm $pidFile $shutdownFile &> /dev/null
+        return 0;
+    fi
+    
+}
 
 if [ "$PROGRAM" = "" ];
     then
@@ -87,6 +122,10 @@ case "$1" in
         ;;
     stop)               
         do_stop
+        exit $?
+        ;;
+    forcestop)
+        do_force_stop
         exit $?
         ;;
     restart)                
@@ -105,7 +144,7 @@ case "$1" in
         fi
         ;;
     *)
-        echo "Usage: $0 {start|stop|restart|status}"
+        echo "Usage: $0 {start|stop|forcestop|restart|status}"
         exit 1
         ;;
 esac
