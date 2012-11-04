@@ -1,0 +1,10 @@
+ANNOUNCEMENTS  *******************
+
+This Website is 
+under construction.
+
+The site is being converted
+into a PHP format.
+
+Some pages may not display
+correctly.
