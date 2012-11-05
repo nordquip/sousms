@@ -23,6 +23,10 @@
 			die("Unable to connect to database:  (" . $conn->connect_errno . ") ". $conn->connect_error);
 		}
 		
+		if (!$conn->multi_query("CALL getShareBalance($user, $symbol)")) {
+			die ("Error calling stored procedure:  (" . $conn->errno . ") " . $conn->error);
+		}
+		
 		if ($result = $conn->store_result()) 
 		{
 			if ($result >= $shares)
@@ -39,7 +43,7 @@
 		else {
 			if ($conn->errno) 
 			{
-				die ("Store failed: (" . $conn->errno . ") " . $conn->error);
+				die ("Error storing result set: (" . $conn->errno . ") " . $conn->error);
 			}
 			}
 		}
