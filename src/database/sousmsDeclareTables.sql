@@ -75,8 +75,7 @@ delimiter ;
 call conditionallyCreateFeedTable;
 
 /*
- To source initUserAndTransactionTables.sql to create the Transaction tables, do we call in the same way as we 
- would the command line? if so:
+ Source initUserAndTransactionTables.sql as if from command line: 
 */
 
 source sousms/src/database/initUserAndTransactionTables.sql;
