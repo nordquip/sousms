@@ -6,6 +6,7 @@
 ******************************************************************/
 
 include("Credentials.class.php");
+include("PasswordRecover.class.php");
 
 //this is the object format that the client expects from getTokenFromCredentials
 //what else might the client want to know?
@@ -52,6 +53,23 @@ if (!isset($_POST["jsondata"])) {
 				header("Content-type: application/json");
 				echo json_encode($msg);  //serialize the UATokenMessage
 				break;
+                        case "getTokenFromPasswordRecovery":
+                                $msg = new UATokenMessage();
+                                $password = new PasswordRecovery(
+                                        $req->password->email,
+                                        $req->password->password
+                                );
+                                if($password ->checkEmailAddress($email)){
+                                    if (tempPassword($email)){
+                                    $msg->statuscode = 0;
+                                    $msg->statusdesc = "New password sent!";
+                                    }
+                                } else{
+                                    //bad credentials
+                                    $msg->statuscode = 1;
+                                    $msg->statusdesc = "Invalid email address";
+                                }
+                                break;
 			default:
 				//we don't implement that unknown behavior
 				header('HTTP/1.1 400 Bad Request');
