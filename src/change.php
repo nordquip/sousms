@@ -1,21 +1,18 @@
 <?php
-	function recover($mode, $email) {
-		$mode = sanitize($mode);
-		$email = sanitze($email);
+	function change_password($user_id, $password){
+		$user_id (int)$user_id;
+		$password = md5($password);
 		
-		$user_data = user_data(user)id_from_email($email), 'user_id', 'username');
+		mysql_query("UPDATE `users` SET `password` = `$password` WHERE `user_id` = $user_id");
 		
-		if ($mode == 'username'){
-			email($email, 'Your username is : ' . $user_data['username']);
-		} else if ($mode == 'password') {
-			$generate_password = substr(md5(rand(999, 999999)), 0, 8);
-			change_password($user_data['user_id'], $generate_password);
-			
-			update_user($user_data['user_id', array('password_recover' => '1'));
-			
-			email($email, 'Your new password is : ' . $generated_password]);
-		}
+	}
+	
+	function changePass($mode, $email){
+		$user_data = user_data(user)id_from_email($email), 'user_id', 'username';
 		
+		change_password($user_data['user_id'], $generate_password);
+		
+		update_user($user_data('user_id', array('password_recover' => '1'));
 	}
 	
 	
