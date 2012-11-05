@@ -18,17 +18,31 @@
 		$shares = $numShares;
 		$price = NULL;
 		
-		$conn = new mysqli('localhost', 'root', '', 'test');
+		$conn = new mysqli('localhost', 'root', '', 'sousms');
 		if ($conn->connect_errno){	
 			die("Unable to connect to database:  (" . $conn->connect_errno . ") ". $conn->connect_error);
 		}
 		
-		if (!$conn->query("CALL insertSell($user, $symbol, $shares, $price)")) {
-			die("Error calling stored procedure:  (" . $conn->errno . ") " . $conn->error);
+		if ($result = $conn->store_result()) 
+		{
+			if ($result >= $shares)
+			{
+				if (!$conn->query("CALL insertSell($user, $symbol, $shares, $price)")) 
+				{
+					die("Error calling stored procedure:  (" . $conn->errno . ") " . $conn->error);
+				}
+				$result->free();
+			}
+			else{
+				echo ("Insufficient shares of ", $symbol, " to sell ", $shares, " shares.");
+			}
+		else {
+			if ($conn->errno) 
+			{
+				die ("Store failed: (" . $conn->errno . ") " . $conn->error);
+			}
+			}
 		}
-		
-		echo "All done.  ";
-	}
  }
  ?>
 
