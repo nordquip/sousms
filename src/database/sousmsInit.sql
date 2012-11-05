@@ -21,7 +21,7 @@ from this directory.
 
 execute the file to 'source in' the tables
 */
-source db/sousmsDeclareTables.sql;
+source sousmsDeclareTables.sql;
 
 /* execute the file to 'source in' the interfaces */
-source shared/sousmsDeclareStoredProcs.sql;
+source ../shared/sousmsDeclareStoredProcs.sql;
