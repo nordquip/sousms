@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS Portfolio(
 	Symbol char (5) not null,
 	DateModified timestamp not null,
 	Shares int not null,
+	Primary Key(UserID, Symbol)
 	Foreign Key (UserID, Symbol) References Stock(UserID, Symbol)
 		on update cascade
 )Engine=InnoDB;
