@@ -1,6 +1,7 @@
 /* OpenOrders table minus foreign keys, which will depend on the database
- teams naming scheme.  
- Written by Brittany Dighton, edited by Jeff Miller, Trade Engine*/
+ *teams naming scheme.  
+ *Written by Brittany Dighton, edited by Jeff Miller, Trade Engine
+ */
 
 DROP TABLE IF EXISTS OpenOrders;
 DROP TABLE IF EXISTS OrderTypes;

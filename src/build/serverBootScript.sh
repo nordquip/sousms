@@ -1,7 +1,8 @@
 #! /bin/bash
 # serverBootScript.sh
 # Ryan Dempsey 121024
-# This script pulls the latest repository from the internet, and updates the build script.
+# This bootstrap script pulls the latest repository from the internet, and updates the build script. It is step 1 in a 2 step process. After executing, it calls the 2nd script
+
 # ATTENTION: This script is not for use on student LAMP stacks...
 
 # Conditions:

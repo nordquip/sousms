@@ -1,0 +1,50 @@
+
+SQL statement
+
+CREATE TABLE `cashtransaction` (
+
+  `email` varchar(30) NOT NULL,
+
+  `amount` decimal(10,2) DEFAULT NULL,
+
+  PRIMARY KEY (`email`)
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+SQL statement
+
+CREATE TABLE `stocktransaction` (
+
+  `email` varchar(30) NOT NULL,
+
+  `symbol` varchar(5) DEFAULT NULL,
+
+  `time` timestamp NULL DEFAULT NULL,
+
+  `price` decimal(10,2) DEFAULT NULL,
+
+  `buyOrSell` binary(1) DEFAULT NULL,
+
+  PRIMARY KEY (`email`)
+
+) ENGINE=InnoDB...
+
+
+SQL statement
+
+CREATE TABLE `user` (
+
+  `email` varchar(30) NOT NULL,
+
+  `password` varchar(32) NOT NULL,
+
+  `ballance` decimal(10,2) NOT NULL,
+
+  `token` varchar(32) DEFAULT NULL,
+
+  `time` timestamp NULL DEFAULT NULL,
+
+  PRIMARY KEY (`email`)
+
+) ENGINE=InnoDB DEFAULT CHARSET...
