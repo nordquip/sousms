@@ -22,7 +22,8 @@ This Prodecure must:
 drop procedure if exists insertTempPassword;
 delimiter//
 create procedure insertTempPassword;
-	IN password varchar (40)
+	IN email varchar(40)
+	IN password varchar(40)
 
 begin
 insert into User values User(password);
