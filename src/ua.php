@@ -67,7 +67,7 @@ if (!isset($_POST["jsondata"])) {
                                 } else{
                                     //bad credentials
                                     $msg->statuscode = 1;
-                                    $msg->statusdesc = "Invalid email address";
+                                    $msg->statusdesc = "Error!";
                                 }
                                 break;
 			default:

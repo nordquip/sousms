@@ -4,8 +4,6 @@
  * 10/30/2012
  */
 
-//Connect to the MySQL Database
-include '../connect.php';
 
 class PasswordRecovery {
 	//constuctor
@@ -14,7 +12,11 @@ class PasswordRecovery {
 		$this->email = $un;
 		$this->password = $pwd;
 	}
-        
+        //connect to the database
+        $mysqli = new mysqli('localhost','root','','sousms');
+        if ($mysqli->connect_errno) {
+             echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+        }      
         //Validates email address
         function checkEmailAddress($email) {
             // validate email address
@@ -24,16 +26,15 @@ class PasswordRecovery {
                 $isValid = true;
             }
             return isValid;
-            }
-        }
+        }        
         
         function tempPassword($email){
             // see if the email exists in database 
             $succeed = true;
-            $sql = "SELECT COUNT(*) FROM members WHERE user_email = '$email'";
-            $result = mysql_query($sql)or die('Could not find member: ' . mysql_error());
-            
-            if (!mysql_result($result,0,0) > 0) {
+            //$sql = "SELECT COUNT(*) FROM members WHERE user_email = '$email'";
+            $result = mysql_query("CALL doesEmailExist(email)")or die('Could not find member: ' . mysql_error());
+            if (!$result){
+            //if (!mysql_result($result,0,0) > 0) {
             //error('Email Not Found!');
                 $succeed = false;
             } else {
@@ -44,10 +45,10 @@ class PasswordRecovery {
                 $newPassword = substr($randomPassword, 0, 8);
 
                 // Make a safe query
-                $query = sprintf("UPDATE `members` SET `user_password` = '%s' WHERE `user_email` = '$email'",
-                            mysql_real_escape_string($newPassword));
+                //$query = sprintf("UPDATE `members` SET `user_password` = '%s' WHERE `user_email` = '$email'",
+                            //mysql_real_escape_string($newPassword));
 
-                mysql_query($query)or die('Could not update members: ' . mysql_error());
+                mysql_query("insertTempPassword(newPassword)")or die('Could not update members: ' . mysql_error());
 
                 //Email password
                 $subject = "New Password"; 
@@ -60,11 +61,11 @@ class PasswordRecovery {
                 if(!mail($email, $subject, $message,  "FROM: SOUSMS <soustockmarketsimulation@gmail.com>")){ 
                    die ("Sending Email Failed, Please Contact Site Admin! (soustockmarketsimulation@gmail.com)"); 
                 }else{ 
-                      error('New Password Sent!.');
+                      error('New Password Sent!');
                 }
             }
             return $succeed;
+        }
 }
-
 ?>
      
