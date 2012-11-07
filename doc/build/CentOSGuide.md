@@ -1,8 +1,14 @@
 CENTOS 6.3 INSTALL/CONFIGURATION INSTRUCTIONS
 
+<<<<<<< HEAD:doc/build/CentOSGuide.md
 1. Download Minimal ISO appropriate for your computer's architecture (x86 or 64)  https://www.centos.org/modules/tinycontent/index.php?id=15
 
 2. Download and install Oracle VirtualBox  https://www.virtualbox.org/
+=======
+1. Download Minimal ISO appropriate for your computer's architecture (x86 or 64)
+
+2. Download and install Oracle VirtualBox
+>>>>>>> I didn't change anything.:doc/build-team/CentOSBuildGuide.md
 
 3. Create VirtualBox virtual machine
 	a. for OS option, choose Linux/Other
@@ -56,4 +62,9 @@ bind-address=(IP ADDRESS HERE)
 11. Cron job Install and Setup:
 	a. Install cron daemon by running “yum install vixie-cron”
 	b. Run "crontab -l" to view jobs -e to edit jobs
+<<<<<<< HEAD:doc/build/CentOSGuide.md
 	c. To setup a script to run hourly, run “sudo crontab -e”, then add the job “0 */1 * * * bash <pathToScriptName>”
+=======
+	c. To setup a script to run hourly, run “sudo crontab -e”, then add the job “0 */1 * * * bash <pathToScriptName>”
+	
+>>>>>>> I didn't change anything.:doc/build-team/CentOSBuildGuide.md
