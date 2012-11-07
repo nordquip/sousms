@@ -28,6 +28,11 @@ Rainy Day
 		<td>error returned</td>
 		<td>"Enter valid character for stock search."</td>
 	</tr>
+	<tr>
+		<td>tester enters stock symbol as "QQQQ"</td>
+		<td>error returned</td>
+		<td>"Valid characters;but not real stock symbol."</td>
+	</tr>
 	
 </table>
 
