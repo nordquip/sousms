@@ -18,11 +18,17 @@ CREATE TABLE IF NOT EXISTS User(
 	Lname char (20) not null,
 	Email varchar (40) not null,
 	Phone varchar (20) not null,
-	/*Token Information*/
+	PRIMARY KEY (UserID)
+)ENGINE = InnoDB;
+	
+/*Login Data*/
+CREATE TABLE IF NOT EXISTS Login(
+	UserID int not null,
 	Token varchar (32) not null,
 	begTS timestamp not null,
 	endts timestamp not null,
-	PRIMARY KEY (UserID)
+	PRIMARY KEY (Token, begTS),
+	Foreign key (UserID) References User(UserID)
 )ENGINE = InnoDB;
 
 /*Stores user transaction data (Pertaining to stocks)*/
@@ -53,6 +59,7 @@ CREATE TABLE IF NOT EXISTS Portfolio(
 	Symbol char (5) not null,
 	DateModified timestamp not null,
 	Shares int not null,
+	Primary Key(UserID, Symbol)
 	Foreign Key (UserID, Symbol) References Stock(UserID, Symbol)
 		on update cascade
 )Engine=InnoDB;

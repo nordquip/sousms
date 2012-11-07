@@ -78,4 +78,4 @@ call conditionallyCreateFeedTable;
  Source initUserAndTransactionTables.sql as if from command line: 
 */
 
-source sousms/src/database/initUserAndTransactionTables.sql;
+source initUserAndTransactionTables.sql;

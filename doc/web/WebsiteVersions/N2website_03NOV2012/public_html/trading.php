@@ -1,40 +1,14 @@
-<?php
+
+<? 
 /******************************************************************
-* sell.php
-* By: Melissa Dadoly, 2012-11-2
-* Description: Sell stocks.
+* trade.php
+* By: Jeff Miller (millerj3@students.sou.edu), 2012-10-24
+* Description: Example of a page that requires login to access.
 ******************************************************************/
 
-include("WSRequestManager.class.php");
 include("login.include.php");
-
-class SaleItems {
-	public $symbol, $numberShares, $price;
-};
-
-function SellStock {
-	echo "Sell function not yet implemented"
-	//function to sell stock goes here
-	//this function will:
-	//get the current price for the stock the user selected for $symbol
-	//check if the user owns the number of shares ($numberShares) they selected
-	//if user does not own this stock or enough shares, the user will receive and error message
-	//else, the user will receive a message indicating success and the database will be updated
-	//to reflect the sale (total money and stocks owned will be updated)
-};
-
-//make sure session hasn't expired	
-$msg = "";
-if (isset($_POST["un"]) && isset($_POST["pwd"])) {
-	$msg = parseCredentials($_POST["un"], $_POST["pwd"], $token, $expires);
-	//echo $token;
-	//exit;
-	if (isset($token) && strlen($token) == 32 && isset($expires)) {
-		setLoginCookie($token, $expires->getTimestamp());
-		header("Location: $jumpto");
-	}
-}
 ?>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -46,7 +20,7 @@ if (isset($_POST["un"]) && isset($_POST["pwd"])) {
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <META HTTP-EQUIV="Expires" CONTENT="-1">
 <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
-<title>N2 GTC Order</title>
+<title>N2 Trading</title>
 <META NAME="ROBOTS" CONTENT="NONE, NOARCHIVE">
 <META NAME="GOOGLEBOT" CONTENT="NOARCHIVE">
 <meta http-equiv="Expires" content="Tue, 04 Dec 1997 21:29:02 GMT">
@@ -62,7 +36,9 @@ if (isset($_POST["un"]) && isset($_POST["pwd"])) {
 </style>
 </head>
 <body>
-		<center><img src="images/banner.jpg" width="810" height="160" alt="NASDAQ Ninja logo" /></center>
+		<center><img src="images/banner.jpg" width="810" height="160" alt="NASDAQ Ninja logo" 
+
+/></center>
 	<!-- end #header -->
     <ul id="maintab" class="basictab">
 			<li rel="homesubs"><a href="home.php"><img 
@@ -72,9 +48,9 @@ src="images/Home.jpg" onmouseover=this.src="images/Homeselected.jpg"
 onmouseout=this.src="images/Home.jpg" /></a></li>
 			<li class="selected" rel="tradesubs"><a href="trading.php"><img 
 
-src="images/Trade.jpg" onmouseover=this.src="images/Tradeselected.jpg" 
+src="images/Tradeselected.jpg" onmouseover=this.src="images/Tradeselected.jpg" 
 
-onmouseout=this.src="images/Trade.jpg" /></a></li>
+onmouseout=this.src="images/Tradeselected.jpg" /></a></li>
             <li rel="looksubs"><a href="lookup.php"><img src="images/Lookup.jpg" 
 
 onmouseover=this.src="images/Lookupselected.jpg" onmouseout=this.src="images/Lookup.jpg" /></a></li>
@@ -96,6 +72,12 @@ onmouseover=this.src="images/About_Usselected.jpg" onmouseout=this.src="images/A
 onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images/Contact_Us.jpg" 
 
 /></a></li>
+            
+            
+            
+            
+            
+
 </ul>
 
 <div id="homesubs" class="submenustyle">
@@ -105,7 +87,7 @@ onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images
 <div id="tradesubs" class="submenustyle">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="buy.php">Buy</a>
-<a href="sell.php"><span style="color: rgb(255, 255, 0);">Sell</span></a>
+<a href="sell.php">Sell</a>
 </div>
 
 <div id="looksubs" class="submenustyle">
@@ -160,26 +142,43 @@ initalizetab("maintab")
 		<div id="page-bgtop">
 			<div id="page-bgbtm">
 				<div id="content">
-				
+					
+<div class="post">
+						<h2 class="title"><a href="#">Trading</a>			</h2>
+<p class="meta"><span class="posted"><a href="#"></a></span></p>
+						<div style="clear: both;">&nbsp;</div>
+						<div class="entry">
+						  <p>This is where the cool app goes for doing the trading<br />
+					      </p>
+<p class="links">&nbsp;</p>
+						</div>
+					</div>
 					<div class="post">
-						<form name="sell" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-							<legend>Sell Stock:</legend><br />
-							Symbol: <select name="symbol">
-										<!--this will be filled in with all 40 stock symbols in the final version-->
-										<option value="MSFT">Microsoft</option>
-										<option value="INTC">Intel</option>
-										<option value="AAPL">Apple</option>
-										<option value="GOOG">Google</option>
-									</select><br />
-							Number of Shares: <input type="text" name="numberShares"><br />
-							<!--I'm guessing that we will soon have a way to get the price from the database that matches the users input-->
-							Selling Price:    <input type="text" name="price"><br />
-							<input type="submit" value="Submit" name="submit">
-						</form>
+						<h2 class="title">Another Cool Section</h2>
+						<p class="meta"><span class="date"> </span><span class="posted"> </span></p>
+						<div style="clear: both;">&nbsp;</div>
+						<div class="entry">
+							<p>&nbsp;</p>
+							<p class="links">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+						</div>
 					</div>
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
+				<div id="sidebar">
+					<ul>
+                                            <li>
+							<h2>Sidebar Heading2 for Trading</h2>
+						</li>
+                                            <li></li>
+						<li>
+							<div id="search" >
+								<iframe id="datamain" src="announce.txt" width=284 height=300 marginwidth=10 marginheight=5 hspace=0 vspace=0 frameborder=1 scrolling=yes></iframe>
+							</div>
+							<div style="clear: both;">&nbsp;</div>
+						</li>
+                        <li></li>
+					</ul>
 	      </div>
 				<!-- end #sidebar -->
 				<div style="clear: both;">&nbsp;</div>
