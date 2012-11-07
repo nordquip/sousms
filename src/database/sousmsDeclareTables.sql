@@ -73,3 +73,9 @@ END;
 delimiter ;
 
 call conditionallyCreateFeedTable;
+
+/*
+ Source initUserAndTransactionTables.sql as if from command line: 
+*/
+
+source initUserAndTransactionTables.sql;

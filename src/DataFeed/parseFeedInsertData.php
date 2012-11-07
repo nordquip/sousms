@@ -46,15 +46,6 @@ while(true)
 		$sql = "CALL enterTickerDataForSymbol('$symbol','$bestAskPrice','$bestAskQty','$bestBidPrice','$bestBidQty','$close','$high','$date','$time','$ms','$lastSale','$low','$netChg','$open','$pcl','$vol','$pctChg')";
 		
 		$query = mysql_query($sql);
-		if (!$query)
-		{
-			echo ('Error: ' .mysql_error());
-		}
-		else
-		{
-			echo "Record added";
-			echo "\n";
-		}
 	}
 
 	$url = "https://basicapp.nasdaqomx.com/BasicDataXML/getBasicData?symbolsCsvList=CSCO,DIS,DNKN,EBAY,ERTS,FB,GE,GOOG,GRMN,HAS";
@@ -85,15 +76,6 @@ while(true)
 		$sql = "CALL enterTickerDataForSymbol('$symbol','$bestAskPrice','$bestAskQty','$bestBidPrice','$bestBidQty','$close','$high','$date','$time','$ms','$lastSale','$low','$netChg','$open','$pcl','$vol','$pctChg')";
 		
 		$query = mysql_query($sql);
-		if (!$query)
-		{
-			echo ('Error: ' .mysql_error());
-		}
-		else
-		{
-			echo "Record added";
-			echo "\n";
-		}
 	}
 	
 	$url = "https://basicapp.nasdaqomx.com/BasicDataXML/getBasicData?symbolsCsvList=HSY,HOTT,INTC,JBLU,MON,MSFT,NFLX,NVDA,ORCL,PBG";
@@ -124,15 +106,6 @@ while(true)
 		$sql = "CALL enterTickerDataForSymbol('$symbol','$bestAskPrice','$bestAskQty','$bestBidPrice','$bestBidQty','$close','$high','$date','$time','$ms','$lastSale','$low','$netChg','$open','$pcl','$vol','$pctChg')";
 		
 		$query = mysql_query($sql);
-		if (!$query)
-		{
-			echo ('Error: ' .mysql_error());
-		}
-		else
-		{
-			echo "Record added";
-			echo "\n";
-		}
 	}
 	
 	$url = "https://basicapp.nasdaqomx.com/BasicDataXML/getBasicData?symbolsCsvList=QCOM,RCL,SBUX,SIRI,SPLS,TTWO,TXN,V,YHOO,SNE";
@@ -163,15 +136,6 @@ while(true)
 		$sql = "CALL enterTickerDataForSymbol('$symbol','$bestAskPrice','$bestAskQty','$bestBidPrice','$bestBidQty','$close','$high','$date','$time','$ms','$lastSale','$low','$netChg','$open','$pcl','$vol','$pctChg')";
 		
 		$query = mysql_query($sql);
-		if (!$query)
-		{
-			echo ('Error: ' .mysql_error());
-		}
-		else
-		{
-			echo "Record added";
-			echo "\n";
-		}
 	}
 	sleep(1);
 }

@@ -1,7 +1,7 @@
 #! /bin/bash
 # serverBuildScript.sh
 # Ryan Dempsey 121024
-# This script stops services, moves the latest repository files into the correct locations, and starts the services again.
+# This script stops services, moves the latest repository files into the correct locations, and starts the services again. It is the 2nd script in a 2 script process.
 # ATTENTION: This script is not for use on student LAMP stacks...
 
 # Conditions:
@@ -30,8 +30,12 @@ rm /var/www/html/* -r
 # Move downloaded repository to official location
 mv /var/git/sousms-new /var/git/sousms
 
-# Move files to correct server locations
+# Move repository files to correct server locations
 cp -R /var/git/sousms/src/web/* /var/www/html/
+# Copy mobile team's web directory to the hosted folder.
+mkdir /var/www/html/mobile
+mkdir /var/www/html/mobile/html
+cp -R /var/git/sousms/src/mobile/html/* /var/www/html/mobile/html/
 
 # TODO Run build/SQL scripts
 

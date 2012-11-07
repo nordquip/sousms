@@ -1,0 +1,3 @@
+ErrorDocument 404 /404.html
+
+php_value max_input_time 120
