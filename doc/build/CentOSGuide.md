@@ -57,3 +57,9 @@ bind-address=(IP ADDRESS HERE)
 	a. Install cron daemon by running “yum install vixie-cron”
 	b. Run "crontab -l" to view jobs -e to edit jobs
 	c. To setup a script to run hourly, run “sudo crontab -e”, then add the job “0 */1 * * * bash <pathToScriptName>”
+
+12. Java Install Instructions:
+	a. Run command "yum search java" to get a list of all available OpenJava packages from the repository. It may be convenient to pipe this command to less for readability.
+	b. Identify your desired java package (based on your hardware). Likely "java-1.7.0-openjdk.<architecture type>" or "java-1.6.0-openjdk.<architecture type>"
+	c. Run command "sudo yum install <software package name>"
+	d. Java is now installed!
