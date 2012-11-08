@@ -48,3 +48,22 @@ END;
 $$
 
 DELIMITER ;
+
+/*Nov 5, 2012 Created By Jeff Karmy, with Jeff Miller's help
+*/
+drop procedure if exists sp_marketBuy;
+delimiter //
+create procedure sp_marketBuy(
+	IN stockSymbol char(10),
+	IN shares int,
+	IN userID char(30)
+	)
+	
+begin 
+insert into OpenOrders (userID, stockSymbol, shares, orderType, requestTime)
+values (userID, stockSymbol, shares, (select typeID from OrderTypes where description like 'Buy'), now());
+select 'Your trade has been queued';
+end;
+//
+
+delimiter ; 
