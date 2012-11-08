@@ -26,3 +26,25 @@ getAllOpenOrders()
 	-- Returns userID, stockSymbol, shares, orderType, price from all records of the OpenOrders table
 	-- then deletes these records from OpenOrders
 	
+DELIMITER $$
+CREATE PROCEDURE `sp_getUserIdFromToken`(token TEXT)
+BEGIN
+	DECLARE lnUserID INT;
+	DECLARE ldExpireTime DATETIME;
+	DECLARE loginCursor CURSOR FOR SELECT UserID, ExpTime FROM logins
+    WHERE logins.token = token;
+	DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
+        SELECT -1 AS userid, 'The login was not found' AS statusmsg;
+    END;
+	OPEN loginCursor;
+    FETCH loginCursor INTO lnUserID, ldExpireTime;
+    CLOSE loginCursor;
+	IF ldExpireTime > NOW() THEN
+		SELECT lnUserID AS userid, '' AS statusmsg; 
+	ELSE
+		SELECT -1 AS userid, 'The login expired' AS statusmsg; 
+	END IF;
+END
+$$
+
+DELIMITER ;
