@@ -4,8 +4,11 @@
 	<title>SOUSMS Home</title>
 	<script type="text/javascript">
 		function Authenticate()
-		{		  
-			alert("User Authenticated");
+		{	
+			if(document.getElementById('username').value == "admin" && document.getElementById('password').value == "password")
+				window.location.replace("home.html");
+			else
+				alert("Illegal Request");
 		}
 	</script>
 </head>
@@ -16,12 +19,14 @@
 		
 		<div id="login" align="center">
 			
-			<form> <!--action="authenticationhandler.php" method="post"-->
+			<form autocomplete="on"> <!--action="authenticationhandler.php" method="post"-->
 				<span id="user"> Username:</span><input type="text" id="username" value=""/><br />
 				<span id="pass"> Password:</span><input type="Password" id="password" value=""/><br />
-				<input type="button" id="submit" value="Submit" onclick="Authenticate()"/>
+				<input type="button" id="submit" value="Submit" onclick="Authenticate()"/><!-- Authenticate() will be replaced with the authentication call to the server-->
 			</form>
+			
 		</div><!-- end div login-->
+
 	</div><!-- end div main-->
 </body>
 </html>
