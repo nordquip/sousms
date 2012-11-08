@@ -29,12 +29,16 @@ class TokenTranslator {
 		$this->uid = -1;
 		$this->msg = "";
 		try {
-			$cmd = $this->conn->prepare("CALL sp_getUserIdFromToken(?)");
-			$cmd->execute(array($token));
-			if ($cmd->rowCount() > 0) {
-				$cmd->bindColumn(1, $this->uid); //column 1 is UID (-1 if invalid)
-				$cmd->bindColumn(2, $this->msg); //column 2 is status message
-				$cmd->fetch(PDO::FETCH_BOUND);
+			if (!isset($token) || !preg_match('/^[a-z0-9]{32}$/', $token)) {
+				$this->msg = "Invalid token format";
+			} else {
+				$cmd = $this->conn->prepare("CALL sp_getUserIdFromToken(?)");
+				$cmd->execute(array($token));
+				if ($cmd->rowCount() > 0) {
+					$cmd->bindColumn(1, $this->uid); //column 1 is UID (-1 if invalid)
+					$cmd->bindColumn(2, $this->msg); //column 2 is status message
+					$cmd->fetch(PDO::FETCH_BOUND);
+				}
 			}
 		} catch (PDOException $e) {
 			$this->msg = "Error: " . $e->getMessage();
