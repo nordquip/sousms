@@ -1,13 +1,17 @@
 ANNOUNCEMENTS  *******************
 
-The Home page now shows the web
-application, live, as it is
-right now, under construction.
+This Website is 
+under construction.
 
-If the web app goes offline,
-an error message indicating this
-will appear on the Home page.
+New Pages Added to Trade section:
+Current Cash
+Trade History
 
-FAQ page and Glossary have
-updated content.
+The updated content for the new
+pages has not been added yet.
 
+The site is being converted
+into a PHP format.
+
+Some pages may not display
+correctly.

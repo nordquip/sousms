@@ -1,3 +1,15 @@
+
+<?php
+/******************************************************************
+* trade.php
+* By: Jeff Miller (millerj3@students.sou.edu), 2012-10-24
+* Description: Example of a page that requires login to access.
+******************************************************************/
+
+include("login.include.php");
+?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -29,42 +41,43 @@
 /></center>
 	<!-- end #header -->
     <ul id="maintab" class="basictab">
-			<li rel="homesubs"><a href="o656j3iv8g5fknvbfg8yf9e.html"><img 
+			<li rel="homesubs"><a href="home.php"><img 
 
 src="images/Home.jpg" onmouseover=this.src="images/Homeselected.jpg" 
 
 onmouseout=this.src="images/Home.jpg" /></a></li>
-			<li rel="tradesubs"><a href="trading_i0o9mwoi1lt.html"><img 
+			<li rel="tradesubs"><a href="trading.php"><img 
 
 src="images/Trade.jpg" onmouseover=this.src="images/Tradeselected.jpg" 
 
 onmouseout=this.src="images/Trade.jpg" /></a></li>
-            <li rel="looksubs"><a href="lookup_i0o9mwoi1lt.html"><img src="images/Lookup.jpg" 
+            <li rel="looksubs"><a href="lookup.php"><img src="images/Lookup.jpg" 
 
 onmouseover=this.src="images/Lookupselected.jpg" onmouseout=this.src="images/Lookup.jpg" /></a></li>
-			<li rel="setsubs"><a href="settings_i0o9mwoi1lt.html"><img 
+			<li rel="setsubs"><a href="settings.php"><img 
 
 src="images/Settings.jpg" onmouseover=this.src="images/Settingsselected.jpg" 
 
 onmouseout=this.src="images/Settings.jpg" /></a></li>
-            <li class="selected" rel="helpsubs"><a href="help_i0o9mwoi1lt.html"><img src="images/Help.jpg" 
+            <li class="selected" rel="helpsubs"><a href="help.php"><img src="images/Help.jpg" 
 
 onmouseover=this.src="images/Helpselected.jpg" onmouseout=this.src="images/Help.jpg" /></a></li>
-            <li rel="aboutsubs"><a href="about_i0o9mwoi1lt.html"><img src="images/About_Us.jpg" 
+            <li rel="aboutsubs"><a href="about.php"><img src="images/About_Us.jpg" 
 
 onmouseover=this.src="images/About_Usselected.jpg" onmouseout=this.src="images/About_Us.jpg" 
 
 /></a></li>
-            <li rel="contactsubs"><a href="contact_i0o9mwoi1lt.html"><img src="images/Contact_Us.jpg" 
+            <li rel="contactsubs"><a href="contact.php"><img src="images/Contact_Us.jpg" 
 
 onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images/Contact_Us.jpg" 
 
 /></a></li>
             
-    <li rel="accountsubs"><a href="useraccounts.html"><img src="images/Placeholder.jpg" 
-      onmouseover=this.src="images/Placeholderselected.jpg" onmouseout=this.src="images/Placeholder.jpg" 
-   /></a></li>        
-          
+            
+            
+            
+            
+
 </ul>
 
 <div id="homesubs" class="submenustyle">
@@ -73,8 +86,10 @@ onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images
 
 <div id="tradesubs" class="submenustyle">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="dayorder_i0o9mwoi1lt.html">System Hours Day</a>
-<a href="gtcorder_i0o9mwoi1lt.html">Market Hours Good Till Cancel (GTC)</a>
+<a href="buy.php">Buy</a>
+<a href="sell.php">Sell</a>
+<a href="currentcash.php">Current Cash</a>
+<a href="tradehistory.php">Trade History</a>
 </div>
 
 <div id="looksubs" class="submenustyle">
@@ -84,7 +99,7 @@ onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="newspg_i0o9mwoi1lt.html">NASDAQ News</a>
+<a href="newspg.php">NASDAQ News</a>
 
 </div>
 
@@ -102,10 +117,10 @@ onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="faq_i0o9mwoi1lt.html"><img src="images/FAQ.jpg" onmouseover=this.src="images/FAQselected.jpg" 
+<a href="faq.php"><img src="images/FAQ.jpg" onmouseover=this.src="images/FAQselected.jpg" 
 
 onmouseout=this.src="images/FAQ.jpg" /></a>
-<a href="glossary_i0o9mwoi1lt.html"><img src="images/Glossaryselected.jpg" 
+<a href="glossary.php"><img src="images/Glossaryselected.jpg" 
 
 onmouseover=this.src="images/Glossaryselected.jpg" onmouseout=this.src="images/Glossaryselected.jpg" /></a>
 </div>

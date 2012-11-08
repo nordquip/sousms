@@ -236,10 +236,13 @@ a:hover {
 }
 
 .post .title {
-	margin-bottom: 10px;
-	padding: 12px 0 0 0px;
 	letter-spacing: -0.5px;
 	color: #CCD6E0;
+	padding-top: 12px;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 0px;
+	margin-bottom: 10px;
 }
 
 .post .title a {
@@ -248,15 +251,15 @@ a:hover {
 }
 
 .post .meta {
-	height: 30px;
-	border-bottom: 1px solid #DBDBDB;
 	background: #F4F4F4;
 	margin: 0px;
-	padding: 0px 0px 0px 0px;
+	padding: 0px;
 	text-align: left;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 13px;
 	font-weight: bold;
+	border-bottom-style: none;
+	border-bottom-color: #DBDBDB;
 }
 
 .post .meta .date {

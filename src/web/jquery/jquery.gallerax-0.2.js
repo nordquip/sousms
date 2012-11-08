@@ -322,10 +322,10 @@
 									var s = caption.split(settings.captionLineSeparator);
 								
 									for(i = 0; i < settings.captionLines; i++)
-										__caption[i].html( (s[i] ? s[i] : '' ) );
+										__caption[i].php( (s[i] ? s[i] : '' ) );
 								}
 								else
-									__caption.html(caption);
+									__caption.php(caption);
 							}
 
 						// Change image

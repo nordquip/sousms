@@ -1,3 +1,15 @@
+
+<?php
+/******************************************************************
+* trade.php
+* By: Jeff Miller (millerj3@students.sou.edu), 2012-10-24
+* Description: Example of a page that requires login to access.
+******************************************************************/
+
+include("login.include.php");
+?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,7 +20,7 @@
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <META HTTP-EQUIV="Expires" CONTENT="-1">
 <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
-<title>Contact NASDAQ Ninja</title>
+<title>N2 GTC Order</title>
 <META NAME="ROBOTS" CONTENT="NONE, NOARCHIVE">
 <META NAME="GOOGLEBOT" CONTENT="NOARCHIVE">
 <meta http-equiv="Expires" content="Tue, 04 Dec 1997 21:29:02 GMT">
@@ -29,41 +41,39 @@
 /></center>
 	<!-- end #header -->
     <ul id="maintab" class="basictab">
-			<li rel="homesubs"><a href="o656j3iv8g5fknvbfg8yf9e.html"><img 
+			<li rel="homesubs"><a href="home.php"><img 
 
 src="images/Home.jpg" onmouseover=this.src="images/Homeselected.jpg" 
 
 onmouseout=this.src="images/Home.jpg" /></a></li>
-			<li rel="tradesubs"><a href="trading_i0o9mwoi1lt.html"><img 
+			<li class="selected" rel="tradesubs"><a href="trading.php"><img 
 
 src="images/Trade.jpg" onmouseover=this.src="images/Tradeselected.jpg" 
 
 onmouseout=this.src="images/Trade.jpg" /></a></li>
-            <li rel="looksubs"><a href="lookup_i0o9mwoi1lt.html"><img src="images/Lookup.jpg" 
+            <li rel="looksubs"><a href="lookup.php"><img src="images/Lookup.jpg" 
 
 onmouseover=this.src="images/Lookupselected.jpg" onmouseout=this.src="images/Lookup.jpg" /></a></li>
-			<li rel="setsubs"><a href="settings_i0o9mwoi1lt.html"><img 
+			<li rel="setsubs"><a href="settings.php"><img 
 
 src="images/Settings.jpg" onmouseover=this.src="images/Settingsselected.jpg" 
 
 onmouseout=this.src="images/Settings.jpg" /></a></li>
-            <li rel="helpsubs"><a href="help_i0o9mwoi1lt.html"><img src="images/Help.jpg" 
+            <li rel="helpsubs"><a href="help.php"><img src="images/Help.jpg" 
 
 onmouseover=this.src="images/Helpselected.jpg" onmouseout=this.src="images/Help.jpg" /></a></li>
-            <li rel="aboutsubs"><a href="about_i0o9mwoi1lt.html"><img src="images/About_Us.jpg" 
+            <li rel="aboutsubs"><a href="about.php"><img src="images/About_Us.jpg" 
 
 onmouseover=this.src="images/About_Usselected.jpg" onmouseout=this.src="images/About_Us.jpg" 
 
 /></a></li>
-            <li class="selected" rel="contactsubs"><a href="contact_i0o9mwoi1lt.html"><img src="images/Contact_Usselected.jpg" 
+            <li rel="contactsubs"><a href="contact.php"><img src="images/Contact_Us.jpg" 
 
-onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images/Contact_Usselected.jpg" 
+onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images/Contact_Us.jpg" 
 
 /></a></li>
             
-    <li rel="accountsubs"><a href="useraccounts.html"><img src="images/Placeholder.jpg" 
-      onmouseover=this.src="images/Placeholderselected.jpg" onmouseout=this.src="images/Placeholder.jpg" 
-   /></a></li>        
+            
             
             
             
@@ -76,8 +86,10 @@ onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images
 
 <div id="tradesubs" class="submenustyle">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="dayorder_i0o9mwoi1lt.html">System Hours Day</a>
-<a href="gtcorder_i0o9mwoi1lt.html">Market Hours Good Till Cancel (GTC)</a>
+<a href="buy.php">Buy</a>
+<a href="sell.php"><span style="color: rgb(255, 255, 0);">Sell</span></a>
+<a href="currentcash.php">Current Cash</a>
+<a href="tradehistory.php">Trade History</a>
 </div>
 
 <div id="looksubs" class="submenustyle">
@@ -87,7 +99,7 @@ onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="newspg_i0o9mwoi1lt.html">NASDAQ News</a>
+<a href="newspg.php">NASDAQ News</a>
 
 </div>
 
@@ -105,10 +117,10 @@ onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="faq_i0o9mwoi1lt.html"><img src="images/FAQ.jpg" onmouseover=this.src="images/FAQselected.jpg" 
+<a href="faq.php"><img src="images/FAQ.jpg" onmouseover=this.src="images/FAQselected.jpg" 
 
 onmouseout=this.src="images/FAQ.jpg" /></a>
-<a href="glossary_i0o9mwoi1lt.html"><img src="images/Glossary.jpg" 
+<a href="glossary.php"><img src="images/Glossary.jpg" 
 
 onmouseover=this.src="images/Glossaryselected.jpg" onmouseout=this.src="images/Glossary.jpg" /></a>
 </div>
@@ -134,31 +146,51 @@ initalizetab("maintab")
 				<div id="content">
 					
 <div class="post">
-						<h2 class="title"><a href="#">Contact Us</a></h2>
-						<p class="meta"><span class="posted"><a href="#"></a></span></p>
+						<h2 class="title"><a href="#">Sell</a>			</h2>
+<p class="meta"><span class="posted"><a href="#"></a></span></p>
 						<div style="clear: both;">&nbsp;</div>
 						<div class="entry">
-							<p>
-                            <iframe id="datamain" src="http://n2webteam.chatango.com/" width=621 height=413 marginwidth=10 marginheight=5 hspace=0 vspace=0 frameborder=1 scrolling=yes></iframe>
-                            <br />
-						  </p>
+						  <p>Good-Til-Market Close: Executable between 8:00 a.m. to 5:00 p.m., ET, if the order is not fully executed, the order (or unexecuted portion thereof) shall remain for potential display and/or execution until cancelled by the entering party or until 4:00 p.m., ET. If entered after 4:00 p.m., the order will be treated as System Hours Immediate or Cancel (SIOC).<br />
+						    <br />
+					      </p>
 <p class="links">&nbsp;</p>
 						</div>
 					</div>
-					
+					<div class="post">
+						<h2 class="title">GTC: Market</h2>
+						<p class="meta"><span class="date"> </span><span class="posted"> </span></p>
+						<div style="clear: both;">&nbsp;</div>
+						<div class="entry">
+							<p>Market Hours Good Till Cancel (GTC): Executable between 9:30 a.m. to 4:00 p.m., on the day the order was submitted until cancelled or order is 365 days old.<br />
+							</p>
+							<p>&nbsp;</p>
+							<h2 class="title">Sell</h2>
+                            <p class="meta"><span class="date"> </span><span class="posted"> </span></p>
+                            <div style="clear: both;">&nbsp;</div>
+                            <div class="entry">
+                              <p>System Hours Good Till Cancel (GTC): Executable between 8:00 a.m.to 5:00 p.m., on the day the order was submitted until cancelled or order is 365 days old.<br />
+                              </p>
+                            </div>
+                            <p>&nbsp;</p>
+							<p class="links">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+						</div>
 					</div>
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
 				<div id="sidebar">
 					<ul>
+                                            <li>
+							<h2>Sell</h2>
+						</li>
+                                            <li></li>
 						<li>
-							
+							<div id="search" ></div>
 							<div style="clear: both;">&nbsp;</div>
 						</li>
-                        
+                        <li></li>
 					</ul>
-				</div>
+	      </div>
 				<!-- end #sidebar -->
 				<div style="clear: both;">&nbsp;</div>
 			</div>

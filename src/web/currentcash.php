@@ -1,3 +1,15 @@
+
+<?php
+/******************************************************************
+* trade.php
+* By: Jeff Miller (millerj3@students.sou.edu), 2012-10-24
+* Description: Example of a page that requires login to access.
+******************************************************************/
+
+include("login.include.php");
+?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,7 +20,7 @@
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <META HTTP-EQUIV="Expires" CONTENT="-1">
 <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
-<title>N2 Day Order</title>
+<title>N2 Trading</title>
 <META NAME="ROBOTS" CONTENT="NONE, NOARCHIVE">
 <META NAME="GOOGLEBOT" CONTENT="NOARCHIVE">
 <meta http-equiv="Expires" content="Tue, 04 Dec 1997 21:29:02 GMT">
@@ -29,42 +41,43 @@
 /></center>
 	<!-- end #header -->
     <ul id="maintab" class="basictab">
-			<li rel="homesubs"><a href="o656j3iv8g5fknvbfg8yf9e.html"><img 
+			<li rel="homesubs"><a href="home.php"><img 
 
 src="images/Home.jpg" onmouseover=this.src="images/Homeselected.jpg" 
 
 onmouseout=this.src="images/Home.jpg" /></a></li>
-			<li rel="tradesubs"><a href="trading_i0o9mwoi1lt.html"><img 
+			<li class="selected" rel="tradesubs"><a href="trading.php"><img 
 
-src="images/Trade.jpg" onmouseover=this.src="images/Tradeselected.jpg" 
+src="images/Tradeselected.jpg" onmouseover=this.src="images/Tradeselected.jpg" 
 
-onmouseout=this.src="images/Trade.jpg" /></a></li>
-            <li rel="looksubs"><a href="lookup_i0o9mwoi1lt.html"><img src="images/Lookup.jpg" 
+onmouseout=this.src="images/Tradeselected.jpg" /></a></li>
+            <li rel="looksubs"><a href="lookup.php"><img src="images/Lookup.jpg" 
 
 onmouseover=this.src="images/Lookupselected.jpg" onmouseout=this.src="images/Lookup.jpg" /></a></li>
-			<li rel="setsubs"><a href="settings_i0o9mwoi1lt.html"><img 
+			<li rel="setsubs"><a href="settings.php"><img 
 
 src="images/Settings.jpg" onmouseover=this.src="images/Settingsselected.jpg" 
 
 onmouseout=this.src="images/Settings.jpg" /></a></li>
-            <li class="selected" rel="helpsubs"><a href="help_i0o9mwoi1lt.html"><img src="images/Help.jpg" 
+            <li rel="helpsubs"><a href="help.php"><img src="images/Help.jpg" 
 
 onmouseover=this.src="images/Helpselected.jpg" onmouseout=this.src="images/Help.jpg" /></a></li>
-            <li rel="aboutsubs"><a href="about_i0o9mwoi1lt.html"><img src="images/About_Us.jpg" 
+            <li rel="aboutsubs"><a href="about.php"><img src="images/About_Us.jpg" 
 
 onmouseover=this.src="images/About_Usselected.jpg" onmouseout=this.src="images/About_Us.jpg" 
 
 /></a></li>
-            <li rel="contactsubs"><a href="contact_i0o9mwoi1lt.html"><img src="images/Contact_Us.jpg" 
+            <li rel="contactsubs"><a href="contact.php"><img src="images/Contact_Us.jpg" 
 
 onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images/Contact_Us.jpg" 
 
 /></a></li>
             
-        <li rel="accountsubs"><a href="useraccounts.html"><img src="images/Placeholder.jpg" 
-      onmouseover=this.src="images/Placeholderselected.jpg" onmouseout=this.src="images/Placeholder.jpg" 
-   /></a></li>  
             
+            
+            
+            
+
 </ul>
 
 <div id="homesubs" class="submenustyle">
@@ -73,8 +86,10 @@ onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images
 
 <div id="tradesubs" class="submenustyle">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="dayorder_i0o9mwoi1lt.html">System Hours Day</a>
-<a href="gtcorder_i0o9mwoi1lt.html">Market Hours Good Till Cancel (GTC)</a>
+<a href="buy.php">Buy</a>
+<a href="sell.php">Sell</a>
+<a href="currentcash.php"><span style="color: rgb(255, 255, 0);">Current Cash</span></a>
+<a href="tradehistory.php">Trade History</a>
 </div>
 
 <div id="looksubs" class="submenustyle">
@@ -84,7 +99,7 @@ onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="newspg_i0o9mwoi1lt.html">NASDAQ News</a>
+<a href="newspg.php">NASDAQ News</a>
 
 </div>
 
@@ -102,10 +117,10 @@ onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="faq_i0o9mwoi1lt.html"><img src="images/FAQselected.jpg" onmouseover=this.src="images/FAQselected.jpg" 
+<a href="faq.php"><img src="images/FAQ.jpg" onmouseover=this.src="images/FAQselected.jpg" 
 
-onmouseout=this.src="images/FAQselected.jpg" /></a>
-<a href="glossary_i0o9mwoi1lt.html"><img src="images/Glossary.jpg" 
+onmouseout=this.src="images/FAQ.jpg" /></a>
+<a href="glossary.php"><img src="images/Glossary.jpg" 
 
 onmouseover=this.src="images/Glossaryselected.jpg" onmouseout=this.src="images/Glossary.jpg" /></a>
 </div>
@@ -130,83 +145,44 @@ initalizetab("maintab")
 			<div id="page-bgbtm">
 				<div id="content">
 					
-
-						<h1>Frequently Asked Questions</h1>
-                        <br /><br />
+<div class="post">
+						<h2 class="title"><a href="#">Current Cash</a>			</h2>
 <p class="meta"><span class="posted"><a href="#"></a></span></p>
 						<div style="clear: both;">&nbsp;</div>
-					
-						  
-                          
-<H2>Press Ctrl + F to search this page.</H2>
-
-<HR width=50% size=4 align=left>
-<P></P>
-<H2>Logging In</H2>
-<UL><LI><H4>Can't Remember Password. What do I do?</H4></LI>
-    <LI><H4>User Name Isn't Working!</H4></LI>
-    <LI><H4>Getting An Error</H4></LI>
-    <LI><H4>How do I change my info?</H4></LI>
-    <LI><H4>Can I stay logged on permanently?</H4></LI>
-    <LI><H4>Do I have a strong password?</H4></LI>
-    <LI><H4>How do I log out?</H4></LI>
-</UL>
-<HR width=50% size=4 align=left>
-<H2>Trading</H2>
-<UL><LI><H4>Buying and selling</H4></LI>
-    <LI><H4>How do I Cancel a trade?</H4></LI>
-    <LI><H4>Verification of trade?</H4></LI>
-    <LI><H4>Can I see trading history?</H4></LI>
-    <LI><H4>Can I trade after the market closes?</H4></LI>
-    <LI><H4>How close to real trading is this?</H4></LI>
-    <LI><H4>Do you have options trading?</H4></LI>
-    <LI><H4>How do I replenish my cash?</H4></LI>
-</UL>
-<HR width=50% size=4 align=left>
-<H2>Account</H2>
-<UL><LI><H4>How do I edit my account?</H4></LI>
-    <LI><H4>Can I open another account?</H4></LI>
-    <LI><H4>Can a family member have an account?</H4></LI>
-    <LI><H4>Is my personal account info secure?</H4></LI>
-    <LI><H4>Who else has control of my account?</H4></LI>
-</UL>
-<HR width=50% size=4 align=left>
-<H2>Stocks</H2>
-<UL><LI><H4>How current are the price quotes?</H4></LI>
-    <LI><H4>What are the 40 special stocks?</H4></LI>
-    <LI><H4>How do I look up a symbol?</H4></LI>
-    <LI><H4>How can I see the history of this stock?</H4></LI>
-    <LI><H4>Stock recommendations</H4></LI>
-</UL>
-<HR width=50% size=4 align=left>
-<H2>Website</H2>
-<UL><LI><H4>Page layouts</H4></LI>
-    <LI><H4>How are you connected to the Nasdaq?</H4></LI>
-    <LI><H4>I received an email from you asking for my password</H4></LI>
-    <LI><H4>What if the site crashes and I want to make a trade?</H4></LI>
-    <LI><H4>Browser support</H4></LI>
-</UL>
-                          
-						  
-						  <p>&nbsp;</p>
-						  <p><br />
+						<div class="entry">
+						  <p>This page is under construction.<br />
 					      </p>
 <p class="links">&nbsp;</p>
-			  </div>
-		  </div>
+						</div>
+					</div>
 					<div class="post">
-						<h2 class="title"> </h2>
+						<h2 class="title">Another Cool Section</h2>
 						<p class="meta"><span class="date"> </span><span class="posted"> </span></p>
 						<div style="clear: both;">&nbsp;</div>
 						<div class="entry">
-							<p></p>
+							<p>&nbsp;</p>
 							<p class="links">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 						</div>
 					</div>
 					<div style="clear: both;">&nbsp;</div>
 				</div>
 				<!-- end #content -->
-
+				<div id="sidebar">
+					<ul>
+                                            <li>
+							<h2>Current Cash</h2>
+						</li>
+                                            <li></li>
+						<li>
+							<div id="search" >
+								<iframe id="datamain" src="announce.txt" width=284 height=300 marginwidth=10 marginheight=5 hspace=0 vspace=0 frameborder=1 scrolling=yes></iframe>
+							</div>
+							<div style="clear: both;">&nbsp;</div>
+						</li>
+                        <li></li>
+					</ul>
+	      </div>
+				<!-- end #sidebar -->
 				<div style="clear: both;">&nbsp;</div>
 			</div>
 		</div>
