@@ -134,6 +134,11 @@ Desktop.ini
 #############
 
 *.py[co]
+#############
+## Java
+#############
+
+*.class
 
 # Packages
 *.egg
