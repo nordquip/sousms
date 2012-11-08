@@ -1,0 +1,17 @@
+ANNOUNCEMENTS  *******************
+
+This Website is 
+under construction.
+
+New Pages Added to Trade section:
+Current Cash
+Trade History
+
+The updated content for the new
+pages has not been added yet.
+
+The site is being converted
+into a PHP format.
+
+Some pages may not display
+correctly.
