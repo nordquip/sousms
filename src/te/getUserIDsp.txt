@@ -1,0 +1,22 @@
+/*
+	getUserID(token)
+	getUserID Stored Procedure gets Token and returns the corisponding userID
+	Anthony Kaiserman
+*/
+
+drop procedure if exists getUserID;
+delimiter &&
+create procedure getUserID(
+	IN  token varchar(128),
+	OUT userID varchar(50)
+	)
+
+begin
+select UserID;
+into userID;
+from Users;
+where token = Token;
+end;
+&&
+
+delimiter ;
