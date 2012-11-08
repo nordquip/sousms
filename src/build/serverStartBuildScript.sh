@@ -1,13 +1,9 @@
 #! /bin/bash
-# serverBootScript.sh
+# serverStartBuildScript.sh
 # Ryan Dempsey 121024
 # This bootstrap script pulls the latest repository from the internet, and updates the build script. It is step 1 in a 2 step process. After executing, it calls the 2nd script
 
 # ATTENTION: This script is not for use on student LAMP stacks...
-
-# Conditions:
-# /var/git/ contains both this script and the serverBuildScript
-# sousms-new does NOT exist
 
 # For changes in this file to take effect, it must be moved by hand on the server.
 
@@ -21,5 +17,5 @@ git clone git://github.com/nordquip/sousms.git /var/git/sousms-new/
 # Copy the new build-script to the correct cronjob location
 cp /var/git/sousms-new/src/build/serverBuildScript.sh /var/git/serverBuildScript.sh
 
-# Execute the new serverBuildScript
+# Execute the newly downloaded serverBuildScript
 sh /var/git/serverBuildScript.sh
