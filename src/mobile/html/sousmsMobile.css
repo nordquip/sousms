@@ -1,0 +1,25 @@
+/*Mobile SOU Stock Market Simulator
+  Author: Nickolaus Patterson    */
+
+body
+{
+
+}
+
+.main_table
+{
+border: 1px solid black;
+width:400;
+height:600;
+margin-left: auto;
+margin-right: auto;
+background-image:url('http://i.imgur.com/J7OH9.png');
+background-repeat:no-repeat;
+background-position:center center;
+}
+
+.drop_down
+{
+margin-left: auto;
+margin-right: auto;
+}
