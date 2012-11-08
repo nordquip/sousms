@@ -6,7 +6,7 @@
 		function Authenticate()
 		{	
 			if(document.getElementById('username').value == "admin" && document.getElementById('password').value == "password")
-				window.location.replace("140.211.89.15/mobile/html/home.html");
+				window.location.replace("home.html");
 			else
 				alert("Illegal Request");
 		}
