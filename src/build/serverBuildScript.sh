@@ -13,6 +13,10 @@
 # Delete the backup repository
 rm -rf /var/git/sousms-backup
 
+# Generate new repository version file
+# TODO format the output
+git log -1 >  /var/git/sousms-new/src/web/version.xml
+
 # TODO Run smoke tests, log results, and exit if smoke tests failed
 
 # Stop running services
@@ -21,7 +25,7 @@ service mysqld stop
 
 # TODO Backup MySQL database -- copy database, and run sql data preservation scripts
 
-# Remove current repository -- change to backup directory
+# Rename current repository to backup directory
 mv /var/git/sousms /var/git/sousms-backup
 
 # Delete outdated files

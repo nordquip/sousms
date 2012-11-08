@@ -18,10 +18,6 @@ git clone git://github.com/nordquip/sousms.git /var/git/sousms-new/
 
 # TODO Check to see if the Git repository was pulled correctly.
 
-# TODO Generate last commit XML file -- Needs formatting.
-cd /var/git/sousms-new
-git log -1 >  /var/git/sousms-new/src/web/version.xml
-
 # Copy the new build-script to the correct cronjob location
 cp /var/git/sousms-new/src/build/serverBuildScript.sh /var/git/serverBuildScript.sh
 
