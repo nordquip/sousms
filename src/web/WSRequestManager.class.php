@@ -11,7 +11,7 @@
 class WSRequestManager {
 	private $url, $debuglog;
 		
-	public function setServiceAddress($serviceId, $serverroot) {
+	public function setServiceAddress($serviceId, $serverroot = "") {
 		$serviceroot = (isset($_SERVER["HTTPS"]) ? "https" : "http") . "://" .
 			$_SERVER["SERVER_NAME"] . 
 			"/service/";
