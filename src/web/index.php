@@ -7,6 +7,8 @@
 * Description: Log in to the site.
 ******************************************************************/
 
+date_default_timezone_set("America/Los_Angeles");
+
 include("WSRequestManager.class.php");
 include("login.include.php");
 
