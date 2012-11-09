@@ -9,16 +9,21 @@
 ******************************************************************/
 
 class WSRequestManager {
-	private $url;
+	private $url, $debuglog;
 		
-	public function setServiceAddress($serviceId) {
+	public function setServiceAddress($serviceId, $serverroot) {
 		$serviceroot = (isset($_SERVER["HTTPS"]) ? "https" : "http") . "://" .
 			$_SERVER["SERVER_NAME"] . 
-			"http://webpages.sou.edu/~rekowj/";
-// NEED TO MODIFY THE LINE ABOVE SO IT POINTS TO SERVER AT http://140.211.89.15/
+			"/service/";
+		if (isset($serverroot) && strlen($serverroot) > 0) {
+			$serviceroot = $serverroot;
+		}
 		switch ($serviceId) {
 		case "UA":
 			$this->url = "${serviceroot}ua.php";
+			break;
+		case "TE":
+			$this->url = "${serviceroot}trade.php";
 			break;
 		default:
 			//$this->url = "";
@@ -29,6 +34,7 @@ class WSRequestManager {
 	
 	public function getData($post_args) {
 		$results = "";
+		$this->debuglog = "";
 		if (isset($this->url)) {
 			$ch = curl_init();
 			// Set the URL to the web service required by the data manager.
@@ -41,8 +47,13 @@ class WSRequestManager {
 			$results = curl_exec($ch);
 			curl_close($ch);
 			// Do whatever processing is needed to the data that was returned.
+			$this->debuglog = "Requested URL:\n{$this->url}\n\nPOST Data:\n$post_args\n\nResults:\n$results";
 		}
 		return $results;
+	}
+	
+	public function getLastRequestDetails() {
+		return $this->debuglog;
 	}
 }
 ?>
