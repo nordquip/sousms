@@ -32,9 +32,15 @@ create procedure enterTickerDataForSymbol(
 	)
 
 begin
-insert into feed values (symbol, bestAskPrice, bestAskQty, bestBidPrice,
-	bestBidQty, close, high, tDate, tTime, ms, lastSale, low, netChg, open,
-	pcl, vol, pctChg);
+	-- handler delcarations have to be at the beginning of the proc
+	-- duplicate entry
+	DECLARE CONTINUE HANDLER FOR SQLSTATE '23000'
+		BEGIN END;  -- do nothing
+
+
+	insert into Feed values (symbol, bestAskPrice, bestAskQty, bestBidPrice,
+		bestBidQty, close, high, tDate, tTime, ms, lastSale, low, netChg, open,
+		pcl, vol, pctChg);
 end;
 &&
 
