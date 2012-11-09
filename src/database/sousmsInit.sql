@@ -23,7 +23,7 @@ where this script assumes it is running.
 */
 
 -- initialize the tables
-source initUserAndTransactionTables.sql;
+source sousmsDeclareTables.sql;
 
 -- initialize the stored procedures
 source ../shared/sousmsDeclareStoredProcs.sql;
