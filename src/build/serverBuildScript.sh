@@ -34,13 +34,13 @@ mv /var/git/sousms-new /var/git/sousms
 # Copy web files to root apache folder
 cp -R /var/git/sousms/src/web/* /var/www/html/
 # Copy team src directories to the web folder
-cp -R /var/git/sousms/src/build /var/www/html/mobile/html/
-cp -R /var/git/sousms/src/database /var/www/html/mobile/html/
-cp -R /var/git/sousms/src/DataFeed /var/www/html/mobile/html/
-cp -R /var/git/sousms/src/mobile /var/www/html/mobile/html/
-cp -R /var/git/sousms/src/shared /var/www/html/mobile/html/
-cp -R /var/git/sousms/src/te /var/www/html/mobile/html/
-cp -R /var/git/sousms/src/teTest /var/www/html/mobile/html/
+cp -R /var/git/sousms/src/build /var/www/html/
+cp -R /var/git/sousms/src/database /var/www/html/
+cp -R /var/git/sousms/src/DataFeed /var/www/html/
+cp -R /var/git/sousms/src/mobile /var/www/html/
+cp -R /var/git/sousms/src/shared /var/www/html/
+cp -R /var/git/sousms/src/te /var/www/html/
+cp -R /var/git/sousms/src/teTest /var/www/html/
 
 # TODO Run build/SQL scripts here, if we run any.
 
