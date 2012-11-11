@@ -10,3 +10,5 @@ function checkFloat($subject){
 	return preg_match($pattern, $subject);
 }
 ?>
+
+The formatting is a bit weird when viewing this in .md, but if you click edit, you can see how it's supposed to look as a function.
