@@ -11,7 +11,9 @@
 */
 
 // connect to the database
-/**
+
+/** TODO - Navigate to the sousmsConfig.xml file and use stored mysql information to connect to the database.
+ *
  * connect()
  * connects the php page to the database
  * @param db mysql database name
