@@ -31,3 +31,11 @@ select * from User;
 end;
 //
 delimiter;
+
+
+/*
+This procedure must:
+1. query database 
+2. return numShares, price, symbol, transDate (transaction date) for the specified userID
+*/
+getTradeHistory(IN UserID int(11))
