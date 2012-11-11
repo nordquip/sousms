@@ -76,7 +76,7 @@ if (!isset($_POST["jsondata"])) {
                         		$req->history->numShares,             //  
                         		$req->history->price,                 // 
                         		$req->history->symbol,                //
-                        		$req->history->transDate,
+                        		$req->history->transDate,             //
                         		$req->history->userID,                // 
                         	);                                            //
                         	$history->getTradeHistory($userID);           // 
