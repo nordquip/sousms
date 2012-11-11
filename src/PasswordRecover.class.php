@@ -8,15 +8,19 @@
 class PasswordRecovery {
 	//constuctor
 	public $email, $password;	
-	public function __construct($un, $pwd) {
+	public function __construct($un, $pwd, $ms) 
+        {
 		$this->email = $un;
 		$this->password = $pwd;
-	}
+                $this->mysqli = new mysqli ('localhost','root','','cs469_test');
+	//
         //connect to the database
-        $mysqli = new mysqli('localhost','root','','sousms');
-        if ($mysqli->connect_errno) {
-             echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-        }      
+        //$mysqli = mysqli_connect('localhost','root','','cs469_test');
+            if (mysqli_connect_errno($mysqli)) 
+            {
+                    die(printf('MySQL Server connection failed: %s', mysqli_connect_error()));
+            }
+        }   
         //Validates email address
         function checkEmailAddress($email) {
             // validate email address
