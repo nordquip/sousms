@@ -1,8 +1,10 @@
-Information related to MySQL logins are stored within an xml file on the class server. By keeping this information out of the repository, a very simplistic amount of security is achieved. An actual production implementation would be more secure.
+Information related to MySQL logins is stored within an xml file on the class server. By keeping this information out of the repository, a very simplistic amount of security is achieved. Actual production implementation would be far more secure. 
 
-This file is located at "/var/git/sousmsConfig.xml" on the class server. It should be possible to pull necessary data when needed by scripts and programs. The "src/shared/dbutil.php" script will refer to this xml file when connecting to the database.
+It should be possible for any running scripts/programs to pull any needed data from this xml file. For example, the "src/shared/dbutil.php" script will refer to this xml file when connecting to the database.
 
-Root XML element is "data"
+This xml file is located at "/var/git/sousmsConfig.xml"
+
+Root xml element is "data"
 
 The MySQL database name is stored in "mysqlDatabase"
 The MySQL user name is stored in "mysqlUser"
