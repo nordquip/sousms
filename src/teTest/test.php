@@ -6,7 +6,7 @@
 ******************************************************************/
 
 include("WSRequestManager.class.php");
-include("login.include.php");
+include($_SERVER['DOCUMENT_ROOT'] . "/login.include.php"); //include from root of server
 
 global $behaviors;
 $behaviors = array(
