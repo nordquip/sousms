@@ -22,7 +22,8 @@ This Prodecure must:
 drop procedure if exists insertTempPassword;
 delimiter//
 create procedure insertTempPassword;
-	IN password varchar (40)
+	IN email varchar(40)
+	IN password varchar(40)
 
 begin
 insert into User values User(password);
@@ -30,3 +31,11 @@ select * from User;
 end;
 //
 delimiter;
+
+
+/*
+This procedure must:
+1. query database 
+2. return numShares, price, symbol, transDate (transaction date) for the specified userID
+*/
+getTradeHistory(IN UserID int(11))
