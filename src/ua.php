@@ -70,6 +70,18 @@ if (!isset($_POST["jsondata"])) {
                                     $msg->statusdesc = "Error!";
                                 }
                                 break;
+                        case "getTokenFromTradeHistory":                      // I know this doesn't work!
+                        	$msg = new UATokenMessage();                  // Not sure if UATokenMessage
+                        	$history = new TradeHistory(                  // is neccessary for trade history?
+                        		$req->history->numShares,             //  
+                        		$req->history->price,                 // 
+                        		$req->history->symbol,                //
+                        		$req->history->date,                  // 
+                        	);                                            //
+                        	$history->getTradeHistory($userID);           // need to pass userID, but
+                        	$msg->statuscode = 0;                         // not sure how to get it?
+                                $msg->statusdesc = "Retrieved trade history"; //
+                        	break;	                                      // Please feel free to comment!
 			default:
 				//we don't implement that unknown behavior
 				header('HTTP/1.1 400 Bad Request');
