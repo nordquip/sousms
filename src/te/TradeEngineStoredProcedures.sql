@@ -1,31 +1,59 @@
 /* 
- * Lists headers of, and information on, stored procedures needed by 
+ * Lists headers of, and/or information on, stored procedures needed by 
  * the Trade Engine team.
  */
 
 
-insertSell(
-	IN userID  int(11),
-	IN stockSymbol  varchar(50),
-	IN numShares int(11),
-	IN price  numeric(13,2)
+-- sp_insertSell
+delimiter //
+CREATE PROCEDURE sp_insertSell(
+	IN userID_in  int(11),
+	IN stockSymbol_in  varchar(50),
+	IN shares_in int(11),
+	IN price_in  numeric(13,2)
 	)
-	/*INSERT INTO OpenOrders (userID, stockSymbol, shares, orderType, price, requestTime) 
-		VALUES (userID, stockSymbol, shares,
-		(SELECT `typeID` FROM OrderTypes WHERE `description` LIKE 'Sell'), 
-		price, NOW());
-		*/
+	
+BEGIN
 
-getShareBalance(
-	IN userID	int(11),
-	IN stockSymbol	varchar(50)
+INSERT INTO OpenOrders (userID, stockSymbol, shares, orderType, price, requestTime) 
+	VALUES (userID_in, stockSymbol_in, shares_in,
+	(SELECT `typeID` FROM OrderTypes WHERE `description` LIKE 'Sell'), 
+	price_in, NOW());
+END;
+//
+
+delimiter ;
+
+-- sp_getShareBalance
+delimiter //
+CREATE PROCEDURE sp_getShareBalance(
+	IN userID_in  int(11),
+	IN stockSymbol_in  varchar(50)
 	)
-	-- Returns the user's holdings of the specified symbol
-	
-getAllOpenOrders()
+RETURN(Shares);
+
+BEGIN
+
+SELECT `Shares` FROM Portfolio  
+	WHERE `UserID` = userID_in 
+	AND `Symbol` = stockSymbol_in;
+END;
+//
+
+delimiter ;
+
+
+-- sp_getAllOpenOrders	
+sp_getAllOpenOrders()
 	-- Returns userID, stockSymbol, shares, orderType, price from all records of the OpenOrders table
-	-- then deletes these records from OpenOrders
+
 	
+-- sp_deleteOpenOrder
+sp_deleteOpenOrder(orderID)
+	-- deletes the record corresponding to orderID from OpenOrders
+	
+	
+-- sp_getUserIdFromToken	
 DELIMITER $$
 CREATE PROCEDURE `sp_getUserIdFromToken`(token char(32))
 BEGIN
@@ -49,6 +77,8 @@ $$
 
 DELIMITER ;
 
+
+-- sp_marketBuy
 /*Nov 5, 2012 Created By Jeff Karmy, with Jeff Miller's help
 */
 drop procedure if exists sp_marketBuy;

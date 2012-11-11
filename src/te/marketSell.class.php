@@ -3,51 +3,59 @@
  *MarketSell.class.php
  *
  *Calls insertSell.sql to add a 'Sell' record to OpenOrders.sql
- *<p>Bugs:  Assumes the existence of an as-yet-unwritten 
- *			stored procedure, getShareBalance(userID, symbol)
  *@author Brittany Dighton
  *
  */
  
  class MarketSell 
  {	
-	public function sell($userID, $stockSymbol, $numShares)
-	{
-		$user = $userID;
-		$symbol = $stockSymbol;
-		$shares = $numShares;
-		$price = NULL;
-		
-		$conn = new mysqli('localhost', 'root', '', 'sousms');
-		if ($conn->connect_errno){	
-			die("Unable to connect to database:  (" . $conn->connect_errno . ") ". $conn->connect_error);
+	private $conn;
+	private $mssg;
+	
+	public function sell($conn_in, $userID, $stockSymbol, $numShares) 
+	{	
+		$this->conn = $conn_in;
+		$this->user = $userID;
+		$this->symbol = $stockSymbol;
+		$this->shares = $numShares;
+		$this->price = NULL;
+		$this->shareBal;
+		try 
+		{			
+			$stmt = $this->conn->prepare("CALL sp_getShareBalance(?)");				
+			$stmt->execute($this->user, $this->symbol);				
+						
+			$stmt->bindColumn(1, $this->shareBal);						
+			$stmt->fetch(PDO::FETCH_BOUND);							
+		}		
+	 
+		catch (PDOException $e) 
+		{			
+			$this->mssg = "Error: " . $e->getMessage();	
 		}
-		
-		if (!$conn->multi_query("CALL getShareBalance($user, $symbol)")) {
-			die ("Error calling stored procedure:  (" . $conn->errno . ") " . $conn->error);
-		}
-		
-		if ($result = $conn->store_result()) 
+	
+		if ($this->shareBal >= $this->shares)
 		{
-			if ($result >= $shares)
+			try
 			{
-				if (!$conn->query("CALL insertSell($user, $symbol, $shares, $price)")) 
-				{
-					die("Error calling stored procedure:  (" . $conn->errno . ") " . $conn->error);
-				}
-				$result->free();
+				$stmt = $this->conn->prepare("CALL sp_InsertSell(?,?,?,?)");				
+				$stmt->execute($this->user, $this->symbol, $this->shares, $this->price);
+			
+				$this->mssg = "Your order was successfully queued.";
 			}
-			else{
-				echo ("Insufficient shares of ", $symbol, " to sell ", $shares, " shares.");
-			}
-		else {
-			if ($conn->errno) 
-			{
-				die ("Error storing result set: (" . $conn->errno . ") " . $conn->error);
-			}
+		
+			catch (PDOException $e) 
+			{			
+				$this->mssg = "Error: " . $e->getMessage();	
 			}
 		}
- }
+		else
+		{
+			$this->mssg = "Error:  Insufficient holdings of ", $this->symbol, " to sell ", $this->shares, " shares.";
+		}
+		return ($this->mssg);
+	}
+}
  ?>
 
 		
