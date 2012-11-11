@@ -76,10 +76,11 @@ if (!isset($_POST["jsondata"])) {
                         		$req->history->numShares,             //  
                         		$req->history->price,                 // 
                         		$req->history->symbol,                //
-                        		$req->history->date,                  // 
+                        		$req->history->transDate,
+                        		$req->history->userID,                // 
                         	);                                            //
-                        	$history->getTradeHistory($userID);           // need to pass userID, but
-                        	$msg->statuscode = 0;                         // not sure how to get it?
+                        	$history->getTradeHistory($userID);           // 
+                        	$msg->statuscode = 0;                         // 
                                 $msg->statusdesc = "Retrieved trade history"; //
                         	break;	                                      // Please feel free to comment!
 			default:
