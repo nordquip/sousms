@@ -25,13 +25,10 @@ class TradeHistory
    {
       
       $this->numShares = $numSh;
-      
       $this->price     = $p;
-
       $this->symbol    = $symbol;
-
       $this->date      = $dt;
-      $this->userID    = $id
+      $this->userID    = $id;
 
    }
 
