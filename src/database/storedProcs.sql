@@ -1,3 +1,5 @@
+DELIMITTER //
+
 DROP PROCEDURE IF EXISTS getPortfolio;
 
 CREATE PROCEDURE getPortfolio(
@@ -25,7 +27,30 @@ BEGIN
 	From Cash
 	Where UserID = UID
 	INTO CASH;
-END
+END;
+//
+-- Stored Procedure created by Josh Carroll
+-- Name: getTradeHistory
+-- Parameters: UID = Particular Unigue Users ID
+-- Description: Stored procudure accepts a single UserID (UID) 
+--		and returns the Symbol, number of Shares, and Price of Shares.
+
+DROP PROCEDURE IF EXISTS getTradeHistory;
+
+CREATE PROCEDURE getTradeHistory(
+    IN UID int,
+    OUT Symbol char(5),
+    OUT Shares int(11),
+    OUT Price float(10,4)
+)
+BEGIN 
+    SELECT Symbol, Shares, Price
+    FROM stock
+    WHERE UserID=UID
+    INSERT INTO trade history (SYMBOL, SHARES, PRICE);
+END;
+
+//
 
 -- Name: buy
 -- Parameters: UID = Particular Users Unique Identification Number
@@ -69,7 +94,7 @@ BEGIN
 		SET SUCCESS = '1';
 	END IF
 END;
-DELIMITTER //
+//
 
 CREATE PROCEDURE sell()
 
