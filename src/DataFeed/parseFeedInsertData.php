@@ -12,6 +12,7 @@ $password = ""; //Replace
 $DB = "test1"; //Replace
 $DBTB = "feed"; //Replace
 
+date_default_timezone_set('America/Los_Angeles');
 
 $con = mysql_connect($host, $username, $password );
 $db = mysql_select_db("$DB", $con);
