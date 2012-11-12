@@ -11,7 +11,7 @@ SELECT p.symbol, p.numberShares, f.bestAskPrice
 FROM portfolio p, feed f
 WHERE UserID = @UserID
 END
-
+//
 
 -- Name: getCashFor
 -- Parameters: UID = Particular Users Unique Identification Number
