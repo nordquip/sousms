@@ -4,9 +4,13 @@ It should be possible for any running scripts/programs to pull any needed data f
 
 This xml file is located at "/var/git/sousmsConfig.xml"
 
-Root xml element is "data"
-
-The MySQL database name is stored in "mysqlDatabase"
-The MySQL user name is stored in "mysqlUser"
-The MySQL password is stored in "mysqlPassword"
-Jeff's login hash will be stored in "loginHash"
+File Structure:
+```
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<data>
+  <mysqlUser>...</mysqlUser>
+  <mysqlPassword>...</mysqlPassword>
+  <mysqlDatabase>...</mysqlDatabase>
+  <loginHash>...</loginHash>
+</data>
+```
