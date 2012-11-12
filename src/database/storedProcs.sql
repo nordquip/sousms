@@ -9,7 +9,7 @@ AS
 BEGIN	
 SELECT p.symbol, p.numberShares, f.bestAskPrice
 FROM portfolio p, feed f
-WHERE UserID = @UserID
+WHERE UserID = @UserID;
 END
 //
 
