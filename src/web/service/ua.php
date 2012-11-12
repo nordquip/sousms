@@ -38,9 +38,11 @@ if (!isset($_POST["jsondata"])) {
 					$msg->token = $token;
 					//get the current time
 					$dt = new DateTime(null, new DateTimeZone("America/Los_Angeles"));
-					//expire the token in 10 seconds, this should probably reside inside validate
+					//expire the token in 10 seconds,
+					// this should probably reside inside validate
 					//modified by web team to 30 secs.
-                                        $dt->modify("+10 seconds");
+					// PN: I think it should be 10 minutes (600 seconds)
+                                        $dt->modify("+600 seconds");
 					$msg->expires = $dt->format(DateTime::RFC822);
 					//just some helpful status information for the caller
 					$msg->statuscode = 0;

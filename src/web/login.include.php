@@ -1,5 +1,3 @@
-
-
 <?php
 /******************************************************************
 * login.include.php
@@ -47,19 +45,27 @@ function getLoginCookie() {
 	return unserialize($_COOKIE["usr"]);
 }
 
+// BEGIN REMOVE
 function startsWith($needle, $haystack) {
 	return preg_match('/^' . preg_quote($needle, '/') . "/", $haystack);
 }
+// END REMOVE
 
 //If logged in, continue. Otherwise, go back to login page.
 
-//here is the location of the login page, it should be stored in a config file somewhere instead of hard-coding it
+//here is the location of the login page,
+//it should be stored in a config file somewhere instead of hard-coding it
+// but we are out of time
 $loginpage = "/index.php";
+// BEGIN REMOVE: should test this on an xampp stack rather than webpages
+// so we don't have to have this hack in the code
 if (startsWith("/~millerj3/", $_SERVER['PHP_SELF'])) {
 	$loginpage = "/~millerj3/wsdemo/web" . $loginpage;
 } else if (startsWith("/~rekowj/", $_SERVER['PHP_SELF'])) {
 	$loginpage = "/~rekowj" . $loginpage;
 }
+// END REMOVE:
+
 //this script is included by all pages that require login
 //if we're sitting on the login page itself, don't infinite redirect
 //otherwise, redirect to login if the cookie is not valid

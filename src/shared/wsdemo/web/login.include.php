@@ -6,10 +6,33 @@
 *   This code wants to live in a Singleton...
 ******************************************************************/
 
+/* REMOVE:
+// CONST declarations:
+// ASSUME the following:
+//   login.include.php resides in the 'shared' directory
+//   SOUSMSWEBROOT is the directory above the shared directory
+//TROUBLE - can't find this from login.include.php.
+//Can find it only from index.php, but login.include.php must know it
+//before index.php is able to assign it.
+//   the 'login' page is named index.php
+//   index.php resides in SOUSMSWEBROOT
+//   this scenario matches the way the product is built on the server
+$loginpage = $_SERVER['SERVER_NAME'] . "/wsdemo/web/index.php"; // DEBUG
+*/
+$loginpage = "/shared/wsdemo/web/index.php"; // DEBUG
+echo "\$loginpage == $loginpage <br/>";
+//Must say where the default landing page after you've logged in is:
+
+// ASSUME: index.php is in the root of the webserver.
+// in xampp, can edit httpd.conf -- DocumentRoot
+
+
 function getSecret() {
 	//this is the private key that is used to encrypt/decrypt the cookie data
-	//it should be stored in a secure location on the server (for demonstration purposes only)
+	//it should be stored in a secure location on the server
 	//how can this be made more secure?
+	//TODO:GetLoginEncryptionKeyFromConfigFile
+	//  (the following is for demonstration purposes only)
 	return "qwertpoiuy";
 }
 
@@ -39,14 +62,25 @@ function getLoginCookie() {
 }
 
 //If logged in, continue. Otherwise, go back to login page.
+//ASSUMES the basename of the login page is login.php
+$loginPageBasename = "login.php";
+echo "login.include.php: (pathinfo(\$_SERVER['PHP_SELF'], PATHINFO_BASENAME) <br/>";
+echo pathinfo($_SERVER['PHP_SELF'], PATHINFO_BASENAME) . " <br/>";
+echo "login.include.php: (pathinfo(\$_SERVER['PHP_SELF'], PATHINFO_DIRNAME) <br/>";
+echo pathinfo($_SERVER['PHP_SELF'], PATHINFO_DIRNAME) . " <br/>";
 
-//here is the location of the login page, it should be stored in a config file somewhere instead of hard-coding it
-$loginpage = "/wsdemo/web/login.php";
 //this script is included by all pages that require login
-//if we're sitting on the login page itself, don't infinite redirect
+//if we're sitting on the login page itself,
+//  keep us from doing an infinite redirect
 //otherwise, redirect to login if the cookie is not valid
 //do we need a function that checks the database to see if the token is valid?
-if ($_SERVER['PHP_SELF'] != $loginpage && strlen(getLoginCookie()) != 32) {
-	header("Location: ${loginpage}?jumpto=${_SERVER['PHP_SELF']}");
+//if (pathinfo(htmlentities($_SERVER['PHP_SELF']), PATHINFO_BASENAME) !=
+//if (pathinfo($_SERVER['PHP_SELF'], PATHINFO_BASENAME) !=
+echo $_SERVER['PHP_SELF'];
+echo " <br/>";
+echo "\$loginpage == $loginpage" . " <br/>";
+if ($_SERVER['PHP_SELF'] != $loginpage &&
+	strlen(getLoginCookie()) != 32) {
+	header("Location: ${loginPage}?jumpto=${_SERVER['PHP_SELF']}");
 }
 ?>

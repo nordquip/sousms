@@ -38,6 +38,8 @@ function parseCredentials($un, $pwd, &$token, &$expires) {
 		$ws->setServiceAddress("UA");
 		$respTxt = $ws->getData("jsondata=" . json_encode($postData));
 		//return $respTxt;
+
+		echo "<br/>parseCredentials: \$respTxt == $respTxt <br/>";
 		$respObj = json_decode($respTxt);
 		$token = $respObj->token;
 		$expires = new DateTime($respObj->expires);
@@ -49,20 +51,23 @@ function parseCredentials($un, $pwd, &$token, &$expires) {
 	}
 }
 
-// $jumpto needs validation...
+echo "\$jumpto == $jumpto<br/>";
+echo htmlentities($_SERVER['PHP_SELF']);
+echo "<br/>";
+
+// TODO: $jumpto needs validation...
 if (isset($_POST["jumpto"])) {
 	$jumpto = $_POST["jumpto"];
 } else if(isset($_GET["jumpto"])) {
 	$jumpto = $_GET["jumpto"];
 } else {
-	$jumpto = "trade.php";
+	// ASSUME: home.php is the landing page, and is in same dir as index.php
+	$jumpto = "./home.php";
 }
 
 $msg = "";
 if (isset($_POST["un"]) && isset($_POST["pwd"])) {
 	$msg = parseCredentials($_POST["un"], $_POST["pwd"], $token, $expires);
-	//echo $token;
-	//exit;
 	if (isset($token) && strlen($token) == 32 && isset($expires)) {
 		setLoginCookie($token, $expires->getTimestamp());
 		header("Location: $jumpto");
@@ -77,7 +82,8 @@ if (isset($_POST["un"]) && isset($_POST["pwd"])) {
 <title>Login</title>
 </head>
 <body>
-<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" autocomplete="off">
+<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>"
+	method="post" autocomplete="off">
 <?php
 if (strlen($msg) > 0) {
 	$msg = htmlentities($msg);

@@ -1,6 +1,4 @@
-﻿
-
-<?php
+﻿<?php
 /******************************************************************
 * login.php
 * By: Jeff Miller (millerj3@students.sou.edu), 2012-10-24
@@ -51,13 +49,14 @@ function parseCredentials($un, $pwd, &$token, &$expires) {
 	}
 }
 
-// $jumpto needs validation...
+// TODO: $jumpto needs validation...
 if (isset($_POST["jumpto"])) {
 	$jumpto = $_POST["jumpto"];
 } else if(isset($_GET["jumpto"])) {
 	$jumpto = $_GET["jumpto"];
 } else {
-	$jumpto = "home.php";
+	// ASSUME: home.php is the landing page and in the same dir as index.php
+	$jumpto = "./home.php";
 }
 
 $msg = "";
@@ -169,7 +168,12 @@ alertornot()
 <center>
 	<div class="auto-style1">
 
-<form action="<?php  echo htmlentities($loginpage['/~rekowj/index.php']); ?>" method="post" autocomplete="off">
+<form action="<?php  
+// Can't do this in production code -- test on xampp not webpages.sou.edu
+//echo htmlentities($loginpage['/~rekowj/index.php']);
+echo htmlentities($loginpage);
+?>"
+method="post" autocomplete="off">
 
 
 <?php 
