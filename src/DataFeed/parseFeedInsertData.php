@@ -25,7 +25,7 @@ else
 	$tradingTime = false;
 	echo "Trading day over.\n";
 }
-while($_SERVER['feedControl']=='1' && $tradingTime)
+while(file_exists('feedControl') && $tradingTime)
 {
 
 $url = "https://basicapp.nasdaqomx.com/BasicDataXML/getBasicData?symbolsCsvList=AAPL,ADBE,ADSK,ALU,AMZN,ATVI,AXP,CAKE,CMCSA,COKE";
