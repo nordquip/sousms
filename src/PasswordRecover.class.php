@@ -12,7 +12,7 @@ class PasswordRecovery {
         {
 		$this->email = $un;
 		$this->password = $pwd;
-                $this->mysqli = new mysqli ('localhost','root','','cs469_test');
+                $this->mysqli = new mysqli ('localhost','root','','sousms');
 	//
         //connect to the database
         //$mysqli = mysqli_connect('localhost','root','','cs469_test');
