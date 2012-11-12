@@ -22,6 +22,7 @@ if (date('Hi') > 355 && date('Hi') < 1705)
 else
 {
 	$tradingTime = false;
+	echo "Trading day over.\n";
 }
 while($_SERVER['feedControl']=='1' && $tradingTime)
 {
@@ -32,6 +33,7 @@ if (date('Hi') > 355 && date('Hi') < 1705)
 else
 {
 	$tradingTime = false;
+	echo "Trading day over.\n";
 }
 
 $url = "https://basicapp.nasdaqomx.com/BasicDataXML/getBasicData?symbolsCsvList=AAPL,ADBE,ADSK,ALU,AMZN,ATVI,AXP,CAKE,CMCSA,COKE";
