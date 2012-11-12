@@ -25,18 +25,23 @@ END;
 delimiter ;
 
 -- sp_getShareBalance
+-- this stored procedure still needs some tweaking - it does not successfully return the result set
+DROP PROCEDURE IF EXISTS sp_getShareBalance;
+
 delimiter //
 CREATE PROCEDURE sp_getShareBalance(
 	IN userID_in  int(11),
-	IN stockSymbol_in  varchar(50)
+	IN stockSymbol_in  varchar(50),
+    OUT shares_out int(11)
 	)
-RETURN(Shares);
-
+	
 BEGIN
 
-SELECT `Shares` FROM Portfolio  
-	WHERE `UserID` = userID_in 
-	AND `Symbol` = stockSymbol_in;
+SET shares_out = (SELECT `Shares` FROM Portfolio  
+	WHERE `UserID` = 4567 
+	AND `SymID` IN(
+		SELECT `SymID` FROM Symbol 
+		WHERE  `Symbol` = 'INTC'));
 END;
 //
 
