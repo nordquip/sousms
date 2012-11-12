@@ -2,7 +2,7 @@
 /*
  *MarketSell.class.php
  *
- *Calls insertSell.sql to add a 'Sell' record to OpenOrders.sql
+ *Calls sp_insertSell to add a 'Sell' record to the OpenOrders table
  *@author Brittany Dighton
  *
  */
@@ -15,18 +15,21 @@
 	public function sell($conn_in, $userID, $stockSymbol, $numShares) 
 	{	
 		$this->conn = $conn_in;
-		$this->user = $userID;
-		$this->symbol = $stockSymbol;
-		$this->shares = $numShares;
-		$this->price = NULL;
-		$this->shareBal;
+		$user = $userID;
+		$symbol = $stockSymbol;
+		$shares = $numShares;
+		$price = NULL;
+	
 		try 
 		{			
-			$stmt = $this->conn->prepare("CALL sp_getShareBalance(?)");				
-			$stmt->execute($this->user, $this->symbol);				
-						
-			$stmt->bindColumn(1, $this->shareBal);						
-			$stmt->fetch(PDO::FETCH_BOUND);							
+			$stmt = $this->conn->prepare("CALL sp_getShareBalance(?,?)");	
+			$stmt->bindParam(1, $user, PDO::PARAM_INT);
+			$stmt->bindParam(2, $symbol, PDO::PARAM_STR, 12);
+			$stmt->execute();				
+				
+			$stmt->bindColumn(1, $shareBal);
+			$stmt->fetch(PDO::FETCH_BOUND);	
+			
 		}		
 	 
 		catch (PDOException $e) 
@@ -34,12 +37,16 @@
 			$this->mssg = "Error: " . $e->getMessage();	
 		}
 	
-		if ($this->shareBal >= $this->shares)
+		if ($shareBal >= $shares)
 		{
 			try
 			{
-				$stmt = $this->conn->prepare("CALL sp_InsertSell(?,?,?,?)");				
-				$stmt->execute($this->user, $this->symbol, $this->shares, $this->price);
+				$stmt = $this->conn->prepare("CALL sp_insertSell(?,?,?,?)");
+				$stmt->bindParam(1, $user, PDO::PARAM_INT);
+				$stmt->bindParam(2, $symbol, PDO::PARAM_STR, 12);
+				$stmt->bindParam(3, $shares, PDO::PARAM_INT);
+				$stmt->bindParam(4, $price);
+				$stmt->execute();
 			
 				$this->mssg = "Your order was successfully queued.";
 			}
@@ -51,9 +58,11 @@
 		}
 		else
 		{
-			$this->mssg = "Error:  Insufficient holdings of ", $this->symbol, " to sell ", $this->shares, " shares.";
+			$this->mssg = "Error:  Insufficient holdings of ". $symbol. " to sell ". $shares. " shares.";
 		}
+
 		return ($this->mssg);
+		
 	}
 }
  ?>
