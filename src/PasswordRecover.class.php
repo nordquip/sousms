@@ -3,7 +3,7 @@
  * L Peery
  * 10/30/2012
  */
-
+require_once('phpmailer/class.phpmailer.php');  //additional class to make sending mail work
 
 class PasswordRecovery {
 	//constuctor
