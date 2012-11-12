@@ -6,9 +6,11 @@
 
 <?php
 function checkFloat($subject){
-	$pattern = '/^[0-9]{0,}[.]{0,1}[0-9]{0,}$/';
+	$pattern = '/^[0-9]\{0,\}[.]\{0,1\}[0-9]\{0,\}$/';
 	return preg_match($pattern, $subject);
 }
 ?>
 
 The formatting is a bit weird when viewing this in .md, but if you click edit, you can see how it's supposed to look as a function.
+
+SOURCE: http://www.grymoire.com/Unix/Regular.html
