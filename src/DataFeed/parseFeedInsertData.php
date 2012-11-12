@@ -26,15 +26,6 @@ else
 }
 while($_SERVER['feedControl']=='1' && $tradingTime)
 {
-if (date('Hi') > 355 && date('Hi') < 1705) 
-{
-	$tradingTime = true;
-}
-else
-{
-	$tradingTime = false;
-	echo "Trading day over.\n";
-}
 
 $url = "https://basicapp.nasdaqomx.com/BasicDataXML/getBasicData?symbolsCsvList=AAPL,ADBE,ADSK,ALU,AMZN,ATVI,AXP,CAKE,CMCSA,COKE";
 $xml = simplexml_load_file($url);
@@ -156,5 +147,14 @@ $sql = "CALL enterTickerDataForSymbol('$symbol','$bestAskPrice','$bestAskQty','$
 $query = mysql_query($sql);
 }
 sleep(1);
+if (date('Hi') > 355 && date('Hi') < 1705) 
+{
+	$tradingTime = true;
+}
+else
+{
+	$tradingTime = false;
+	echo "Trading day over.\n";
+}
 }
 ?>
