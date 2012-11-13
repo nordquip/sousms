@@ -121,6 +121,16 @@ END//
 
 DELIMITTER;
 
+//Keith Kuhl
+
+DELIMITER //
+CREATE PROCEDURE getToken()
+BEGIN
+select token
+from LOGIN
+END;
+DELIMETER ;
+
 
 
 
