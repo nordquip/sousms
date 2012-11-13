@@ -16,9 +16,9 @@ class DbConn {
 			}
 			if (file_exists($config)) {
 				$doc = simplexml_load_file($config);
-				$dbname = $doc["mysqlDatabase"];
-				$un = $doc["mysqlUser"];
-				$pwd = $doc["mysqlPassword"];
+				$dbname = $doc->mysqlDatabase;
+				$un = $doc->mysqlUser;
+				$pwd = $doc->mysqlPassword;
 			}
 		}
 		$this->host = $host;
