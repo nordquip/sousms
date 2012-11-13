@@ -1,3 +1,8 @@
+-- Name: getPortfolio
+-- Author: Emily!
+-- Parameters: UserID
+-- Description: Returns portfolio based off of user's identification number.
+
 DELIMITTER //
 
 DROP PROCEDURE IF EXISTS getPortfolio;
@@ -12,23 +17,8 @@ FROM portfolio p, feed f
 WHERE UserID = @UserID;
 END//
 
--- Name: getCashFor
--- Parameters: UID = Particular Users Unique Identification Number
--- Description: This stored procedure accepts a single userID (UID)
---				And returns the current balance (CASH) for said user. 
-
-Create Procedure getCashFor(
-	IN UID int
-	OUT CASH float (10,4)
-)
-BEGIN
-	Select Balance
-	From Cash
-	Where UserID = UID
-	INTO CASH;
-END//
--- Stored Procedure created by Josh Carroll
 -- Name: getTradeHistory
+-- Author: Josh Carroll
 -- Parameters: UID = Particular Unigue Users ID
 -- Description: Stored procudure accepts a single UserID (UID) 
 --		and returns the Symbol, number of Shares, and Price of Shares.
@@ -49,12 +39,13 @@ BEGIN
 END//
 
 -- Name: buy
+-- Author: Martin DeWitt
 -- Parameters: UID = Particular Users Unique Identification Number
 --			   SYM = Unique Identifier For A Particular Company
 --			   NUM = Number Of Shares to Purchase
--- Description: This stored procedure accepts 3 parameters: UID (UserID), 
---				SYM (Symbol), and NUM (Number of Shares). Returns Boolean 
---				of true of successful, false if not successful.
+-- Description: This stored procedure accepts 4 parameters: UID (UserID), 
+--				SYM (Symbol), and NUM (Number of Shares), as well as Purchase Price.
+-- 				Returns Boolean of 0 if successful, 1 if not successful.
 
 Create Procedure buy(
 	IN UID int, 			/*UserID*/
@@ -83,6 +74,12 @@ Begin
 		Set SUCCESS='1';
 	End If;
 End//
+
+-- Name: sell
+-- Author: Scott Williams
+-- Parameters: UserID (UID), Symbol (SYM), Number of shares (NUM), and 
+--			   Purchase price (PRC)
+-- Description: Sells shares of a users current holdings.
 
 CREATE PROCEDURE sell()
 
