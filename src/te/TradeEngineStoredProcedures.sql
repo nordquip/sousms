@@ -100,3 +100,23 @@ end;
 //
 
 delimiter ; 
+
+-- sp_getCash
+sp_getCash(userID)
+	-- returns user's cash
+
+-- sp_getPrice
+sp_getPrice(symID)
+	-- returns latest price
+
+
+-- sp_decAvailCash
+sp_decAvailCash(userID, cashToDec)
+	-- if.. using a separate "available cash" column on the user table
+	-- then.. decrements user's available balance by 'cashToDec'
+
+
+-- sp_exeBuy
+sp_exeBuy(userID, symID, numShares, stockPrice, cashToDec)	
+	-- decrements user's "actual cash" balance on the 'user' table
+	-- makes record of new stock holding (userID, symID, numShares, stockPrice) on a "stock holdings" table
