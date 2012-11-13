@@ -16,12 +16,12 @@
 * if match, set session cookie and open user page
 * if not match, return 'username or password did not match' error
 
-### sanitize (infoType, info)
+### sanitize (info)
 ####This procedure must:
 * check the information type > string, float, int
 * call built in function for sanitizing data type
-* reject unsafe data with an error message
-* pass safe data to database
+* reject unsafe data with a FALSE return
+* approve safe data with a TRUE return
 
 ###securitiesInfo(symbolName, sharesOwned, worth)
 ####This Procedure must:
