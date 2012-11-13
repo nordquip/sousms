@@ -16,14 +16,14 @@ class DbConn {
 				$config = 'sousmsConfigLocal.xml'; //use local version if development environment
 			}
 			if (file_exists($config)) {
-				$this->debug .= "Config: $config, ";
+				$this->debug .= "Config: $config.\n" . file_get_contents($config) . "\n";
 				$doc = simplexml_load_file($config);
 				$dbname = $doc->mysqlDatabase;
 				$un = $doc->mysqlUser;
 				$pwd = $doc->mysqlPassword;
 			}
 		}
-		$this->debug .= "Host: $host, DB: $dbname, UN: $un, Pwd: $pwd";
+		$this->debug .= "Host: $host, DB: $dbname, UN: $un";
 		$this->host = $host;
 		$this->dbname = $dbname;
 		$this->un = $un;
