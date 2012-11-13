@@ -121,7 +121,10 @@ END//
 
 DELIMITTER;
 
-//Keith Kuhl
+-- Name: getToken
+-- Author: Keith Kuhl
+-- Parameters: UserID
+-- Description: Returns current token number 
 
 DELIMITER //
 CREATE PROCEDURE getToken()
