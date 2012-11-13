@@ -1,0 +1,14 @@
+<?php
+/**
+	Takes Token and gives the User ID
+	Anthony Kaiserman
+*/
+
+
+
+$token = $POST['token'];
+
+
+$uuserID = mysql_query("call getUserID(token)');
+
+?>	

@@ -1,6 +1,10 @@
 /*
 	sousms Stored Procedure interfaces with their implementations
 	Pete Nordquist 121019
+	
+	Note: Be sure to drop a procedure here if it already exists -- we will be running this file on a populated server. If you do not drop the procedure, errors will occur. --Ryan5732 
+	
+	Note: Do not delete or rename this file... it is being used by the build script. --Ryan5732
 */
 
 
@@ -10,30 +14,39 @@ This Procedure must:
 1. Store all variables into corresponding fields on the appropriate table
 */
 drop procedure if exists enterTickerDataForSymbol;
-delimiter //
+delimiter &&
 create procedure enterTickerDataForSymbol(
+	IN symbol varchar(8),
 	IN bestAskPrice decimal(10,4),
 	IN bestAskQty int,
 	IN bestBidPrice decimal(10,4),
 	IN bestBidQty int,
 	IN close decimal(10,4),
 	IN high decimal(10,4),
+	IN tDate date,
+	IN tTime time,
+	IN ms decimal(3,0),
 	IN lastSale decimal(10,4),
 	IN low decimal(10,4),
 	IN netChg decimal(10,4),
 	IN open decimal(10,4),
 	IN pcl decimal(10,4),
-	IN vol decimal(10,4),
-	IN date DATE,
-	IN pctChg decimal(10,8),
-	IN symbol char(10),
-	IN time TIME) 
+	IN vol int,
+	IN pctChg decimal(10,8)
+	)
 
 begin
-insert into feed values (bestAskPrice, bestAskQty, bestBidPrice, bestBidQty, close, high, lastSale, low, netChg, open, pcl, vol, date, pctChg, symbol, time);
-select * from feed;
+	-- handler delcarations have to be at the beginning of the proc
+	-- duplicate entry
+	DECLARE CONTINUE HANDLER FOR SQLSTATE '23000'
+		BEGIN END;  -- do nothing
+
+
+	insert into Feed values (symbol, bestAskPrice, bestAskQty, bestBidPrice,
+		bestBidQty, close, high, tDate, tTime, ms, lastSale, low, netChg, open,
+		pcl, vol, pctChg);
 end;
-//
+&&
 
 /* add other interfaces in the same format */
 

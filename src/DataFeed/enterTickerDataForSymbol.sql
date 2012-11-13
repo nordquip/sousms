@@ -4,7 +4,7 @@ This Procedure must:
 1. Store all variables into corresponding fields on the appropriate table
 */
 drop procedure if exists enterTickerDataForSymbol;
-delimiter //
+delimiter &&
 create procedure enterTickerDataForSymbol(
 	IN symbol varchar(8),
 	IN bestAskPrice decimal(10,4),
@@ -13,9 +13,9 @@ create procedure enterTickerDataForSymbol(
 	IN bestBidQty int,
 	IN close decimal(10,4),
 	IN high decimal(10,4),
-	IN date date,
-	IN time time,
-	IN ms decimal(3,3),
+	IN tDate date,
+	IN tTime time,
+	IN ms decimal(3,0),
 	IN lastSale decimal(10,4),
 	IN low decimal(10,4),
 	IN netChg decimal(10,4),
@@ -27,8 +27,9 @@ create procedure enterTickerDataForSymbol(
 
 begin
 insert into feed values (symbol, bestAskPrice, bestAskQty, bestBidPrice,
-	bestBidQty, close, high, date, time, ms, lastSale, low, netChg, open,
+	bestBidQty, close, high, tDate, tTime, ms, lastSale, low, netChg, open,
 	pcl, vol, pctChg);
 end;
-//
+&&
+delimiter ;
 
