@@ -62,6 +62,7 @@ Create Procedure buy(
 	IN NUM int,				/*Number of Shares*/
 	IN PRC float,			/*Purchase Price*/
 	OUT SUCCESS Boolean 	/*0=Success, 1=Fail*/
+)
 Begin
 	/*Declare Variables Needed*/
 	--totalCost
