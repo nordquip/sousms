@@ -80,8 +80,8 @@ if (!isset($_POST["jsondata"])) {
 			}
 			if ($retval->statuscode != 0) {
 				header("Content-Type: application/json;charset=UTF-8");
-				//echo json_encode($retval);
-				echo json_encode($retval, JSON_PRETTY_PRINT);
+				echo json_encode($retval);
+				//echo json_encode($retval, JSON_PRETTY_PRINT); // JSON_PRETTY_PRINT only works in PHP 5.4.0+
 				exit;
 			}
 			//$myConn = new DbConn("localhost", "sousms", "root", "");
@@ -102,7 +102,7 @@ if (!isset($_POST["jsondata"])) {
 					}
 				}
 			} catch (Exception $e) {
-				$retval->statusdesc[] = "Token Translator Failure";
+				$retval->statusdesc[] = "Token Translator Failure: " . $e->getMessage();
 				$b = "test";
 				$retval->statusdesc[] = $myConn->getDebug();
 			}
@@ -150,7 +150,7 @@ if (!isset($_POST["jsondata"])) {
 			}
 			header("Content-Type: application/json;charset=UTF-8");
 			echo json_encode($retval);
-			//echo json_encode($retval, JSON_PRETTY_PRINT);
+			//echo json_encode($retval, JSON_PRETTY_PRINT); // JSON_PRETTY_PRINT only works in PHP 5.4.0+
 			$myConn = null;
 			exit;
 		}
