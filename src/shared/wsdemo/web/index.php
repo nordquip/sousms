@@ -34,6 +34,12 @@ function parseCredentials($un, $pwd, &$token, &$expires) {
 		);
 		$postData["credentials"]->username = $un;
 		$postData["credentials"]->password = $pwd;
+                $postData = array(
+			"behavior" => "getTokenFromPasswordRecovery",
+			"passwordRecovery" => new PasswordRecovery()
+		);
+		$postData["passwordRecovery"]->username = $un;
+		$postData["passwordRecovery"]->password = $pwd;
 		$ws = new WSRequestManager();
 		$ws->setServiceAddress("UA");
 		$respTxt = $ws->getData("jsondata=" . json_encode($postData));
