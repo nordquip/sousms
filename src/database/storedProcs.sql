@@ -10,8 +10,7 @@ BEGIN
 SELECT p.symbol, p.numberShares, f.bestAskPrice
 FROM portfolio p, feed f
 WHERE UserID = @UserID;
-END
-//
+END//
 
 -- Name: getCashFor
 -- Parameters: UID = Particular Users Unique Identification Number
@@ -27,8 +26,7 @@ BEGIN
 	From Cash
 	Where UserID = UID
 	INTO CASH;
-END;
-//
+END//
 -- Stored Procedure created by Josh Carroll
 -- Name: getTradeHistory
 -- Parameters: UID = Particular Unigue Users ID
@@ -48,9 +46,7 @@ BEGIN
     FROM stock
     WHERE UserID=UID
     INSERT INTO trade history (SYMBOL, SHARES, PRICE);
-END;
-
-//
+END//
 
 -- Name: buy
 -- Parameters: UID = Particular Users Unique Identification Number
@@ -61,40 +57,31 @@ END;
 --				of true of successful, false if not successful.
 
 Create Procedure buy(
-	IN UID int,
-	IN SYM char,
-	IN NUM int,
-	IN PRC float,
-	OUT SUCCESS Boolean
-BEGIN
-	-- Declare variable for Users balance
-	DECLARE userBalance float (10,4);
-	-- Declare variable for total cost (currPrice * NUM)
-	DECLARE totalCost float (10,4);
-	Set SUCCESS = '1';
-	
-	-- Get users balance and save in userBalance variable
-	Call getCashFor(UID) INTO userBalance;
-	
-	set totalCost = PRC * NUM;
-	
-	--If the user can afford the purchase
-	IF totalCost<=userBalance THEN
-		SET SUCCESS = '0';
-		--Insert transaction into the stock table (UID,Symbol,TStamp,SellBuy,Shares)
-		Insert (UID, SYM, SUCCESS, NUM, totalCost)
-		--Decrement Balance from Cash Table
-		UPDATE Cash
-		Set Balance = Balance - totalCost
-		Where UserID = UID;
-	END IF;
-	--If the user could not afford the transaction, fail
-	IF SUCCESS='0' THEN
-		--EPIC FAIL!
-		SET SUCCESS = '1';
-	END IF
-END;
-//
+	IN UID int, 			/*UserID*/
+ 	IN SYM char,			/*Symbol To Purchase*/
+	IN NUM int,				/*Number of Shares*/
+	IN PRC float,			/*Purchase Price*/
+	OUT SUCCESS Boolean 	/*0=Success, 1=Fail*/
+Begin
+	/*Declare Variables Needed*/
+	--totalCost
+	Declare totalCost float (10,4);
+	--usrBalance
+	Declare usrBalance float (10,4);
+	/*Calculate Total, store in totalCost variable*/
+	Set totalCost=NUM*PRC;
+	/*Can User Afford?*/
+	Select Balance From Cash Where UserID=UID Into usrBalance;
+	If usrBalance>=totalCost Then
+		Set SUCCCESS='0';
+		--Insert Transaction into stock table ie insert
+		Insert into Stock (UserID, SellBuy, Shares, Price) values (UID, SUCCESS, NUM, totalCost);
+		--Decrement 'Balance' in 'Cash' table ie update
+		Update Cash Set Balance=Balance-totalCost Where UserID=UID;
+	Else
+		Set SUCCESS='1';
+	End If;
+End//
 
 CREATE PROCEDURE sell()
 
@@ -132,7 +119,7 @@ BEGIN
 	WHERE userID = UID;
 
 	complete = 0;
-END //
+END//
 
 DELIMITTER;
 
