@@ -28,18 +28,18 @@ $behaviors = array(
 
 if (!isset($_POST["jsondata"])) {
 	header('HTTP/1.1 404 Not Found');
-	exit;
+	exit("<h1>HTTP Error 404 - Not Found</h1>\nThe page that you have requested could not be found.");
 } else {
 	try {
 		$req = json_decode($_POST["jsondata"]);
 		if (!isset($req->behavior)) {
 			//these aren't the droids you're looking for...
 			header('HTTP/1.1 404 Not Found');
-			exit;
+			exit("<h1>HTTP Error 404 - Not Found</h1>\nThe page that you have requested could not be found.");
 		} else if (!$behaviors[$req->behavior]) {
 			//we don't implement that unknown behavior
 			header('HTTP/1.1 400 Bad Request');
-			exit;
+			exit("<h1>HTTP Error 400 - Bad Request</h1>\nUnknown behavior: &quot;" . htmlentities($req->behavior) . "&quot;.");
 		} else {
 			$b = $req->behavior;
 			$retval = new TradeEngineMessage();
@@ -75,34 +75,41 @@ if (!isset($_POST["jsondata"])) {
 					}
 					$retval->statusdesc[] = "Invalid limit price: " . $req->limitprice;
 				} else {
-					$req->limitprice = floatval(preg_replace('/[0-9.]/', '', $req->limitprice));
+					$req->limitprice = floatval(preg_replace('/[^0-9.]/', '', $req->limitprice));
 				}
 			}
 			if ($retval->statuscode != 0) {
-				header("Content-type: application/json");
-				echo json_encode($retval, JSON_PRETTY_PRINT);
+				header("Content-Type: application/json;charset=UTF-8");
+				echo json_encode($retval);
+				//echo json_encode($retval, JSON_PRETTY_PRINT); // JSON_PRETTY_PRINT only works in PHP 5.4.0+
 				exit;
 			}
 			//$myConn = new DbConn("localhost", "sousms", "root", "");
-			$myConn = new DbConn(); //should now pull database info from config...
-			$userID = -1;
-			if (in_array("token", $behaviors[$b])) {
-				if (isset($req->token)) {
-					$tt = new TokenTranslator($myConn->getConn());
-					if ($tt->isValidToken($req->token)) {
-						$userID = $tt->getUserID();
-						$retval->statuscode = 0;
-						$retval->statusdesc[] = $tt->msg;
-					} else {
-						$retval->statuscode = 1;
-						$retval->statusdesc[] = $tt->msg;
+			try {
+				$myConn = new DbConn(); //should now pull database info from config...
+				$userID = -1;
+				if (in_array("token", $behaviors[$b])) {
+					if (isset($req->token)) {
+						$tt = new TokenTranslator($myConn->getConn());
+						if ($tt->isValidToken($req->token)) {
+							$userID = $tt->getUserID();
+							$retval->statuscode = 0;
+							$retval->statusdesc[] = $tt->msg;
+						} else {
+							$retval->statuscode = 1;
+							$retval->statusdesc[] = $tt->msg;
+						}
 					}
 				}
+			} catch (Exception $e) {
+				$retval->statusdesc[] = "Token Translator Failure: " . $e->getMessage();
+				$b = "test";
+				$retval->statusdesc[] = $myConn->getDebug();
 			}
 			switch ($b) {
 			case "test":
-				$retval->success = true;
-				$retval->statuscode = 0;
+				$retval->success = false;
+				$retval->statuscode = -100;
 				$retval->statusdesc[] = "Symbol: " . $req->symbol;
 				$retval->statusdesc[] = "Shares: " . $req->shares;
 				$retval->statusdesc[] = "Limit: " . $req->limitprice;
@@ -141,15 +148,15 @@ if (!isset($_POST["jsondata"])) {
 				$retval->statusdesc[] = "Behavior not yet implemented";
 				break;
 			}
-			header("Content-type: application/json");
-			echo json_encode($retval, JSON_PRETTY_PRINT);
+			header("Content-Type: application/json;charset=UTF-8");
+			echo json_encode($retval);
+			//echo json_encode($retval, JSON_PRETTY_PRINT); // JSON_PRETTY_PRINT only works in PHP 5.4.0+
 			$myConn = null;
 			exit;
 		}
 	} catch (Exception $e) {
 		header('HTTP/1.1 500 Internal Server Error');
-		echo "Error: " . $e->getMessage();
-		exit;
+		exit("<h1>HTTP 500 - Internal Server Error</h1>\nError Details: " . htmlentities($e->getMessage()));
 	}
 }
 

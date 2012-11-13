@@ -6,21 +6,24 @@
 ******************************************************************/
 
 class DbConn {
-	private $conn, $host, $dbname, $un, $pwd;
+	private $conn, $host, $dbname, $un, $pwd, $debug;
 	
 	public function __construct($host = "localhost", $dbname = "sousms", $un = "", $pwd = "") {
+		$this->debug = "";
 		if ($host == "localhost" && strlen($un) == 0 && strlen($pwd) == 0) {
 			$config = '/var/git/sousmsConfig.xml'; //use server version if production environment
 			if (!file_exists($config)) {
 				$config = 'sousmsConfigLocal.xml'; //use local version if development environment
 			}
 			if (file_exists($config)) {
+				$this->debug .= "Config: $config, ";
 				$doc = simplexml_load_file($config);
 				$dbname = $doc->mysqlDatabase;
 				$un = $doc->mysqlUser;
 				$pwd = $doc->mysqlPassword;
 			}
 		}
+		$this->debug .= "Host: $host, DB: $dbname, UN: $un, Pwd: $pwd";
 		$this->host = $host;
 		$this->dbname = $dbname;
 		$this->un = $un;
@@ -53,6 +56,10 @@ class DbConn {
 			break;
 		}
 		return $connStr;
+	}
+	
+	public function getDebug() {
+		return $this->debug;
 	}
 };
 ?>

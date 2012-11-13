@@ -3,10 +3,8 @@
 -- Parameters: UserID
 -- Description: Returns portfolio based off of user's identification number.
 
-DELIMITTER //
-
 DROP PROCEDURE IF EXISTS getPortfolio;
-
+DELIMITTER //
 CREATE PROCEDURE getPortfolio(
 @ UserID
 )
@@ -16,6 +14,7 @@ SELECT p.symbol, p.numberShares, f.bestAskPrice
 FROM portfolio p, feed f
 WHERE UserID = @UserID;
 END//
+Delimiter;
 
 -- Name: getTradeHistory
 -- Author: Josh Carroll
@@ -24,7 +23,7 @@ END//
 --		and returns the Symbol, number of Shares, and Price of Shares.
 
 DROP PROCEDURE IF EXISTS getTradeHistory;
-
+Delimiter //
 CREATE PROCEDURE getTradeHistory(
     IN UID int,
     OUT Symbol char(5),
@@ -37,6 +36,7 @@ BEGIN
     WHERE UserID=UID
     INSERT INTO trade history (SYMBOL, SHARES, PRICE);
 END//
+Delimiter ;
 
 -- Name: buy
 -- Author: Martin DeWitt
@@ -47,33 +47,28 @@ END//
 --				SYM (Symbol), and NUM (Number of Shares), as well as Purchase Price.
 -- 				Returns Boolean of 0 if successful, 1 if not successful.
 
-Create Procedure buy(
-	IN UID int, 			/*UserID*/
- 	IN SYM char,			/*Symbol To Purchase*/
-	IN NUM int,				/*Number of Shares*/
-	IN PRC float,			/*Purchase Price*/
-	OUT SUCCESS Boolean 	/*0=Success, 1=Fail*/
+ Delimiter //
+ Create Procedure buy(
+	in Uid int,
+	in Sym char,
+	in Num int,
+	in Prc float,
+	out Success Boolean
 )
 Begin
-	/*Declare Variables Needed*/
-	--totalCost
-	Declare totalCost float (10,4);
-	--usrBalance
-	Declare usrBalance float (10,4);
-	/*Calculate Total, store in totalCost variable*/
-	Set totalCost=NUM*PRC;
-	/*Can User Afford?*/
-	Select Balance From Cash Where UserID=UID Into usrBalance;
+	Declare totalCost float;
+	Declare usrBalance float;
+	set totalcost=Num*Prc;
+	Select Balance From Cash Where UserID=Uid Into usrBalance;
 	If usrBalance>=totalCost Then
-		Set SUCCCESS='0';
-		--Insert Transaction into stock table ie insert
-		Insert into Stock (UserID, SellBuy, Shares, Price) values (UID, SUCCESS, NUM, totalCost);
-		--Decrement 'Balance' in 'Cash' table ie update
-		Update Cash Set Balance=Balance-totalCost Where UserID=UID;
+		Set Success='0';
+		Insert into Stock (UserID, SellBuy, Shares, Price) Values (Uid, Success, Num, totalCost);
+		Update Cash Set Balance=Balance-totalCost where UserID=Uid;
 	Else
-		Set SUCCESS='1';
+		Set Success='1';
 	End If;
-End//
+End //
+Delimiter ;
 
 -- Name: sell
 -- Author: Scott Williams
@@ -81,6 +76,7 @@ End//
 --			   Purchase price (PRC)
 -- Description: Sells shares of a users current holdings.
 
+Delimiter //
 CREATE PROCEDURE sell()
 
 IN UID int,
