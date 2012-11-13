@@ -129,10 +129,11 @@ DELIMITTER;
 DELIMITER //
 CREATE PROCEDURE getToken()
 BEGIN
-select token
-from LOGIN
-END;
-DELIMETER ;
+select Token
+from LOGIN;
+END //
+DELIMITER ;
+
 
 
 
