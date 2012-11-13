@@ -8,7 +8,7 @@
 include("DbConn.class.php");
 include("TokenTranslator.class.php");
 //include("MarketBuy.class.php");
-//include("MarketSell.class.php");
+include("MarketSell.class.php");
 
 class TradeEngineMessage {
 	public $behavior, $success, $statuscode, $statusdesc;
@@ -83,7 +83,8 @@ if (!isset($_POST["jsondata"])) {
 				echo json_encode($retval, JSON_PRETTY_PRINT);
 				exit;
 			}
-			$myConn = new DbConn("localhost", "sousms", "root", "");
+			//$myConn = new DbConn("localhost", "sousms", "root", "");
+			$myConn = new DbConn(); //should now pull database info from config...
 			$userID = -1;
 			if (in_array("token", $behaviors[$b])) {
 				if (isset($req->token)) {
@@ -115,12 +116,9 @@ if (!isset($_POST["jsondata"])) {
 				*/
 				break;
 			case "marketSell":
-				/*
-				$ms = new MarketSell($myConn->getConn());
-				$retval->statuscode = $ms->sell($userID, $req->stockSymbol, $req->numShares);
-				$retval->statusdesc[] = $ms->getMessage($retval->statuscode);
+				$ms = new MarketSell();
+				$retval->statusdesc[] = $ms->sell($myConn->getConn(), $userID, $req->stockSymbol, $req->numShares);
 				$ms = null;
-				*/
 				break;
 			case "limitOrderBuy":
 				$retval->statuscode = 1;
