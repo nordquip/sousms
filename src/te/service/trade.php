@@ -28,18 +28,18 @@ $behaviors = array(
 
 if (!isset($_POST["jsondata"])) {
 	header('HTTP/1.1 404 Not Found');
-	exit;
+	exit("<h1>HTTP Error 404 - Not Found</h1>\nThe page that you have requested could not be found.");
 } else {
 	try {
 		$req = json_decode($_POST["jsondata"]);
 		if (!isset($req->behavior)) {
 			//these aren't the droids you're looking for...
 			header('HTTP/1.1 404 Not Found');
-			exit;
+			exit("<h1>HTTP Error 404 - Not Found</h1>\nThe page that you have requested could not be found.");
 		} else if (!$behaviors[$req->behavior]) {
 			//we don't implement that unknown behavior
 			header('HTTP/1.1 400 Bad Request');
-			exit;
+			exit("<h1>HTTP Error 400 - Bad Request</h1>\nUnknown behavior: &quot;" . htmlentities($req->behavior) . "&quot;.");
 		} else {
 			$b = $req->behavior;
 			$retval = new TradeEngineMessage();
@@ -75,11 +75,12 @@ if (!isset($_POST["jsondata"])) {
 					}
 					$retval->statusdesc[] = "Invalid limit price: " . $req->limitprice;
 				} else {
-					$req->limitprice = floatval(preg_replace('/[0-9.]/', '', $req->limitprice));
+					$req->limitprice = floatval(preg_replace('/[^0-9.]/', '', $req->limitprice));
 				}
 			}
 			if ($retval->statuscode != 0) {
-				header("Content-type: application/json");
+				header("Content-Type: application/json;charset=UTF-8");
+				//echo json_encode($retval);
 				echo json_encode($retval, JSON_PRETTY_PRINT);
 				exit;
 			}
@@ -102,7 +103,6 @@ if (!isset($_POST["jsondata"])) {
 				}
 			} catch (Exception $e) {
 				$retval->statusdesc[] = "Token Translator Failure";
-				$retval->statusdesc[] = "Behavior: $b";
 				$b = "test";
 				$retval->statusdesc[] = $myConn->getDebug();
 			}
@@ -148,15 +148,15 @@ if (!isset($_POST["jsondata"])) {
 				$retval->statusdesc[] = "Behavior not yet implemented";
 				break;
 			}
-			header("Content-type: application/json");
-			echo json_encode($retval, JSON_PRETTY_PRINT);
+			header("Content-Type: application/json;charset=UTF-8");
+			echo json_encode($retval);
+			//echo json_encode($retval, JSON_PRETTY_PRINT);
 			$myConn = null;
 			exit;
 		}
 	} catch (Exception $e) {
 		header('HTTP/1.1 500 Internal Server Error');
-		echo "Error: " . $e->getMessage();
-		exit;
+		exit("<h1>HTTP 500 - Internal Server Error</h1>\nError Details: " . htmlentities($e->getMessage()));
 	}
 }
 
