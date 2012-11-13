@@ -84,25 +84,32 @@ if (!isset($_POST["jsondata"])) {
 				exit;
 			}
 			//$myConn = new DbConn("localhost", "sousms", "root", "");
-			$myConn = new DbConn(); //should now pull database info from config...
-			$userID = -1;
-			if (in_array("token", $behaviors[$b])) {
-				if (isset($req->token)) {
-					$tt = new TokenTranslator($myConn->getConn());
-					if ($tt->isValidToken($req->token)) {
-						$userID = $tt->getUserID();
-						$retval->statuscode = 0;
-						$retval->statusdesc[] = $tt->msg;
-					} else {
-						$retval->statuscode = 1;
-						$retval->statusdesc[] = $tt->msg;
+			try {
+				$myConn = new DbConn(); //should now pull database info from config...
+				$userID = -1;
+				if (in_array("token", $behaviors[$b])) {
+					if (isset($req->token)) {
+						$tt = new TokenTranslator($myConn->getConn());
+						if ($tt->isValidToken($req->token)) {
+							$userID = $tt->getUserID();
+							$retval->statuscode = 0;
+							$retval->statusdesc[] = $tt->msg;
+						} else {
+							$retval->statuscode = 1;
+							$retval->statusdesc[] = $tt->msg;
+						}
 					}
 				}
+			} catch (Exception $e) {
+				$retval->statusdesc[] = "Token Translator Failure";
+				$retval->statusdesc[] = "Behavior: $b";
+				$b = "test";
+				$retval->statusdesc[] = $myConn->getDebug();
 			}
 			switch ($b) {
 			case "test":
-				$retval->success = true;
-				$retval->statuscode = 0;
+				$retval->success = false;
+				$retval->statuscode = -100;
 				$retval->statusdesc[] = "Symbol: " . $req->symbol;
 				$retval->statusdesc[] = "Shares: " . $req->shares;
 				$retval->statusdesc[] = "Limit: " . $req->limitprice;
