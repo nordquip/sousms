@@ -41,6 +41,9 @@ cp -R /var/git/sousms/src/mobile /var/www/html/
 cp -R /var/git/sousms/src/shared /var/www/html/
 cp -R /var/git/sousms/src/te /var/www/html/
 cp -R /var/git/sousms/src/teTest /var/www/html/
+# TEMP FIX - Copy config file to accessible directories
+cp /var/git/sousmsConfig.xml.inactive /var/www/html/service/sousmsConfigLocal.xml
+cp /var/git/sousmsConfig.xml.inactive /var/www/html/te/service/sousmsConfigLocal.xml
 
 # TODO Run build/SQL scripts here, if we run any.
 
