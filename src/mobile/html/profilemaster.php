@@ -8,7 +8,7 @@
 ?>
 <html>
 <head>
-
+	<?php
 	<script type="text/javascript">
 	int $availableBal;
 	int $currentHoldings;
@@ -29,6 +29,7 @@
 	}
 	
 	</script>
+	?>
 	<style>
 html {text-align:center}
 </style>
@@ -39,9 +40,9 @@ html {text-align:center}
 	<div id="totalMoney" align="center" style= "border:1px solid grey">
 		
 			<button onclick="Fuck This Shit">Check Balance</button>
-			You have a current balance of: $ <?php echo getBalance(); ?>
+			You have a current balance of: $ <?php <script>echo getBalance();</script> ?>
 			<br>
-			The total worth of your current stocks is: $ <?php echo getHoldings(); ?>
+			The total worth of your current stocks is: $ <?php <script>echo getHoldings(); </script> ?>
 			
 	</div>
 
