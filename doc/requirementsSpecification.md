@@ -46,8 +46,22 @@ openclose   user must close system
 
   openclose.logout  ui must ensure UA saves last known good state of user
 
-Search 			User must enter valid stock symbol to search
-Search.Select		User must select desired stock from given list
-Search.CheckSym		System must inform user if they enter invalid stock symbol
-Search.Retry		System must give user unlimited attempts for entry of valid stock
+<table>
+	<tr>
+		<td>Search</td>
+		<td>User must enter valid stock symbol to search</td>
+	</tr>
+	<tr>
+		<td>Search.Select</td>
+		<td>User must select desired stock from given list</td>
+	</tr>
+	<tr>
+		<td>Search.CheckSym</td>
+		<td>System must inform user if they enter invalid stock symbol</td>
+	</tr>
+	<tr>
+		<td>Search.Retry</td>
+		<td>System must give user unlimited attempts for entry of valid stock symbol</td>
+	<tr>
+</table>
 
