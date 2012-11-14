@@ -174,28 +174,91 @@ DELIMITER ;
 
 -- sp_buy
 -- executes "buy" behavior for given order ID:
---   inserts negative balance (-1 * current price * number of shares) into "cash" table for given user
---   inserts into stock holdings (userID, symID) if not exists
---   updates stock holdings (shares, datemodified) in "portfolio" table for (userID, symID)
---   deletes order for given order ID
---   rolls back changes if any failures
---   reports success status
+--   get current cash, current price, limit price
+--   let total price = current price * number of shares
+--   if limit price is not null and limit price is greater than total price
+--     status is "limit price has not been met", skip to end
+--   if current cash is greater than or equal to total price
+--     insert negative balance (-1 * total price) into "cash" table for given user
+--     insert into stock holdings (userID, symID) if not exists
+--     update stock holdings (shares, datemodified) in "portfolio" table for (userID, symID)
+--     delete order for given order ID
+--     roll back changes if any failures
+--   report status
 DROP PROCEDURE IF EXISTS sp_buy;
 DELIMITER //
 CREATE PROCEDURE `sp_buy` (
 	openOrderID INT
 )
 BEGIN
-	
+	DECLARE lnUserID, lnSymID, lnShares INT;
+	DECLARE lnLimitPrice, lnCurrentCash, lnCurrentPrice, lnTotalPrice NUMERIC(13,2);
+	BEGIN
+		DECLARE openordersCursor CURSOR FOR
+			SELECT userID, symID, shares, price
+			FROM openorders JOIN ordertypes ON openorders.orderType = ordertypes.typeID
+			WHERE openorders.orderid = openOrderID AND ordertypes.description = 'Buy';
+		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
+			SELECT CONCAT('Buy order #', openOrderID, ' not found.') AS statusmsg;
+		END;
+		OPEN openordersCursor;
+		FETCH openordersCursor INTO lnUserID, lnSymID, lnShares, lnLimitPrice;
+		CLOSE openordersCursor;
+	END;
+	BEGIN
+		DECLARE cashCursor CURSOR FOR
+			SELECT SUM(balance) FROM cash WHERE cash.userID = userID;
+		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
+			SELECT 'User has no account.' AS statusmsg;
+		END;
+		OPEN cashCursor;
+		FETCH cashCursor INTO lnCurrentCash;
+		CLOSE cashCursor;
+	END;
+	BEGIN
+		DECLARE priceCursor CURSOR FOR
+			SELECT bestAskPrice AS price
+			FROM feed
+				JOIN symbol ON symbol.symbol = feed.symbol
+			WHERE symbol.symID = symID
+			ORDER BY feed.date DESC,
+				feed.time DESC
+			LIMIT 1;
+		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
+			SELECT 'Stock price not found in feed.' AS statusmsg;
+		END;
+		OPEN priceCursor;
+		FETCH priceCursor INTO lnCurrentPrice;
+		CLOSE priceCursor;
+	END;
+	IF NOT ISNULL(lnUserID) AND NOT ISNULL(lnSymID) AND NOT ISNULL(lnShares) AND NOT ISNULL(lnCurrentCash) AND NOT ISNULL(lnCurrentPrice) THEN
+		SET lnTotalPrice = lnCurrentPrice * lnShares;
+		IF NOT ISNULL(lnLimitPrice) AND lnLimitPrice > lnTotalPrice THEN
+			SELECT 'Limit price not yet reached.' AS statusmsg;
+		ELSE
+			IF lnCurrentCash < lnTotalPrice THEN
+				SELECT 'Not enough cash on hand to complete transaction.' AS statusmsg;
+			ELSE
+				INSERT INTO cash (UserID, Balance) VALUES (lnUserID, (-1 * lnTotalPrice));
+				INSERT IGNORE INTO portfolio (UserID, SymID, Shares) VALUES (lnUserID, lnSymID, 0);
+				UPDATE portfolio SET
+					Shares = Shares + lnShares,
+					DateModified = NOW()
+				WHERE UserID = lnUserID AND SymID = lnSymID;
+				DELETE FROM openorders WHERE openorders.orderID = openOrderID;
+				SELECT CONCAT('Buy order #', openOrderID, ' completed successfully.') AS statusmsg;
+			END IF;
+		END IF;
+	END IF;
 END;
 //
 
 DELIMITER ;
 
 -- sp_sell
-DROP PROCEDURE IF EXISTS sp_buy;
+DROP PROCEDURE IF EXISTS sp_sell;
 DELIMITER //
-CREATE PROCEDURE `sp_buy` (
+CREATE PROCEDURE `sp_sell` (
 	openOrderID INT
 )
 BEGIN
