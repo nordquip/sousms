@@ -1,33 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <?php
-
-//}xmlns="http://www.w3.org/1999/xhtml"
-
+if (isset ($_POST['availableBal'] )) 
+{
+	$availableBal = $_POST['availableBal'];
+	if (!empty($availableBal)) 
+	{
+	//$totalHoldings = $_Post('totalHoldings'); //Not POST, but the function call to calculate it
+	$sentence = $availableBal.' is how much money you have to spend on stocks.';
+	}
+	else
+	{
+		echo 'Enter your available balance.';
+	}
+}
 
 ?>
 <html>
 <head>
-
-	<script type="text/javascript">
-	//var $availableBal = "500";
-	
-	</script>
-	<style>
+<style>
 html {text-align:center}
 </style>
 </head>
 <body>
 
-<?php $availableBal = 500; ?>
-	<div id="totalMoney" align="center" style= "border:1px solid grey">
-		<p>
-			You have a total of: $ <?php  $availableBal; ?>
-		</p>
-	</div>
+
+<p>
+
+</p>
 
 
-
+<form action = "profile.php" method="POST">
+How much money do you have to spend?<br><input type="text" name="availableBal" ><br>
+<input type="submit" value="Submit">
+</form>
+<strong><?php echo $availableBal ?></strong>
+<textarea rows=20 col = 25> Total spending money: $availableBal
+Total worth of stocks: $totalHoldings
+You own this stock: MSFT </textarea> 
 
 </body>
 </html>
