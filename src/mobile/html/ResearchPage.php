@@ -9,26 +9,6 @@
 
 <body>
 
-<?php
-$a = 5;
-$b = 10;
-
-function myTest()
-{
-global $a, $b;
-$b = $a + $b;
-} 
-
-myTest();
-echo $b "is da answer mudda fucka.";
-?>
-
-<?php
-$str = "<br />Who's Kai Jim?";
-echo $str;
-echo "<br />";
-echo $str."<br />I don't know!";
-?>
 
 <!--<div class="tabsbar">
 	<div class="tabbreakup">
