@@ -24,6 +24,8 @@ where this script assumes it is running.
 
 -- initialize the tables
 source sousmsDeclareTables.sql;
+source sousmsTradeEngineTables.sql;
 
 -- initialize the stored procedures
 source ../shared/sousmsDeclareStoredProcs.sql;
+source TradeEngineStoredProcedures.sql;
