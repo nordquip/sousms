@@ -60,10 +60,10 @@ These were the tabs for initial page construction and testing.-->
 						<input class="search" type="text" id="searchfield">
 					</form>
 						<script>
-						var str, divStr, divSymbols, divValues=new Array(), divSplit=new Array(), strSplit=new Array();
+						/*var str, divStr, divSymbols, divValues=new Array(), divSplit=new Array(), strSplit=new Array();
 						int i = 0;
 						$(document).ready(function(){
-							for (i=0; i<=2; i++) /*This number changes with the number of active sid (searchDivId)*/
+							for (i=0; i<=2; i++) //This number changes with the number of active sid (searchDivId)
 							{
 								divValues[i]= $("#sid"+(i+1)).val().toLowerCase();
 								document.write("Test"+i);
@@ -105,18 +105,20 @@ These were the tabs for initial page construction and testing.-->
 									}
 								}
 							});
-						});
-						/*$(document).ready(function(){
-							$("input").keyup(function(){
-								
-								$(("#")+str).remove(); <!--a selector to remove all not containing str. "div[id!='"+str+"']", "div[class='AccordionTitle']" -->
-							});
 						});*/
+						var str;
+						$(document).ready(function(){
+							
+							$("input").keyup(function(){
+								str = $("#searchfield").val();
+								$(("#")+str).remove(); //<!--a selector to remove all not containing str. "div[id!='"+str+"']", "div[class='AccordionTitle']" -->
+							});
+						});
 						</script>
 				<script type="text/javascript" src="accordian.js"></script>
 				</div>
 				<div class="TitleAndPriceSizing">
-					<div class="AccordionTitle" id="sid1" value="Apple" onclick="runAccordion(1);" onselectstart="return false;">
+					<div class="AccordionTitle" id="Apple" value="Apple" onclick="runAccordion(1);" onselectstart="return false;">
 						<div class="TitleTextAlign">AAPL - Apple</div>
 						<div class="price">Price: $1.00</div> 
 					</div>
