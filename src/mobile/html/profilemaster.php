@@ -10,7 +10,23 @@
 <head>
 
 	<script type="text/javascript">
-	//var $availableBal = "500";
+	int $availableBal;
+	int $currentHoldings;
+	function int getBalance();
+	{
+		
+		$availableBal = 500;
+		//alert("you have " + $availableBal + " dollars to spend");
+		return $availableBal;
+	}
+	
+	function void getHoldings()
+	{
+		int $MSFT_Shares = 5;
+		int $MFST_Price= 100;
+		int $currentHoldings = $MSFT_Shares * $MSFT_Price;
+		//return $currentHoldings;
+	}
 	
 	</script>
 	<style>
@@ -19,11 +35,14 @@ html {text-align:center}
 </head>
 <body>
 
-<?php $availableBal = 500; ?>
+
 	<div id="totalMoney" align="center" style= "border:1px solid grey">
-		<p>
-			You have a total of: $ <?php  $availableBal; ?>
-		</p>
+		
+			<button onclick="Fuck This Shit">Check Balance</button>
+			You have a current balance of: $ <?php echo getBalance(); ?>
+			<br>
+			The total worth of your current stocks is: $ <?php echo getHoldings(); ?>
+			
 	</div>
 
 
