@@ -46,4 +46,8 @@ openclose   user must close system
 
   openclose.logout  ui must ensure UA saves last known good state of user
 
+Search 			User must enter valid stock symbol to search
+Search.Select		User must select desired stock from given list
+Search.CheckSym		System must inform user if they enter invalid stock symbol
+Search.Retry		System must give user unlimited attempts for entry of valid stock
 
