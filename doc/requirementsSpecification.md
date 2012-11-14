@@ -21,4 +21,29 @@ Requirements for uptime and restoration procedures.
 I owe you a review of this doc.
 Perhaps we should all review it.
 
+## Functional Requiremnts
+
+button        	user must click button
+	
+  button.action		  user must click button for stated action to occur
+
+  button.name  		  ui must display name of button
+
+  button.initiate 	ui must initiate acion stated in name
+
+  button.error  		ui must display error message if button fails requested operation
+
+  button.animation 	ui must inform user visually of button click with click animation
+
+
+openclose   user must close system
+
+  openclose.exit 	  user must ask system to close
+  
+  openclose.process ui must ensure all processes are closed
+
+  openclose.error	  ui must display error message if the process fails
+
+  openclose.logout  ui must ensure UA saves last known good state of user
+
 
