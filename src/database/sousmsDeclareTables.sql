@@ -180,3 +180,5 @@ create table if NOT exists Feed(
 		-- need an index on symbol,
 		-- so we can find group by symbol quickly
 ) ENGINE=INNODB;
+
+source userdata.sql;

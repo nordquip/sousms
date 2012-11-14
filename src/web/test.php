@@ -9,6 +9,7 @@ include("WSRequestManager.class.php");
 include($_SERVER['DOCUMENT_ROOT'] . "/login.include.php"); //include from root of server
 
 global $behaviors;
+// Add UA behaviors to this array as well
 $behaviors = array(
 	"test" => "What do you want to do?",
 	"marketBuy" => "Market Buy",
@@ -27,7 +28,7 @@ $behaviors = array(
 	};
 */
 
-function callTradeEngine(&$reqTxt, $transtype, $symbol, $shares, $limitprice) {
+function callService(&$reqTxt, $department, $transtype, $symbol, $shares, $limitprice) {
 	global $behaviors;
 	try {
 		$reqTxt = "";
@@ -42,7 +43,7 @@ function callTradeEngine(&$reqTxt, $transtype, $symbol, $shares, $limitprice) {
 			"limitprice" => $limitprice
 		);
 		$ws = new WSRequestManager();
-		$ws->setServiceAddress("TE");
+		$ws->setServiceAddress("$department");
 		$respTxt = $ws->getData("jsondata=" . json_encode($postData));
 		$reqTxt = $ws->getLastRequestDetails();
 		return $respTxt;
@@ -55,12 +56,13 @@ function callTradeEngine(&$reqTxt, $transtype, $symbol, $shares, $limitprice) {
 
 $resultObj = array();
 $debuglog = "";
+$department = (isset($_POST["department"]) ? $_POST["department"] : "");
 $transtype = (isset($_POST["transtype"]) ? $_POST["transtype"] : "");
 $symbol = (isset($_POST["symbol"]) ? $_POST["symbol"] : "");
 $shares = (isset($_POST["shares"]) ? $_POST["shares"] : "");
 $limitprice = (isset($_POST["limitprice"]) ? $_POST["limitprice"] : "");
 if (strlen($transtype) > 0) {
-	$resultStr = callTradeEngine($debuglog, $transtype, $symbol, $shares, $limitprice);
+	$resultStr = callService($debuglog, $department, $transtype, $symbol, $shares, $limitprice);
 	$resultObj = json_decode($resultStr); //null if error
 }
 ?>
@@ -125,6 +127,12 @@ window.onload = function () {
   <fieldset>
   <legend>Stock Market Transaction Tester</legend>
   <dl>
+    <dt><label for="f0">Department</label></dt>
+    <dd><select name="department" id="f0">
+		<option value="TE" selected>TE</option>
+		<option value="UA">UA</option>
+		</select>
+	</dd>
     <dt><label for="f1">Transaction Type</label></dt>
     <dd><select name="transtype" id="f1" onchange="checkTransType(this);"><?php
 	foreach ($behaviors as $key => $val) {
