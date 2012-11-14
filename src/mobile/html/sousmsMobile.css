@@ -1,7 +1,7 @@
 /*Mobile SOU Stock Market Simulator
   Author: Nickolaus Patterson    */
 
-.tabsbar
+/*.tabsbar
 {
 	width: 50%;
 	height: 50px;
@@ -36,36 +36,47 @@
 {
 	width: 25%;
 	border-right-style: none;
-}	
-
-.searchparent
-{
-	width: 98%;
-	height: 5%;
-	border: #B30015 solid 3px;
-
-}
-
-.searchleft
-{
-	width: 60%;
-	height: 100%;
-	float: left;
-	text-indent: 15px;
-	overflow: 
-}
-
-.searchbar
-{
-	width: 40%;
-	height: 100%;
-	float: left;
-}
+}*/
 
 .AccordionTitle, .AccordionContent, .AccordionContainer
 {
 	
 }
+
+.searcharea
+{
+	width: 98%;
+	height: 10%;
+	border-color: #B30015;
+	border-width: 3px;
+	border-style: solid;
+}
+
+#searchbar
+{
+	float: left;
+	font-size: 75%;
+	width: 74%;
+	vertical-align:middle;
+}
+
+#searchbutton
+{
+	float: right;
+	width: 24%;
+	vertical-align: middle;	
+}
+
+.herp
+{
+	
+}
+
+/*.TitleAndPriceSizing
+{
+	height: 22%;
+	border: solid 3px black;
+}*/
 
 .AccordionTitle
 {
@@ -75,42 +86,44 @@
 	font-weight:bold;
 	text-align: center;
 	text-align: left;
-	text-indent: 15px;
+	text-indent: 5%;
 	/*Border Settings----*/
 	border-color: #B30015;
-	border-width: 3px;
+	border-width: 1%;
 	border-style: solid;
 	/*Visibility Settings*/
 	overflow:visible;
 	/*Div-Align Settings-*/
 	vertical-align: middle;
 	position: relative;
-	float: left;
 	/*Div Settings-------*/
-	height:30px;
+	height:22%;
 	width: 98%;
-	padding-top: 8px;
-	margin-top: +7px;
+	margin-top: 1%;
 	/*Other Settings-----*/
 	cursor:pointer;	
-	
-	
-	
-
-
-	
-
 	-moz-user-select:none;
+		margin-left: auto;
+	margin-right: auto;
+}
 
-
-
-
+.TitleTextAlign
+{
+	position: absolute;
+	margin-top: 45%;
+	float: left;
+	width: 80%;
 }
 
 .price
 {
-	height: 30px;
-	width: 15%;
+	position: absolute;
+	margin-top: 85%;
+	margin-left:80%;
+	float: right;
+	width: 20%;
+	/*height: 100%;
+	width: 20%;
 	font-size: 25%;
 	text-align: right;
 	float: right;
@@ -118,9 +131,9 @@
 	font-family:Arial;
 	font-size:12pt;
 	font-weight:bold;
-	margin-right: 15px;
+	margin-right: 5%;
 	vertical-align: middle;
-	-moz-user-select:none;
+	-moz-user-select:none;*/
 }
 
 .AccordionContent
@@ -136,5 +149,5 @@
 
 .AccordionContainer
 {
-	/*This is the macro container*/
+/*This is the macro container*/
 }

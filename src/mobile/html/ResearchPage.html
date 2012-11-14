@@ -1,6 +1,7 @@
 <!DOCTYPE= html>
 <html>
 <head onload="document.body.style.fontSize=window.innerWidth+'px'">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="sousmsMobile.css">
 <title>Research - Mobile SOUSMS</title>
 </head>
@@ -9,7 +10,7 @@
 
 <body>
 
-<?php
+<!--<?php/*
 $a = 5;
 $b = 10;
 
@@ -27,8 +28,8 @@ echo $b "is da answer mudda fucka.";
 $str = "<br />Who's Kai Jim?";
 echo $str;
 echo "<br />";
-echo $str."<br />I don't know!";
-?>
+echo $str."<br />I don't know!";*/
+?>-->
 
 <!--<div class="tabsbar">
 	<div class="tabbreakup">
@@ -47,256 +48,344 @@ echo $str."<br />I don't know!";
 
 These were the tabs for initial page construction and testing.-->
 
-<div style="height: 10px; width: 100%"></div>
 
-<div class="searchparent">
-	<div class="searchleft">Enter text in the bar to the right to remove those symbols not in the search string.</div>
-	<div class="searchbar">		</div>
-</div>
+
 	
-<script type="text/javascript" src="accordian.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <div class="demo-app">
 	<div class="da da-center" style="width:100%" align="center">
-	<style type="text/css"></style>
 			<div id="AccordionContainer" class="AccordionContainer">
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(1);" onselectstart="return false;">AAPL - Apple
-						<div class="price">Price: $price</div> 
-					</div>
-					
+				<div class="searcharea">	
+					<form class="herp">
+						<input class="search" type="text" id="searchfield">
+					</form>
+						<script>
+						var str, divStr, divSymbols, divValues=new Array(), divSplit=new Array(), strSplit=new Array();
+						int i = 0;
+						$(document).ready(function(){
+							for (i=0; i<=2; i++) /*This number changes with the number of active sid (searchDivId)*/
+							{
+								divValues[i]= $("#sid"+(i+1)).val().toLowerCase();
+								document.write("Test"+i);
+							}
+							$("input").keyup(function(){
+								str = $("#searchfield").val().toLowerCase();
+								if (str.length != 0)
+								{
+									for (i=0;i<divValues.length;i++)   //Assigns a string the value of divValues[i], up to 40 times
+									{
+										divStr = divValues[i];
+										divSplit[] = divStr.split(" ");
+										strSplit[] = str.split(" ");
+										int j = i;
+										var count;
+										for (i = 0;i<strSplit.length) //Compare the two string arrays
+										{							  
+											if (strSplit[i] == divSplit[i]) //Create count conditional using number
+											{								 //of equal strings.
+												count++;
+												if (count==0)
+												{
+													("#sid"+(j+1)).hide();
+												}
+												else if (count > 0)	//If count is greater that 0, show div. Else hide div.
+												{
+													("#sid"+(j+1)).show();
+												}
+			
+											}
+										}
+									}
+								}
+								else if (str.length == 0)
+								{
+									for(i=0; i<divValues.length; i++)
+									{
+										("#sid"+(i+1)).show();
+									}
+								}
+							});
+						});
+						/*$(document).ready(function(){
+							$("input").keyup(function(){
+								
+								$(("#")+str).remove(); <!--a selector to remove all not containing str. "div[id!='"+str+"']", "div[class='AccordionTitle']" -->
+							});
+						});*/
+						</script>
+				<script type="text/javascript" src="accordian.js"></script>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" id="sid1" value="Apple" onclick="runAccordion(1);" onselectstart="return false;">
+						<div class="TitleTextAlign">AAPL - Apple</div>
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion1Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(2);" onselectstart="return false;">ADBE - Adobe Systems Incorporated
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" id="sid2" value="ADBE - Adobe Systems Incorporated" onclick="runAccordion(2);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">ADBE - Adobe Systems Incorporated</div>
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion2Content" class="AccordionContent">Information Space 2.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(3);" onselectstart="return false;">ADSK - Autodesk, Inc.
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" id="sid3" value="ADSK - Autodesk, Inc."onclick="runAccordion(3);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">ADSK - Autodesk, Inc.</div>
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion3Content" class="AccordionContent">Information Space 3.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(4);" onselectstart="return false;">AMZN - Amazon
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(4);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">AMZN - Amazon</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion4Content" class="AccordionContent">Information Space 4.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(5);" onselectstart="return false;">ATVI - Activision Blizzard
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(5);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">ATVI - Activision Blizzard</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion5Content" class="AccordionContent">Information Space 5.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(6);" onselectstart="return false;">CAKE - The Cheesecake Factory
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(6);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">CAKE - The Cheesecake Factory</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion6Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(7);" onselectstart="return false;">CMCSA - Comcast
-						<div class="price">Price: $price</div> 
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(7);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">CMCSA - Comcast</div> 
+						<div class="price">Price: $1.00</div> 
 					</div>
 				</div>
 					<div id="Accordion7Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(8);" onselectstart="return false;">COKE - Coca-Cola
-						<div class="price">Price: $price</div> 
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(8);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">COKE - Coca-Cola</div> 
+						<div class="price">Price: $1.00</div> 
 					</div>
-				</div>
 					<div id="Accordion8Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(9);" onselectstart="return false;">CSCO - Cisco
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(9);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">CSCO - Cisco</div> 
+						<div class="price">Price: $1.00</div>  
+					</div>
 					<div id="Accordion9Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(10);" onselectstart="return false;">DNKN - Dunkin Donuts
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(10);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">DNKN - Dunkin Donuts</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion10Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(11);" onselectstart="return false;">EBAY - Ebay
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(11);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">EBAY - Ebay</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion11Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(12);" onselectstart="return false;">ERTS - Electronic Arts
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(12);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">ERTS - Electronic Arts</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion12Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(13);" onselectstart="return false;">FB - Facebook
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(13);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">FB - Facebook</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion13Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(14);" onselectstart="return false;">GE - General Electric
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(14);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">GE - General Electric</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion14Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(15);" onselectstart="return false;">GOOG - Google
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(15);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">GOOG - Google</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion15Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(16);" onselectstart="return false;">GRMN - Garmin
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(16);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">GRMN - Garmin</div> 
+						<div class="price">Price: $1.00</div>  
+					</div>
 					<div id="Accordion16Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(17);" onselectstart="return false;">HAS - Hasbro
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(17);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">HAS - Hasbro</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion17Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(18);" onselectstart="return false;">HOTT - Hot Topic
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(18);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">HOTT - Hot Topic</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion18Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(19);" onselectstart="return false;">INTC - Intel Corporation
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(19);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">INTC - Intel Corporation</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion19Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(20);" onselectstart="return false;">JBLU- Jetblue Airways Corp
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(20);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">JBLU- Jetblue Airways Corp</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion20Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(21);" onselectstart="return false;">MON - Monsanto
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(21);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">MON - Monsanto</div> 
+						<div class="price">Price: $1.00</div>  
+					</div>
 					<div id="Accordion21Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(22);" onselectstart="return false;">MSFT - Microsoft
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(22);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">MSFT - Microsoft</div> 
+						<div class="price">Price: $1.00</div>  
+					</div>
 					<div id="Accordion22Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(23);" onselectstart="return false;">NFLX - Netflix
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(23);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">NFLX - Netflix</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion23Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(24);" onselectstart="return false;">NVDA - NVIDIA Corporation
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(24);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">NVDA - NVIDIA Corporation</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion24Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(25);" onselectstart="return false;">ORCL - Oracle
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(25);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">ORCL - Oracle</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion25Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(26);" onselectstart="return false;">QCOM - Qualcomm
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(26);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">QCOM - Qualcomm</div> 
+						<div class="price">Price: $1.00</div>  
+					</div>
 					<div id="Accordion26Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(27);" onselectstart="return false;">SBUX - Starbucks
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(27);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">SBUX - Starbucks</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion27Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(28);" onselectstart="return false;">SIRI - Sirius Satellite
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(28);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">SIRI - Sirius Satellite</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion28Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(29);" onselectstart="return false;">SPLS - Staples
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(29);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">SPLS - Staples</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion29Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(30);" onselectstart="return false;">TTWO - Take-Two Interactive Software, Inc.
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(30);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">TTWO - Take-Two Interactive Software, Inc.</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion30Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(31);" onselectstart="return false;">TXN - Texas Instruments
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(31);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">TXN - Texas Instruments</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
 					<div id="Accordion31Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(32);" onselectstart="return false;">VOD - Vodafone
-						<div class="price">Price: $price</div> 
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(32);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">VOD - Vodafone</div> 
+						<div class="price">Price: $1.00</div> 
 					</div>
 				</div>
 					<div id="Accordion32Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(33);" onselectstart="return false;">YHOO - Yahoo
-						<div class="price">Price: $price</div> 
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(33);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">YHOO - Yahoo</div> 
+						<div class="price">Price: $1.00</div> 
 					</div>
-				</div>
 					<div id="Accordion33Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(34);" onselectstart="return false;">ZNGA - Zynga Inc.
-						<div class="price">Price: $price</div> 
-					</div>
 				</div>
-					<!--<div id="Accordion34Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(35);" onselectstart="return false;">Accordion 1
-						<div class="price">Price: $price</div> 
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(34);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">ZNGA - Zynga Inc.</div> 
+						<div class="price">Price: $1.00</div> 
+					</div>
+					<div id="Accordion34Content" class="AccordionContent">Information Space 1.</div>
+				</div>
+				<!--<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(35);" onselectstart="return false;"> <div class="TitleTextAlign">Accordion 1
+						</div> <div class="price">Price: $1.00</div> 
 					</div>
 				</div>
 					<div id="Accordion35Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(36);" onselectstart="return false;">Accordion 1
-						<div class="price">Price: $price</div> 
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(36);" onselectstart="return false;"> <div class="TitleTextAlign">Accordion 1
+						</div> <div class="price">Price: $1.00</div> 
 					</div>
 				</div>
 					<div id="Accordion36Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(37);" onselectstart="return false;">Accordion 1
-						<div class="price">Price: $price</div> 
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(37);" onselectstart="return false;"> <div class="TitleTextAlign">Accordion 1
+						</div> <div class="price">Price: $1.00</div> 
 					</div>
 				</div>
 					<div id="Accordion37Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(38);" onselectstart="return false;">Accordion 1
-						<div class="price">Price: $price</div> 
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(38);" onselectstart="return false;"> <div class="TitleTextAlign">Accordion 1
+						</div> <div class="price">Price: $1.00</div> 
 					</div>
 				</div>
 					<div id="Accordion38Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(39);" onselectstart="return false;">Accordion 1
-						<div class="price">Price: $price</div> 
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(39);" onselectstart="return false;"> <div class="TitleTextAlign">Accordion 1
+						</div> <div class="price">Price: $1.00</div> 
 					</div>
 				</div>
 					<div id="Accordion39Content" class="AccordionContent">Information Space 1.</div>
-				<div>
-					<div class="AccordionTitle" onclick="runAccordion(40);" onselectstart="return false;">Accordion 1
-						<div class="price">Price: $price</div> 
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(40);" onselectstart="return false;"> <div class="TitleTextAlign">Accordion 1
+						</div> <div class="price">Price: $1.00</div> 
 					</div>
 				</div>
 					<div id="Accordion40Content" class="AccordionContent">Information Space 1.</div>-->
