@@ -37,9 +37,9 @@ html {text-align:center}
 	<div id="totalMoney" align="center" style= "border:1px solid grey">
 		
 			
-			You have a current balance of: $ <?php<script> echo getBalance();</script> ?>
+			You have a current balance of: $ <?php"<script> echo getBalance();</script>" ?>
 			<br>
-			The total worth of your current stocks is: $ <?php <script>echo getHoldings();</script> ?>
+			The total worth of your current stocks is: $ <?php "<script>echo getHoldings();</script>" ?>
 			
 	</div>
 
