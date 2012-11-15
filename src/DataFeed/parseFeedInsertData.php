@@ -10,7 +10,7 @@ $query = $conn->prepare('CALL enterTickerDataForSymbol(?,?,?,?,?,?,?,?,?,?,?,?,?
 
 date_default_timezone_set('America/Los_Angeles');
 
-if (date('Hi') > 355 && date('Hi') < 1730) 
+if (date('Hi') > 355 && date('Hi') < 1705) 
 {
 	$tradingTime = true;
 }
@@ -138,7 +138,7 @@ $query->execute(array($symbol,$bestAskPrice,$bestAskQty,$bestBidPrice,$bestBidQt
 
 }
 sleep(1);
-if (date('Hi') > 355 && date('Hi') < 1730) 
+if (date('Hi') > 355 && date('Hi') < 1705) 
 {
 	$tradingTime = true;
 }
