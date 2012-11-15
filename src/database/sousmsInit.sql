@@ -29,3 +29,8 @@ source sousmsTradeEngineTables.sql;
 -- initialize the stored procedures
 source ../shared/sousmsDeclareStoredProcs.sql;
 source TradeEngineStoredProcedures.sql;
+
+-- preload tables
+source loadStockTable.sql;
+source loadUserTable.sql;
+source loadCashForUsers.sql;
