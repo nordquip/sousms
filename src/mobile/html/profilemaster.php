@@ -25,7 +25,7 @@
 		int $MSFT_Shares = 5;
 		int $MFST_Price= 100;
 		int $currentHoldings = $MSFT_Shares * $MSFT_Price;
-		//return $currentHoldings;
+		return $currentHoldings;
 	}
 	
 	</script>
@@ -39,10 +39,10 @@ html {text-align:center}
 
 	<div id="totalMoney" align="center" style= "border:1px solid grey">
 		
-			<button onclick="Fuck This Shit">Check Balance</button>
-			You have a current balance of: $ <?php <script>echo getBalance();</script> ?>
+			
+			You have a current balance of: $ <?php<script> echo getBalance();</script> ?>
 			<br>
-			The total worth of your current stocks is: $ <?php <script>echo getHoldings(); </script> ?>
+			The total worth of your current stocks is: $ <?php <script>echo getHoldings();</script> ?>
 			
 	</div>
 
