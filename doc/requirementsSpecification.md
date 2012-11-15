@@ -66,7 +66,7 @@ openclose   user must close system
 </table>
 
 
-## Mobile Trade/Buy Requirements Specification  
+## Trade/Buy Functionality
 
 <table>
 	<tr>
