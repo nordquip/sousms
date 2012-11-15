@@ -31,6 +31,6 @@ source ../shared/sousmsDeclareStoredProcs.sql;
 source TradeEngineStoredProcedures.sql;
 
 -- preload tables
-source loadStockTable.sql;
+source loadSymbolTable.sql;
 source loadUserTable.sql;
 source loadCashForUsers.sql;

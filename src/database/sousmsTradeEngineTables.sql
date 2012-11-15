@@ -62,3 +62,4 @@ CREATE TRIGGER LogOrders AFTER INSERT ON OpenOrders
 		(NEW.orderID, NEW.userID, NEW.symID, NEW.shares, NEW.orderType, NEW.price, NEW.requestTime);
 	END;
 //
+delimiter ;
