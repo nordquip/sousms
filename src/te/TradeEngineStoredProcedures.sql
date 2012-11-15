@@ -31,31 +31,27 @@ BEGIN
 		VALUES (userID_in, symbolID_in, shares_in,
 		(SELECT `typeID` FROM OrderTypes WHERE `description` LIKE 'Sell'), 
 		price_in, NOW());
-	SELECT 'Your trade has been queued' AS statusmsg;
+	SELECT 'Your trade has been queued.' AS statusmsg;
 END;
 //
 
 DELIMITER ;
 
 -- sp_getShareBalance
--- this stored procedure still needs some tweaking - it does not successfully return the result set
 DROP PROCEDURE IF EXISTS sp_getShareBalance;
-DELIMITER //
-CREATE PROCEDURE `sp_getShareBalance` (
+delimiter //
+CREATE PROCEDURE sp_getShareBalance(
 	IN userID_in  int(11),
-	IN stockSymbol_in  varchar(8)
-)
+	IN symbolID_in  int(11)
+	)
 BEGIN
 	SELECT `Shares` FROM Portfolio  
-		WHERE `UserID` = userID_in 
-		AND `SymID` IN (
-			SELECT `SymID` FROM Symbol 
-			WHERE  `Symbol` = stockSymbol_in
-		);
+	WHERE `UserID` = userID_in 
+	AND `SymID` = symbolID_in;
 END;
 //
 
-DELIMITER ;
+delimiter ;
 
 -- sp_getAllOpenOrders
 DROP PROCEDURE IF EXISTS sp_getAllOpenOrders;
