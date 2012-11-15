@@ -25,12 +25,17 @@ where this script assumes it is running.
 -- initialize the tables
 source sousmsDeclareTables.sql;
 source sousmsTradeEngineTables.sql;
-
--- initialize the stored procedures
-source ../shared/sousmsDeclareStoredProcs.sql;
-source TradeEngineStoredProcedures.sql;
-
 -- preload tables
 source loadSymbolTable.sql;
 source loadUserTable.sql;
 source loadCashForUsers.sql;
+
+-- initialize the stored procedures
+source sousmsDeclareStoredProcs.sql;
+-- NOTE: all sourcing of procedures needs to be done from
+-- sousmsDeclareStoredProcs.sql.
+-- The build script sources in this file every time it runs,
+-- which provides us the ability to update the procedures often
+-- without affecting the tables.
+
+---- DO NOT add source commands below this line ----
