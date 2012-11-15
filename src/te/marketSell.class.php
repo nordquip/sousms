@@ -18,8 +18,8 @@
 	
 		try 
 		{			
-			$stmt = $conn->prepare("CALL sp_getShareBalance(?,?)");	
-			$stmt->execute(array($user, $symbol));				
+			$stmt = $conn->prepare("CALL sp_getShareBalance(?,?)");
+			$stmt->execute(array($user, $symbol));
 			if($stmt->rowCount() > 0)
 			{
 				$stmt->bindColumn(1, $shareBal);
@@ -32,8 +32,8 @@
 		}		
 	 
 		catch (PDOException $e) 
-		{			
-			$mssg .= "Error: " . $e->getMessage();	
+		{
+			$mssg .= "Error: " . $e->getMessage();
 		}
 	
 		if ($shareBal >= $shares)
@@ -42,17 +42,9 @@
 			{
 				$stmt = $conn->prepare("CALL sp_insertSell(?,?,?,?)");
 				$stmt->execute(array($user, $symbol, $shares, $price));
-				$stmt->bindColumn(1, $returnCode);
+				$stmt->bindColumn(1, $statusMsg);
 				$stmt->fetch(PDO::FETCH_BOUND);
-				
-				if ($stmt->rowCount() > 0)
-				{
-					$mssg .= "Your order was successfully queued.";
-				}
-				else
-				{
-				$mssg .= "Error:  Order not successfully queued.";
-				}
+				$mssg .= $statusMsg;
 			}
 		
 			catch (PDOException $e) 
@@ -69,5 +61,3 @@
 	}
 }
  ?>
-
-		
