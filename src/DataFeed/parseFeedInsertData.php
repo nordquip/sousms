@@ -2,7 +2,7 @@
 //DataFeed Team
 //Author: Shaun Wolff
 //Script for retrieving feed, parsing the feed, Inserting data into Table for 40 stocks.
-
+include '../service/DbConn.class.php';
 
 $newPDO = new DbConn();
 $conn = $newPDO->getConn();
