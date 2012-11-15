@@ -1,2 +1,2 @@
-feedControl=0
+rm feedControl
 echo Datafeed Script Stopped!

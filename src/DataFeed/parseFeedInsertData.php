@@ -1,21 +1,15 @@
 <?php
 //DataFeed Team
 //Author: Shaun Wolff
-//Script for retrieving feed, parsing the feed, Inserting data into Database for 40 stocks.
+//Script for retrieving feed, parsing the feed, Inserting data into Table for 40 stocks.
 
-//NOTE: Will need correct DB host, username, password, DB Name and Table.
-//NOTE: Need to setup with crontab to run this script when the markets are trading and stop it when they close.
 
-$host = "localhost"; //Replace
-$username = "root"; //Replace
-$password = ""; //Replace
-$DB = "test1"; //Replace
-$DBTB = "feed"; //Replace
+$newPDO = new DbConn();
+$conn = $newPDO->getConn();
+$query = $conn->prepare('CALL enterTickerDataForSymbol(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
 
 date_default_timezone_set('America/Los_Angeles');
 
-$con = mysql_connect($host, $username, $password );
-$db = mysql_select_db("$DB", $con);
 if (date('Hi') > 355 && date('Hi') < 1705) 
 {
 	$tradingTime = true;
@@ -53,9 +47,8 @@ $pcl=$dataItems->pcl;
 $vol=$dataItems->vol;
 $pctChg=$dataItems->pctChg;
 
-$sql = "CALL enterTickerDataForSymbol('$symbol','$bestAskPrice','$bestAskQty','$bestBidPrice','$bestBidQty','$close','$high','$date','$time','$ms','$lastSale','$low','$netChg','$open','$pcl','$vol','$pctChg')";
+$query->execute(array($symbol,$bestAskPrice,$bestAskQty,$bestBidPrice,$bestBidQty,$close,$high,$date,$time,$ms,$lastSale,$low,$netChg,$open,$pcl,$vol,$pctChg));
 
-$query = mysql_query($sql);
 }
 
 $url = "https://basicapp.nasdaqomx.com/BasicDataXML/getBasicData?symbolsCsvList=CSCO,DIS,DNKN,EBAY,ERTS,FB,GE,GOOG,GRMN,HAS";
@@ -83,9 +76,8 @@ $pcl=$dataItems->pcl;
 $vol=$dataItems->vol;
 $pctChg=$dataItems->pctChg;
 
-$sql = "CALL enterTickerDataForSymbol('$symbol','$bestAskPrice','$bestAskQty','$bestBidPrice','$bestBidQty','$close','$high','$date','$time','$ms','$lastSale','$low','$netChg','$open','$pcl','$vol','$pctChg')";
+$query->execute(array($symbol,$bestAskPrice,$bestAskQty,$bestBidPrice,$bestBidQty,$close,$high,$date,$time,$ms,$lastSale,$low,$netChg,$open,$pcl,$vol,$pctChg));
 
-$query = mysql_query($sql);
 }
 
 $url = "https://basicapp.nasdaqomx.com/BasicDataXML/getBasicData?symbolsCsvList=HSY,HOTT,INTC,JBLU,MON,MSFT,NFLX,NVDA,ORCL,PBG";
@@ -113,9 +105,8 @@ $pcl=$dataItems->pcl;
 $vol=$dataItems->vol;
 $pctChg=$dataItems->pctChg;
 
-$sql = "CALL enterTickerDataForSymbol('$symbol','$bestAskPrice','$bestAskQty','$bestBidPrice','$bestBidQty','$close','$high','$date','$time','$ms','$lastSale','$low','$netChg','$open','$pcl','$vol','$pctChg')";
+$query->execute(array($symbol,$bestAskPrice,$bestAskQty,$bestBidPrice,$bestBidQty,$close,$high,$date,$time,$ms,$lastSale,$low,$netChg,$open,$pcl,$vol,$pctChg));
 
-$query = mysql_query($sql);
 }
 
 $url = "https://basicapp.nasdaqomx.com/BasicDataXML/getBasicData?symbolsCsvList=QCOM,RCL,SBUX,SIRI,SPLS,TTWO,TXN,V,YHOO,SNE";
@@ -143,9 +134,8 @@ $pcl=$dataItems->pcl;
 $vol=$dataItems->vol;
 $pctChg=$dataItems->pctChg;
 
-$sql = "CALL enterTickerDataForSymbol('$symbol','$bestAskPrice','$bestAskQty','$bestBidPrice','$bestBidQty','$close','$high','$date','$time','$ms','$lastSale','$low','$netChg','$open','$pcl','$vol','$pctChg')";
+$query->execute(array($symbol,$bestAskPrice,$bestAskQty,$bestBidPrice,$bestBidQty,$close,$high,$date,$time,$ms,$lastSale,$low,$netChg,$open,$pcl,$vol,$pctChg));
 
-$query = mysql_query($sql);
 }
 sleep(1);
 if (date('Hi') > 355 && date('Hi') < 1705) 
