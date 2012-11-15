@@ -65,3 +65,46 @@ openclose   user must close system
 	<tr>
 </table>
 
+
+## Mobile Trade/Buy Requirements Specification  
+
+<table>
+	<tr>
+		<td>Trade.Auth</td>
+		<td>User must login before submitting Trade</td>
+	</tr>
+	<tr>
+		<td>Trade.Buy.Stock</td>
+		<td>User must select a valid stock from known stock list</td>
+	</tr>
+	<tr>
+		<td>Trade.Buy.CheckStock</td>
+		<td>System must inform User about the Stock's trade requirements</td>
+	</tr>
+	<tr>
+		<td>Trade.Buy.Quantity</td>
+		<td>User must enter a desired amount of shares that must be greater than "0"</td>
+	</tr>
+	<tr>
+		<td>Trade.Buy.Submit</td>
+		<td>User must submit trade for a successful attempt</td>
+	</tr>
+	</tr>
+		<td>Trade.Buy.CheckUserAccount</td>
+		<td>System must validate trade with User account balance and required funds for purchase</td>
+	</tr>
+	<tr>
+		<td>Trade.Buy.Insufficient</td>
+		<td>System must inform User if User account balance is insufficient for trade</td>
+	</tr>
+	<tr>
+		<td>Trade.Buy.Retry</td>
+		<td>System must give the User unlimited attempts to enter a sufficient quantity</td>
+	</tr>
+	<tr>
+		<td>Trade.Buy.Add</td>
+		<td>If Successful, System must update User account by adding requested quantity to holdings and decrementing 
+	            User account balance by the product between the requested quantity and the cost of the individual stock</td>
+	</tr>
+	
+</table>
