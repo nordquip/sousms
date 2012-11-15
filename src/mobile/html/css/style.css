@@ -20,7 +20,9 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
+
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
@@ -43,7 +45,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 /* Additions */
+
 a{text-decoration:none;}
 .txt-rt{text-align:right;}
 .txt-lt{text-align:left;}
@@ -54,12 +58,25 @@ a{text-decoration:none;}
 .pos-relative{position:relative;}
 .pos-absolute{position:absolute;}
 .display-block{display:block;}
+
 /*--------reset--------*/
 
 /* HTML USEFUL COLORS
  * Darker Red: #BC0000
  * Grey: #D0D0D0
- */
+*/
+ 
+/*--div--*/
+
+div{
+	background:#BC0000;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+.login{
+	background:#D0D0D0;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+
 body{
 	background:#D0D0D0;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
@@ -81,7 +98,9 @@ body{
 	color: #D9C8BE;
 	text-transform: uppercase;
 }
+
 /*--nav--*/
+
 .nav{
 	margin-top:10px;
 	background:#BC0000;
@@ -116,7 +135,9 @@ body{
 	width:300px;
 	height:100px;
 }
+
 /*--list--*/
+
 .list li{
 	margin:0;
 	color:#c4ac9e;
@@ -126,7 +147,9 @@ body{
 	margin-left:8px;
 	list-style-type: circle;
 }
+
 /*--boxes--*/
+
 .box:first-child{
 	margin-left:0;
 }
@@ -203,7 +226,9 @@ body{
 	font-size:12px;
 	color:#C4AC9E;
 }
+
 /*Table*/
+
 .table{
 	display:table;
 	font-size:12px;
@@ -236,7 +261,9 @@ body{
 	border-bottom:1px solid #564437;
 	border-right:1px solid #564437;
 }
+
 /*--footer--*/
+
 .f-menu{
 	margin:1.8em 0;
 	background:#40332a;
@@ -267,7 +294,9 @@ body{
 	line-height:1.4em;
 	padding-bottom:10px;
 }
+
 /*--contact--*/
+
 .contact{
 	margin:1em 0 1em 0;
 }
@@ -318,7 +347,9 @@ body{
 	margin:40px auto;
 	width:990px;
 }
+
 /* content */
+
 .content ul{
 	margin:0 0 12px 0;
 	padding-left:12px;
@@ -338,7 +369,9 @@ body{
 	font-weight:bold;
 	margin:10px;
 }
+
 /* form */
+
 .form{
 	font-size:.8em;
 	margin:1em 0 0 1em;
