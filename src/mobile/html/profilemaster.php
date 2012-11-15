@@ -1,15 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
 <?php
 
 ?>
 <html>
 <head>
-	<?php
 	<script type="text/javascript">
+	<?php
 	int $availableBal;
 	int $currentHoldings;
-	function int getBalance();
+	?>
+	function getBalance();
 	{
 		
 		$availableBal = 500;
@@ -17,16 +19,16 @@
 		return $availableBal;
 	}
 	
-	function void getHoldings()
+	function getHoldings()
 	{
 		int $MSFT_Shares = 5;
 		int $MFST_Price= 100;
-		int $currentHoldings = $MSFT_Shares * $MSFT_Price;
+		$currentHoldings = $MSFT_Shares * $MSFT_Price;
 		return $currentHoldings;
 	}
 	
 	</script>
-	?>
+	
 	<style>
 html {text-align:center}
 </style>
@@ -37,9 +39,9 @@ html {text-align:center}
 	<div id="totalMoney" align="center" style= "border:1px solid grey">
 		
 			
-			You have a current balance of: $ <?php"<script> echo getBalance();</script>" ?>
+			You have a current balance of: $ <?php echo '<script>getBalance();</script>' ?>
 			<br>
-			The total worth of your current stocks is: $ <?php "<script>echo getHoldings();</script>" ?>
+			The total worth of your current stocks is: $ <?php echo '<script>getHoldings();</script>' ?>
 			
 	</div>
 
