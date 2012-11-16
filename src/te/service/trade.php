@@ -1,12 +1,12 @@
 <?php
 /******************************************************************
 * trade.php
-* By: Jeff Miller (millerj3@students.sou.edu), 2012-11-04
+* By: Jeff Miller (millerj3@students.sou.edu), 2012-11-15
 * Description: PHP trade engine web service
 ******************************************************************/
 
 include("DbConn.class.php");
-include("TokenTranslator.class.php");
+include("ParameterValidator.class.php");
 //include("MarketBuy.class.php");
 include("MarketSell.class.php");
 
@@ -47,62 +47,52 @@ if (!isset($_POST["jsondata"])) {
 			$retval->success = false;
 			$retval->statuscode = 0;
 			$retval->statusdesc = array();
-			if (in_array("symbol", $behaviors[$b])) {
-				if (!isset($req->symbol) || !preg_match("/^[A-Za-z0-9\.]+$/", $req->symbol)) {
-					$retval->statuscode = 1;
-					if (strlen($req->symbol) == 0) {
-						$req->symbol = "(empty)";
-					}
-					$retval->statusdesc[] = "Invalid symbol: " . $req->symbol;
-				}
-			}
-			if (in_array("shares", $behaviors[$b])) {
-				if (!isset($req->shares) || !preg_match("/^[0-9]+$/", $req->shares)) {
-					$retval->statuscode = 1;
-					if (strlen($req->shares) == 0) {
-						$req->shares = "(empty)";
-					}
-					$retval->statusdesc[] = "Invalid number of shares: " . $req->shares;
-				} else {
-					$req->shares = intval($req->shares, 10);
-				}
-			}
-			if (in_array("limitprice", $behaviors[$b])) {
-				if (!isset($req->limitprice) || !preg_match('/^([\$])?([0-9,]+)(\.[0-9]{2})?$/', $req->limitprice)) {
-					$retval->statuscode = 1;
-					if (strlen($req->limitprice) == 0) {
-						$req->limitprice = "(empty)";
-					}
-					$retval->statusdesc[] = "Invalid limit price: " . $req->limitprice;
-				} else {
-					$req->limitprice = floatval(preg_replace('/[^0-9.]/', '', $req->limitprice));
-				}
-			}
-			if ($retval->statuscode != 0) {
-				header("Content-Type: application/json;charset=UTF-8");
-				echo json_encode($retval);
-				//echo json_encode($retval, JSON_PRETTY_PRINT); // JSON_PRETTY_PRINT only works in PHP 5.4.0+
-				exit;
-			}
-			//$myConn = new DbConn("localhost", "sousms", "root", "");
+			$userID = -1;
 			try {
+				//Begin validation of parameters
 				$myConn = new DbConn(); //should now pull database info from config...
-				$userID = -1;
+				//$v = new ParameterValidator($myConn->getConn()); //uncomment for production server
+				$v = new ParameterValidator($myConn->getConn(), true); //uncomment for development
+				//does requested behavior require "token" param?
 				if (in_array("token", $behaviors[$b])) {
-					if (isset($req->token)) {
-						$tt = new TokenTranslator($myConn->getConn());
-						if ($tt->isValidToken($req->token)) {
-							$userID = $tt->getUserID();
-							$retval->statuscode = 0;
-							$retval->statusdesc[] = $tt->msg;
-						} else {
-							$retval->statuscode = 1;
-							$retval->statusdesc[] = $tt->msg;
-						}
+					if ($v->isValid("token", $req->token)) {
+						$userID = $v->getTranslatedValue();
+					} else {
+						$retval->statuscode = 1;
+					}
+					$retval->statusdesc[] = $v->getMessage();
+				}
+				//does requested behavior require "symbol" param?
+				if (in_array("symbol", $behaviors[$b])) {
+					if ($v->isValid("symbol", $req->symbol)) {
+						$symID = $v->getTranslatedValue();
+					} else {
+						$retval->statuscode = 2;
+					}
+					$retval->statusdesc[] = $v->getMessage();
+				}
+				//does requested behavior require "shares" param?
+				if (in_array("shares", $behaviors[$b])) {
+					if (!$v->isValid("shares", $req->shares)) {
+						$retval->statuscode = 3;
+						$retval->statusdesc[] = $v->getMessage();
 					}
 				}
+				//does requested behavior require "limitprice" param?
+				if (in_array("limitprice", $behaviors[$b])) {
+					if (!$v->isValid("limitprice", $req->limitprice)) {
+						$retval->statuscode = 4;
+						$retval->statusdesc[] = $v->getMessage();
+					}
+				}
+				//if there were any errors, set behavior to "test" to send back parameter error messages
+				if ($retval->statuscode != 0) {
+					$b = "test"; 
+				}
+				$v = null;
+				//End validation of parameters
 			} catch (Exception $e) {
-				$retval->statusdesc[] = "Token Translator Failure: " . $e->getMessage();
+				$retval->statusdesc[] = "Validation Failure: " . $e->getMessage();
 				$b = "test";
 				$retval->statusdesc[] = $myConn->getDebug();
 			}
@@ -116,15 +106,16 @@ if (!isset($_POST["jsondata"])) {
 				break;
 			case "marketBuy":
 				/*
-				$mb = new MarketBuy($myConn->getConn());
-				$retval->statuscode = $mb->buy($userID, $req->stockSymbol, $req->numShares);
-				$retval->statusdesc[] = $mb->getMessage($retval->statuscode);
+				$mb = new MarketBuy();
+				$retval->statuscode = $mb->buy($myConn->getConn(), $userID, $symID, $req->shares);
+				$retval->success = true;
 				$mb = null;
 				*/
 				break;
 			case "marketSell":
 				$ms = new MarketSell();
-				$retval->statusdesc[] = $ms->sell($myConn->getConn(), $userID, $req->stockSymbol, $req->numShares);
+				$retval->statusdesc[] = $ms->sell($myConn->getConn(), $userID, $symID, $req->shares);
+				$retval->success = true;
 				$ms = null;
 				break;
 			case "limitOrderBuy":

@@ -45,9 +45,10 @@ CREATE PROCEDURE sp_getShareBalance(
 	IN symbolID_in  int(11)
 	)
 BEGIN
-	SELECT `Shares` FROM Portfolio  
-	WHERE `UserID` = userID_in 
-	AND `SymID` = symbolID_in;
+	SELECT Portfolio.`Shares`, Symbol.`Symbol` FROM Portfolio
+	JOIN Symbol ON Portfolio.`SymID` = Symbol.`SymID`
+	WHERE Portfolio.`UserID` = userID_in 
+	AND Portfolio.`SymID` = symbolID_in;
 END;
 //
 
@@ -171,9 +172,9 @@ DELIMITER ;
 -- sp_buy
 -- executes "buy" behavior for given order ID:
 --   get current cash, current price, limit price
---   let total price = current price * number of shares
---   if limit price is not null and limit price is greater than total price
+--   if limit price is not null and limit price is less than current price
 --     status is "limit price has not been met", skip to end
+--   let total price = current price * number of shares
 --   if current cash is greater than or equal to total price
 --     insert negative balance (-1 * total price) into "cash" table for given user
 --     insert into stock holdings (userID, symID) if not exists
@@ -195,7 +196,7 @@ BEGIN
 			FROM openorders JOIN ordertypes ON openorders.orderType = ordertypes.typeID
 			WHERE openorders.orderid = openOrderID AND ordertypes.description = 'Buy';
 		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
-			SELECT CONCAT('Buy order #', openOrderID, ' not found.') AS statusmsg;
+			SELECT 100 AS errcode, CONCAT('Buy order #', openOrderID, ' not found.') AS statusmsg;
 		END;
 		OPEN openordersCursor;
 		FETCH openordersCursor INTO lnUserID, lnSymID, lnShares, lnLimitPrice;
@@ -205,7 +206,7 @@ BEGIN
 		DECLARE cashCursor CURSOR FOR
 			SELECT SUM(balance) FROM cash WHERE cash.userID = userID;
 		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
-			SELECT 'User has no account.' AS statusmsg;
+			SELECT 200 AS errcode, 'User has no account.' AS statusmsg;
 		END;
 		OPEN cashCursor;
 		FETCH cashCursor INTO lnCurrentCash;
@@ -221,19 +222,20 @@ BEGIN
 				feed.time DESC
 			LIMIT 1;
 		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
-			SELECT 'Stock price not found in feed.' AS statusmsg;
+			SELECT 300 AS errcode, 'Stock price not found in feed.' AS statusmsg;
 		END;
 		OPEN priceCursor;
 		FETCH priceCursor INTO lnCurrentPrice;
 		CLOSE priceCursor;
 	END;
 	IF NOT ISNULL(lnUserID) AND NOT ISNULL(lnSymID) AND NOT ISNULL(lnShares) AND NOT ISNULL(lnCurrentCash) AND NOT ISNULL(lnCurrentPrice) THEN
-		SET lnTotalPrice = lnCurrentPrice * lnShares;
-		IF NOT ISNULL(lnLimitPrice) AND lnLimitPrice > lnTotalPrice THEN
-			SELECT 'Limit price not yet reached.' AS statusmsg;
+		IF NOT ISNULL(lnLimitPrice) AND lnLimitPrice < lnCurrentPrice THEN
+			SELECT 400 AS errcode, 'Limit price not yet reached.' AS statusmsg;
 		ELSE
+			SET lnTotalPrice = lnCurrentPrice * lnShares;
 			IF lnCurrentCash < lnTotalPrice THEN
-				SELECT 'Not enough cash on hand to complete transaction.' AS statusmsg;
+				DELETE FROM openorders WHERE openorders.orderID = openOrderID;
+				SELECT 500 AS errcode, 'Not enough cash on hand to complete transaction.' AS statusmsg;
 			ELSE
 				INSERT INTO cash (UserID, Balance) VALUES (lnUserID, (-1 * lnTotalPrice));
 				INSERT IGNORE INTO portfolio (UserID, SymID, Shares) VALUES (lnUserID, lnSymID, 0);
@@ -242,7 +244,7 @@ BEGIN
 					DateModified = NOW()
 				WHERE UserID = lnUserID AND SymID = lnSymID;
 				DELETE FROM openorders WHERE openorders.orderID = openOrderID;
-				SELECT CONCAT('Buy order #', openOrderID, ' completed successfully.') AS statusmsg;
+				SELECT 0 AS errcode, CONCAT('Buy order #', openOrderID, ' completed successfully.') AS statusmsg;
 			END IF;
 		END IF;
 	END IF;
