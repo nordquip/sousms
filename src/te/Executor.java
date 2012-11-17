@@ -17,11 +17,12 @@ import java.util.*;
 */
 class Executor {
 
-//In the future, these shouldn't be hardcoded. Instead, we should get
-//them from a config file somewhere.
-private final String URL = "jdbc:mysql://My-url:MySQLPort/MySqlDatabase";
-private final String USERNAME = "root";
-private final String PASSWORD = "uncomfortablySecure";
+//Mysql connection variables
+private String MYSQLDATABASE; 
+private String MYSQLUSER;
+private String MYSQLPASSWORD;
+private ConfigData configData; //We will get all of the mysql variables from here
+
 
 //This shouldn't need to change, except maybe between special platforms.
 private final static String DRIVER = "com.mysql.jdbc.Driver";
@@ -30,6 +31,13 @@ private final static String DRIVER = "com.mysql.jdbc.Driver";
 private Connection dBConn; 
 //The list of open orders to be executed. 
 private PriorityQueue<Order> openOrders;
+
+public Executor(ConfigData configData) {
+    this.configData = configData;
+    MYSQLDATABASE = configData.get("mysqlDatabase");
+    MYSQLUSER = configData.get("mysqlUser");
+    MYSQLPASSWORD = configData.get("mysqlPassword");
+}
 
     /**
     * This is the main method called by the Engine. A 'tick' is one cycle through
@@ -86,7 +94,7 @@ private PriorityQueue<Order> openOrders;
         
         //will throw sqlexeption if the data here is not correct.
         //a "no suitable driver for ..." Exception is also possible too
-        dBConn = DriverManager.getConnection(URL, USERNAME, PASSWORD);   
+        dBConn = DriverManager.getConnection(MYSQLDATABASE, MYSQLUSER, MYSQLPASSWORD);   
     }
     
     /**

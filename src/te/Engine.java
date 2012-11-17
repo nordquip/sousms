@@ -19,6 +19,9 @@ private final static int INTERVAL = 500;
 private final String path = ""; 
 private static String pathSeparator;
 private Executor executor;
+
+private final String CONFIG_FILENAME = "config.xml";
+private ConfigData configData; 
     
     /**
     * Starts the Engine
@@ -29,9 +32,12 @@ private Executor executor;
     public static void main(String args[]) {
         pathSeparator = System.getProperty("path.separator");
     
+        
         //instantiate our variables
         Engine engine = new Engine();
-        engine.executor = new Executor();
+        engine.configData = new ConfigData(engine.CONFIG_FILENAME);
+        
+        engine.executor = new Executor(engine.configData);
         
         //begin the mainloop
         engine.mainLoop();
