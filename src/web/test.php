@@ -3,68 +3,9 @@
 * test.php
 * By: Jeff Miller (millerj3@students.sou.edu), 2012-11-05
 * Description: Trade engine testing
-******************************************************************/
-
-include("WSRequestManager.class.php");
-include($_SERVER['DOCUMENT_ROOT'] . "/login.include.php"); //include from root of server
-
-global $behaviors;
-// Add UA behaviors to this array as well
-$behaviors = array(
-	"test" => "What do you want to do?",
-	"marketBuy" => "Market Buy",
-	"marketSell" => "Market Sell",
-	"limitOrderBuy" => "Limit Buy",
-	"limitOrderSell" => "Limit Sell",
-	"cancelOrder" => "Cancel Order",
-	"viewOpenOrders" => "View Open Orders",
-	"viewOrderHistory" => "View Order History"
-);
-
-/*
- This is the class returned by ua.php (before json_encode):
-	class TradeEngineMessage {
-		public $behavior, $success, $statuscode, $statusdesc;
-	};
 */
 
-function callService(&$reqTxt, $department, $transtype, $symbol, $shares, $limitprice) {
-	global $behaviors;
-	try {
-		$reqTxt = "";
-		if (!$behaviors[$transtype]) {
-			return "Behavior not implemented: $transtype";
-		}
-		$postData = array(
-			"behavior" => $transtype,
-			"token" => getLoginCookie(),
-			"symbol" => $symbol,
-			"shares" => $shares,
-			"limitprice" => $limitprice
-		);
-		$ws = new WSRequestManager();
-		$ws->setServiceAddress("$department");
-		$respTxt = $ws->getData("jsondata=" . json_encode($postData));
-		$reqTxt = $ws->getLastRequestDetails();
-		return $respTxt;
-	} catch (Exception $e) {
-		header('HTTP/1.1 500 Internal Server Error');
-		echo "Error: " . $e->getMessage();
-		exit;
-	}
-}
-
-$resultObj = array();
-$debuglog = "";
-$department = (isset($_POST["department"]) ? $_POST["department"] : "");
-$transtype = (isset($_POST["transtype"]) ? $_POST["transtype"] : "");
-$symbol = (isset($_POST["symbol"]) ? $_POST["symbol"] : "");
-$shares = (isset($_POST["shares"]) ? $_POST["shares"] : "");
-$limitprice = (isset($_POST["limitprice"]) ? $_POST["limitprice"] : "");
-if (strlen($transtype) > 0) {
-	$resultStr = callService($debuglog, $department, $transtype, $symbol, $shares, $limitprice);
-	$resultObj = json_decode($resultStr); //null if error
-}
+include $_SERVER['DOCUMENT_ROOT'] . '/webServiceCaller.include.php';
 ?>
 <!DOCTYPE html>
 <html>

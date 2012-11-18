@@ -27,22 +27,22 @@ if (!isset($_POST["jsondata"])) {
 			switch ($req->behavior) {
 			case "getTokenFromCredentials":
 				$msg = new UATokenMessage();
-				// the constructor for Credentials can do some basic validation (or throw an exception)
+				// the constructor for Credentials can do some basic validation
+				// (or throw an exception)
 				$credentials = new Credentials(
 					$req->credentials->username,
 					$req->credentials->password
 				);
-				// the validate() method returns true if valid or false if invalid
+				// the validate() method returns true if valid or false
+				// if invalid
 				if ($credentials->validate($token)) {
-					// the $token parameter was passed by reference and set inside validate()
+					// the $token parameter was passed by reference and
+					// set inside validate()
 					$msg->token = $token;
 					//get the current time
 					$dt = new DateTime(null, new DateTimeZone("America/Los_Angeles"));
-					//expire the token in 10 seconds,
-					// this should probably reside inside validate
-					//modified by web team to 30 secs.
-					// PN: I think it should be 10 minutes (600 seconds)
-                                        $dt->modify("+600 seconds");
+					//expire the token in 10 minutes,
+					$dt->modify("+600 seconds");
 					$msg->expires = $dt->format(DateTime::RFC822);
 					//just some helpful status information for the caller
 					$msg->statuscode = 0;
