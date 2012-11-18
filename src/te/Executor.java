@@ -102,12 +102,13 @@ public Executor(ConfigData configData) {
     * Gets all of the open orders from the database, and assembles them into objects
     */
     private void getOrders() {
+        openOrders = new PriorityQueue<Order>();
 
         CallableStatement cs;
         ResultSet rs;
 
         //Type specific vars
-        String type;
+        String type = "";
         Class typeClass;
         Order order;
         try {
@@ -130,16 +131,19 @@ public Executor(ConfigData configData) {
                 order.setPrice(rs.getDouble("price"));
                 //I don't think we'll need time.
                 //order.setTime(rs.getTime?("datetime"));
+                
+                //Add the order to the list.
+                openOrders.add(order);
 
             }
         } catch (SQLException e ) {
-            //System.out.println("Error Retrieving Open Order List: " + e);
+            System.err.println("[CRITICAL] Error Retrieving Open Order List: " + e);
         } catch (ClassNotFoundException cnfe) {
-            //System.out.println("Could not find order type " + type+ ": "+ cnfe);
+            System.err.println("[CRITICAL] Could not find java code for " + type + ": "+ cnfe);
         } catch (InstantiationException ie) {
-            //System.out.println(ie);
+            System.err.println("[CRITICAL] Could not instantiate " + type + ": " + ie);
         } catch (IllegalAccessException iae) {
-            //System.out.println(iae);
+            System.err.println("[CRITICAL] Permissions Issue: " + iae);
         }
         
     }
