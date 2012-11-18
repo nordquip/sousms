@@ -47,19 +47,18 @@ public Executor(ConfigData configData) {
     * 
     * @return void
     */
-    public void doTick() {
+    public void doTick() throws Exception {
         //connect to the database
         try {
             renewDBConnection();
         } 
         catch (SQLException sqle) {
-            //deal with sql exception
-            //System.err.println("Could not connect to db: " + sqle);
-            return;
+            System.err.println("[CRITICAL]: Could not connect to db: ");
+            throw sqle;
         }
         catch (ClassNotFoundException cnfe) {
-            //System.err.println("You need to install 'com.mysql.jdbc.Driver' on your system. " + cnfe);
-            shutdown();
+            System.err.println("[CRITICAL]: You need to install 'com.mysql.jdbc.Driver' on your system. ");
+            throw cnfe;
         }
 
         //get all of the open orders        
@@ -69,7 +68,7 @@ public Executor(ConfigData configData) {
         while(openOrders.peek() != null)
             openOrders.poll().execute(dBConn);
         
-        //System.out.println("##DEBUG: Successful Tick");
+        //System.out.println("[DEBUG]: Successful Tick");
     }
     
     /**

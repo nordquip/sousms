@@ -20,7 +20,8 @@ private final String path = "";
 private static String pathSeparator;
 private Executor executor;
 
-private final String CONFIG_FILENAME = "config.xml";
+//This file path would probably optimally be passed as an arg over MAIN
+private final String CONFIG_FILENAME = "/var/www/html/service/sousmsConfigLocal.xml";
 private ConfigData configData; 
     
     /**
@@ -56,11 +57,12 @@ private ConfigData configData;
     private void mainLoop() {
         while(checkShutdown() == false) {
             try {
-                executor.doTick();
                 Thread.sleep(INTERVAL);
+                executor.doTick();
             }
             catch(Exception e) {
-                //System.err.println("##DEBUG: " + e);
+                e.printStackTrace();
+                return; //Will call shutdown and halt the engine
             } 
         }
     }

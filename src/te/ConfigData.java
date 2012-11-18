@@ -10,8 +10,10 @@ class ConfigData {
     private String[] valueData;
     
     
-    public ConfigData(String path) {
+    public ConfigData(String filename) {
+        this.fileName = filename;
         valueData = new String[fieldData.length];
+        getConfigData();
     }
     
     public String get(String field) {
@@ -47,6 +49,6 @@ class ConfigData {
             }
             
             configFile.close();
-        } catch (IOException ioe) {}
+        } catch (IOException ioe) {System.err.println("Failed to load Config file: " + fileName);}
     }
 }
