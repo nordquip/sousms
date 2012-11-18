@@ -25,6 +25,9 @@ PROGRAM="Engine"
 #Any additional args we want to pass along to the program
 ARGS=""
 
+#This is where internal java errors will be logged.
+Log="$PROGRAM.log"
+
 #This is the standard driver included with this repository. If you're having
 # problems, you may need the latest driver for mysql-java. 
 javamysqlDriver="mysql-connector-java-5.1.22-bin.jar"
@@ -32,7 +35,7 @@ javamysqlDriver="mysql-connector-java-5.1.22-bin.jar"
 CLASSPATH=".:$javamysqlDriver"
 
 COMMAND="$JAVA -classpath $CLASSPATH $PROGRAM $ARGS"
-pidFile="$PROGRAM.pid"
+pidFile=".$PROGRAM.pid"
 shutdownFile="shutdown"
  
  
@@ -53,8 +56,8 @@ function checkStatus {
 function do_start {
     checkStatus
     if [ $? -eq 0 ]; then echo "$PROGRAM is already running."; return 0; fi
-    #Uncomment if you wish to use logging
-    `$COMMAND` &> /dev/null & 
+    #Run the command. Errors are logged to the above file
+    $COMMAND &>$Log & 
     # 
     echo $! > $pidFile
     sleep 1.5

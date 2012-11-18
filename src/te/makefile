@@ -29,4 +29,4 @@ debug: classes
 
 # delete all .class files to clean
 clean:
-	$(RM) *.class
+	$(RM) *.class *.log
