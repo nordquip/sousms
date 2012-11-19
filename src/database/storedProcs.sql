@@ -79,46 +79,53 @@ Delimiter ;
 --			   Purchase price (PRC)
 -- Description: Sells shares of a users current holdings.
 
+Drop Procedure if exists sell;
 Delimiter //
-CREATE PROCEDURE sell()
-
-IN UID int,
-IN SYM varchar(5),
-IN NUM int,
-IN PRC float(10,4),
-
-BEGIN
-	--sets success. 
-	SET yes = 1;
-	SET complete = 1;
+Create Procedure sell(
+	in uid int,
+	in symID int,
+	in num int,
+	in prc float,
+	out success Boolean
+)
+Begin
+	Declare ownsStock int;
+	Declare totalSell float;
+	Declare symbolID int;
+	Declare sellSuccess Boolean;
 	
-	--checks if user has stock to sell.
-	SELECT symbol 
-	FROM portfolio
-		IF (symbol == SYM)THEN
-			yes = 0;
-		ELSE
-			yes = 1;
-	WHERE userID = UID;
-			
-	--checks the curent price of stock.
-	SELECT LastSale
-	FROM feed;
+	Select SymID from Portfolio 
+	Where UserID=Uid into symID;
 	
-	--removes the stock from portfolio after sold.
-	DELETE FROM portfolio
-	WHERE symbol == SYM
-	AND userID = UID;
+	Select Shares from Portfolio 
+	Where UserID=Uid and SymbolID=symID 
+	Into ownsStock;
 	
-	--adds amount of sale to balance.
-	UPDATE cash
-	SET balance = LastSale + PRC
-	WHERE userID = UID;
-
-	complete = 0;
-END//
-
-DELIMITER;
+	If num=ownsStock then
+		set sellSuccess='0';
+	else
+		set sellSuccess='1';
+	end if;
+	
+	if symbolID=symID then
+		if ownsStock>=num then
+			Set success='1';
+			set totalSell=prc*num;
+			insert into Stock (UserID, SymbolID, SellBuy, Shares, Price)
+				values (uid, sym, 0, num, totalSell);
+			update Cash 
+				set Balance=Balance+totalSell;
+			if sellSuccess='0' then
+				delete from Portfolio where UserID=uid and SymbolID=symID;
+			end if;
+		end if;
+	else
+	
+		Set success='0';
+		
+	end if;
+End //
+Delimiter ;
 
 -- Name: getToken
 -- Author: Keith Kuhl
