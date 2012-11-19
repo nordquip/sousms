@@ -120,16 +120,19 @@ DELIMITTER;
 -- Name: getToken
 -- Author: Keith Kuhl
 -- Parameters: UserID
--- Description: Returns current token number 
-
+-- Description: Returns current token number
+DROP PROCEDURE IF EXISTS `getToken`;
 DELIMITER //
-CREATE PROCEDURE getToken()
+CREATE PROCEDURE `getToken`(
+    IN UserID int,
+    IN Passwords varchar(40),
+    IN Token varchar(32)
+)
 BEGIN
-select Token
-from LOGIN;
+    INSERT INTO LOGIN (Token)
+    Values (Token);
 END //
 DELIMITER ;
-
 
 
 
