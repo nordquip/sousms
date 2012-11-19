@@ -127,7 +127,7 @@ public Executor(ConfigData configData) {
                 order.setShares(rs.getInt("shares"));
                 //The order probably won't need to know what type it is, but we'll put it there
                 //just in case.
-                order.setOrderType(type);
+                order.setOrderDesc(type);
                 order.setPrice(rs.getDouble("price"));
                 //I don't think we'll need time.
                 //order.setTime(rs.getTime?("datetime"));
