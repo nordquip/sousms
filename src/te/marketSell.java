@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 public class marketSell extends Order {
 
+	private int id = 1;
 	@Override
 	public void execute(Connection dbconn) {
 		// TODO Auto-generated method stub
@@ -14,8 +15,8 @@ public class marketSell extends Order {
 	try {
 		cs = dbconn.prepareCall("{call sp_sell(?)}");
 
-    //Input OrderID 1...always, since the SP should remove the order
-    cs.setInt(1,1);
+    //Input OrderID 1...always, since the SP should remove the order, can eventually loop if needed.
+    cs.setInt(1,id);
     cs.execute();
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
