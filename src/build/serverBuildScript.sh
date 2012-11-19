@@ -38,7 +38,7 @@ cp -R /var/git/sousms/src/build /var/www/html/
 cp -R /var/git/sousms/src/database /var/www/html/
 cp -R /var/git/sousms/src/DataFeed /var/www/html/
 mkdir /var/www/html/mobile
-cp -R /var/git/sousms/src/mobile/web/* /var/www/html/mobile
+cp -R /var/git/sousms/src/mobile/html/* /var/www/html/mobile
 cp -R /var/git/sousms/src/shared /var/www/html/
 cp -R /var/git/sousms/src/te /var/www/html/
 cp -R /var/git/sousms/src/teTest /var/www/html/
