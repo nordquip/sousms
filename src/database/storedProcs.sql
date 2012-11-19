@@ -47,8 +47,9 @@ Delimiter ;
 --				SYM (Symbol), and NUM (Number of Shares), as well as Purchase Price.
 -- 				Returns Boolean of 0 if successful, 1 if not successful.
 
- Delimiter //
- Create Procedure buy(
+Drop Procedure if exists buy;
+Delimiter //
+Create Procedure buy(
 	in Uid int,
 	in Sym char,
 	in Num int,
@@ -56,13 +57,15 @@ Delimiter ;
 	out Success Boolean
 )
 Begin
+	Declare symId int;
 	Declare totalCost float;
 	Declare usrBalance float;
 	set totalcost=Num*Prc;
+	Select SymID from Symbol Where Symbol=Sym into symId;
 	Select Balance From Cash Where UserID=Uid Into usrBalance;
 	If usrBalance>=totalCost Then
 		Set Success='0';
-		Insert into Stock (UserID, SellBuy, Shares, Price) Values (Uid, Success, Num, totalCost);
+		Insert into Stock (UserID, SymID, SellBuy, Shares, Price) Values (Uid, symId, Success, Num, totalCost);
 		Update Cash Set Balance=Balance-totalCost where UserID=Uid;
 	Else
 		Set Success='1';
