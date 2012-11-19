@@ -4,7 +4,7 @@
 -- Description: Returns portfolio based off of user's identification number.
 
 DROP PROCEDURE IF EXISTS getPortfolio;
-DELIMITTER //
+DELIMITER //
 CREATE PROCEDURE getPortfolio(
 @ UserID
 )
@@ -118,7 +118,7 @@ BEGIN
 	complete = 0;
 END//
 
-DELIMITTER;
+DELIMITER;
 
 -- Name: getToken
 -- Author: Keith Kuhl
