@@ -11,7 +11,6 @@
 // or UA (user accounts).  This value causes the appropriate web service 
 // to be called.
 
-include("login.include.php");
 include $_SERVER['DOCUMENT_ROOT'] . '/webServiceCaller.include.php';
 ?>
 
