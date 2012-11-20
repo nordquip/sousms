@@ -55,3 +55,27 @@ from Stock
 where UserID = UserID;
 end//
 delimiter;
+
+/*
+This procedure must:
+1. query database 
+2. return numShares, price, symbol for the specified userID
+*/
+drop procedure if exists getTotalValue;
+delimiter//
+create procedure getTotalValue(
+	IN UserID int(11),
+	OUT Symbol char(5),
+    OUT Shares int(11),
+    OUT Price float(10,4),
+	);
+
+begin
+select Symbol, Price
+from Stock 
+where UserID = UserID;
+select Shares
+from Portfolio
+where UserID = UserID;
+end//
+delimiter;

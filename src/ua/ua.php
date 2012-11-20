@@ -78,7 +78,15 @@ if (!isset($_POST["jsondata"])) {
                          	$history->mysql_query("CALL getTradeHistory(userID)")
 					or die('Could not locate trade history: ' .mysql_error());
 
-                         	break;		                                     
+                         	break;
+						case "getTotalValueFromToken":
+                         	$userID = sp_getUserIdFromToken($token);
+                         	$total = new TotalValue($userID);
+                                                                   
+                         	$total->mysql_query("CALL getTotalValue(userID)")
+					or die('Could not locate total value: ' .mysql_error());
+
+                         	break;							
 			default:
 				//we don't implement that unknown behavior
 				header('HTTP/1.1 400 Bad Request');
