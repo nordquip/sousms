@@ -40,7 +40,7 @@ bind-address=(IP ADDRESS HERE)
 	j. Run “create database cs469;” to create database
 	k. Run “grant all on cs469.* to ‘administrator’ identified by ‘(UserPassword)’;” to create user administrator, password, and grants rights to database cs469.
 	l. Run “quit” to leave mysql
-	m. Run “/sbin/chkconfig --levels 235 mysqld on” to start MYSQL on boot.
+	m. Run "/sbin/chkconfig --levels 235 mysqld on" to start MYSQL on boot.
 
 9. PHP Install and Setup:
 	a. Run “yum install php php-pear php-mysql” to install php, something else, and mysql php connector
