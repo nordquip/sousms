@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, WebViewDemo</string>
+    <string name="app_name">SOUSMS</string>
+    <string name="home_button">Home</string>
+    <string name="research_button">Research</string>
+    <string name="trade_button">Trade</string>
+    <string name="profile_button">Profile</string>
+</resources>

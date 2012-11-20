@@ -13,13 +13,21 @@ include("login.include.php");
 
 class TradeHistory
 {
-   public $userName,$numShares,$symbol;
+   public $numShares,$price,$symbol,$date,$userID;
 };
 function GetTradeHistory
 {
+   $history = new TradeHistory(
+      $req->history->numShares,               
+      $req->history->price,                  
+      $req->history->symbol,                
+      $req->history->transDate,             
+      $req->history->userID,     
+	);
+   $history->mysql_query("CALL getTradeHistory(userID)")
+      or die('Could not locate trade history: ' .mysql_error());
    $token = $POST['token'];
    $userID = mysql_query("call getUserID(token)");
-   //don't know the methods yet
 };
    echo 'trade history php called';
 ?>

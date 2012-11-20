@@ -67,9 +67,9 @@ java.
 
 	  public static Connection getMySqlConnection() throws Exception {
 	    String driver = "com.mysql.jdbc.Driver";
-	    String url = "jdbc:mysql://webpages.sou.edu:3306/usr_barnesj1_0";
-	    String username = "barnesj1";
-	    String password = "hunns3Bgdx";
+	    String url = "jdbc:mysql://YourSOUDBAddress";
+	    String username = "YourSOUUserName";
+	    String password = "YourSOUPassword";
 
 	    Class.forName(driver);
 	    Connection conn = DriverManager.getConnection(url, username, password);

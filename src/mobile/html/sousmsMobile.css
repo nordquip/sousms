@@ -1,0 +1,82 @@
+/*Mobile SOU Stock Market Simulator
+  Author: Nickolaus Patterson    */
+
+.AccordionTitle, .AccordionContent, .AccordionContainer
+{
+	
+}
+
+.searcharea
+{
+	width: 98%;
+	height: 10%;
+	min-height: 50px;
+	border-color: #B30015;
+	border-width: 3px;
+	border-style: solid;
+}
+
+.AccordionTitle
+{
+	/*Font/Text Settings-*/
+	font-family:Arial;
+	font-size:100%;
+	font-weight:bold;
+	text-align: center;
+	text-align: left;
+	/*text-indent: 5%;*/
+	text-wrap: auto;
+	/*Border Settings----*/
+	border-color: #B30015;
+	border-width: 1%;
+	border-style: solid;
+	/*Visibility Settings*/
+	overflow:visible;
+	/*Div-Align Settings-*/
+	vertical-align: middle;
+	position: relative;
+	/*Div Settings-------*/
+	height:24%;
+	min-height:100px;
+	width: 98%;	
+	margin-top: 1%;
+	/*Other Settings-----*/
+	cursor:pointer;	
+	-moz-user-select:none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.TitleTextAlign
+{
+	position: absolute;
+	margin-top: 45%;
+	margin-left: 4%;
+	float: left;
+	width: 73%;
+}
+
+.price
+{
+	position: absolute;
+	margin-left:80%;
+	margin-top: 45%;
+	float:right;
+	width: 20%;
+}
+
+.AccordionContent
+{
+	width: 96%;
+	overflow:hidden;
+	display:none;
+	margin-left: auto;
+	margin-right: auto;
+	border: 3px solid #B30015;
+	border-top-style: none;
+}
+
+.AccordionContainer
+{
+/*This is the macro container*/
+}

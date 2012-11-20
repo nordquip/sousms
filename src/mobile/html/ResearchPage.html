@@ -1,0 +1,395 @@
+<!DOCTYPE= html>
+<html>
+<head onload="document.body.style.fontSize=window.innerWidth+'px'">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
+</script>
+<link rel="stylesheet" type="text/css" href="sousmsMobile.css">
+<title>Research - Mobile SOUSMS</title>
+</head>
+
+
+
+<body>
+	
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<div class="demo-app">
+	<div class="da da-center" style="width:100%" align="center">
+			<div id="AccordionContainer" class="AccordionContainer">
+				<div class="searcharea">	
+					<form>
+						<p><input style="float:right" class="search" type="text" id="searchfield" value="Case Sensitive Search" onclick="value=''"></p>
+					</form>
+						<script>
+							$("#searchfield").keyup(function() {
+								var str = $("#searchfield").val(); 
+								if (str.length == 0)
+								{
+									$(".AccordionTitle").show();
+									$(".price").show();
+								}
+								else
+								{
+								$(".TitleAndPriceSizing div:contains('" + str + "').AccordionTitle").show();
+								$(".TitleAndPriceSizing div:not(:contains('" + str + "')).AccordionTitle").hide();
+								}
+							});
+						</script>
+				</div>
+				<script type="text/javascript" src="accordian.js"></script>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(1);" onselectstart="return false;">
+						<div class="TitleTextAlign"  >AAPL - Apple</div>
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion1Content" class="AccordionContent">
+					<!--script and layout for chart -->	<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_5C5491AE-A0F7-E94B-ABAE-12B45410DCBD"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 0px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_5C5491AE-A0F7-E94B-ABAE-12B45410DCBD","100%","100%",{"liveQuote":"true","embedCodeDate":"2012-11-18","ticker":"AAPL","rollingDate":"6 months","showAnnotations":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/AAPL" style="text-decoration:underline; color:#0000ee;">View the full NASDAQ:AAPL chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(2);" onselectstart="return false;"> 
+						<div class="TitleTextAlign" >ADBE - Adobe Systems Incorporated</div>
+						<div class="price">$1.00</div> 						
+					</div>
+					<div id="Accordion2Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_143FF995-D3DA-6DF2-9D0C-12BA635EC51F"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_143FF995-D3DA-6DF2-9D0C-12BA635EC51F","100%","100%",{"startDate":"18-05-2012","endDate":"18-11-2012","liveQuote":"true","ticker":"ADBE","embedCodeDate":"2012-11-18","showAnnotations":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/ADBE" style="text-decoration:underline; color:#0000ee;">View the full ADBE chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(3);" onselectstart="return false;"> 
+						<div class="TitleTextAlign" >ADSK - Autodesk, Inc.</div>
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion3Content" class="AccordionContent">
+					<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_149D801D-7E02-A1A8-D45A-12BD96E2A29F"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 0px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_149D801D-7E02-A1A8-D45A-12BD96E2A29F","100%","100%",{"liveQuote":"true","ticker":"ADSK","rollingDate":"6 months","embedCodeDate":"2012-11-18","showAnnotations":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/ADSK" style="text-decoration:underline; color:#0000ee;">View the full ADSK chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(4);" onselectstart="return false;"> 
+						<div class="TitleTextAlign" >AMZN - Amazon</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion4Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_1EDF3D32-7533-CA11-2275-12BE214A03A5"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 0px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_1EDF3D32-7533-CA11-2275-12BE214A03A5","100%","100%",{"liveQuote":"true","ticker":"AMZN","rollingDate":"6 months","embedCodeDate":"2012-11-18","showAnnotations":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/AMZN" style="text-decoration:underline; color:#0000ee;">View the full AMZN chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(5);" onselectstart="return false;"> 
+						<div class="TitleTextAlign" >ATVI - Activision Blizzard</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion5Content" class="AccordionContent">
+					<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_018B8C07-C41D-BEB0-7812-12BFF9FD3CBF"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 0px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_018B8C07-C41D-BEB0-7812-12BFF9FD3CBF","100%","100%",{"liveQuote":"true","ticker":"ATVI","rollingDate":"6 months","embedCodeDate":"2012-11-18","showAnnotations":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/ATVI" style="text-decoration:underline; color:#0000ee;">View the full ATVI chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(6);" onselectstart="return false;"> 
+						<div class="TitleTextAlign" >CAKE - The Cheesecake Factory</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion6Content" class="AccordionContent">
+					<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_D4D306E2-E2A2-3640-2143-12C085149880"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 0px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_D4D306E2-E2A2-3640-2143-12C085149880","100%","100%",{"liveQuote":"true","ticker":"CAKE","rollingDate":"6 months","embedCodeDate":"2012-11-18","showAnnotations":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/CAKE" style="text-decoration:underline; color:#0000ee;">View the full CAKE chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle"  onclick="runAccordion(7);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">CMCSA - Comcast</div> 
+						<div class="price">$1.00</div> 
+					</div>
+				</div>
+					<div id="Accordion7Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_F86F1070-E933-BE4E-C82D-12C0FF433E3A"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 0px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_F86F1070-E933-BE4E-C82D-12C0FF433E3A","100%","100%",{"liveQuote":"true","ticker":"CSMA","rollingDate":"6 months","embedCodeDate":"2012-11-18","showAnnotations":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/CSMA" style="text-decoration:underline; color:#0000ee;">View the full CSMA chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle"  onclick="runAccordion(8);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">COKE - Coca-Cola</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion8Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_338D6334-3B8C-8E47-6C27-12C17F261B7E"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 0px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_338D6334-3B8C-8E47-6C27-12C17F261B7E","100%","100%",{"liveQuote":"true","ticker":"COKE","rollingDate":"6 months","embedCodeDate":"2012-11-18","showAnnotations":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/COKE" style="text-decoration:underline; color:#0000ee;">View the full COKE chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(9);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">CSCO - Cisco</div> 
+						<div class="price">$1.00</div>  
+					</div>
+					<div id="Accordion9Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_B17B5DE9-BB68-CEAB-5592-12C20B250799"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 0px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_B17B5DE9-BB68-CEAB-5592-12C20B250799","100%","100%",{"liveQuote":"true","ticker":"CSCO","rollingDate":"6 months","embedCodeDate":"2012-11-18","showAnnotations":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/CSCO" style="text-decoration:underline; color:#0000ee;">View the full CSCO chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(10);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">DNKN - Dunkin Donuts</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion10Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_869DA1E9-7FFD-B25A-2966-12C2600D201E"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 0px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_869DA1E9-7FFD-B25A-2966-12C2600D201E","100%","100%",{"liveQuote":"true","ticker":"DNKN","rollingDate":"6 months","embedCodeDate":"2012-11-18","showAnnotations":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/DNKN" style="text-decoration:underline; color:#0000ee;">View the full DNKN chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(11);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">EBAY - Ebay</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion11Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_93131EA9-76D1-9439-FD71-12C2C48232AE"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 0px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_93131EA9-76D1-9439-FD71-12C2C48232AE","100%","100%",{"liveQuote":"true","ticker":"EBAY","rollingDate":"6 months","embedCodeDate":"2012-11-18","showAnnotations":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/EBAY" style="text-decoration:underline; color:#0000ee;">View the full EBAY chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(12);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">ERTS - Electronic Arts</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion12Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_8D3FEA84-0688-5757-501E-12C6A893033A"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 0px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_8D3FEA84-0688-5757-501E-12C6A893033A","100%","100%",{"embedCodeDate":"2012-11-18","rollingDate":"6 months","liveQuote":"true","showAnnotations":"true","ticker":"ERTS"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/ERTS" style="text-decoration:underline; color:#0000ee;">View the full ERTS chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(13);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">FB - Facebook</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion13Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_36AB3CEF-35C1-1CA3-91C4-12C8214095C7"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_36AB3CEF-35C1-1CA3-91C4-12C8214095C7","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"FB","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/FB" style="text-decoration:underline; color:#0000ee;">View the full FB chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(14);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">GE - General Electric</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion14Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_DF22EEE0-F0EE-EA90-C962-12C86E4190E9"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_DF22EEE0-F0EE-EA90-C962-12C86E4190E9","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"GE","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/GE" style="text-decoration:underline; color:#0000ee;">View the full GE chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(15);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">GOOG - Google</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion15Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_06A785B7-5221-16DF-3849-12C9026E35C9"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_06A785B7-5221-16DF-3849-12C9026E35C9","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"GOOG","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/GOOG" style="text-decoration:underline; color:#0000ee;">View the full GOOG chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(16);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">GRMN - Garmin</div> 
+						<div class="price">$1.00</div>  
+					</div>
+					<div id="Accordion16Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_38D6B99F-F648-CCC9-3472-12C9952C1B79"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_38D6B99F-F648-CCC9-3472-12C9952C1B79","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"GRMN","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/GRMN" style="text-decoration:underline; color:#0000ee;">View the full GRMN chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(17);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">HAS - Hasbro</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion17Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_E06C23E0-3B52-0EF4-1850-12C9E3F3CAD3"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_E06C23E0-3B52-0EF4-1850-12C9E3F3CAD3","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"HAS","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/HAS" style="text-decoration:underline; color:#0000ee;">View the full HAS chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(18);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">HOTT - Hot Topic</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion18Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_89E6C7A4-0222-7445-5DDF-12CA4C616DC7"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_89E6C7A4-0222-7445-5DDF-12CA4C616DC7","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"HOTT","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/HOTT" style="text-decoration:underline; color:#0000ee;">View the full HOTT chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(19);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">INTC - Intel Corporation</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion19Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_C73FCED7-C4D0-4AC7-77CC-12CAB8B8E420"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_C73FCED7-C4D0-4AC7-77CC-12CAB8B8E420","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"INTC","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/INTC" style="text-decoration:underline; color:#0000ee;">View the full INTC chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(20);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">JBLU- Jetblue Airways Corp</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion20Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_E9166D28-7531-9961-DF45-12CB14843517"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_E9166D28-7531-9961-DF45-12CB14843517","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"JBLU","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/JBLU" style="text-decoration:underline; color:#0000ee;">View the full JBLU chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(21);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">MON - Monsanto</div> 
+						<div class="price">$1.00</div>  
+					</div>
+					<div id="Accordion21Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_AD0AEA62-9FA2-5A81-CCE2-12CB77673A3D"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_AD0AEA62-9FA2-5A81-CCE2-12CB77673A3D","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"MON","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/MON" style="text-decoration:underline; color:#0000ee;">View the full MON chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(22);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">MSFT - Microsoft</div> 
+						<div class="price">$1.00</div>  
+					</div>
+					<div id="Accordion22Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script>
+						<div id="wikichartContainer_72C04457-2A36-B4C9-7256-127DD80F4CEC">
+						<div style="width: 100%; text-align: center; vertical-align: center; margin-top: 0px;">
+						<a href="http://get.adobe.com/flashplayer/">
+						<img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/>
+						<strong>Click here to download Flash Player now</strong></a></div></div>
+						<script type="text/javascript">
+						if (typeof(embedWikichart) != "undefined")
+						{embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_72C04457-2A36-B4C9-7256-127DD80F4CEC","100%","100%",{"embedCodeDate":"2012-11-17","rollingDate":"3 months","liveQuote":"true","showAnnotations":"false","ticker":"MSFT"},{});}
+						</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana">
+						<a href="http://www.wikinvest.com/chart/MSFT" style="text-decoration:underline; color:#0000ee;">
+						View the full MSFT chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div></div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(23);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">NFLX - Netflix</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion23Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_D907C361-D3CD-6B5E-902D-12CBDB149E5E"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_D907C361-D3CD-6B5E-902D-12CBDB149E5E","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"NFLX","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/NFLX" style="text-decoration:underline; color:#0000ee;">View the full NFLX chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(24);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">NVDA - NVIDIA Corporation</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion24Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_6AB31D7A-244C-7458-4DDF-12CC44270DD8"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_6AB31D7A-244C-7458-4DDF-12CC44270DD8","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"NVDA","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/NVDA" style="text-decoration:underline; color:#0000ee;">View the full NVDA chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(25);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">ORCL - Oracle</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion25Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_48502A68-83D6-3619-D524-12CC959C5BA7"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_48502A68-83D6-3619-D524-12CC959C5BA7","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"ORCL","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/ORCL" style="text-decoration:underline; color:#0000ee;">View the full ORCL chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(26);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">QCOM - Qualcomm</div> 
+						<div class="price">$1.00</div>  
+					</div>
+					<div id="Accordion26Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_375B859F-F6AD-C1C1-8566-12CCD9F5060F"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_375B859F-F6AD-C1C1-8566-12CCD9F5060F","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"QCOM","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/QCOM" style="text-decoration:underline; color:#0000ee;">View the full QCOM chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(27);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">SBUX - Starbucks</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion27Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_02F9A664-25E1-A9FD-C7B3-12CD30DF0E65"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_02F9A664-25E1-A9FD-C7B3-12CD30DF0E65","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"SBUX","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/SBUX" style="text-decoration:underline; color:#0000ee;">View the full SBUX chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(28);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">SIRI - Sirius Satellite</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion28Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_36ADDFFB-8801-514B-801F-12CD893D9086"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_36ADDFFB-8801-514B-801F-12CD893D9086","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"SIRI","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/SIRI" style="text-decoration:underline; color:#0000ee;">View the full SIRI chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(29);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">SPLS - Staples</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion29Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_B2AB2544-0CA2-BED6-3929-12CDE3631879"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_B2AB2544-0CA2-BED6-3929-12CDE3631879","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"SPLS","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/SPLS" style="text-decoration:underline; color:#0000ee;">View the full SPLS chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(30);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">TTWO - Take-Two Interactive Software, Inc.</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion30Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_6E5F37C4-A3C5-DC82-60AB-12CE3C4288B6"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_6E5F37C4-A3C5-DC82-60AB-12CE3C4288B6","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"TTWO","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/TTWO" style="text-decoration:underline; color:#0000ee;">View the full TTWO chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(31);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">TXN - Texas Instruments</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion31Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_48AA3D1B-B623-8B29-DDF4-12CEA990AA90"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_48AA3D1B-B623-8B29-DDF4-12CEA990AA90","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"TXN","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/TXN" style="text-decoration:underline; color:#0000ee;">View the full TXN chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(32);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">VOD - Vodafone</div> 
+						<div class="price">$1.00</div> 
+					</div>
+				</div>
+					<div id="Accordion32Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_B14D65B2-8ED4-C17A-F855-12CEEAA00614"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_B14D65B2-8ED4-C17A-F855-12CEEAA00614","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"VOD","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/VOD" style="text-decoration:underline; color:#0000ee;">View the full VOD chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(33);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">YHOO - Yahoo</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion33Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_69D8F612-C56B-DA7A-BA7C-12CF3B9A78F6"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_69D8F612-C56B-DA7A-BA7C-12CF3B9A78F6","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"YHOO","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/YHOO" style="text-decoration:underline; color:#0000ee;">View the full YHOO chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(34);" onselectstart="return false;"> 
+						<div class="TitleTextAlign">ZNGA - Zynga Inc.</div> 
+						<div class="price">$1.00</div> 
+					</div>
+					<div id="Accordion34Content" class="AccordionContent">
+						<script src="http://charts.wikinvest.com/wikinvest/wikichart/javascript/scripts.php" type="text/javascript"></script><div id="wikichartContainer_043F9E18-56F6-49F1-6FE4-12CFC5E1E5DC"><div style="width: 100%; text-align: center; vertical-align: center; margin-top: 22px;"><a href="http://get.adobe.com/flashplayer/"><img src="http://cdn.wikinvest.com/wikinvest/images/adobe_flash_logo.gif" alt="Flash" style="border-width: 0px;"/><br/>Flash Player 9 or higher is required to view the chart<br/><strong>Click here to download Flash Player now</strong></a></div></div><script type="text/javascript">if (typeof(embedWikichart) != "undefined") {embedWikichart("http://charts.wikinvest.com/WikiChartMini.swf","wikichartContainer_043F9E18-56F6-49F1-6FE4-12CFC5E1E5DC","100%","100%",{"startDate":"13-11-2012","endDate":"18-11-2012","showAnnotations":"true","ticker":"ZNGA","embedCodeDate":"2012-11-18","liveQuote":"true"},{});}</script><div style="font-size:9px;text-align:right;width:100%;font-family:Verdana"><a href="http://www.wikinvest.com/chart/ZNGA" style="text-decoration:underline; color:#0000ee;">View the full ZNGA chart</a> at <a href="http://www.wikinvest.com/">Wikinvest</a></div>
+					</div>
+				</div>
+				<!--<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(35);" onselectstart="return false;"> <div class="TitleTextAlign">Accordion 1
+						</div> <div class="price">$1.00</div> 
+					</div>
+				</div>
+					<div id="Accordion35Content" class="AccordionContent">Information Space 1.</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(36);" onselectstart="return false;"> <div class="TitleTextAlign">Accordion 1
+						</div> <div class="price">$1.00</div> 
+					</div>
+				</div>
+					<div id="Accordion36Content" class="AccordionContent">Information Space 1.</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(37);" onselectstart="return false;"> <div class="TitleTextAlign">Accordion 1
+						</div> <div class="price">$1.00</div> 
+					</div>
+				</div>
+					<div id="Accordion37Content" class="AccordionContent">Information Space 1.</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(38);" onselectstart="return false;"> <div class="TitleTextAlign">Accordion 1
+						</div> <div class="price">$1.00</div> 
+					</div>
+				</div>
+					<div id="Accordion38Content" class="AccordionContent">Information Space 1.</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(39);" onselectstart="return false;"> <div class="TitleTextAlign">Accordion 1
+						</div> <div class="price">$1.00</div> 
+					</div>
+				</div>
+					<div id="Accordion39Content" class="AccordionContent">Information Space 1.</div>
+				<div class="TitleAndPriceSizing">
+					<div class="AccordionTitle" onclick="runAccordion(40);" onselectstart="return false;"> <div class="TitleTextAlign">Accordion 1
+						</div> <div class="price">$1.00</div> 
+					</div>
+				</div>
+					<div id="Accordion40Content" class="AccordionContent">Information Space 1.</div>-->
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

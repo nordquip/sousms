@@ -48,15 +48,18 @@
 * 	Remove whitespaces
 * 	Remove ASCII characters <32 //FILTER_SANITIZE_STRING
 * 	Remove ASCII characters >127
-* 	Return info
+* 	Compare with original input
+*   Return true if equivalent, false if not
 * ELSE IF (infoType == float) //FILTER_SANITIZE_FLOAT
 * 	Remove all characters except digits, +-.
-* 	Return info
+* 	Compare with original input
+*   Return true if equivalent, false if not
 * ELSE IF (infoType == integer) //FILTER_SANITIZE_INT
 * 	Remove all characters except digits, +-
-* 	Return info
+* 	Compare with original input
+*   Return true if equivalent, false if not
 * ELSE
-* 	Return infoType error
+* 	Return false
 * ENDIF
 
 ##Securities Info

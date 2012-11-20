@@ -1,27 +1,41 @@
 /*
-	Initialization script for SOUSMS database
+	one-time Initialization script for SOUSMS database
 	Pete Nordquist	121019
+
+	Usage: 
+	cd <directory-holding-sousmsInit.sql>
+	mysql -v -u <desiredMYSQLuser> -p 
+		create database <desiredDatabaseName>;
+		use <desiredDatabaseName>;
+		source sousmsInit.sql;
+		exit;
 */
 
-
-/* Create DB */
-/* notice no drop here -- first must figure out how to back up the existing db */
--- create database if not exists sousms;
--- use sousms;
 
 /* 
 the source command is a handy command that
 textually includes of the contents of the file you name
 
 NOTE:
-All sql source command references are relative to 
-just inside the src/ directory in the repository
-because these commands are executed by the build script, which executes
-from this directory.
-
-execute the file to 'source in' the tables
+The file names following the source keyword are relative to 
+the repository's src/database directory
+where this script assumes it is running.
 */
-source sousmsDeclareTables.sql;
 
-/* execute the file to 'source in' the interfaces */
-source ../shared/sousmsDeclareStoredProcs.sql;
+-- initialize the tables
+source sousmsDeclareTables.sql;
+source sousmsTradeEngineTables.sql;
+-- preload tables
+source loadSymbolTable.sql;
+source loadUserTable.sql;
+source loadCashForUsers.sql;
+
+-- initialize the stored procedures
+source sousmsDeclareStoredProcs.sql;
+-- NOTE: all sourcing of procedures needs to be done from
+-- sousmsDeclareStoredProcs.sql.
+-- The build script sources in this file every time it runs,
+-- which provides us the ability to update the procedures often
+-- without affecting the tables.
+
+---- DO NOT add source commands below this line ----

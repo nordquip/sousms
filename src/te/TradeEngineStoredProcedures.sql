@@ -1,37 +1,104 @@
 /* 
- * Lists headers of, and information on, stored procedures needed by 
+ * Lists headers of, and/or information on, stored procedures needed by 
  * the Trade Engine team.
  */
 
+-- sp_symbolToSymID
+-- Converts a symbol to a symbol ID.
+DROP PROCEDURE IF EXISTS sp_symbolToSymID;
+DELIMITER //
+CREATE PROCEDURE `sp_symbolToSymID` (
+	stockSymbol varchar(8)
+)
+BEGIN
+	SELECT symID FROM Symbol WHERE Symbol.symbol = stockSymbol;
+END;
+//
 
-insertSell(
-	IN userID  int(11),
-	IN stockSymbol  varchar(50),
-	IN numShares int(11),
-	IN price  numeric(13,2)
-	)
-	/*INSERT INTO OpenOrders (userID, stockSymbol, shares, orderType, price, requestTime) 
-		VALUES (userID, stockSymbol, shares,
+DELIMITER ;
+
+-- sp_insertSell
+DROP PROCEDURE IF EXISTS sp_insertSell;
+DELIMITER //
+CREATE PROCEDURE `sp_insertSell` (
+	IN userID_in  int(11),
+	IN symbolID_in  int(11),
+	IN shares_in int(11),
+	IN price_in  numeric(13,2)
+)
+BEGIN
+	INSERT INTO OpenOrders (userID, symID, shares, orderType, price, requestTime) 
+		VALUES (userID_in, symbolID_in, shares_in,
 		(SELECT `typeID` FROM OrderTypes WHERE `description` LIKE 'Sell'), 
-		price, NOW());
-		*/
+		price_in, NOW());
+	SELECT 'Your trade has been queued.' AS statusmsg;
+END;
+//
 
-getShareBalance(
-	IN userID	int(11),
-	IN stockSymbol	varchar(50)
+DELIMITER ;
+
+-- sp_getShareBalance
+DROP PROCEDURE IF EXISTS sp_getShareBalance;
+delimiter //
+CREATE PROCEDURE sp_getShareBalance(
+	IN userID_in  int(11),
+	IN symbolID_in  int(11)
 	)
-	-- Returns the user's holdings of the specified symbol
-	
-getAllOpenOrders()
-	-- Returns userID, stockSymbol, shares, orderType, price from all records of the OpenOrders table
-	-- then deletes these records from OpenOrders
-	
-DELIMITER $$
-CREATE PROCEDURE `sp_getUserIdFromToken`(token char(32))
+BEGIN
+	SELECT Portfolio.`Shares`, Symbol.`Symbol` FROM Portfolio
+	JOIN Symbol ON Portfolio.`SymID` = Symbol.`SymID`
+	WHERE Portfolio.`UserID` = userID_in 
+	AND Portfolio.`SymID` = symbolID_in;
+END;
+//
+
+delimiter ;
+
+-- sp_getAllOpenOrders
+DROP PROCEDURE IF EXISTS sp_getAllOpenOrders;
+DELIMITER //
+CREATE PROCEDURE `sp_getAllOpenOrders` ()
+BEGIN
+	-- Returns all records of the OpenOrders table
+	SELECT  openorders.orderID,
+			openorders.userID, 
+			openorders.symID, 
+			symbol.symbol,
+			openorders.shares,
+			openorders.orderType,
+			ordertypes.description AS typedesc,
+			openorders.price
+		FROM openorders
+			JOIN symbol ON openorders.symID = symbol.symID
+			JOIN ordertypes ON openorders.orderType = ordertypes.typeid
+		ORDER BY orderID;
+END;
+//
+
+DELIMITER ;
+
+-- sp_deleteOpenOrder
+-- deletes the record corresponding to orderID from OpenOrders
+DROP PROCEDURE IF EXISTS sp_deleteOpenOrder;
+DELIMITER //
+CREATE PROCEDURE `sp_deleteOpenOrder` (orderID INT)
+BEGIN
+	DELETE FROM openorders WHERE openorders.orderID = orderID;
+END;
+//
+
+DELIMITER ;
+
+-- sp_getUserIdFromToken
+DROP PROCEDURE IF EXISTS sp_getUserIdFromToken;
+DELIMITER //
+CREATE PROCEDURE `sp_getUserIdFromToken`(
+	token char(32)
+)
 BEGIN
 	DECLARE lnUserID INT;
-	DECLARE ldExpireTime DATETIME;
-	DECLARE loginCursor CURSOR FOR SELECT UserID, ExpTime FROM logins
+	DECLARE ldExpireTime TIMESTAMP;
+	DECLARE loginCursor CURSOR FOR SELECT UserID, EndTS FROM login
 		WHERE logins.token = token;
 	DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
 		SELECT -1 AS userid, 'The login was not found' AS statusmsg;
@@ -45,6 +112,272 @@ BEGIN
 		SELECT -1 AS userid, 'The login expired' AS statusmsg; 
 	END IF;
 END;
-$$
+//
 
 DELIMITER ;
+
+-- sp_insertBuy
+-- Nov 5, 2012 Created By Jeff Karmy, with Jeff Miller's help
+DROP PROCEDURE IF EXISTS sp_insertBuy;
+DELIMITER //
+CREATE PROCEDURE `sp_insertBuy` (
+	IN userID int,
+	IN symbolID int,
+	IN shares int,
+	IN price numeric(13,2)
+)
+BEGIN
+	INSERT INTO OpenOrders (userID, symID, shares, orderType, price, requestTime)
+	VALUES (userID, symbolID, shares, (SELECT typeID FROM OrderTypes WHERE description LIKE 'Buy'), price, NOW());
+	SELECT 'Your trade has been queued' AS statusmsg;
+END;
+//
+
+DELIMITER ;
+
+-- sp_getCash
+-- returns user's cash
+DROP PROCEDURE IF EXISTS sp_getCash;
+DELIMITER //
+CREATE PROCEDURE `sp_getCash` (
+	userID INT
+)
+BEGIN
+	SELECT SUM(balance) AS totalbalance FROM cash WHERE cash.userID = userID;
+END;
+//
+
+DELIMITER ;
+
+-- sp_getPrice
+-- returns latest stock price
+DROP PROCEDURE IF EXISTS sp_getPrice;
+DELIMITER //
+CREATE PROCEDURE `sp_getPrice` (
+	symID INT
+)
+BEGIN
+	SELECT bestAskPrice AS price
+	FROM feed
+		JOIN symbol ON symbol.symbol = feed.symbol
+	WHERE symbol.symID = symID
+	ORDER BY feed.date DESC,
+		feed.time DESC
+	LIMIT 1;
+END;
+//
+
+DELIMITER ;
+
+-- sp_buy
+-- executes "buy" behavior for given order ID:
+--   get current cash, current price, limit price
+--   if limit price is not null and limit price is less than current price
+--     status is "limit price has not been met", skip to end
+--   let total price = current price * number of shares
+--   if current cash is greater than or equal to total price
+--     insert negative balance (-1 * total price) into "cash" table for given user
+--     insert into stock holdings (userID, symID) if not exists
+--     update stock holdings (shares, datemodified) in "portfolio" table for (userID, symID)
+--     delete order for given order ID
+--     roll back changes if any failures
+--   report status
+DROP PROCEDURE IF EXISTS sp_buy;
+DELIMITER //
+CREATE PROCEDURE `sp_buy` (
+	openOrderID INT
+)
+BEGIN
+	DECLARE lnUserID, lnSymID, lnShares INT;
+	DECLARE lnLimitPrice, lnCurrentCash, lnCurrentPrice, lnTotalPrice NUMERIC(13,2);
+	BEGIN
+		DECLARE openordersCursor CURSOR FOR
+			SELECT userID, symID, shares, price
+			FROM openorders JOIN ordertypes ON openorders.orderType = ordertypes.typeID
+			WHERE openorders.orderid = openOrderID AND ordertypes.description = 'Buy';
+		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
+			SELECT 100 AS errcode, CONCAT('Buy order #', openOrderID, ' not found.') AS statusmsg;
+		END;
+		OPEN openordersCursor;
+		FETCH openordersCursor INTO lnUserID, lnSymID, lnShares, lnLimitPrice;
+		CLOSE openordersCursor;
+	END;
+	BEGIN
+		DECLARE cashCursor CURSOR FOR
+			SELECT SUM(balance) FROM cash WHERE cash.userID = userID;
+		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
+			SELECT 200 AS errcode, 'User has no account.' AS statusmsg;
+		END;
+		OPEN cashCursor;
+		FETCH cashCursor INTO lnCurrentCash;
+		CLOSE cashCursor;
+	END;
+	BEGIN
+		DECLARE priceCursor CURSOR FOR
+			SELECT bestAskPrice AS price
+			FROM feed
+				JOIN symbol ON symbol.symbol = feed.symbol
+			WHERE symbol.symID = symID
+			ORDER BY feed.date DESC,
+				feed.time DESC
+			LIMIT 1;
+		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
+			SELECT 300 AS errcode, 'Stock price not found in feed.' AS statusmsg;
+		END;
+		OPEN priceCursor;
+		FETCH priceCursor INTO lnCurrentPrice;
+		CLOSE priceCursor;
+	END;
+	IF NOT ISNULL(lnUserID) AND NOT ISNULL(lnSymID) AND NOT ISNULL(lnShares) AND NOT ISNULL(lnCurrentCash) AND NOT ISNULL(lnCurrentPrice) THEN
+		IF NOT ISNULL(lnLimitPrice) AND lnLimitPrice < lnCurrentPrice THEN
+			SELECT 400 AS errcode, 'Limit price not yet reached.' AS statusmsg;
+		ELSE
+			SET lnTotalPrice = lnCurrentPrice * lnShares;
+			IF lnCurrentCash < lnTotalPrice THEN
+				DELETE FROM openorders WHERE openorders.orderID = openOrderID;
+				SELECT 500 AS errcode, 'Not enough cash on hand to complete transaction.' AS statusmsg;
+			ELSE
+				INSERT INTO cash (UserID, Balance) VALUES (lnUserID, (-1 * lnTotalPrice));
+				INSERT IGNORE INTO portfolio (UserID, SymID, Shares) VALUES (lnUserID, lnSymID, 0);
+				UPDATE portfolio SET
+					Shares = Shares + lnShares,
+					DateModified = NOW()
+				WHERE UserID = lnUserID AND SymID = lnSymID;
+				DELETE FROM openorders WHERE openorders.orderID = openOrderID;
+				SELECT 0 AS errcode, CONCAT('Buy order #', openOrderID, ' completed successfully.') AS statusmsg;
+			END IF;
+		END IF;
+	END IF;
+END;
+//
+
+DELIMITER ;
+
+-- sp_sell
+-- executes "sell" behavior for given order ID:
+--   get current shares, current price, limit price(will be added later)
+--   if limit price is not null and limit price is more than current price
+--     status is "limit price has not been met", skip to end
+--   set total price = current price * number of shares
+--   if current shares are greater than or equal to total price
+--     insert positive balance = total price into balance of the User table 
+--     update stock holdings (shares, datemodified) in "portfolio" table for (userID, symID)
+--     delete order for given order ID
+--   else report that user does not have enough shares
+--     roll back changes if any failures
+--   report status
+DROP PROCEDURE IF EXISTS sp_sell;
+DELIMITER //
+CREATE PROCEDURE `sp_sell` (
+	openOrderID INT
+)
+BEGIN
+	DECLARE InUserID, InSymID, InShares, InCurrentShares INT;
+	DECLARE InLimitPrice, InCurrentPrice, InTotalPrice FLOAT(13,2);
+
+	BEGIN
+		DECLARE openordersCursor CURSOR FOR
+			SELECT userID, symID, shares, price
+			FROM OpenOrders JOIN OrderTypes ON OpenOrders.orderType = OrderYypes.typeID
+			WHERE OpenOrders.orderID = openOrerderID AND orderTypes.description = 'Sell';
+
+		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
+			SELECT 101 AS errcode, CONCAT('Sell order #' openOrderID, ' not found.') 
+				AS statusmsg;
+
+		OPEN openordersCursor;
+		FETCH openordersCursor INTO InUserID, InSymID, InShares, InLimitPrice;
+		CLOSE openordersCursor;
+	END;
+	BEGIN
+		DECLARE shareCursor CURSOR FOR
+			SELECT Shares FROM Portfolio WHERE Portfolio.Symbol = InSymID;
+
+		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
+			SELECT 201 AS errcode, 'User has no shares for that company.' AS statusmsg;
+
+		OPEN shareCursor;
+		FETCH shareCursor INTO InCurrentShares;
+		Close shareCursor;
+	END;
+	BEGIN
+		DECLARE priceCursor CURSOR FOR
+			SELECT BestBidPrice AS price 
+			FROM Feed
+			WHERE Symbol = InSymID
+			ORDER BY feed.date DESC, feed.time DESC
+			LIMIT 1;
+
+		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
+			SELECT 300 AS errcode, 'Stock price not found in feed.' AS statusmsg;
+
+		OPEN priceCursor;
+		FETCH priceCursor INTO InCurrentPrice;
+		Close priceCursor;
+	END; 
+	
+	IF NOT ISNULL (InUserID) AND NOT ISNULL(InSymID) AND NOT ISNULL(InShares) 
+	AND NOT ISNULL(InCurrentShares) AND NOT ISNULL(InCurrentPrice) THEN
+	
+		IF NOT ISNULL(InLimitPrice) AND InLimitPrice > InCurrentPrice THEN
+			SELECT 400 AS errcode, 'Limit price not yet reached.' AS statusmsg;
+		ELSE
+			SET InTotalPrice = InCurrentPrice *InShares;
+			
+			IF InCurrentShares < InShares THEN
+				DELETE FROM OpenOrders WHERE OpenOrders.orderID = openOrderID;
+				SELECT 501 AS errcode, 'Not enough shares on hand to complete transaction.'
+				AS statusmsg;
+			ELSE
+				UPDATE User SET
+					Balance = Balance + (InCurrentPrice * InShares);
+				UPDATE Portfolio SET
+					Shares = Shares - InShares,
+					DateModified = now()
+				WHERE UserID = InUserID AND Symbol = InSymID;
+				DELETE FROM OpenOrders WHERE OpenOrders.orderID = openOrderID;
+				SELECT 1 AS errcode, 
+				CONCAT('Sell order #', openOrderID, ' completed successfully.') AS statusmsg;
+				
+			END IF;
+		END IF;		
+					
+	ELSE 
+		SELECT 600 AS errcode, 'One or more of the needed values where not filled in.') 
+			AS statusmsg;
+	END IF;
+END;
+//
+
+DELIMITER ;
+
+--sp_transactionHistory
+--At the end of a buy or sell send the info to Transaction table
+--Will have to turn symID into varchar somehow
+DROP PROCEDURE IF EXISTS sp_transactionHistory;
+DELIMITER //
+CREATE PROCEDURE `sp_transactionHistory` (
+	IN IntransID	INT,
+	IN InuserID 	INT,
+	IN InorderType	DESCRIPTION,
+	IN InsymID	INT,
+	IN InnumOfShares	INT,
+	IN InsharePrice	FLOAT(10,2),
+	IN IntotalPrice	FLOAT(10,2)
+	IN Intime		DATETIME,
+)
+BEGIN
+	DECLARE transType BOOLEAN;
+	
+	IF orderType = 'buy' THEN
+		transType = true;
+	ELSE
+		transType = false;
+
+	INSERT INTO Transaction(TransID,UserID,Amount,Symbol,SymbolPrice,SellBuy,Shares,TransTime)	
+	VALUES (IntransID,InuserID,IntotalPrice,InsymID,InsharePrice,IntransType,InnumOfShares,Intime);
+END;
+//
+
+DELIMITER ;
+

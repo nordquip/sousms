@@ -19,6 +19,10 @@ private final static int INTERVAL = 500;
 private final String path = ""; 
 private static String pathSeparator;
 private Executor executor;
+
+//This file path would probably optimally be passed as an arg over MAIN
+private final String CONFIG_FILENAME = "/var/www/html/service/sousmsConfigLocal.xml";
+private ConfigData configData; 
     
     /**
     * Starts the Engine
@@ -29,9 +33,12 @@ private Executor executor;
     public static void main(String args[]) {
         pathSeparator = System.getProperty("path.separator");
     
+        
         //instantiate our variables
         Engine engine = new Engine();
-        engine.executor = new Executor();
+        engine.configData = new ConfigData(engine.CONFIG_FILENAME);
+        
+        engine.executor = new Executor(engine.configData);
         
         //begin the mainloop
         engine.mainLoop();
@@ -50,11 +57,12 @@ private Executor executor;
     private void mainLoop() {
         while(checkShutdown() == false) {
             try {
-                executor.doTick();
                 Thread.sleep(INTERVAL);
+                executor.doTick();
             }
             catch(Exception e) {
-                //System.err.println("##DEBUG: " + e);
+                e.printStackTrace();
+                return; //Will call shutdown and halt the engine
             } 
         }
     }
