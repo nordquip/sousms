@@ -13,8 +13,8 @@ BEGIN
 SELECT p.symbol, p.numberShares, f.bestAskPrice
 FROM portfolio p, feed f
 WHERE UserID = @UserID;
-END//
-Delimiter;
+END //
+Delimiter ;
 
 -- Name: getTradeHistory
 -- Author: Josh Carroll
@@ -37,7 +37,6 @@ BEGIN
     INSERT INTO trade history (SYMBOL, SHARES, PRICE);
 END//
 Delimiter ;
-
 -- Name: buy
 -- Author: Martin DeWitt
 -- Parameters: UID = Particular Users Unique Identification Number
@@ -112,7 +111,7 @@ Begin
 			Set success='1';
 			set totalSell=prc*num;
 			insert into Stock (UserID, SymbolID, SellBuy, Shares, Price)
-				values (uid, sym, 0, num, totalSell);
+				values (uid, sym, '0', num, totalSell);
 			update Cash 
 				set Balance=Balance+totalSell;
 			if sellSuccess='0' then
@@ -144,6 +143,26 @@ BEGIN
 END //
 DELIMITER ;
 
+--Author: Martin DeWitt
+--Description: Returns Login Token
+Drop Procedure if exists getToken;
+Delimiter //
+Create Procedure getToken(
+	in Uid int, 
+	out token varchar(32)
+)
+Begin
+	Declare isUser int;
+	Declare tok varChar(32);
+	Select UserID From User Where UserID=Uid Into isUser;
+	If isUser=Uid then
+		Select Token from Login where UserID=Uid into tok;
+		Set token=tok;
+	Else 	
+		Set token='NoTokenForYouBudday';
+	End If; 
+End //
+Delimiter ;
 
 
 
