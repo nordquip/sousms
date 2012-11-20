@@ -20,7 +20,7 @@ cd /var/git/sousms-new
 git log -1 >  /var/git/sousms-new/src/web/version.xml
 
 # Generate last commit version.txt file to be called by version.php.
- cat /var/www/html/version.xml | grep "commit" | cut -c1-17 | sed s/"commit "/\<commit\>/g > /var/www/html/version.txt
+sh /var/git/sousms/src/build/version.sh
 
 # Copy the new build-script to the correct cronjob location
 cp /var/git/sousms-new/src/build/serverBuildScript.sh /var/git/serverBuildScript.sh
