@@ -70,22 +70,14 @@ if (!isset($_POST["jsondata"])) {
                                     $msg->statusdesc = "Error!";
                                 }
                                 break;
-                        case "getTokenFromTradeHistory":                      
-                        	$msg = new UATokenMessage();                  // Not sure if UATokenMessage
-                        	$history = new TradeHistory(                  // is neccessary for trade history?
-                        		$req->history->numShares,               
-                        		$req->history->price,                  
-                        		$req->history->symbol,                
-                        		$req->history->transDate,             
-                        		$req->history->userID,                 
-                        	);                                            
-                        	$history->mysql_query("CALL getTradeHistory(userID)")
+                        case "getTradeHistoryFromToken":
+                         	$userID = sp_getUserIdFromToken($token);
+                         	$history = new TradeHistory($userID);
+                                                                   
+                         	$history->mysql_query("CALL getTradeHistory(userID)")
 					or die('Could not locate trade history: ' .mysql_error());
-      
-								               
-                        	$msg->statuscode = 0;                          
-                                $msg->statusdesc = "Retrieved trade history"; 
-                        	break;	                                      // Please feel free to comment!
+
+                         	break;		                                     
 			default:
 				//we don't implement that unknown behavior
 				header('HTTP/1.1 400 Bad Request');
