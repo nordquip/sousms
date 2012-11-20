@@ -38,4 +38,20 @@ This procedure must:
 1. query database 
 2. return numShares, price, symbol, transDate (transaction date) for the specified userID
 */
-getTradeHistory(IN UserID int(11))
+drop procedure if exists getTradeHistory;
+delimiter//
+create procedure getTradeHistory(
+IN UserID int(11),
+OUT Symbol char(5),
+     OUT Shares int(11),
+     OUT Price float(10,4),
+OUT TStamp timestamp not null,
+OUT SellBuy binary (1) not null,
+);
+
+begin
+select Symbol, Shares, Price, TStamp, SellBuy
+from Stock
+where UserID = UserID;
+end//
+delimiter;
