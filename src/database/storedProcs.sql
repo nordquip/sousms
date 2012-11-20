@@ -4,16 +4,16 @@
 -- Description: Returns portfolio based off of user's identification number.
 
 DROP PROCEDURE IF EXISTS getPortfolio;
-DELIMITER //
+Delimiter //
 CREATE PROCEDURE getPortfolio(
-@ UserID
+    IN UID int
 )
-AS
-BEGIN	
-SELECT p.symbol, p.numberShares, f.bestAskPrice
-FROM portfolio p, feed f
-WHERE UserID = @UserID;
-END //
+BEGIN
+	SELECT UserID, SymID, Shares
+	FROM portfolio
+	WHERE UserID = UID;
+	
+END//
 Delimiter ;
 
 -- Name: getTradeHistory
