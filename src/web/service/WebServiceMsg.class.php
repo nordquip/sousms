@@ -8,6 +8,6 @@
 */
 
 class WebServiceMsg {
-	public $behavior, $success, $statuscode, $statusdesc;
+	public $behavior, $success, $statuscode, $statusdesc, $retval;
 };
 ?>
