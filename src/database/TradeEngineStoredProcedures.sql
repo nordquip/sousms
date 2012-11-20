@@ -160,9 +160,10 @@ CREATE PROCEDURE `sp_getPrice` (
 	symID INT
 )
 BEGIN
-	SELECT bestAskPrice AS price
-	FROM feed
-		JOIN symbol ON symbol.symbol = feed.symbol
+	SELECT feed.bestAskPrice AS price,
+		symbol.symbol
+	FROM symbol
+		JOIN feed ON symbol.symbol = feed.symbol
 	WHERE symbol.symID = symID
 	ORDER BY feed.date DESC,
 		feed.time DESC

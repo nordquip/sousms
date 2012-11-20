@@ -6,32 +6,34 @@
 *   This code wants to live in a Singleton...
 ******************************************************************/
 
+require_once($_SERVER['DOCUMENT_ROOT'] . "/service/ConfigManager.class.php");
+
 function getSecret() {
 	//this is the private key that is used to encrypt/decrypt the cookie data
 	//it should be stored in a secure location on the server (for demonstration purposes only)
 	//how can this be made more secure?
-	return "qwertpoiuy";
+	//return "qwertpoiuy";
+	$cfg = new ConfigManager();
+	$secret = $cfg->loginHash;
+	$cfg = null;
+	return $secret;
 }
 
 //store encrypted cookies in user-agent
 function setLoginCookie($data, $exptimestamp) {
 	//magic
-	/*
 	$cookieData = serialize($data);
 	$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_CBC);
 	srand();
 	$iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
 	$encryptedData = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, getSecret(), $cookieData, MCRYPT_MODE_CBC, $iv);
 	setcookie("usr", base64_encode($encryptedData) . ":" . $iv, $exptimestamp);
-	*/
-	setcookie("usr", serialize($data), $exptimestamp);
-
+	//setcookie("usr", serialize($data), $exptimestamp);
 }
 
 //get and decrypt encrypted cookies from user-agent
 function getLoginCookie() {
 	//voodoo
-	/*
 	list($encryptedData, $iv) = explode(":", $_COOKIE["usr"]);
 	$rawData = mcrypt_decrypt(
 		MCRYPT_RIJNDAEL_256,
@@ -41,8 +43,7 @@ function getLoginCookie() {
 		$iv
 	);
 	return unserialize($rawData);
-	*/
-	return unserialize($_COOKIE["usr"]);
+	//return unserialize($_COOKIE["usr"]);
 }
 
 // BEGIN REMOVE

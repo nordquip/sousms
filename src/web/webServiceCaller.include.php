@@ -1,12 +1,11 @@
 <?php
 /******************************************************************
-* test.php
-* By: Jeff Miller (millerj3@students.sou.edu), 2012-11-05
-* Description: Trade engine testing
+* webServiceCaller.include.php
+* Description: Web Services Caller
 ******************************************************************/
 
-include("WSRequestManager.class.php");
 include($_SERVER['DOCUMENT_ROOT'] . "/login.include.php"); //include from root of server
+include($_SERVER['DOCUMENT_ROOT'] . "/WSRequestManager.class.php"); //this must execute after login check
 
 global $behaviors;
 // All behaviors supported by sousms from both TE and UA departments.
@@ -19,7 +18,8 @@ $behaviors = array(
 	"limitOrderSell" => "Limit Sell",
 	"cancelOrder" => "Cancel Order",
 	"viewOpenOrders" => "View Open Orders",
-	"viewOrderHistory" => "View Order History"
+	"viewOrderHistory" => "View Order History",
+	"currentCash" => "Current Cash"
 );
 // END of behavior list
 
@@ -44,7 +44,9 @@ function callService(&$reqTxt,
 			"token" => getLoginCookie(),
 			"symbol" => $symbol,
 			"shares" => $shares,
-			"limitprice" => $limitprice
+			"limitprice" => $limitprice,
+			"username" => $username,
+			"password" => $password
 		);
 		$ws = new WSRequestManager();
 		$ws->setServiceAddress("$department");

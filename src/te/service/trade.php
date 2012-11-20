@@ -7,12 +7,9 @@
 
 include("DbConn.class.php");
 include("ParameterValidator.class.php");
-//include("MarketBuy.class.php");
-include("MarketSell.class.php");
-
-class TradeEngineMessage {
-	public $behavior, $success, $statuscode, $statusdesc;
-};
+include("TradeEngineBuy.class.php");
+include("TradeEngineSell.class.php");
+include("WebServiceMsg.class.php");
 
 //this list contains the parameters that are expected by each behavior
 $behaviors = array(
@@ -42,11 +39,12 @@ if (!isset($_POST["jsondata"])) {
 			exit("<h1>HTTP Error 400 - Bad Request</h1>\nUnknown behavior: &quot;" . htmlentities($req->behavior) . "&quot;.");
 		} else {
 			$b = $req->behavior;
-			$retval = new TradeEngineMessage();
-			$retval->behavior = $b;
-			$retval->success = false;
-			$retval->statuscode = 0;
-			$retval->statusdesc = array();
+			$msg = new WebServiceMsg();
+			$msg->behavior = $b;
+			$msg->success = false;
+			$msg->statuscode = 0;
+			$msg->statusdesc = array();
+			$msg->retval = null;
 			$userID = -1;
 			try {
 				//Begin validation of parameters
@@ -58,90 +56,92 @@ if (!isset($_POST["jsondata"])) {
 					if ($v->isValid("token", $req->token)) {
 						$userID = $v->getTranslatedValue();
 					} else {
-						$retval->statuscode = 1;
+						$msg->statuscode = 1;
 					}
-					$retval->statusdesc[] = $v->getMessage();
+					$msg->statusdesc[] = $v->getMessage();
 				}
 				//does requested behavior require "symbol" param?
 				if (in_array("symbol", $behaviors[$b])) {
 					if ($v->isValid("symbol", $req->symbol)) {
 						$symID = $v->getTranslatedValue();
 					} else {
-						$retval->statuscode = 2;
+						$msg->statuscode = 2;
 					}
-					$retval->statusdesc[] = $v->getMessage();
+					$msg->statusdesc[] = $v->getMessage();
 				}
 				//does requested behavior require "shares" param?
 				if (in_array("shares", $behaviors[$b])) {
 					if (!$v->isValid("shares", $req->shares)) {
-						$retval->statuscode = 3;
-						$retval->statusdesc[] = $v->getMessage();
+						$msg->statuscode = 3;
+						$msg->statusdesc[] = $v->getMessage();
 					}
 				}
 				//does requested behavior require "limitprice" param?
 				if (in_array("limitprice", $behaviors[$b])) {
 					if (!$v->isValid("limitprice", $req->limitprice)) {
-						$retval->statuscode = 4;
-						$retval->statusdesc[] = $v->getMessage();
+						$msg->statuscode = 4;
+						$msg->statusdesc[] = $v->getMessage();
 					}
 				}
 				//if there were any errors, set behavior to "test" to send back parameter error messages
-				if ($retval->statuscode != 0) {
+				if ($msg->statuscode != 0) {
 					$b = "test"; 
 				}
 				$v = null;
 				//End validation of parameters
 			} catch (Exception $e) {
-				$retval->statusdesc[] = "Validation Failure: " . $e->getMessage();
+				$msg->statusdesc[] = "Validation Failure: " . $e->getMessage();
 				$b = "test";
-				$retval->statusdesc[] = $myConn->getDebug();
+				$msg->statusdesc[] = $myConn->getDebug();
 			}
 			switch ($b) {
 			case "test":
-				$retval->success = false;
-				$retval->statuscode = -100;
-				$retval->statusdesc[] = "Symbol: " . $req->symbol;
-				$retval->statusdesc[] = "Shares: " . $req->shares;
-				$retval->statusdesc[] = "Limit: " . $req->limitprice;
+				$msg->success = false;
+				$msg->statuscode = -100;
+				$msg->statusdesc[] = "Symbol: " . $req->symbol;
+				$msg->statusdesc[] = "Shares: " . $req->shares;
+				$msg->statusdesc[] = "Limit: " . $req->limitprice;
 				break;
 			case "marketBuy":
-				/*
-				$mb = new MarketBuy();
-				$retval->statuscode = $mb->buy($myConn->getConn(), $userID, $symID, $req->shares);
-				$retval->success = true;
+				$mb = new TradeEngineBuy();
+				$msg->statusdesc[] = $mb->buy($myConn->getConn(), $userID, $symID, $req->shares, null);
+				$msg->success = true;
 				$mb = null;
-				*/
 				break;
 			case "marketSell":
-				$ms = new MarketSell();
-				$retval->statusdesc[] = $ms->sell($myConn->getConn(), $userID, $symID, $req->shares);
-				$retval->success = true;
+				$ms = new TradeEngineSell();
+				$msg->statusdesc[] = $ms->sell($myConn->getConn(), $userID, $symID, $req->shares, null);
+				$msg->success = true;
 				$ms = null;
 				break;
 			case "limitOrderBuy":
-				$retval->statuscode = 1;
-				$retval->statusdesc[] = "Behavior not yet implemented";
+				$lb = new TradeEngineBuy();
+				$msg->statusdesc[] = $lb->buy($myConn->getConn(), $userID, $symID, $req->shares, $req->limitprice);
+				$msg->success = true;
+				$lb = null;
 				break;
 			case "limitOrderSell":
-				$retval->statuscode = 1;
-				$retval->statusdesc[] = "Behavior not yet implemented";
+				$ls = new TradeEngineSell();
+				$msg->statusdesc[] = $ls->sell($myConn->getConn(), $userID, $symID, $req->shares, $req->limitprice);
+				$msg->success = true;
+				$ls = null;
 				break;
 			case "cancelOrder":
-				$retval->statuscode = 1;
-				$retval->statusdesc[] = "Behavior not yet implemented";
+				$msg->statuscode = 1;
+				$msg->statusdesc[] = "Behavior not yet implemented";
 				break;
 			case "viewOpenOrders":
-				$retval->statuscode = 1;
-				$retval->statusdesc[] = "Behavior not yet implemented";
+				$msg->statuscode = 1;
+				$msg->statusdesc[] = "Behavior not yet implemented";
 				break;
 			case "viewOrderHistory":
-				$retval->statuscode = 1;
-				$retval->statusdesc[] = "Behavior not yet implemented";
+				$msg->statuscode = 1;
+				$msg->statusdesc[] = "Behavior not yet implemented";
 				break;
 			}
 			header("Content-Type: application/json;charset=UTF-8");
-			echo json_encode($retval);
-			//echo json_encode($retval, JSON_PRETTY_PRINT); // JSON_PRETTY_PRINT only works in PHP 5.4.0+
+			echo json_encode($msg);
+			//echo json_encode($msg, JSON_PRETTY_PRINT); // JSON_PRETTY_PRINT only works in PHP 5.4.0+
 			$myConn = null;
 			exit;
 		}

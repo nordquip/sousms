@@ -1,18 +1,18 @@
 <?php
 /*
- *MarketSell.class.php
+ *TradeEngineSell.class.php
  *
  *Calls sp_insertSell to add a 'Sell' record to the OpenOrders table
  *@author Brittany Dighton
+ *Modified by Jeff Miller, 2012-11-19
  *
  */
  
- class MarketSell 
+ class TradeEngineSell 
  {	
  
-	public function sell($conn, $user, $symID, $shares) 
-	{	
-		$price = NULL;
+	public function sell($conn, $user, $symID, $shares, $price) 
+	{
 		$shareBal = 0;
 		$symbol = "";
 		$mssg = "";

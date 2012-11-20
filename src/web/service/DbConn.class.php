@@ -5,23 +5,18 @@
 * Description: Create a database connection for use by other classes
 ******************************************************************/
 
+require_once "ConfigManager.class.php";
+
 class DbConn {
 	private $conn, $host, $dbname, $un, $pwd, $debug;
 	
 	public function __construct($host = "localhost", $dbname = "sousms", $un = "", $pwd = "") {
 		$this->debug = "";
 		if ($host == "localhost" && strlen($un) == 0 && strlen($pwd) == 0) {
-			$config = $_SERVER['DOCUMENT_ROOT'] . '/service/sousmsConfigLocal.xml'; //use server version if production environment
-			if (!file_exists($config)) {
-				$config = 'sousmsConfigLocal.xml'; //use local version if development environment
-			}
-			if (file_exists($config)) {
-				$this->debug .= "Config: $config, ";
-				$doc = simplexml_load_file($config);
-				$dbname = $doc->mysqlDatabase;
-				$un = $doc->mysqlUser;
-				$pwd = $doc->mysqlPassword;
-			}
+			$cfg = new ConfigManager();
+			$dbname = $cfg->mysqlDatabase;
+			$un = $cfg->mysqlUser;
+			$pwd = $cfg->mysqlPassword;
 		}
 		$this->debug .= "Host: $host, DB: $dbname, UN: $un";
 		$this->host = $host;
