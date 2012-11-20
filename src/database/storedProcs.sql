@@ -21,22 +21,16 @@ Delimiter ;
 -- Parameters: UID = Particular Unigue Users ID
 -- Description: Stored procudure accepts a single UserID (UID) 
 --		and returns the Symbol, number of Shares, and Price of Shares.
-
 DROP PROCEDURE IF EXISTS getTradeHistory;
 DELIMITER //
 CREATE PROCEDURE getTradeHistory(
-    IN UID int,
-    OUT Symbol char,
-    OUT Shares int,
-    OUT Price float
+    IN UID int
 )
 BEGIN 
-    SELECT Symbol FROM stock WHERE UserID=UID INTO Symbol;
-    SELECT Shares FROM stock WHERE UserID=UID INTO Shares;
-    SELECT Price FROM stock WHERE UserID=UID INTO Price;
-    
+    SELECT Symbol, Shares, Price FROM stock WHERE UserID=UID;    
 END //
-DELIMITER ; 
+DELIMITER ;
+
 -- Name: buy
 -- Author: Martin DeWitt
 -- Parameters: UID = Particular Users Unique Identification Number
