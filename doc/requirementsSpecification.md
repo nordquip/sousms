@@ -95,3 +95,33 @@ openclose   user must close system
 	</tr>
 	
 </table>
+
+## Trade/Sell Functionality 
+
+<table>
+	<tr>
+		<td>Trade.Auth</td>
+		<td>User must login before submitting Trade</td>
+	</tr>
+	<tr>
+		<td>Trade.Sell.Stock</td>
+		<td>User must select an owned stock from User account</td>
+	</tr>
+	<tr>
+		<td>Trade.Sell.Quantity</td>
+		<td>User must enter a desired amount of shares that must be greater than "0"</td>
+	</tr>	
+	<tr>
+		<td>Trade.Sell.Invalid</td>
+		<td>System must inform User if the specified quantity is greater than what is available</td>
+	</tr>
+	<tr>
+		<td>Trade.Sell.Retry</td>
+		<td>System must give the User unlimited attempts to enter a quantity and submit for trade</td>
+	</tr>
+	<tr>
+		<td>Trade.Sell.Confirmed</td>
+		<td>If Successful, System must update User account</td>
+	</tr>
+	
+</table>
