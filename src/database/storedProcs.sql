@@ -23,20 +23,20 @@ Delimiter ;
 --		and returns the Symbol, number of Shares, and Price of Shares.
 
 DROP PROCEDURE IF EXISTS getTradeHistory;
-Delimiter //
+DELIMITER //
 CREATE PROCEDURE getTradeHistory(
     IN UID int,
-    OUT Symbol char(5),
-    OUT Shares int(11),
-    OUT Price float(10,4)
+    OUT Symbol char,
+    OUT Shares int,
+    OUT Price float
 )
 BEGIN 
-    SELECT Symbol, Shares, Price
-    FROM stock
-    WHERE UserID=UID
-    INSERT INTO trade history (SYMBOL, SHARES, PRICE);
-END//
-Delimiter ;
+    SELECT Symbol FROM stock WHERE UserID=UID INTO Symbol;
+    SELECT Shares FROM stock WHERE UserID=UID INTO Shares;
+    SELECT Price FROM stock WHERE UserID=UID INTO Price;
+    
+END //
+DELIMITER ; 
 -- Name: buy
 -- Author: Martin DeWitt
 -- Parameters: UID = Particular Users Unique Identification Number
