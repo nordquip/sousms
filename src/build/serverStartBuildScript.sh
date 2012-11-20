@@ -14,7 +14,7 @@ git clone git://github.com/nordquip/sousms.git /var/git/sousms-new/
 
 # TODO Check to see if the Git repository was pulled correctly.
 
-<<<<<<< HEAD:src/build/serverBootScript.sh
+<<<<<< HEAD:src/build/serverBootScript.sh
 
 cd /var/git/sousms-new
 git log -1 >  /var/git/sousms-new/src/web/version.xml
