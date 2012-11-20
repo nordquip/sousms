@@ -30,6 +30,9 @@ rm /var/www/html/* -r
 # Move downloaded repository to official location
 mv /var/git/sousms-new /var/git/sousms
 
+# Copy version.php from build directory to web/.
+cp /var/git/sousms/src/build/version.php /var/git/sousms/src/web
+
 # Move repository files to correct server locations
 cp -R /var/git/sousms/src/web/* /var/www/html/
 # Copy mobile team's web directory to the hosted folder.
