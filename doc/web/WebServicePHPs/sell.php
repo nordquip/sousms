@@ -1,44 +1,24 @@
 <?php
-/******************************************************************
-* sell.php
-* By: Melissa Dadoly, 2012-11-2
-* Description: Sell stocks.
-******************************************************************/
+// include the page that calls the web services
+// NOTE: see webServiceCaller.include.php for the behaviors that can be
+// called and the data items that can be passed.
+// to call new services and pass new data items, edit
+// webServiceCaller.include.php as described in the 'NOTE:' sections
+// shown there.
 
-include("WSRequestManager.class.php");
+// NOTE:
+// the post variable "department" must have value either TE (trade engine)
+// or UA (user accounts).  This value causes the appropriate web service 
+// to be called.
+
 include("login.include.php");
-
-class SaleItems {
-	public $symbol, $numberShares, $price;
-};
-
-function SellStock {
-	echo "Sell function not yet implemented"
-	//function to sell stock goes here
-	//this function will:
-	//get the current price for the stock the user selected for $symbol
-	//check if the user owns the number of shares ($numberShares) they selected
-	//if user does not own this stock or enough shares, the user will receive and error message
-	//else, the user will receive a message indicating success and the database will be updated
-	//to reflect the sale (total money and stocks owned will be updated)
-};
-
-//make sure session hasn't expired	
-$msg = "";
-if (isset($_POST["un"]) && isset($_POST["pwd"])) {
-	$msg = parseCredentials($_POST["un"], $_POST["pwd"], $token, $expires);
-	//echo $token;
-	//exit;
-	if (isset($token) && strlen($token) == 32 && isset($expires)) {
-		setLoginCookie($token, $expires->getTimestamp());
-		header("Location: $jumpto");
-	}
-}
+include $_SERVER['DOCUMENT_ROOT'] . '/webServiceCaller.include.php';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
@@ -46,7 +26,7 @@ if (isset($_POST["un"]) && isset($_POST["pwd"])) {
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <META HTTP-EQUIV="Expires" CONTENT="-1">
 <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
-<title>N2 GTC Order</title>
+<title>Sell Stock</title>
 <META NAME="ROBOTS" CONTENT="NONE, NOARCHIVE">
 <META NAME="GOOGLEBOT" CONTENT="NOARCHIVE">
 <meta http-equiv="Expires" content="Tue, 04 Dec 1997 21:29:02 GMT">
@@ -61,16 +41,20 @@ if (isset($_POST["un"]) && isset($_POST["pwd"])) {
 @import "gallery.css";
 </style>
 </head>
+
 <body>
-		<center><img src="images/banner.jpg" width="810" height="160" alt="NASDAQ Ninja logo" /></center>
-	<!-- end #header -->
-    <ul id="maintab" class="basictab">
+
+<a name="glosstop"></a> <center><img src="images/banner.jpg" width="810" height="160" alt="NASDAQ Ninja logo" /></center>
+<!-- end #header -->
+
+<!-- begin menu stuff -->
+<ul id="maintab" class="basictab">
 			<li rel="homesubs"><a href="home.php"><img 
 
 src="images/Home.jpg" onmouseover=this.src="images/Homeselected.jpg" 
 
 onmouseout=this.src="images/Home.jpg" /></a></li>
-			<li class="selected" rel="tradesubs"><a href="trading.php"><img 
+			<li rel="tradesubs"><a href="trading.php"><img 
 
 src="images/Trade.jpg" onmouseover=this.src="images/Tradeselected.jpg" 
 
@@ -83,7 +67,7 @@ onmouseover=this.src="images/Lookupselected.jpg" onmouseout=this.src="images/Loo
 src="images/Settings.jpg" onmouseover=this.src="images/Settingsselected.jpg" 
 
 onmouseout=this.src="images/Settings.jpg" /></a></li>
-            <li rel="helpsubs"><a href="help.php"><img src="images/Help.jpg" 
+            <li class="selected" rel="helpsubs"><a href="help.php"><img src="images/Help.jpg" 
 
 onmouseover=this.src="images/Helpselected.jpg" onmouseout=this.src="images/Help.jpg" /></a></li>
             <li rel="aboutsubs"><a href="about.php"><img src="images/About_Us.jpg" 
@@ -96,6 +80,12 @@ onmouseover=this.src="images/About_Usselected.jpg" onmouseout=this.src="images/A
 onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images/Contact_Us.jpg" 
 
 /></a></li>
+            
+            
+            
+            
+            
+
 </ul>
 
 <div id="homesubs" class="submenustyle">
@@ -105,7 +95,9 @@ onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images
 <div id="tradesubs" class="submenustyle">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="buy.php">Buy</a>
-<a href="sell.php"><span style="color: rgb(255, 255, 0);">Sell</span></a>
+<a href="sell.php">Sell</a>
+<a href="currentcash.php">Current Cash</a>
+<a href="tradehistory.php">Trade History</a>
 </div>
 
 <div id="looksubs" class="submenustyle">
@@ -136,9 +128,9 @@ onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images
 <a href="faq.php"><img src="images/FAQ.jpg" onmouseover=this.src="images/FAQselected.jpg" 
 
 onmouseout=this.src="images/FAQ.jpg" /></a>
-<a href="glossary.php"><img src="images/Glossary.jpg" 
+<a href="glossary.php"><img src="images/Glossaryselected.jpg" 
 
-onmouseover=this.src="images/Glossaryselected.jpg" onmouseout=this.src="images/Glossary.jpg" /></a>
+onmouseover=this.src="images/Glossaryselected.jpg" onmouseout=this.src="images/Glossaryselected.jpg" /></a>
 </div>
 
 <div id="aboutsubs" class="submenustyle">
@@ -155,39 +147,82 @@ onmouseover=this.src="images/Glossaryselected.jpg" onmouseout=this.src="images/G
 initalizetab("maintab")
 </script>
 
-	<!-- end #menu -->
-	<div id="page">
-		<div id="page-bgtop">
-			<div id="page-bgbtm">
-				<div id="content">
-				
-					<div class="post">
-						<form name="sell" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-							<legend>Sell Stock:</legend><br />
-							Symbol: <select name="symbol">
-										<!--this will be filled in with all 40 stock symbols in the final version-->
-										<option value="MSFT">Microsoft</option>
-										<option value="INTC">Intel</option>
-										<option value="AAPL">Apple</option>
+<!-- end #menu -->
+
+<!--begin sell form -->
+<div align="center">
+<table>
+<tr>
+<td>	
+<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" autocomplete="off">
+	<fieldset>
+	<legend>Sell Stock:</legend><br /><br />
+    <input type="hidden" name="department" value="TE" />
+    <input type="hidden" name="transtype" value="marketSell" />
+    Symbol: <select name="symbol">
+										<option value="AAPL">Apple</option><option value="ADBE">Adobe Systems Incorporated</option>
+										<option value="ADSK">Autodesk, Inc.</option>
+										<option value="ALU">Alcatel / Lucent</option>
+										<option value="AMZN">Amazon</option>
+										<option value="ATVI">Activision Blizzard</option>
+										<option value="AXP">American Express</option>
+										<option value="CAKE">The Cheesecake Factory INC</option>
+										<option value="CMCSA">Comcast</option>
+										<option value="COKE">Coca-Cola</option>
+										<option value="CSCO">Cisco</option>
+										<option value="DIS">Disney</option>
+										<option value="DNKN">Dunkin Donuts</option>
+										<option value="EBAY">Ebay</option>
+										<option value="ERTS">Electronic Arts</option>
+										<option value="FB">Facebook</option>
+										<option value="GE">General Electric</option>
 										<option value="GOOG">Google</option>
-									</select><br />
-							Number of Shares: <input type="text" name="numberShares"><br />
-							<!--I'm guessing that we will soon have a way to get the price from the database that matches the users input-->
-							Selling Price:    <input type="text" name="price"><br />
-							<input type="submit" value="Submit" name="submit">
-						</form>
-					</div>
-					<div style="clear: both;">&nbsp;</div>
-				</div>
-				<!-- end #content -->
-	      </div>
-				<!-- end #sidebar -->
-				<div style="clear: both;">&nbsp;</div>
-			</div>
-		</div>
-	</div>
-	<!-- end #page -->
+										<option value="GRMN">Garmin</option>
+										<option value="HAS">Hasbro</option>
+										<option value="HSY">Hershey</option>
+										<option value="HOTT">Hot Topic</option>
+										<option value="INTC">Intel Corporation</option>
+										<option value="JBLU">Jetblue Airways Corp</option>
+										<option value="MON">Monsanto</option>
+										<option value="MSFT">Microsoft</option>
+										<option value="NFLX">Netflix</option>
+										<option value="NVDA">NVIDIA Corporation</option>
+										<option value="ORCL">Oracle</option>
+										<option value="PBG">Petrobank Energy and Resources</option>
+										<option value="QCOMM">Qualcomm</option>
+										<option value="RCL">Royal Caribbean Cruises</option>
+										<option value="SBUX">Starbucks</option>
+										<option value="SIRI">Sirius Satellite</option>
+										<option value="SPLS">Staples</option>
+										<option value="TTWO">Take-Two Interactive Software, Inc.</option>
+										<option value="TXN">Texas Instruments</option>
+										<option value="V">Visa</option>
+										<option value="VOD">Vodafone</option>
+										<option value="YHOO">Yahoo</option>
+										<option value="ZNGA">Zynga Inc.</option>
+									</select><br /><br />
+	Number of Shares: <input type="text" name="shares"><br />
+    <br />
+    <input type="submit" value="Submit" /><br />
+	</fieldset>
+  <br />
+  <strong>Return Value:</strong><br />
+  <?php echo (isset($resultObj->behavior) ? $resultObj->behavior : ""); ?><br />
+  <?php echo (isset($resultObj->success) ? $resultObj->success : ""); ?><br />
+  <?php echo (isset($resultObj->statuscode) ?
+	  $resultObj->statuscode : ""); ?><br />
+  <?php echo (isset($resultObj->statusdesc) ?
+	  json_encode($resultObj->statusdesc) : ""); ?><br />
+  <br />
+  <strong>Debug log:</strong><br />
+  <?php echo htmlentities($debuglog); ?>
+</form>
+</tr>
+</td>
+</table>
 </div>
+<!--end sell form stuff -->
+
 <div id="footer">
 	<p> &copy; 2012 Southern Oregon University 1250 Siskiyou Boulevard Ashland, OR 97520 541-552-7672</p>
     <p> Webpages may include live content from third parties.</p>
@@ -196,4 +231,5 @@ initalizetab("maintab")
 </div>
 <!-- end #footer -->
 </body>
+
 </html>
