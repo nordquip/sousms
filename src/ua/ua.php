@@ -7,6 +7,7 @@
 
 include("Credentials.class.php");
 include("PasswordRecover.class.php");
+include("TradeHistory.class.php");
 
 //this is the object format that the client expects from getTokenFromCredentials
 //what else might the client want to know?
