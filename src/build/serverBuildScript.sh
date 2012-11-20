@@ -31,14 +31,10 @@ rm /var/www/html/* -r
 # Move previously downloaded repository to official location
 mv /var/git/sousms-new /var/git/sousms
 
-<<<<<<< HEAD
 # Copy version.php from build directory to web/.
 cp /var/git/sousms/src/build/version.php /var/git/sousms/src/web
 
 # Move repository files to correct server locations
-=======
-# Copy web files to root apache folder
->>>>>>> cbb82ff7e802eabc9c66e7ef436a457713e9de1e
 cp -R /var/git/sousms/src/web/* /var/www/html/
 # Copy team src directories to the web folder
 cp -R /var/git/sousms/src/build /var/www/html/

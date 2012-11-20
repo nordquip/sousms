@@ -26,10 +26,3 @@ cp /var/git/sousms-new/src/build/serverBuildScript.sh /var/git/serverBuildScript
 
 # Execute the new serverBuildScript
 sh /var/git/serverBuildScript.sh
-=======
-# Copy the new build-script to the correct cronjob location
-cp /var/git/sousms-new/src/build/serverBuildScript.sh /var/git/serverBuildScript.sh
-
-# Execute the newly downloaded serverBuildScript
-sh /var/git/serverBuildScript.sh
->>>>>>> cbb82ff7e802eabc9c66e7ef436a457713e9de1e:src/build/serverStartBuildScript.sh
