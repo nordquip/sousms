@@ -63,17 +63,17 @@ DELIMITER //
 CREATE PROCEDURE `sp_getAllOpenOrders` ()
 BEGIN
 	-- Returns all records of the OpenOrders table
-	SELECT  openorders.orderID,
-			openorders.userID, 
-			openorders.symID, 
-			symbol.symbol,
-			openorders.shares,
-			openorders.orderType,
-			ordertypes.description AS typedesc,
-			openorders.price
-		FROM openorders
-			JOIN symbol ON openorders.symID = symbol.symID
-			JOIN ordertypes ON openorders.orderType = ordertypes.typeid
+	SELECT  OpenOrders.orderID,
+			OpenOrders.userID, 
+			OpenOrders.symID, 
+			Symbol.symbol,
+			OpenOrders.shares,
+			OpenOrders.orderType,
+			OrderTypes.description AS typedesc,
+			OpenOrders.price
+		FROM OpenOrders
+			JOIN Symbol ON OpenOrders.symID = Symbol.symID
+			JOIN OrderTypes ON OpenOrders.orderType = OrderTypes.typeid
 		ORDER BY orderID;
 END;
 //
@@ -86,7 +86,7 @@ DROP PROCEDURE IF EXISTS sp_deleteOpenOrder;
 DELIMITER //
 CREATE PROCEDURE `sp_deleteOpenOrder` (orderID INT)
 BEGIN
-	DELETE FROM openorders WHERE openorders.orderID = orderID;
+	DELETE FROM OpenOrders WHERE OpenOrders.orderID = orderID;
 END;
 //
 
@@ -146,7 +146,7 @@ CREATE PROCEDURE `sp_getCash` (
 	userID INT
 )
 BEGIN
-	SELECT SUM(balance) AS totalbalance FROM cash WHERE cash.userID = userID;
+	SELECT SUM(balance) AS totalbalance FROM Cash WHERE Cash.userID = userID;
 END;
 //
 
@@ -160,13 +160,13 @@ CREATE PROCEDURE `sp_getPrice` (
 	symID INT
 )
 BEGIN
-	SELECT feed.bestAskPrice AS price,
-		symbol.symbol
-	FROM symbol
-		JOIN feed ON symbol.symbol = feed.symbol
-	WHERE symbol.symID = symID
-	ORDER BY feed.date DESC,
-		feed.time DESC
+	SELECT Feed.bestAskPrice AS price,
+		Symbol.symbol
+	FROM Symbol
+		JOIN Feed ON Symbol.symbol = Feed.symbol
+	WHERE Symbol.symID = symID
+	ORDER BY Feed.date DESC,
+		Feed.time DESC
 	LIMIT 1;
 END;
 //
@@ -197,8 +197,8 @@ BEGIN
 	BEGIN
 		DECLARE openordersCursor CURSOR FOR
 			SELECT userID, symID, shares, price
-			FROM openorders JOIN ordertypes ON openorders.orderType = ordertypes.typeID
-			WHERE openorders.orderid = openOrderID AND ordertypes.description = 'Buy';
+			FROM OpenOrders JOIN OrderTypes ON OpenOrders.orderType = OrderTypes.typeID
+			WHERE OpenOrders.orderid = openOrderID AND OrderTypes.description = 'Buy';
 		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
 			SELECT CONCAT('Buy order #', openOrderID, ' not found.') AS statusmsg;
 		END;
@@ -208,7 +208,7 @@ BEGIN
 	END;
 	BEGIN
 		DECLARE cashCursor CURSOR FOR
-			SELECT SUM(balance) FROM cash WHERE cash.userID = userID;
+			SELECT SUM(balance) FROM Cash WHERE Cash.userID = userID;
 		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
 			SELECT 'User has no account.' AS statusmsg;
 		END;
@@ -219,11 +219,11 @@ BEGIN
 	BEGIN
 		DECLARE priceCursor CURSOR FOR
 			SELECT bestAskPrice AS price
-			FROM feed
-				JOIN symbol ON symbol.symbol = feed.symbol
-			WHERE symbol.symID = symID
-			ORDER BY feed.date DESC,
-				feed.time DESC
+			FROM Feed
+				JOIN Symbol ON Symbol.symbol = Feed.symbol
+			WHERE Symbol.symID = symID
+			ORDER BY Feed.date DESC,
+				Feed.time DESC
 			LIMIT 1;
 		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
 			SELECT 'Stock price not found in feed.' AS statusmsg;
@@ -240,13 +240,13 @@ BEGIN
 			IF lnCurrentCash < lnTotalPrice THEN
 				SELECT 'Not enough cash on hand to complete transaction.' AS statusmsg;
 			ELSE
-				INSERT INTO cash (UserID, Balance) VALUES (lnUserID, (-1 * lnTotalPrice));
-				INSERT IGNORE INTO portfolio (UserID, SymID, Shares) VALUES (lnUserID, lnSymID, 0);
-				UPDATE portfolio SET
+				INSERT INTO Cash (UserID, Balance) VALUES (lnUserID, (-1 * lnTotalPrice));
+				INSERT IGNORE INTO Portfolio (UserID, SymID, Shares) VALUES (lnUserID, lnSymID, 0);
+				UPDATE Portfolio SET
 					Shares = Shares + lnShares,
 					DateModified = NOW()
 				WHERE UserID = lnUserID AND SymID = lnSymID;
-				DELETE FROM openorders WHERE openorders.orderID = openOrderID;
+				DELETE FROM OpenOrders WHERE OpenOrders.orderID = openOrderID;
 				SELECT CONCAT('Buy order #', openOrderID, ' completed successfully.') AS statusmsg;
 			END IF;
 		END IF;
