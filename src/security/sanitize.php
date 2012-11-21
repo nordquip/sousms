@@ -23,8 +23,7 @@ print ("Sanitize.php");
 
 //Username
 
-function checkName()
-{
+function checkName(){
 	$pattern ='[a-zA-Z0-9]*'; 
 	if(preg_match($pattern, $username))
 	{
@@ -38,11 +37,10 @@ function checkName()
 
 
 //Password
-function checkpassword()
-{             
+function checkpassword(){             
 	$p = $password;
 	If (empty($password)){
-             echo 'Your password is empty';
+             echo 'Please enter a password.';
     	}
 	else{
         	//accept password entry and sanitize it
@@ -56,54 +54,53 @@ function checkpassword()
 
 //Email
 // Check for an email address:
-function checkemail()
-{
-	if (empty($email))
-	{
-		$errors[] = 'You forgot to enter your email address.';
+function checkemail(){
+	$pattern = '/[a-zA-Z0-9_-.+]+@[a-zA-Z0-9-]+.[a-zA-Z]+/';
+	if (empty($email)){
+		echo 'Please enter an email address.';
 	}
         //checks to see if it is a proper token
-  elseif(preg_match("/[a-zA-Z0-9_-.+]+@[a-zA-Z0-9-]+.[a-zA-Z]+/", $_POST['email'] > 0))
-  	{
-		$e = mysqli_real_escape_string($dbc, trim($_POST['email']));
-		
+  	elseif(preg_match($pattern, $email)){
+  		echo $email . '\'s syntax is OK.'; 
+		$e = mysqli_real_escape_string($dbc, $email); // There is no $dbc variable, this won't work. ~HB
 	}
 }
 
 //Int
-
-function checkint()
-{
-	if(is_int($int))
-	  {
-	 	print("is int");
-	 	print($int);
-	  }
-	else
-	  {
-		print("is not int");
-	 	print($int);
-	  }
+function checkint(){
+	$bool = false;
+	if (empty($int)){
+		echo 'Please enter an integer.';
+	}
+	else{
+		$bool = is_int($int);
+	}
+	if($bool){
+	  	echo $int . " is an int.";  	
+	}
+	else{
+	  	echo $int . " is not an int.";
+	}
+	return $bool;
 }
 
 
 //Float
-
-
- function checkFloat()
-{
+ function checkFloat(){
     $pattern = '/^[0-9]\{0,\}[.]\{0,1\}[0-9]\{0,\}$/';
-		
-    $x = preg_match($pattern, $float);
-	if ($x)
-	{
-		print ($float . " is float");
+	if (empty($float)){
+		echo 'You forgot to enter your email address.';
 	}
-	else
-	  {
-	  	print ($float . " Is not a float");
-	  
-	  }         
+	else{
+		$x = preg_match($pattern, $float);
+	}
+	if ($x){
+		echo $float . " is float";
+	}
+	else{
+	  	echo $float . " Is not a float";
+	}
+	return $x;
 }
 
 
