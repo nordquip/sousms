@@ -19,6 +19,8 @@ sh var/git/src/build/version.sh
 # TODO Run smoke tests, log results, and exit if smoke tests failed here
 
 # Stop running services
+sh /var/www/html/DataFeed/stopFeed.sh
+sleep 2
 service httpd stop
 service mysqld stop
 
@@ -49,12 +51,14 @@ cp -R /var/git/sousms/src/teTest /var/www/html/
 # TEMP FIX - Copy config file to accessible directories
 cp /var/git/sousmsConfig.xml.master /var/www/html/service/sousmsConfigLocal.xml
 cp /var/git/sousmsConfig.xml.master /var/www/html/te/service/sousmsConfigLocal.xml
+cp /var/git/sousmsConfig.xml.master /var/www/html/DataFeed/sousmsConfigLocal.xml
 
 # Copy version.php from build directory to apache directory
 cp /var/git/sousms/src/build/version.php /var/www/html/
 
 # TODO Run build/SQL scripts here, if we run any.
 
-# Restart services
-service httpd start
+# Start services
 service mysqld start
+service httpd start
+sh /var/www/html/DataFeed/startFeed.sh &

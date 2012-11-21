@@ -272,29 +272,31 @@ CREATE PROCEDURE `sp_sell` (
 	openOrderID INT
 )
 BEGIN
-	DECLARE InUserID, InSymID, InShares, InCurrentShares INT;
-	DECLARE InLimitPrice, InCurrentPrice, InTotalPrice FLOAT(13,2);
+	DECLARE lnUserID, lnSymID, lnShares, lnCurrentShares INT;
+	DECLARE lnLimitPrice, lnCurrentPrice, lnTotalPrice NUMERIC(13,2);
 
 	BEGIN
 		DECLARE openordersCursor CURSOR FOR
 			SELECT userID, symID, shares, price
-			FROM OpenOrders JOIN OrderTypes ON OpenOrders.orderType = OrderYypes.typeID
-			WHERE OpenOrders.orderID = openOrerderID AND orderTypes.description = 'Sell';
+			FROM OpenOrders JOIN OrderTypes ON OpenOrders.orderType = OrderTypes.typeID
+			WHERE OpenOrders.orderID = openOrerderID AND OrderTypes.description = 'Sell';
 
 		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
 			SELECT 101 AS errcode, CONCAT('Sell order #' openOrderID, ' not found.') 
 				AS statusmsg;
+			END;
 
 		OPEN openordersCursor;
-		FETCH openordersCursor INTO InUserID, InSymID, InShares, InLimitPrice;
+		FETCH openordersCursor INTO lnUserID, lnSymID, lnShares, lnLimitPrice;
 		CLOSE openordersCursor;
 	END;
 	BEGIN
 		DECLARE shareCursor CURSOR FOR
-			SELECT Shares FROM Portfolio WHERE Portfolio.Symbol = InSymID;
+			SELECT Shares FROM Portfolio WHERE Portfolio.SymID = lnSymID;
 
 		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
 			SELECT 201 AS errcode, 'User has no shares for that company.' AS statusmsg;
+			END;
 
 		OPEN shareCursor;
 		FETCH shareCursor INTO InCurrentShares;
@@ -304,47 +306,44 @@ BEGIN
 		DECLARE priceCursor CURSOR FOR
 			SELECT BestBidPrice AS price 
 			FROM Feed
-			WHERE Symbol = InSymID
+				JOIN symbol ON symbol.symbol = feed.symbol
+			WHERE Symbol.symID = symID
 			ORDER BY feed.date DESC, feed.time DESC
 			LIMIT 1;
 
 		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
 			SELECT 300 AS errcode, 'Stock price not found in feed.' AS statusmsg;
+			END;
 
 		OPEN priceCursor;
-		FETCH priceCursor INTO InCurrentPrice;
+		FETCH priceCursor INTO lnCurrentPrice;
 		Close priceCursor;
 	END; 
 	
-	IF NOT ISNULL (InUserID) AND NOT ISNULL(InSymID) AND NOT ISNULL(InShares) 
-	AND NOT ISNULL(InCurrentShares) AND NOT ISNULL(InCurrentPrice) THEN
+	IF NOT ISNULL (lnUserID) AND NOT ISNULL(lnSymID) AND NOT ISNULL(lnShares) 
+	AND NOT ISNULL(lnCurrentShares) AND NOT ISNULL(lnCurrentPrice) THEN
 	
-		IF NOT ISNULL(InLimitPrice) AND InLimitPrice > InCurrentPrice THEN
+		IF NOT ISNULL(lnLimitPrice) AND lnLimitPrice > InCurrentPrice THEN
 			SELECT 400 AS errcode, 'Limit price not yet reached.' AS statusmsg;
 		ELSE
-			SET InTotalPrice = InCurrentPrice *InShares;
+			SET lnTotalPrice = lnCurrentPrice *lnShares;
 			
-			IF InCurrentShares < InShares THEN
+			IF lnCurrentShares < lnShares THEN
 				DELETE FROM OpenOrders WHERE OpenOrders.orderID = openOrderID;
 				SELECT 501 AS errcode, 'Not enough shares on hand to complete transaction.'
 				AS statusmsg;
 			ELSE
-				UPDATE User SET
-					Balance = Balance + (InCurrentPrice * InShares);
+				INSERT INTO cash (UserID, Balance) VALUES (lnUserID, lnTotalPrice);
 				UPDATE Portfolio SET
-					Shares = Shares - InShares,
+					Shares = Shares - lnShares,
 					DateModified = now()
-				WHERE UserID = InUserID AND Symbol = InSymID;
+				WHERE UserID = lnUserID AND SymID = lnSymID;
 				DELETE FROM OpenOrders WHERE OpenOrders.orderID = openOrderID;
-				SELECT 1 AS errcode, 
+				SELECT 0 AS errcode, 
 				CONCAT('Sell order #', openOrderID, ' completed successfully.') AS statusmsg;
 				
 			END IF;
 		END IF;		
-					
-	ELSE 
-		SELECT 600 AS errcode, 'One or more of the needed values where not filled in.') 
-			AS statusmsg;
 	END IF;
 END;
 //

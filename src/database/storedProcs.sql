@@ -127,13 +127,11 @@ Delimiter ;
 DROP PROCEDURE IF EXISTS `getToken`;
 DELIMITER //
 CREATE PROCEDURE `getToken`(
-    IN UserID int,
-    IN Passwords varchar(40),
-    IN Token varchar(32)
+    IN UserID int
 )
 BEGIN
-    INSERT INTO LOGIN (Token)
-    Values (Token);
+    SELECT Token
+    FROM user;
 END //
 DELIMITER ;
 
