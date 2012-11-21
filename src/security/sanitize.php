@@ -6,12 +6,24 @@
 //Password
 //Int
 //Float
+
+//vars from input
+$username = trim($_POST['username'])
+
+$password = trim($_POST['password']);
+
+$email = trim($_POST['email']);
+
+$int = trim($_POST['int']);
+
+$float = trim($_POST['float']);
+
 print ("Sanitize.php");
 
 
 //Username method
-$username = trim($_POST['username'])
-checkName($userName)
+
+function checkName()
 {
 	if(preg_match([a-zA-Z0-9]*, $username))
 	{
@@ -26,8 +38,9 @@ checkName($userName)
 
 
 //Password
-$password = trim($_POST['password']);
-                
+
+   function checkpassword()
+   {             
      If (empty($password) || (!(ctype_alnum($password))))
         {
             $mistakes[] = 'Your password is either empty or Incorrect';
@@ -41,25 +54,28 @@ $password = trim($_POST['password']);
          //following characters: \x00, \n, \r, \, ', " and \x1a.
             $password = mysql_real_escape_string(stripslashes($password));
         }
-
+	}
 
 //Email
 // Check for an email address:
-$email = trim($_POST['email']);
-	if (empty($email)) {
+function checkemail()
+{
+	if (empty($email))
+	{
 		$errors[] = 'You forgot to enter your email address.';
 	}
         //checks to see if it is a proper token
-	elseif(preg_match("/[a-zA-Z0-9_-.+]+@[a-zA-Z0-9-]+.[a-zA-Z]+/", $_POST['email'] > 0))
-		{
+  elseif(preg_match("/[a-zA-Z0-9_-.+]+@[a-zA-Z0-9-]+.[a-zA-Z]+/", $_POST['email'] > 0))
+  	{
 		$e = mysqli_real_escape_string($dbc, trim($_POST['email']));
 		
 	}
-
+}
 
 //Int
-$int = trim($_POST['int']);
 
+function checkint()
+{
 	if(is_int($int))
 	  {
 	 	print("is int");
@@ -70,21 +86,35 @@ $int = trim($_POST['int']);
 		print("is not int");
 	 	print($int);
 	  }
-
-//Float
-$float = trim($_POST['float']);
-
- function checkFloat($float)
-{
-    $pattern = '/^[0-9]\{0,\}[.]\{0,1\}[0-9]\{0,\}$/';
-		
-    $x = preg_match($pattern, $float)
-	if ($x)
-	{
-		print ($float " is float");
-	}         
 }
 
 
+//Float
 
+
+ function checkFloat()
+{
+    $pattern = '/^[0-9]\{0,\}[.]\{0,1\}[0-9]\{0,\}$/';
+		
+    $x = preg_match($pattern, $float);
+	if ($x)
+	{
+		print ($float . " is float");
+	}
+	else
+	  {
+	  	print ($float . " Is not a float");
+	  
+	  }         
+}
+
+
+//calls the functions
+checkName();
+checkpassword();
+checkemail();
+checkint();
+checkFloat();
+
+//EOF
 ?>
