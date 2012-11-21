@@ -12,7 +12,9 @@ rm -rf /var/git/sousms-backup
 # Generate new repository version files
 cd /var/git/sousms
 git log -1 >  /var/git/sousms-new/src/web/version.xml
-git log -1 >  /var/git/sousms-new/src/web/version.txt
+
+# run script to parse version info and write to /var/www/html/version.txt
+sh var/git/src/build/version.sh
 
 # TODO Run smoke tests, log results, and exit if smoke tests failed here
 
