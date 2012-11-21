@@ -141,7 +141,7 @@ public Executor(ConfigData configData) {
         Class typeClass;
         Order order;
         try {
-    	    cs = dBConn.prepareCall("{call getAllOpenOrders()}");
+    	    cs = dBConn.prepareCall("{call sp_getAllOpenOrders()}");
             rs = cs.executeQuery();
             while (rs.next()) {
                 
