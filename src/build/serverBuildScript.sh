@@ -55,7 +55,7 @@ cp /var/git/sousmsConfig.xml.master /var/www/html/te/service/sousmsConfigLocal.x
 cp /var/git/sousmsConfig.xml.master /var/www/html/DataFeed/sousmsConfigLocal.xml
 
 # Copy version.php from build directory to apache directory
-cp /var/git/sousms/src/build/version.php /var/www/html/
+cp /var/git/sousms/src/build/version.php /var/www/html/version.php
 
 # TODO Run build/SQL scripts here, if we run any.
 
