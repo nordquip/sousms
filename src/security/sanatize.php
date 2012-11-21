@@ -58,6 +58,9 @@ if (isset($_POST['submitted'])) {
                         else
                         {
                             //accept password entry and sanitize it
+                            //mysql_real_escape_string() calls MySQL's library function 
+                            //mysql_real_escape_string, which prepends backslashes to the 
+                            //following characters: \x00, \n, \r, \, ', " and \x1a.
                             $password = mysql_real_escape_string(stripslashes($password));
                         }
 	//different password check
