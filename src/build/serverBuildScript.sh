@@ -59,4 +59,4 @@ cp /var/git/sousms/src/build/version.php /var/www/html/
 # Start services
 service mysqld start
 service httpd start
-sh /var/www/html/src/DataFeed/startFeed.sh &
+sh /var/www/html/DataFeed/startFeed.sh &
