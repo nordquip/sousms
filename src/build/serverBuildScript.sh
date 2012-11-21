@@ -19,7 +19,8 @@ sh var/git/src/build/version.sh
 # TODO Run smoke tests, log results, and exit if smoke tests failed here
 
 # Stop running services
-sh /var/www/html/DataFeed/stopFeed.sh
+cd /var/www/html/DataFeed/
+sh stopFeed.sh
 sleep 2
 service httpd stop
 service mysqld stop
@@ -61,4 +62,5 @@ cp /var/git/sousms/src/build/version.php /var/www/html/
 # Start services
 service mysqld start
 service httpd start
-sh /var/www/html/DataFeed/startFeed.sh &
+cd /var/www/html/DataFeed/
+sh startFeed.sh &
