@@ -8,7 +8,7 @@
 //Float
 
 //vars from input
-$username = trim($_POST['username'])
+$username = trim($_POST['username']);
 
 $password = trim($_POST['password']);
 
@@ -21,40 +21,38 @@ $float = trim($_POST['float']);
 print ("Sanitize.php");
 
 
-//Username method
+//Username
 
 function checkName()
 {
-	if(preg_match([a-zA-Z0-9]*, $username))
+	$pattern ='[a-zA-Z0-9]*'; 
+	if(preg_match($pattern, $username))
 	{
-		echo "Your username is ok.";
-		print($username);
+		echo $username . " is an acceptable username.";
 	}
 	else
 	{
-		print ("Wrong username.");
+		echo $username . " is not an acceptable username.";
 	}
 }
 
 
 //Password
-
-   function checkpassword()
-   {             
-     If (empty($password) || (!(ctype_alnum($password))))
-        {
-            $mistakes[] = 'Your password is either empty or Incorrect';
+function checkpassword()
+{             
+	$p = $password;
+	If (empty($password)){
+             echo 'Your password is empty';
     	}
-                
-    else
-        {
-         //accept password entry and sanitize it
-         //mysql_real_escape_string() calls MySQL's library function 
-    	 //mysql_real_escape_string, which prepends backslashes to the 
-         //following characters: \x00, \n, \r, \, ', " and \x1a.
-            $password = mysql_real_escape_string(stripslashes($password));
+	else{
+        	//accept password entry and sanitize it
+        	//mysql_real_escape_string() calls MySQL's library function 
+    		//mysql_real_escape_string, which prepends backslashes to the 
+        	//following characters: \x00, \n, \r, \, ', " and \x1a.
+        	$password = stripslashes(mysql_real_escape_string($password));
         }
-	}
+	echo 'Input password ' . $p . ' gets changed to ' . $password;
+}
 
 //Email
 // Check for an email address:
