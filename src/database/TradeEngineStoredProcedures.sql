@@ -160,7 +160,7 @@ CREATE PROCEDURE `sp_getPrice` (
 	symID INT
 )
 BEGIN
-	SELECT Feed.bestAskPrice AS price,
+	SELECT Feed.lastSale AS price,
 		Symbol.symbol
 	FROM Symbol
 		JOIN Feed ON Symbol.symbol = Feed.symbol
@@ -218,7 +218,7 @@ BEGIN
 	END;
 	BEGIN
 		DECLARE priceCursor CURSOR FOR
-			SELECT bestAskPrice AS price
+			SELECT lastSale AS price
 			FROM Feed
 				JOIN Symbol ON Symbol.symbol = Feed.symbol
 			WHERE Symbol.symID = symID
