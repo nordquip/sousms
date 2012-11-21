@@ -7,10 +7,12 @@ This file documents how to use the Trade Engine "Looper Executor". To be specifi
 Before you start, make sure you have all of the required components:
 
  * java version "1.6.0_35"
+	* CentOS package: java-1.6.0-openjdk.[your system architecture]
  * javac 1.6.0_35 (Java compiler)
- * Java MySQL JDBC Driver
- * GNU Make 3.81
+	* CentOS package: java-1.6.0-openjdk-devel.[your system architecture]
+ * GNU Make (any non-ancient version will do)
 
+Java MySQL JDBC Driver is no longer needed. A driver has been automatically bundled with the trade engine to avoid the massive headache of getting it to work.
 
 ###Getting started
 
@@ -21,7 +23,7 @@ To use the Trade Engine, you will need to be concerned with two files: the makef
 	
 On the next few lines, you should see the java files being compiled. On the last line, you should see "Engine STARTED". 
 
-Note: Make will check the compiled code against any "newer" source files. If it finds new source code, Make will re-compile it.
+If the engine fails to start, you'll get a fail message instead. Check the "Engine.log" file for an error message. It could be the config file wasn't set up right. But if you get a cryptic error message instead, submit a bug with the log entry and the Trade Engine Team will help you out.
 
 ###Getting Fancy
 
