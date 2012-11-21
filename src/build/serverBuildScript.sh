@@ -17,7 +17,7 @@ git log -1 >  /var/git/sousms-new/src/web/version.txt
 # TODO Run smoke tests, log results, and exit if smoke tests failed here
 
 # Stop running services
-sh /var/www/html/src/DataFeed/stopFeed.sh
+sh /var/www/html/DataFeed/stopFeed.sh
 sleep 2
 service httpd stop
 service mysqld stop
