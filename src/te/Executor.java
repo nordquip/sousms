@@ -18,15 +18,25 @@ import java.util.*;
 class Executor {
 
 //Mysql connection variables
-private String MYSQLDATABASE; 
-private String MYSQLUSER;
-private String MYSQLPASSWORD;
+private String  MYSQL_DATABASE; 
+private String  MYSQL_USER;
+private String  MYSQL_PASSWORD;
+private String    MYSQL_PORT;
+private String  MYSQL_HOST;
+private String  MYSQL_PROTOCOL;
+
+private final String    MYSQL_DEFAULT_USER        = "root";
+private final String    MYSQL_DEFAULT_PORT        = "3306";
+private final String    MYSQL_DEFAULT_HOST        = "localhost";
+private final String    MYSQL_DEFAULT_PROTOCOL    = "jdbc:mysql";
 private ConfigData configData; //We will get all of the mysql variables from here
 
 
 //This shouldn't need to change, except maybe between special platforms.
 private final static String DRIVER = "com.mysql.jdbc.Driver";
 
+//URL contains everything we need to connect to the database.
+String MYSQL_URL;
 //The connection to the database
 private Connection dBConn; 
 //The list of open orders to be executed. 
@@ -34,9 +44,28 @@ private PriorityQueue<Order> openOrders;
 
 public Executor(ConfigData configData) {
     this.configData = configData;
-    MYSQLDATABASE = configData.get("mysqlDatabase");
-    MYSQLUSER = configData.get("mysqlUser");
-    MYSQLPASSWORD = configData.get("mysqlPassword");
+    MYSQL_DATABASE = configData.get("mysqlDatabase");
+    MYSQL_PASSWORD = configData.get("mysqlPassword");
+    
+    if( (MYSQL_USER = configData.get("mysqlUser")) == null) {
+        MYSQL_USER = MYSQL_DEFAULT_USER;
+        System.err.println("[Warning] 'mysqlUser' not specified in config. Defaulting to: " + MYSQL_USER);
+    }
+    if( (MYSQL_PORT = configData.get("mysqlPort")) == null) {
+        MYSQL_PORT = MYSQL_DEFAULT_PORT;
+        System.err.println("[Warning] 'mysqlPort' not specified in config. Defaulting to: "+ MYSQL_PORT);
+    }
+    if( (MYSQL_HOST = configData.get("mysqlHost")) == null) {
+        MYSQL_HOST = MYSQL_DEFAULT_HOST;
+        System.err.println("[Warning] 'mysqlHost' not specified in config. Defaulting to: "+ MYSQL_HOST);
+    }
+    if( (MYSQL_PROTOCOL = configData.get("mysqlProtocol")) == null) {
+        MYSQL_PROTOCOL = MYSQL_DEFAULT_PROTOCOL;
+        System.err.println("[Warning] 'mysqlProtocol' not specified in config. Defaulting to: "+ MYSQL_PROTOCOL);
+    }
+    MYSQL_URL = MYSQL_PROTOCOL + "://" + MYSQL_HOST + ":" + MYSQL_PORT + "/" + MYSQL_DATABASE;
+    
+    
 }
 
     /**
@@ -93,7 +122,7 @@ public Executor(ConfigData configData) {
         
         //will throw sqlexeption if the data here is not correct.
         //a "no suitable driver for ..." Exception is also possible too
-        dBConn = DriverManager.getConnection(MYSQLDATABASE, MYSQLUSER, MYSQLPASSWORD);   
+        dBConn = DriverManager.getConnection(MYSQL_URL, MYSQL_USER, MYSQL_PASSWORD);   
     }
     
     /**

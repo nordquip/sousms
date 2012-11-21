@@ -17,7 +17,7 @@ class ConfigData {
     }
     
     public String get(String field) {
-        String retval = "None";
+        String retval = null;
         
         for(int i = 0; i < fieldData.length; i++) {
             if(fieldData[i].equals(field))
@@ -42,13 +42,16 @@ class ConfigData {
                 String[] arr = input.split(exp);
                 
                 if(arr.length < 2)
-                    System.err.println("Failed to get \'" + fieldData[i] + "\' from config file.");
+                    System.err.println("[CRITICAL] Failed to load \'" + fieldData[i] + "\' from config file.");
                 else
                     //Regex stores the match in [1]
                     valueData[i] = arr[1];
             }
             
             configFile.close();
-        } catch (IOException ioe) {System.err.println("Failed to load Config file: " + fileName);}
+        } catch (IOException ioe) {
+            System.err.println("[CRITICAL] Failed to load Config file: " + fileName);
+            System.exit(-1);
+        }
     }
 }
