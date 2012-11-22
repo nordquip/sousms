@@ -218,7 +218,7 @@ BEGIN
 	END;
 	BEGIN
 		DECLARE priceCursor CURSOR FOR
-			SELECT bestAskPrice AS price
+			SELECT lastPrice AS price
 			FROM Feed
 				JOIN Symbol ON Symbol.symbol = Feed.symbol
 			WHERE Symbol.symID = symID
