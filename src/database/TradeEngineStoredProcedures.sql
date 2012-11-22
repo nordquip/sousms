@@ -233,7 +233,7 @@ BEGIN
 		CLOSE priceCursor;
 	END;
 	IF NOT ISNULL(lnUserID) AND NOT ISNULL(lnSymID) AND NOT ISNULL(lnShares) AND NOT ISNULL(lnCurrentCash) AND NOT ISNULL(lnCurrentPrice) THEN
-		IF NOT ISNULL(lnLimitPrice) AND lnLimitPrice < lnCurrentPrice THEN
+		IF NOT ISNULL(lnLimitPrice) AND lnLimitPrice > lnCurrentPrice THEN
 			SELECT 400 AS errcode, 'Limit price not yet reached.' AS statusmsg;
 		ELSE
 			SET lnTotalPrice = lnCurrentPrice * lnShares;
