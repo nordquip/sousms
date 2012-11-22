@@ -221,7 +221,7 @@ BEGIN
 			SELECT lastSale AS price
 			FROM Symbol
 				JOIN Feed ON Symbol.symbol = Feed.symbol
-			WHERE Symbol.symID = symID
+			WHERE Symbol.symID = lnSymID
 			ORDER BY Feed.date DESC,
 				Feed.time DESC
 			LIMIT 1;
@@ -233,7 +233,7 @@ BEGIN
 		CLOSE priceCursor;
 	END;
 	IF NOT ISNULL(lnUserID) AND NOT ISNULL(lnSymID) AND NOT ISNULL(lnShares) AND NOT ISNULL(lnCurrentCash) AND NOT ISNULL(lnCurrentPrice) THEN
-		IF NOT ISNULL(lnLimitPrice) AND lnLimitPrice > lnCurrentPrice THEN
+		IF NOT ISNULL(lnLimitPrice) AND lnLimitPrice < lnCurrentPrice THEN
 			SELECT 400 AS errcode, 'Limit price not yet reached.' AS statusmsg;
 		ELSE
 			SET lnTotalPrice = lnCurrentPrice * lnShares;
