@@ -218,9 +218,9 @@ BEGIN
 	END;
 	BEGIN
 		DECLARE priceCursor CURSOR FOR
-			SELECT lastPrice AS price
-			FROM Feed
-				JOIN Symbol ON Symbol.symbol = Feed.symbol
+			SELECT lastSale AS price
+			FROM Symbol
+				JOIN Feed ON Symbol.symbol = Feed.symbol
 			WHERE Symbol.symID = symID
 			ORDER BY Feed.date DESC,
 				Feed.time DESC
