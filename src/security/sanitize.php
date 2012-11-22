@@ -9,14 +9,14 @@
 
 
 //Username
-function checkName($username){
+function CheckName($username){
 	$pattern ='/[a-zA-Z0-9]*/'; 
 	return  preg_match($pattern, $username);
 }
 
 
 //Password
-function checkpassword($password){             
+function CheckPassword($password){             
 	$pattern = '/[a-zA-Z0-9!@#$%^&*(),.-_=+\ ~`"?\{\}\[\]]*/';
 	$password = strip_tags($password);
 	return preg_match($pattern, $password);
@@ -24,20 +24,20 @@ function checkpassword($password){
 
 
 //Email
-function checkemail($email){
+function CheckEmail($email){
 	$pattern = '/[a-zA-Z0-9_-.+]@[a-zA-Z0-9-].[a-zA-Z]/';
 	return preg_match($pattern, $email);
 }
 
 
 //Int
-function checkint($int){
+function CheckInt($int){
 	return is_int($int);
 }
 
 
 //Float
-function checkFloat($float){
+function CheckFloat($float){
 	$pattern = '/^[0-9]\{0,\}[.]\{0,1\}[0-9]\{0,\}$/';
 	return preg_match($pattern, $float);
 }
