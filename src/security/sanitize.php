@@ -18,7 +18,6 @@ function CheckName($username){
 //Password
 function CheckPassword($password){             
 	$pattern = '/[a-zA-Z0-9!@#$%^&*(),.-_=+\ ~`"?\{\}\[\]]*/';
-	$password = strip_tags($password);
 	return preg_match($pattern, $password);
 }
 
