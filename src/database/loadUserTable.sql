@@ -2,17 +2,16 @@
 Load the user table
 Includes one test account for each area
 */
-
 Insert into User (Lname, Fname, Email, Phone, Password) values
-('test','build','test@sou.edu','000-000-0000',md5('password')),
-('test','feed','test@sou.edu','000-000-0000',md5('password')),
-('test','db','test@sou.edu','000-000-0000',md5('password')),
-('test','mobile','test@sou.edu','000-000-0000',md5('password')),
-('test','security','test@sou.edu','000-000-0000',md5('password')),
-('test','test','test@sou.edu','000-000-0000',md5('password')),
-('test','te','test@sou.edu','000-000-0000',md5('password')),
-('test','ua','test@sou.edu','000-000-0000',md5('password')),
-('test','web','test@sou.edu','000-000-0000',md5('password')),
+('test','build','buildTest@sou.edu','000-000-0000',md5('password')),
+('test','feed','feedTest@sou.edu','000-000-0000',md5('password')),
+('test','db','dbTest@sou.edu','000-000-0000',md5('password')),
+('test','mobile','mobileTest@sou.edu','000-000-0000',md5('password')),
+('test','security','securityTest@sou.edu','000-000-0000',md5('password')),
+('test','test','testTest@sou.edu','000-000-0000',md5('password')),
+('test','te','teTest@sou.edu','000-000-0000',md5('password')),
+('test','ua','uaTest@sou.edu','000-000-0000',md5('password')),
+('test','web','webTest@sou.edu','000-000-0000',md5('password')),
 ('Allred','Jesse','allredj@sou.edu','000-000-0000',md5('password')),
 ('Barnes','Jeremy','barnesj1@sou.edu','000-000-0000',md5('password')),
 ('Bezuhly','Justin','bezuhlyj@sou.edu','000-000-0000',md5('password')),
