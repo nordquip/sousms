@@ -42,6 +42,9 @@ cp -R . $1
 cd web
 cp -R . $1
 
+# Pesky .htaccess file breaks xampp
+rm $1/.htaccess
+
 # must do the database work from the database directory
 #cd ../database
 
