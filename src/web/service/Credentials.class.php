@@ -17,6 +17,7 @@ class Credentials {
 	}
 	
 	//notice the & before the $, this makes it a reference variable
+        /*
 	public function validate(&$token) {
 		$isValid = false;
 		//simulate calling stored procedure...
@@ -30,7 +31,24 @@ class Credentials {
 		}
 		return $isValid;
 	}
-	
+	*/
+        public function validate(&$token, $duration) {
+            $isValid = false;
+                // check username for legal chars -- security team will do this
+                // check password for legal chars -- security team will do this
+                if !(username && password)
+                    $isValid = false;
+                elseif
+                    //check username/email against the database
+                     $isValid = mysql_query("CALL checkEmailPasswork(password, email)")or die('Could not find member: ' . mysql_error());
+
+                else
+                    $token = md5($this->rand_string(100));
+                    // insert login uid, $token, now(), now+$duration
+                    $isValid = true;
+
+                return $isValid;
+        }
 	private function rand_string($length) {
 		$str = "";
 		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
