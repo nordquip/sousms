@@ -20,19 +20,6 @@ class Credentials {
 	// token
 	// expires
 
-/*
-	class UATokenMessage {
-		public $token, $expires, $statuscode, $statusdesc;
-	};
-// TODO: fix to match WebServiceMsg.class.php
-Make getTokenFromCredentials return an array(token, expires)
-
- This is the same class in JSON (after json_encode):
-	Success:
-		{"token": "e984375893478", "expires": "", "statuscode": 0, "statusdesc": ""}
-	Bad credentials:
-		{"token": null, "expires": null, "statuscode": 1, "statusdesc": ""}
-*/
 
 function parseCredentials($un, $pwd, &$token, &$expires) {
 	try {
