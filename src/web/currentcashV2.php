@@ -1,12 +1,10 @@
 <?php
 	include $_SERVER['DOCUMENT_ROOT'] . '/webServiceCaller.include.php';
-	include("login.include.php"); //requires login to access, Since what I want will be on most pages I assume login.include will have to be on those pages.
 
 	function infoDisplay ()
 	{
 		echo "Hello, $username. Your current cash amount is $currentcash.";
 	}
-	
 ?>
 
 The Java Script to 
