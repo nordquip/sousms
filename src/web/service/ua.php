@@ -6,12 +6,9 @@
 ******************************************************************/
 
 include("Credentials.class.php");
-
-//this is the object format that the client expects from getTokenFromCredentials
-//what else might the client want to know?
-class UATokenMessage {
-	public $token, $expires, $statuscode, $statusdesc;
-};
+include("DbConn.class.php");
+// class that holds the return message
+include("WebServiceMsg.class.php");
 
 if (!isset($_POST["jsondata"])) {
 	header('HTTP/1.1 404 Not Found');
@@ -24,48 +21,68 @@ if (!isset($_POST["jsondata"])) {
 			header('HTTP/1.1 404 Not Found');
 			exit;
 		} else {
+			// initialize variables in the return message
+			$msg = new WebServiceMsg();
+			$msg->behavior = $req->behavior;
+			// assume the worst
+			$msg->success = false;
+			$msg->statuscode = 1;
+			$msg->statusdesc = array();
+			$msg->retval = array();
+			try {
+				// connect to the database -- needed by the classes
+				// that implement the behaviors
+				$myConn = new DbConn();
+
+			} catch (Exception $e) {
+				// add an element to the statusdesc array
+				$msg->statusdesc[] = "Validation Failure: " . $e->getMessage();
+				// add another element
+				$msg->statusdesc[] = $myConn->getDebug();
+			}
 			switch ($req->behavior) {
 			case "getTokenFromCredentials":
-				$msg = new UATokenMessage();
 				// the constructor for Credentials can do some basic validation
 				// (or throw an exception)
 				$credentials = new Credentials(
 					$req->credentials->username,
 					$req->credentials->password
 				);
+				$token = null;
+				$expires = null;
 				// the validate() method returns true if valid or false
-				// if invalid
-				if ($credentials->validate($token)) {
-					// the $token parameter was passed by reference and
-					// set inside validate()
-					$msg->token = $token;
-					//get the current time
-					$dt = new DateTime(null, new DateTimeZone("America/Los_Angeles"));
-					//expire the token in 10 minutes,
-					$dt->modify("+600 seconds");
-					$msg->expires = $dt->format(DateTime::RFC822);
-					//just some helpful status information for the caller
+				// token, expires, and msg->statusdesc are all passed
+				// by reference and set inside validate()
+				if (! $credentials->validate(
+						$myConn->getConn(),
+						$token,
+						$expires,
+						$msg->statusdesc)) { // captures the reason for failure
+					$msg->statuscode = 1; // failed
+				} else { // success
+					// set values in the return message
+					$msg->success = true;
 					$msg->statuscode = 0;
 					$msg->statusdesc = "Login successful";
-				} else {
-					//bad credentials
-					$msg->statuscode = 1;
-					$msg->statusdesc = "Invalid user name or password";
+					// put the token and expires time in the return message
+					$msg->retval = array(
+						"token" => $token,
+						"expires" => $expires);
 				}
-				header("Content-type: application/json");
-				echo json_encode($msg);  //serialize the UATokenMessage
 				break;
-			default:
-				//we don't implement that unknown behavior
-				header('HTTP/1.1 400 Bad Request');
-				exit;
+
+			// add one case for each behavior
+
 			}
-		}
-	} catch (Exception $e) {
-		header('HTTP/1.1 500 Internal Server Error');
-		echo "Error: " . $e->getMessage();
-		exit;
+			header("Content-Type: application/json;charset=UTF-8");
+			echo json_encode($msg);  //serialize the message and return it
+			$myConn = null;
+			exit;
+			}
+		} catch (Exception $e) {
+			header('HTTP/1.1 500 Internal Server Error');
+			echo "Error: " . $e->getMessage();
+			exit;
 	}
 }
-
 ?>

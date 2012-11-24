@@ -10,3 +10,5 @@
 source dataFeedStoredProcedures.sql;
 
 source TradeEngineStoredProcedures.sql;
+
+source UserAccountsStoredProceduresForLogin.sql;

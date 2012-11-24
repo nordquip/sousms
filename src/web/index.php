@@ -14,11 +14,19 @@ class Credentials {
 	public $username, $password;
 };
 
+// Format of the response message is shown in service/WebServiceMsg.class.php
+// the retval field of the response is expected to be an array
+// containing 2 fields:
+	// token
+	// expires
+
 /*
- This is the class returned by ua.php (before json_encode):
 	class UATokenMessage {
 		public $token, $expires, $statuscode, $statusdesc;
 	};
+// TODO: fix to match WebServiceMsg.class.php
+Make getTokenFromCredentials return an array(token, expires)
+
  This is the same class in JSON (after json_encode):
 	Success:
 		{"token": "e984375893478", "expires": "", "statuscode": 0, "statusdesc": ""}
@@ -36,11 +44,15 @@ function parseCredentials($un, $pwd, &$token, &$expires) {
 		$postData["credentials"]->password = $pwd;
 		$ws = new WSRequestManager();
 		$ws->setServiceAddress("UA");
+		// getData() calls the web service
 		$respTxt = $ws->getData("jsondata=" . json_encode($postData));
 		//return $respTxt;
 		$respObj = json_decode($respTxt);
-		$token = $respObj->token;
-		$expires = new DateTime($respObj->expires);
+		// if successful
+		if ($respObj->success) {
+			$token = $respObj->retval->token;
+			$expires = new DateTime($respObj->retval->expires);
+		}
 		return $respObj->statusdesc;
 	} catch (Exception $e) {
 		header('HTTP/1.1 500 Internal Server Error');
@@ -61,9 +73,8 @@ if (isset($_POST["jumpto"])) {
 
 $msg = "";
 if (isset($_POST["un"]) && isset($_POST["pwd"])) {
+	// check the credentials the user entered
 	$msg = parseCredentials($_POST["un"], $_POST["pwd"], $token, $expires);
-	//echo $token;
-	//exit;
 	if (isset($token) && strlen($token) == 32 && isset($expires)) {
 		setLoginCookie($token, $expires->getTimestamp());
 		header("Location: $jumpto");
@@ -71,10 +82,6 @@ if (isset($_POST["un"]) && isset($_POST["pwd"])) {
 }
 
 ?>
-
-
-
-
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">

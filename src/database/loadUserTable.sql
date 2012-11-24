@@ -35,6 +35,7 @@ Insert into User (Lname, Fname, Email, Phone, Password) values
 ('Leduc','Bret','leducb@sou.edu','000-000-0000',md5('password')),
 ('Lykins','Blake','lykinsb@sou.edu','000-000-0000',md5('password')),
 ('Miller','Jeffrey','millerj3@sou.edu','000-000-0000',md5('password')),
+('Nordquist','Pete','nordquip@sou.edu','000-000-0000',md5('password')),
 ('Paradis','Michael','paradism@sou.edu','000-000-0000',md5('password')),
 ('Parks','Jesse','parksj1@sou.edu','000-000-0000',md5('password')),
 ('Parrish','Emily','parrishe@sou.edu','000-000-0000',md5('password')),
