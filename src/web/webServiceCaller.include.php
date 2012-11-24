@@ -46,7 +46,8 @@ function callService(&$reqTxt,
 			"shares" => $shares,
 			"limitprice" => $limitprice,
 			"username" => $username,
-			"password" => $password
+			"password" => $password,
+			"currentcash" => $currentcash
 		);
 		$ws = new WSRequestManager();
 		$ws->setServiceAddress("$department");
@@ -74,6 +75,7 @@ $shares = (isset($_POST["shares"]) ? $_POST["shares"] : "");
 $limitprice = (isset($_POST["limitprice"]) ? $_POST["limitprice"] : "");
 $username = (isset($_POST["username"]) ? $_POST["username"] : "");
 $password = (isset($_POST["password"]) ? $_POST["password"] : "");
+$currentcash = (isset($_POST["currentcash"]) ? $_POST["currentcash"] : "");
 // END of variable declaration list
 
 // $transtype holds the name of the behavior you would like to call
@@ -88,7 +90,8 @@ if (strlen($transtype) > 0) {
 		$shares,
 		$limitprice,
 		$username,
-		$password);
+		$password,
+		$currentcash);
 // END of parameters passed to callService
 	$resultObj = json_decode($resultStr); //null if error
 }

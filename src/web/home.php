@@ -33,10 +33,17 @@ include("login.include.php");
 <script type="text/javascript" src="2leveltab.js"></script>
 <style type="text/css">
 @import "gallery.css";
+.auto-style1 {
+	text-align: center;
+}
 </style>
 </head>
 <body>
+		<div class="auto-style1">
 		<center><img src="images/banner.jpg" width="810" height="160" alt="NASDAQ Ninja logo" /></center>
+		<!-- Current Cash Frame -->
+		<iframe src="currentCashFramePage.php"  width="80%" frameborder="0"></iframe>
+		
 	<!-- end #header -->
     <ul id="maintab" class="basictab">
 			<li class="selected" rel="homesubs"><a href="home.php"><img src="images/Homeselected.jpg" onmouseover=this.src="images/Homeselected.jpg" onmouseout=this.src="images/Homeselected.jpg" /></a></li>
@@ -195,5 +202,6 @@ Southern Oregon University (SOU) Webpages:&nbsp; John Rekow<br />
     <p> </p>
 </div>
 <!-- end #footer -->
+		</div>
 </body>
 </html>
