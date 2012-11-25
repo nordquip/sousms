@@ -13,8 +13,6 @@ rm -rf /var/git/sousms-backup
 cd /var/git/sousms
 git log -1 >  /var/git/sousms-new/src/web/version.txt
 
-# run script to parse version info and write to /var/www/html/version.txt
-sh var/git/src/build/version.sh
 
 # TODO Run smoke tests, log results, and exit if smoke tests failed here
 
@@ -53,6 +51,9 @@ cp -R /var/git/sousms/src/teTest /var/www/html/
 cp /var/git/sousmsConfig.xml.master /var/www/html/service/sousmsConfigLocal.xml
 cp /var/git/sousmsConfig.xml.master /var/www/html/te/service/sousmsConfigLocal.xml
 cp /var/git/sousmsConfig.xml.master /var/www/html/DataFeed/sousmsConfigLocal.xml
+
+# run script to parse version info and write to /var/www/html/version.txt
+sh var/git/src/build/version.sh
 
 # Copy version.php from build directory to apache directory
 cp /var/git/sousms/src/build/version.php /var/www/html/version.php
