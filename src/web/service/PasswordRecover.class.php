@@ -2,7 +2,7 @@
 /**
  * L Peery
  * 10/30/2012
- * email function by Cartlon Robinson
+ * email function by Carlton Robinson
  */
 require_once('phpmailer/class.phpmailer.php');  //additional class to make sending mail work
 
