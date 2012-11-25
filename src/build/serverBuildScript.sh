@@ -53,7 +53,7 @@ cp /var/git/sousmsConfig.xml.master /var/www/html/te/service/sousmsConfigLocal.x
 cp /var/git/sousmsConfig.xml.master /var/www/html/DataFeed/sousmsConfigLocal.xml
 
 # run script to parse version info and write to /var/www/html/version.txt
-sh var/git/src/build/version.sh
+sh /var/git/src/build/version.sh
 
 # Copy version.php from build directory to apache directory
 cp /var/git/sousms/src/build/version.php /var/www/html/version.php
