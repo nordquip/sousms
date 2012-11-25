@@ -4,6 +4,8 @@
 * By: Jeff Miller (millerj3@students.sou.edu), 2012-10-24
 * Description: User Accounts web service example
 ******************************************************************/
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 include("Credentials.class.php");
 include("PasswordRecover.class.php");
