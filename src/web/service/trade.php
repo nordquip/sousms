@@ -49,8 +49,8 @@ if (!isset($_POST["jsondata"])) {
 			try {
 				//Begin validation of parameters
 				$myConn = new DbConn(); //should now pull database info from config...
-				//$v = new ParameterValidator($myConn->getConn()); //uncomment for production server
-				$v = new ParameterValidator($myConn->getConn(), true); //uncomment for development
+				$v = new ParameterValidator($myConn->getConn()); //uncomment for production server
+				//$v = new ParameterValidator($myConn->getConn(), true); //uncomment for development
 				//does requested behavior require "token" param?
 				if (in_array("token", $behaviors[$b])) {
 					if ($v->isValid("token", $req->token)) {
