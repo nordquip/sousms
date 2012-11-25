@@ -6,6 +6,7 @@
 ******************************************************************/
 
 include("Credentials.class.php");
+include("PasswordRecover.class.php");
 include("DbConn.class.php");
 // class that holds the return message
 include("WebServiceMsg.class.php");
@@ -70,7 +71,17 @@ if (!isset($_POST["jsondata"])) {
 						"expires" => $expires);
 				}
 				break;
-
+                        case "passwordRecovery":
+                            $passwordRecover = new PasswordRecover($req->passwordRecover->username,$req->passwordRecover->password);
+                               if (! $passwordRecover->validate($myconn->getConn(),$msg->statusdesc))
+                               {
+                                   $msg->statuscode = 1; 
+                               } else {
+                                    $msg->success = true;
+                                    $msg->statuscode = 0;
+                                    $msg->statusdesc = "Temporary password sent"; 
+                               }
+                                break;
 			// add one case for each behavior
 
 			}

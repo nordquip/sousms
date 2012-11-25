@@ -1,36 +1,29 @@
 /*
 	UA stored procedures
 */
-/*
-This Procedure must:
-1. Check to see if the email entered by the user exists in the database
-2. Return true of false
-*/
-drop procedure if exists doesEmailExist;
-delimiter //
-create procedure doesEmailExist(
-	IN email varchar(40)
-//
-delimiter ;
-
 
 /*
 This Prodecure must:
 1. Insert temporary password in the database
 2. Return true (inserted) or false (failed)
 */
-drop procedure if exists insertTempPassword;
-delimiter//
-create procedure insertTempPassword;
+DROP PROCEDURE IF EXISTS insertTempPassword;
+DELIMITER//
+CREATE PROCEDURE insertTempPassword;
 	IN email varchar(40)
 	IN password varchar(40)
-
-begin
-insert into User values User(password);
-select * from User;
-end;
+	
+BEGIN
+	DECLARE EXIT HANDLER for SQLWARNING BEGIN
+		SELECT 'Unable to insert temporary password.' AS statusmsg;
+	END;
+	DECLARE EXIT HANDLER for SQLEXCEPTION BEGIN
+		SELECT 'Unable to insert temporary password.' AS statusmsg;
+	END;
+	INSERT INTO User (Password) VALUES (password) WHERE User.Email = email;
+END;
 //
-delimiter;
+DELIMITER;
 
 
 /*
@@ -39,7 +32,7 @@ This procedure must:
 2. return numShares, price, symbol, transDate (transaction date) for the specified userID
 */
 drop procedure if exists getTradeHistory;
-delimiter//
+DELIMITER//
 create procedure getTradeHistory(
 	IN UserID int(11),
 	OUT Symbol char(5),
@@ -49,12 +42,12 @@ create procedure getTradeHistory(
 	OUT SellBuy binary (1) not null,
 	);
 
-begin
+BEGIN
 select Symbol, Shares, Price, TStamp, SellBuy
 from Stock
 where UserID = UserID;
 end//
-delimiter;
+DELIMITER;
 
 /*
 This procedure must:
@@ -62,7 +55,7 @@ This procedure must:
 2. return numShares, price, symbol for the specified userID
 */
 drop procedure if exists getTotalValue;
-delimiter//
+DELIMITER//
 create procedure getTotalValue(
 	IN UserID int(11),
 	OUT Symbol char(5),
@@ -78,4 +71,4 @@ select Shares
 from Portfolio
 where UserID = UserID;
 end//
-delimiter;
+DELIMITER;
