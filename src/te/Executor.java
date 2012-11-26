@@ -182,7 +182,7 @@ public Executor(ConfigData configData) {
                 
                 //Add the order to the list.
                 openOrders.add(order);
-                System.err.println("[Info] " + type " has been queued.");
+                System.err.println("[Info] " + type + " has been queued.");
 
             }
         } catch (SQLException e ) {
