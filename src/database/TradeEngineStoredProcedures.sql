@@ -101,8 +101,8 @@ CREATE PROCEDURE `sp_getUserIdFromToken`(
 BEGIN
 	DECLARE lnUserID INT;
 	DECLARE ldExpireTime TIMESTAMP;
-	DECLARE loginCursor CURSOR FOR SELECT UserID, EndTS FROM login
-		WHERE logins.token = token;
+	DECLARE loginCursor CURSOR FOR SELECT UserID, EndTS FROM Login
+		WHERE Login.token = token;
 	DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
 		SELECT -1 AS userid, 'The login was not found' AS statusmsg;
 	END;
