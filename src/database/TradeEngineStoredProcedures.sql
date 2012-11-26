@@ -41,17 +41,15 @@ DELIMITER ;
 -- this stored procedure still needs some tweaking - it does not successfully return the result set
 DROP PROCEDURE IF EXISTS sp_getShareBalance;
 DELIMITER //
-CREATE PROCEDURE `sp_getShareBalance` (
+CREATE PROCEDURE sp_getShareBalance(
 	IN userID_in  int(11),
-	IN stockSymbol_in  varchar(8)
-)
+	IN symbolID_in  int(11)
+	)
 BEGIN
-	SELECT `Shares` FROM Portfolio  
-		WHERE `UserID` = userID_in 
-		AND `SymID` IN (
-			SELECT `SymID` FROM Symbol 
-			WHERE  `Symbol` = stockSymbol_in
-		);
+	SELECT Portfolio.`Shares`, Symbol.`Symbol` FROM Portfolio
+	JOIN Symbol ON Portfolio.`SymID` = Symbol.`SymID`
+	WHERE Portfolio.`UserID` = userID_in 
+	AND Portfolio.`SymID` = symbolID_in;
 END;
 //
 
