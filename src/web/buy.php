@@ -6,7 +6,7 @@
 * Description: Example of a page that requires login to access.
 ******************************************************************/
 
-include("login.include.php");
+include $_SERVER['DOCUMENT_ROOT'] . '/webServiceCaller.include.php';
 ?>
 
 
@@ -206,7 +206,7 @@ initalizetab("maintab")
 	  json_encode($resultObj->statusdesc) : ""); ?><br />
   <br />
   <strong>Debug log:</strong><br />
-  <?php echo htmlentities($debuglog); ?>
+  <?php echo (isset($debuglog) ? htmlentities($debuglog) : ""); ?><br />
 </form>
 </tr>
 </td>
