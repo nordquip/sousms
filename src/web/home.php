@@ -1,4 +1,3 @@
-
 <?php
 /******************************************************************
 * trade.php
@@ -138,20 +137,20 @@ initalizetab("maintab")
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </pre><br /><br />
 
-                <p>The Home page is under construction.</p>
+                <p> </p>
                 
-                <p><a href="info.php">PHP Technical Details (under construction)</a><br /></p>
+                <p><a href="info.php">PHP Technical Details</a><br /></p>
                 
                 <p>
                 The official NASDAQ NINJA site is found here:<br />
 <a href="http://aenasdaq01v.sou.edu/">http://aenasdaq01v.sou.edu/</a><br />
-The Offical Mobile Version (also under construction) is at<br />
+The Offical Mobile Version is at<br />
 <a href="http://aenasdaq01v.sou.edu/mobile/">http://aenasdaq01v.sou.edu/mobile/</a><br />
 <br />
-A web build development and testing site for NASDAQ NINJA<br />
-before it gets officially published is at<br />
-Southern Oregon University (SOU) Webpages:&nbsp; John Rekow<br />
-<a href="http://webpages.sou.edu/~rekowj/">http://webpages.sou.edu/~rekowj/</a><br />
+The web build development and testing site for NASDAQ NINJA<br />
+has concluded its operation, and is now closed.<br />
+<br />
+<br />
 <br />
 <br />
 <br />
