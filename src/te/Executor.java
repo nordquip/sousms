@@ -94,8 +94,10 @@ public Executor(ConfigData configData) {
         getOrders();
         
         //execute all open orders.
-        while(openOrders.peek() != null)
+        while(openOrders.peek() != null) {
             openOrders.poll().execute(dBConn);
+            System.out.println("[Info] Executed Order.");
+        }
         
         //System.out.println("[DEBUG]: Successful Tick");
     }
@@ -180,6 +182,7 @@ public Executor(ConfigData configData) {
                 
                 //Add the order to the list.
                 openOrders.add(order);
+                System.err.println("[Info] " + type " has been queued.");
 
             }
         } catch (SQLException e ) {
