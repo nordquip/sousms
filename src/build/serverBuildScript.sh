@@ -20,6 +20,10 @@ git log -1 >  /var/git/sousms-new/src/web/version.txt
 # TODO figure out why stopping DataFeed is causing file or directory errors.
 cd /var/www/html/DataFeed/
 sh stopFeed.sh
+
+cd /var/www/html/te/
+bash startup.sh stop
+
 sleep 2
 service httpd stop
 service mysqld stop
@@ -59,7 +63,7 @@ sh /var/git/sousms/src/build/version.sh
 # Copy version.php from build directory to apache directory
 cp /var/git/sousms/src/build/version.php /var/www/html/version.php
 
-# TODO Run build/SQL scripts here, if we run any.
+# Run build/SQL scripts here
 
 # Start services
 service mysqld start
@@ -67,3 +71,7 @@ service httpd start
 # TODO figure out why below is throwing no such file or directory errors.
 cd /var/www/html/DataFeed/
 sh startFeed.sh &
+
+cd /var/www/html/te/
+make
+bash startup.sh start
