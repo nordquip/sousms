@@ -3,7 +3,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 
-public class sell extends Order {
+public class Sell extends Order {
 
 	@Override
 	public void execute(Connection dbconn) {

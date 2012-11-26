@@ -40,7 +40,7 @@ String MYSQL_URL;
 //The connection to the database
 private Connection dBConn; 
 //The list of open orders to be executed. 
-private PriorityQueue<Order> openOrders;
+private LinkedList<Order> openOrders;
 
 public Executor(ConfigData configData) {
     this.configData = configData;
@@ -132,7 +132,7 @@ public Executor(ConfigData configData) {
     
     */
     private void getOrders() {
-        openOrders = new PriorityQueue<Order>();
+        openOrders = new LinkedList<Order>();
 
         CallableStatement cs;
         ResultSet rs;
@@ -162,7 +162,7 @@ public Executor(ConfigData configData) {
             while (rs.next()) {
                 
                 //create the correct kind of order
-                type = rs.getString("orderType");
+                type = rs.getString("typedesc");
                 typeClass = Class.forName(type);
                 order = (Order) typeClass.newInstance();
                 
@@ -174,7 +174,6 @@ public Executor(ConfigData configData) {
                 order.setShares(rs.getInt("shares"));
                 order.setOrderType(rs.getInt("orderType"));
                 order.setOrderDesc(rs.getString("typedesc"));
-                order.setStockSymbol(rs.getString("stockSymbol"));
                 order.setPrice(rs.getDouble("price"));
                 //I don't think we'll need time.
                 //order.setTime(rs.getTime?("datetime"));
