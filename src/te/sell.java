@@ -15,7 +15,7 @@ public class sell extends Order {
 		cs = dbconn.prepareCall("{call sp_sell(?)}");
 
     //Input OrderID 1...always, since the SP should remove the order, can eventually loop if needed.
-    cs.setInt(1,getOrderID());
+    cs.setInt(1,this.orderID);
     cs.execute();
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block

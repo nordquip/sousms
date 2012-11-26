@@ -25,25 +25,23 @@ import java.sql.*;
 public abstract class Order {
     
     //All of the data contained in a single 'Open Orders' order
-    private int orderID;
-    private int userID;
-    private int symID;
-    private String stockSymbol;
-    private int shares;
-    private int orderType;
-    private String typeDesc;
-    private double price;
+    protected int orderID;
+    protected int userID;
+    protected int symID;
+    protected String stockSymbol;
+    protected int shares;
+    protected int orderType;
+    protected String typeDesc;
+    protected double price;
     
     /*
     These are all of the setter functions the executor will
     use to give the Order its data. There should be setters 
     for all of the above types
-    
-    SPECIAL NOTE FROM NICK: I haven't updated these since the
-    table last changed. Until I do, the executor won't actually 
-    work.
     */
+    public void setOrderID(int orderid) {this.orderID = orderid;}
     public void setUserID(int userid) {userID = userid;}
+    public void setSymID(int symid) {this.symID = symid;}
     public void setStockSymbol(String s) {stockSymbol = s;}
     public void setShares(int shares) {this.shares = shares;}
     public void setOrderType(int ot) {this.orderType = ot;}

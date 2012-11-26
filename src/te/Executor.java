@@ -129,6 +129,7 @@ public Executor(ConfigData configData) {
     * get Orders() 
     *
     * Gets all of the open orders from the database, and assembles them into objects
+    
     */
     private void getOrders() {
         openOrders = new PriorityQueue<Order>();
@@ -140,6 +141,21 @@ public Executor(ConfigData configData) {
         String type = "";
         Class typeClass;
         Order order;
+        /*
+        The information held in the order class reflects all of the data held
+        in the Open Orders table in the Database. As of now, this is the data:
+           openorders.orderID,
+       	openorders.userID, 
+       	openorders.symID, 
+       	symbol.symbol,
+       	openorders.shares,
+       	openorders.orderType,
+       	ordertypes.description AS typedesc,
+       	openorders.price
+
+           The data in the Order class below should be updated when the Database
+           table is updated.
+          */
         try {
     	    cs = dBConn.prepareCall("{call sp_getAllOpenOrders()}");
             rs = cs.executeQuery();
@@ -151,12 +167,14 @@ public Executor(ConfigData configData) {
                 order = (Order) typeClass.newInstance();
                 
                 //set the vars. 
+                order.setOrderID(rs.getInt("orderID"));
                 order.setUserID(rs.getInt("userID"));
-                order.setStockSymbol(rs.getString("stockSymbol"));
+                order.setSymID(rs.getInt("symID"));
+                order.setStockSymbol(rs.getString("symbol"));
                 order.setShares(rs.getInt("shares"));
-                //The order probably won't need to know what type it is, but we'll put it there
-                //just in case.
-                order.setOrderDesc(type);
+                order.setOrderType(rs.getInt("orderType"));
+                order.setOrderDesc(rs.getString("typedesc"));
+                order.setStockSymbol(rs.getString("stockSymbol"));
                 order.setPrice(rs.getDouble("price"));
                 //I don't think we'll need time.
                 //order.setTime(rs.getTime?("datetime"));
