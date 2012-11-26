@@ -5,7 +5,8 @@ class ConfigData {
     private final String[] fieldData = {
         "mysqlUser",
         "mysqlPassword",
-        "mysqlDatabase"
+        "mysqlDatabase",
+        "mysqlHost"
     };
     private String[] valueData;
     
