@@ -17,6 +17,7 @@ git log -1 >  /var/git/sousms-new/src/web/version.txt
 # TODO Run smoke tests, log results, and exit if smoke tests failed here
 
 # Stop running services
+# TODO figure out why stopping DataFeed is causing file or directory errors.
 cd /var/www/html/DataFeed/
 sh stopFeed.sh
 sleep 2
@@ -63,5 +64,6 @@ cp /var/git/sousms/src/build/version.php /var/www/html/version.php
 # Start services
 service mysqld start
 service httpd start
+# TODO figure out why below is throwing no such file or directory errors.
 cd /var/www/html/DataFeed/
 sh startFeed.sh &

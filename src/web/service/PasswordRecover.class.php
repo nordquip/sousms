@@ -4,7 +4,7 @@
  * 10/30/2012
  * email function by Carlton Robinson
  */
-require_once('phpmailer/class.phpmailer.php');  //additional class to make sending mail work
+require_once('class.phpmailer.php');  //additional class to make sending mail work
 
 class PasswordRecovery {
 	//constuctor

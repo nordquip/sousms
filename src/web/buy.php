@@ -140,6 +140,78 @@ initalizetab("maintab")
 </script>
 
 	<!-- end #menu -->
+	<!--begin Buy form -->
+<div align="center">
+<table>
+<tr>
+<td>	
+<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" autocomplete="off">
+	<fieldset>
+	<legend>Buy Stock:</legend><br /><br />
+    <input type="hidden" name="department" value="TE" />
+    <input type="hidden" name="transtype" value="marketBuy" />
+    Symbol: <select name="symbol">
+										<option value="AAPL">Apple</option><option value="ADBE">Adobe Systems Incorporated</option>
+										<option value="ADSK">Autodesk, Inc.</option>
+										<option value="ALU">Alcatel / Lucent</option>
+										<option value="AMZN">Amazon</option>
+										<option value="ATVI">Activision Blizzard</option>
+										<option value="AXP">American Express</option>
+										<option value="CAKE">The Cheesecake Factory INC</option>
+										<option value="CMCSA">Comcast</option>
+										<option value="COKE">Coca-Cola</option>
+										<option value="CSCO">Cisco</option>
+										<option value="DIS">Disney</option>
+										<option value="DNKN">Dunkin Donuts</option>
+										<option value="EBAY">Ebay</option>
+										<option value="ERTS">Electronic Arts</option>
+										<option value="FB">Facebook</option>
+										<option value="GE">General Electric</option>
+										<option value="GOOG">Google</option>
+										<option value="GRMN">Garmin</option>
+										<option value="HAS">Hasbro</option>
+										<option value="HSY">Hershey</option>
+										<option value="HOTT">Hot Topic</option>
+										<option value="INTC">Intel Corporation</option>
+										<option value="JBLU">Jetblue Airways Corp</option>
+										<option value="MON">Monsanto</option>
+										<option value="MSFT">Microsoft</option>
+										<option value="NFLX">Netflix</option>
+										<option value="NVDA">NVIDIA Corporation</option>
+										<option value="ORCL">Oracle</option>
+										<option value="PBG">Petrobank Energy and Resources</option>
+										<option value="QCOMM">Qualcomm</option>
+										<option value="RCL">Royal Caribbean Cruises</option>
+										<option value="SBUX">Starbucks</option>
+										<option value="SIRI">Sirius Satellite</option>
+										<option value="SPLS">Staples</option>
+										<option value="TTWO">Take-Two Interactive Software, Inc.</option>
+										<option value="TXN">Texas Instruments</option>
+										<option value="V">Visa</option>
+										<option value="VOD">Vodafone</option>
+										<option value="YHOO">Yahoo</option>
+										<option value="ZNGA">Zynga Inc.</option>
+									</select><br /><br />
+	Number of Shares: <input type="text" name="shares"><br />
+    <br />
+    <input type="submit" value="Submit" /><br />
+	</fieldset>
+  <br />
+  <strong>Return Value:</strong><br />
+  <?php echo (isset($resultObj->behavior) ? $resultObj->behavior : ""); ?><br />
+  <?php echo (isset($resultObj->success) ? $resultObj->success : ""); ?><br />
+  <?php echo (isset($resultObj->statuscode) ?
+	  $resultObj->statuscode : ""); ?><br />
+  <?php echo (isset($resultObj->statusdesc) ?
+	  json_encode($resultObj->statusdesc) : ""); ?><br />
+  <br />
+  <strong>Debug log:</strong><br />
+  <?php echo htmlentities($debuglog); ?>
+</form>
+</tr>
+</td>
+</table>
+</div>
 	<div id="page">
 		<div id="page-bgtop">
 			<div id="page-bgbtm">
