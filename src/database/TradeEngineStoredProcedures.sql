@@ -256,13 +256,96 @@ END;
 DELIMITER ;
 
 -- sp_sell
+-- executes "sell" behavior for given order ID:
+--   get current shares, current price, limit price(will be added later)
+--   if limit price is not null and limit price is more than current price
+--     status is "limit price has not been met", skip to end
+--   set total price = current price * number of shares
+--   if current shares are greater than or equal to total price
+--     insert positive balance = total price into balance of the User table 
+--     update stock holdings (shares, datemodified) in "portfolio" table for (userID, symID)
+--     delete order for given order ID
+--   else report that user does not have enough shares
+--     roll back changes if any failures
+--   report status
 DROP PROCEDURE IF EXISTS sp_sell;
 DELIMITER //
 CREATE PROCEDURE `sp_sell` (
 	openOrderID INT
 )
 BEGIN
+	DECLARE lnUserID, lnSymID, lnShares, lnCurrentShares INT;
+	DECLARE lnLimitPrice, lnCurrentPrice, lnTotalPrice NUMERIC(13,2);
+
+	BEGIN
+		DECLARE openordersCursor CURSOR FOR
+			SELECT userID, symID, shares, price
+			FROM OpenOrders JOIN OrderTypes ON OpenOrders.orderType = OrderTypes.typeID
+			WHERE OpenOrders.orderID = openOrderID AND OrderTypes.description = 'Sell';
+
+		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
+			SELECT 101 AS errcode, CONCAT('Sell order #', openOrderID, ' not found.') 
+				AS statusmsg;
+			END;
+
+		OPEN openordersCursor;
+		FETCH openordersCursor INTO lnUserID, lnSymID, lnShares, lnLimitPrice;
+		CLOSE openordersCursor;
+	END;
+	BEGIN
+		DECLARE shareCursor CURSOR FOR
+			SELECT Shares FROM Portfolio WHERE Portfolio.SymID = lnSymID;
+
+		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
+			SELECT 201 AS errcode, 'User has no shares for that company.' AS statusmsg;
+			END;
+
+		OPEN shareCursor;
+		FETCH shareCursor INTO lnCurrentShares;
+		Close shareCursor;
+	END;
+	BEGIN
+		DECLARE priceCursor CURSOR FOR
+			SELECT lastSale AS price
+			FROM Symbol
+				JOIN Feed ON Symbol.symbol = Feed.symbol
+			WHERE Symbol.symID = lnSymID
+			ORDER BY Feed.date DESC,
+				Feed.time DESC
+			LIMIT 1;
+
+		DECLARE EXIT HANDLER FOR NOT FOUND BEGIN
+			SELECT 300 AS errcode, 'Stock price not found in feed.' AS statusmsg;
+			END;
+
+		OPEN priceCursor;
+		FETCH priceCursor INTO lnCurrentPrice;
+		Close priceCursor;
+	END; 
 	
+	IF NOT ISNULL(lnUserID) AND NOT ISNULL(lnSymID) AND NOT ISNULL(lnShares) 
+	AND NOT ISNULL(lnCurrentShares) AND NOT ISNULL(lnCurrentPrice) THEN
+		IF NOT ISNULL(lnLimitPrice) AND lnLimitPrice > lnCurrentPrice THEN
+			SELECT 400 AS errcode, 'Limit price not yet reached.' AS statusmsg;
+		ELSE
+			SET lnTotalPrice = lnCurrentPrice * lnShares;
+			IF lnCurrentShares < lnShares THEN
+				DELETE FROM OpenOrders WHERE OpenOrders.orderID = openOrderID;
+				SELECT 501 AS errcode, 'Not enough shares on hand to complete transaction.'
+				AS statusmsg;
+			ELSE
+				INSERT INTO Cash (UserID, Balance) VALUES (lnUserID, lnTotalPrice);
+				UPDATE Portfolio SET
+					Shares = Shares - lnShares,
+					DateModified = NOW()
+				WHERE UserID = lnUserID AND SymID = lnSymID;
+				DELETE FROM OpenOrders WHERE OpenOrders.orderID = openOrderID;
+				SELECT 0 AS errcode, 
+					CONCAT('Sell order #', openOrderID, ' completed successfully.') AS statusmsg;
+				
+			END IF;
+		END IF;
+	END IF;
 END;
 //
 
