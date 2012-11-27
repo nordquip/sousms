@@ -64,6 +64,8 @@ sh /var/git/sousms/src/build/version.sh
 cp /var/git/sousms/src/build/version.php /var/www/html/version.php
 
 # Run build/SQL scripts here
+# Update Stored Procedures. File stored on server only for security.
+sh /var/git/serverUpdateStoredProcedures.sh
 
 # Start services
 service mysqld start
