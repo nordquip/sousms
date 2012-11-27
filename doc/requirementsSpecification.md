@@ -22,7 +22,8 @@ I owe you a review of this doc.
 Perhaps we should all review it.
 
 ## Functional Requiremnts
- Password change Functionality
+  Password change Functionality
+ 
    UA.Auth	            User must login before submitting request.
    
    UA.request. change	User must select change password.
@@ -35,6 +36,13 @@ Perhaps we should all review it.
    
    UA.updated	        If Successful System must update User account
 
+  Securities Info Functionality
+
+   Security.Info.Auth	      User must login successfully
+   
+   Security.Info.display      System will display symbols owned by account holder
+   
+   Security.Info.display      System will display the symbol name, how many shares and the shares  worth.
 
 button        	user must click button
 	
