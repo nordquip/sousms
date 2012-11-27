@@ -24,7 +24,7 @@ sh stopFeed.sh
 cd /var/www/html/te/
 bash startup.sh stop
 
-sleep 2
+sleep 10
 service httpd stop
 service mysqld stop
 
