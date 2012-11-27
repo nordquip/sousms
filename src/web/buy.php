@@ -151,7 +151,8 @@ initalizetab("maintab")
     <input type="hidden" name="department" value="TE" />
     <input type="hidden" name="transtype" value="marketBuy" />
     Symbol: <select name="symbol">
-										<option value="AAPL">Apple</option><option value="ADBE">Adobe Systems Incorporated</option>
+										<option value="AAPL">Apple</option>
+										<option value="ADBE">Adobe Systems Incorporated</option>
 										<option value="ADSK">Autodesk, Inc.</option>
 										<option value="ALU">Alcatel / Lucent</option>
 										<option value="AMZN">Amazon</option>

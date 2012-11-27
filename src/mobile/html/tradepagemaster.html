@@ -10,14 +10,14 @@
 
 		<center><img src="../images/tradestocks.jpg" width="%95" height="%15" alt="Trade Stocks" /></center>
 
-<center><div>
+<center><div align="center">
 
 <form>
 		 <input list="Trade" name="Trade" value="Symbol">
 		<br/>
 		
-		<input type="radio" name="trade" value="buy">Buy
-		<input type="radio" name="trade" value="sell">Sell<br>
+		<input onClick="parent.location='tradepagebuy.php'" type="radio" name="trade" value="buy">Buy
+		<input onClick="parent.location='tradepagesell.php'" type="radio" name="trade" value="sell">Sell<br>
 		<input type="shares" name="quantity" value="Quantity">
 
 		<datalist id="Trade">
@@ -105,10 +105,10 @@
 			</datalist>
 			
 		
-		<br/>
-		<input type="submit">
-		</form>
-	</div> </center>
+			
+	</form>
+	</div> 
+	</center>
 	
 
 </body>
