@@ -22,6 +22,19 @@ I owe you a review of this doc.
 Perhaps we should all review it.
 
 ## Functional Requiremnts
+ Password change Functionality
+   UA.Auth	            User must login before submitting request.
+   
+   UA.request. change	User must select change password.
+   
+   UA.enter.info	User must enter email and current password.
+   
+   UA.enter.new.info	User must enter new password
+   
+   UA.confirm     	User must enter new password
+   
+   UA.updated	        If Successful System must update User account
+
 
 button        	user must click button
 	
