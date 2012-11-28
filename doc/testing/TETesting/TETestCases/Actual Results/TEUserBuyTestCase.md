@@ -14,8 +14,7 @@
 	(unsuccessful if number of shares has non number characters)
 2. User clicks buy
 	(unsuccessful if not enough funds to purchase shares)
-3. User confirms buy
-4. Application confirms buy
+3. Application confirms buy
 
 <table>
 	<tr>
@@ -56,7 +55,7 @@
 	</tr>
 	<tr>
 		<td>tester enters a positive integer for selling</td>
-		<td>Confirmation for sell displayed</td>
+		<td>Confirmation for buy displayed</td>
 		<td>"Your trade has been queued"</td>
 	</tr>
 	
