@@ -642,12 +642,12 @@ select.error{
 			
 			<dl>
 			<dt><label for="f1">Stock Option</label></dt>
-			<dd><select name="symbol" id="f1" onchange="checkSymbolType(this);"><?php
+			<dd><datalist name="symbol" id="f1" onchange="checkSymbolType(this);" ><?php
 			foreach ($stocks as $key => $val) {
 				$sel = ($key == $symbol ? " selected=\"selected\"" : "");
 				echo "<option value=\"$key\"$sel>$val</option>"; 
 			}
-			?></select>
+			?></datalist>
 			</dd>
 			
 			 <dt><label for="f2">Transaction Type</label></dt>
@@ -667,7 +667,7 @@ select.error{
 			
 			<input type="hidden" name="department" value="TE" />
 
-			<datalist name="symbol" id="f1" onchange="checkSymbolType(this);">
+			<!-- <datalist name="symbol" id="f1" onchange="checkSymbolType(this);">
 				<option value="AAPL">AAPL - Apple - NASDAQ</option>
 				
 				<option value="ADBE">ADBE  -  Adobe Systems Incorporated  -  NASDAQ</option>
@@ -749,7 +749,7 @@ select.error{
 				<option value=" YHOO ">   -  Yahoo -  NASDAQ</option>
 				 
 				<option value=" ZNGA "> -  Zynga Inc.  -  NASDAQ</option>
-			</datalist>
+			</datalist> -->
 			
 		
 		
