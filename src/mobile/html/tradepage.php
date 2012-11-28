@@ -7,7 +7,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/webServiceCaller.include.php"); //include 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
 <title>SOU SMS Mobile Trade Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -622,50 +622,52 @@ select.error{
     <div class="header">
         <div class="wrap">
             <div class="logo"><a href="index.html">Trade Page</a></div>
-            <div class="nav">
-                
-                <div class="clear"></div>
-            </div>
-        </div>
-    </div>
-    <div class="wrap">
-    <div class="content">
-            <div class="slide-box">
-                <ul id="slider">
-                    <li><img src="http://lorempixel.com/300/100/" /></li>
-                    
-                </ul>
-            </div>
-            <div class="b-box">
-            <h1>Trade Request</h1>
-			<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" autocomplete="off">
+				<div class="nav">
+					<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+			<div class="wrap">
+				<div class="content">
+					<div class="slide-box">
+						<ul id="slider">
+							<li><img src="http://lorempixel.com/300/100/" /></li>
+						</ul>
+					</div>
+					<div class="b-box">
+						<h1>Trade Request</h1>
+						<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" autocomplete="off">
 			
-			<dl>
-			<dt><label for="f1">Stock Option</label></dt>
-			<dd><datalist name="symbol" id="f1" onchange="checkSymbolType(this);" ><?php
-			foreach ($stocks as $key => $val) {
-				$sel = ($key == $symbol ? " selected=\"selected\"" : "");
-				echo "<option value=\"$key\"$sel>$val</option>"; 
-			}
-			?></datalist>
-			</dd>
+						<dl>
+						<dt><label for="f1">Stock Option</label></dt>
+						<dd><select name="symbol" id="f1" onchange="checkSymbolType(this);" >
+							<?php
+							foreach ($stocks as $key => $val)
+							{
+							$sel = ($key == $symbol ? " selected=\"selected\"" : "");
+							echo "<option value=\"$key\"$sel>$val</option>"; 
+							}
+							?></select>
+						</dd>
 			
-			 <dt><label for="f2">Transaction Type</label></dt>
-			<dd><select name="transtype" id="f2" onchange="checkTransType(this);"><?php
-			foreach ($behaviors as $key => $val) {
-			$sel = ($key == $transtype ? " selected=\"selected\"" : "");
-			echo "<option value=\"$key\"$sel>$val</option>"; 
-			}
-			?></select>
+						<dt><label for="f2">Transaction Type</label></dt>
+						<dd><select name="transtype" id="f2" onchange="checkTransType(this);">
+							<?php
+							foreach ($behaviors as $key => $val) 
+							{
+							$sel = ($key == $transtype ? " selected=\"selected\"" : "");
+							echo "<option value=\"$key\"$sel>$val</option>"; 
+							}
+							?></select>
 		
 			 
-			<!--- <input type="radio" name="transtype" value="marketBuy" />Buy 
-			<input type="radio" name="transtype" value="marketSell" />Sell<br /> -->
+						<!--- <input type="radio" name="transtype" value="marketBuy" />Buy 
+						<input type="radio" name="transtype" value="marketSell" />Sell<br /> -->
 			
-			Quantity: <input type="text" name="shares" value="" />
+						Quantity: <input type="text" name="shares" value="" />
 			
 			
-			<input type="hidden" name="department" value="TE" />
+						<input type="hidden" name="department" value="TE" />
 
 			<!-- <datalist name="symbol" id="f1" onchange="checkSymbolType(this);">
 				<option value="AAPL">AAPL - Apple - NASDAQ</option>
@@ -751,33 +753,29 @@ select.error{
 				<option value=" ZNGA "> -  Zynga Inc.  -  NASDAQ</option>
 			</datalist> -->
 			
+			
+							<br/>
+							<input type="submit" value="Submit" />
+							<strong>Return Value:</strong><br />
+							<?php echo (isset($resultObj->stocks) ? $resultObj->stocks : ""); ?><br />
+							<?php echo (isset($resultObj->success) ? $resultObj->success : ""); ?><br />
+							<?php echo (isset($resultObj->statuscode) ?
+								$resultObj->statuscode : ""); ?><br />
+							<?php echo (isset($resultObj->statusdesc) ?
+								json_encode($resultObj->statusdesc) : ""); ?><br />
+							<br />
+							<strong>Debug log:</strong><br />
+							<?php echo (isset($debuglog) ? htmlentities($debuglog) : ""); ?><br />
 		
-		
-			<input type="submit" value="Submit">
-			
-			
-			<br/>
-			<input type="submit" value="Submit">
-			<strong>Return Value:</strong><br />
-			<?php echo (isset($resultObj->stocks) ? $resultObj->stocks : ""); ?><br />
-			<?php echo (isset($resultObj->success) ? $resultObj->success : ""); ?><br />
-			<?php echo (isset($resultObj->statuscode) ?
-				$resultObj->statuscode : ""); ?><br />
-			<?php echo (isset($resultObj->statusdesc) ?
-			json_encode($resultObj->statusdesc) : ""); ?><br />
-			<br />
-			<strong>Debug log:</strong><br />
-			<?php echo (isset($debuglog) ? htmlentities($debuglog) : ""); ?><br />
-			
-			</form>
-			</div>
-        </div>
-    </div>
-		<div class="footer">
-			<div class="wrap">
+						</form>
+						</div>
+					</div>
+				</div>
+				<div class="footer">
+					<div class="wrap">
         
+					</div>
+				</div>
 			</div>
-		</div>
-    </div>
-    </body>
+		</body>
     </html>
