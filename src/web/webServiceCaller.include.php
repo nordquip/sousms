@@ -21,7 +21,57 @@ $behaviors = array(
 	"viewOrderHistory" => "View Order History",
 	"currentCash" => "Current Cash"
 );
+
+
 // END of behavior list
+
+global $stocks;
+$stocks = array(
+
+"AAPL" => "AAPL - Apple - NASDAQ ",
+"ADBE" => "ADBE  -  Adobe Systems Incorporated  -  NASDAQ ",
+"ADSK" => "ADSK  -  Autodesk, Inc.  -  NASDAQ",
+"ALU" => "ALU  -  Alcatel / Lucent  -  NYSE",
+"AMZN" => "AMZN  -  Amazon  -  NASDAQ ",
+"ATVI" => "ATVI  -  Activision Blizzard  -  NASDAQ",
+"AXP" => "AXP  -  American Express  -  NYSE",
+"CAKE" => "CAKE - The Cheesecake Factory INC  -  NASDAQ",
+"CMCSA" => "CMCSA  -  Comcast  -  NASDAQ",
+"COKE" => "COKE  -  Coca-Cola  -  NASDAQ",
+"CSCO" => "CSCO  -  Cisco  -  NASDAQ",
+"DIS" => "DIS  -  Disney  -  NYSE",
+"DNKN" => "DNKN  -  Dunkin Donuts  -  NASDAQ",
+"EBAY" => "EBAY  -  Ebay  -  NASDAQ",
+"ERTS" => "ERTS - Electronic Arts - NASDAQ",
+"GE" => "GE  -  General Electric  -  NYSE",
+"GOOG" => "GOOG  -  Google  -  NASDAQ",
+"GRMN" => "GRMN  -  Garmin  -  NASDAQ",
+"HAS" => "HAS  -  Hasbro  -  NASDAQ",
+"HSY" => "HSY - Hershey  -  NYSE",
+"HOTT" => "HOTT - Hot Topic  -  NASDAQ ",
+"INTC" => "INTC  -  Intel Corporation  -  NASDAQ",
+"JBLU" => "JBLU- Jetblue Airways Corp.  -  NASDAQ",
+"MON" => "MON  -  Monsanto  -  NYSE",
+"MSFT" => "MSFT  -  Microsoft  -  NASDAQ",
+"NFLX" => "NFLX  -  Netflix  -  NASDAQ",
+"NVDA" => "NVDA - NVIDIA Corporation  -  NASDAQ",
+"ORCL" => "ORCL  -  Oracle  -  NASDAQ",
+"PBG" => "PBG  -  Petrobank Energy and Resources  -  TSE",
+"QCOM" => "QCOM  -  Qualcomm  -  NASDAQ",
+"RCL" => "RCL  -  Royal Caribbean Cruises  -  NYSE",
+"SBUX" => "SBUX  -  Starbucks  -  NASDAQ",
+"SIRI" => "SIRI  -  Sirius Satellite  -  NASDAQ",
+"SNE" => "SNE  -  Sony Corporation  -  NASDAQ",
+"SPLS" => "SPLS  -  Staples  -  NASDAQ",
+"TTWO" => "TTWO - Take-Two Interactive Software, Inc.  -  NASDAQ",
+"TXN" => "TXN  -  Texas Instruments  -  NASDAQ",
+"V" => "V  -  Visa  -  NYSE",
+"VOD" => "VOD  -  Vodafone  -  NASDAQ",
+"YHOO" => "YHOO  -  Yahoo -  NASDAQ ",
+"ZNGA" => "ZNGA  -  Zynga Inc.  -  NASDAQ "
+
+);
+
 
 // NOTE: DATA ITEM FORMAL PARAMETERS
 function callService(&$reqTxt,
