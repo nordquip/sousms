@@ -135,7 +135,10 @@ window.onload = function () {
     </dd>
     <dt><label for="f2">Symbol</label></dt>
     <dd><input type="text" name="symbol" id="f2" size="20" title="Example: INTC" value="<?php echo htmlentities($symbol); ?>" /></dd>
-    <dt><label for="f3">Number of Shares</label></dt>
+    
+	
+	
+	<dt><label for="f3">Number of Shares</label></dt>
     <dd><input type="text" name="shares" id="f3" size="8" title="Example: ######" value="<?php echo htmlentities($shares); ?>" /></dd>
   </dl>
   <dl id="limit" class="hide">
