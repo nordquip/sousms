@@ -641,14 +641,15 @@ select.error{
 						<dl>
 						<dt><label for="f1">Stock Option</label></dt>
 						<dd>
-							<select name="symbol" id="f1" onchange="checkSymbolType(this);" >
+							<input type="text" name="symbol" id="stocks" placeholder="Choose Symbol" list="stocks" autocomplete="off">
+							<datalist name="symbol" id="stocks" onchange="checkSymbolType(this);" >
 							<?php
 							foreach ($stocks as $key => $val)
 							{
 							$sel = ($key == $symbol ? " selected=\"selected\"" : "");
 							echo "<option value=\"$key\"$sel>$val</option>"; 
 							}
-							?></select>
+							?></datalist>
 						</dd>
 			
 						<dt><label for="f2">Transaction Type</label></dt>
