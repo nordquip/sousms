@@ -92,7 +92,7 @@ Perhaps we should all review it.
 		<td>Button.Animation</td>
 		<td>ui must inform user visually of button click with click animation</td>
 	</tr>
-</table?
+</table>
 
 **Req 4: Open and Close Functionality**
 
@@ -136,7 +136,7 @@ Perhaps we should all review it.
 	<tr>
 		<td>Search.Retry</td>
 		<td>System must give user unlimited attempts for entry of valid stock symbol</td>
-	<tr>
+	</tr>
 </table>
 
 **Req 6: Trade/Buy Functionality**
