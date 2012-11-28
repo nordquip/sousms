@@ -117,6 +117,7 @@ Perhaps we should all review it.
 		<td>Openclose.Logout</td>
 		<td>ui must ensure UA saves last known good state of user</td>
 	</tr>
+</table>
 
 **Req 5: Stock Search Functionality**
 
