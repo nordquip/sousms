@@ -41,22 +41,22 @@
 	</tr>
 	<tr>
 		<td>Req 3</td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td>x</td>
+		<td>x</td>
+		<td>x</td>
+		<td>x</td>
+		<td>x</td>
+		<td>x</td>
+		<td>x</td>
+		<td>x</td>
+		<td>x</td>
+		<td>x</td>
 	</tr>
 	<tr>
 		<td>Req 4</td>
 		<td></td>
-		<td></td>
-		<td></td>
+		<td>x</td>
+		<td>x</td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -70,7 +70,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td></td>
+		<td>x</td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -84,7 +84,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td></td>
+		<td>x</td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -96,7 +96,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td></td>
+		<td>x</td>
 		<td></td>
 		<td></td>
 		<td></td>
