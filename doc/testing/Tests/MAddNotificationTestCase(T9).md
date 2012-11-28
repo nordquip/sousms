@@ -17,7 +17,7 @@
 	<tr>
 		<td>User selects Home tab</td>
 		<td>System responds with an error message</td>
-		<td>Cannot find root to home.html</td>
+		<td>Cannot find /home.html</td>
 	</tr>
 	<tr>
 		<td>User selects Home tab</td>
@@ -28,6 +28,11 @@
 
 ###Sunny Day	
 <table>
+         <tr>
+		<th>Inputs</th>
+		<th>System Action</th>
+		<th>Expected Output</th>
+	 </tr>
          <tr>
 		<td>User selects Home tab</td>
 		<td>System Responds by directing them to the Home page</td>
