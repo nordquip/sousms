@@ -21,51 +21,104 @@ Requirements for uptime and restoration procedures.
 I owe you a review of this doc.
 Perhaps we should all review it.
 
-## Functional Requiremnts
-  Password change Functionality
- 
-   UA.Auth	            User must login before submitting request.
-   
-   UA.request. change	User must select change password.
-   
-   UA.enter.info	User must enter email and current password.
-   
-   UA.enter.new.info	User must enter new password
-   
-   UA.confirm     	User must enter new password
-   
-   UA.updated	        If Successful System must update User account
+## Functional Requirements
 
-  Securities Info Functionality
-
-   Security.Info.Auth	      User must login successfully
-   
-   Security.Info.display      System will display symbols owned by account holder
-   
-   Security.Info.display      System will display the symbol name, how many shares and the shares  worth.
-
-button        	user must click button
-	
-  button.action		  user must click button for stated action to occur
-
-  button.name  		  ui must display name of button
-
-  button.initiate 	ui must initiate acion stated in name
-
-  button.error  		ui must display error message if button fails requested operation
-
-  button.animation 	ui must inform user visually of button click with click animation
-
-
-openclose   user must close system
-
-  openclose.exit 	  user must ask system to close
+**Req 1: Password change Functionality**
   
-  openclose.process ui must ensure all processes are closed
+<table>
+	<tr>
+		<td>UA.Auth</td>
+		<td>User must login before submitting request</td>
+	</tr>
+	<tr>
+		<td>UA.Request.Change</td>
+		<td>User must select change password.</td>
+	</tr>
+	<tr>
+		<td>UA.Enter.Info</td>
+		<td>User must enter email and current password.</td>
+	</tr>
+	<tr>
+		<td>UA.Enter.New.Info</td>
+		<td>User must enter new password</td>
+	</tr>
+	<tr>
+		<td>UA.Confirm</td>
+		<td>User must enter new password</td>
+	</tr>
+	<tr>
+		<td>UA.Updated</td>
+		<td>If Successful System must update user account</td>
+	</tr>
+</table>
 
-  openclose.error	  ui must display error message if the process fails
+**Req 2: Securities Info Functionality**
+  
+<table>
+	<tr>
+		<td>Security.Info.Auth</td>
+		<td>User must login succesfully</td>
+	</tr>
+	<tr>
+		<td>Security.Info.display</td>
+		<td>System will display symbols owned by accound holder</td>
+	</tr>
+</table>
 
-  openclose.logout  ui must ensure UA saves last known good state of user
+**Req 3: Button Functionality**
+
+<table>
+	<tr>
+		<td>Button</td>
+		<td>user must click button</td>
+	</tr>
+	<tr>
+		<td>Button.Action</td>
+		<td>user must click button for stated action to occur</td>
+	</tr>
+	<tr>
+		<td>Button.Name</td>
+		<td>ui must display name of button</td>
+	</tr>
+	<tr>
+		<td>Button.Initiate</td>
+		<td>ui must initiate action stated in name</td>
+	</tr>
+	<tr>
+		<td>Button.Error</td>
+		<td>ui must display error message if button fails requested operation</td>
+	</tr>
+	<tr>
+		<td>Button.Animation</td>
+		<td>ui must inform user visually of button click with click animation</td>
+	</tr>
+</table?
+
+**Req 4: Open and Close Functionality**
+
+<table>
+	<tr>
+		<td>Openclose</td>
+		<td>user must close system</td>
+	</tr>
+	<tr>
+		<td>Openclose.Exit</td>
+		<td>user must ask system to close</td>
+	</tr>
+	<tr>
+		<td>Openclose.Process</td>
+		<td>ui must ensure all processes are closed</td>
+	</tr>
+	<tr>
+		<td>Openclose.Error</td>
+		<td>ui must display error message if the process fails</td>
+	</tr>
+	<tr>
+		<td>Openclose.Logout</td>
+		<td>ui must ensure UA saves last known good state of user</td>
+	</tr>
+
+**Req 5: Stock Search Functionality**
 
 <table>
 	<tr>
@@ -86,8 +139,7 @@ openclose   user must close system
 	<tr>
 </table>
 
-
-## Trade/Buy Functionality
+**Req 6: Trade/Buy Functionality**
 
 <table>
 	<tr>
@@ -114,10 +166,9 @@ openclose   user must close system
 		<td>Trade.Buy.Confirm</td>
 		<td>If Successful System must update User account</td>
 	</tr>
-	
 </table>
 
-## Trade/Sell Functionality 
+**Req 7: Trade/Sell Functionality**
 
 <table>
 	<tr>
@@ -144,5 +195,4 @@ openclose   user must close system
 		<td>Trade.Sell.Confirmed</td>
 		<td>If Successful, System must update User account</td>
 	</tr>
-	
 </table>
