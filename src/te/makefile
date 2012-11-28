@@ -13,9 +13,16 @@ COMPILER = javac
 	$(COMPILER) $(FLAGS) $*.java
 
 # Add source files here
-CLASSES = \
-			 Executor.java \
-			 Engine.java
+CLASSES = 	Engine.java \
+		Executor.java \
+		ConfigData.java \
+		Order.java \
+		Buy.java \
+		Sell.java \
+		*.java
+#Critical files are listed explicitly, but we'll add *.java
+#in case we add more order java files. They don't have dependencies,
+#so Order files won't automatically be compiled in the above list.
 
 # default rule to use
 default: classes
