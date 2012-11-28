@@ -1,9 +1,10 @@
 <?php
-include("login.include.php");
+
 include $_SERVER['DOCUMENT_ROOT'] . '/webServiceCaller.include.php';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -30,28 +31,48 @@ include $_SERVER['DOCUMENT_ROOT'] . '/webServiceCaller.include.php';
 </head>
 
 <body>
+
 <a name="glosstop"></a> <center><img src="images/banner.jpg" width="810" height="160" alt="NASDAQ Ninja logo" /></center>
 <!-- end #header -->
 
 <!-- begin menu stuff -->
 <ul id="maintab" class="basictab">
-    <li rel="homesubs"><a href="home.php"><img src="images/Home.jpg" onmouseover=this.src="images/Homeselected.jpg" 
-        onmouseout=this.src="images/Home.jpg" /></a></li>
-    <li rel="tradesubs"><a href="trading.php"><img src="images/Trade.jpg" onmouseover=this.src="images/Tradeselected.jpg" 
-        onmouseout=this.src="images/Trade.jpg" /></a></li>
-    <li rel="looksubs"><a href="lookup.php"><img src="images/Lookup.jpg" 
-        onmouseover=this.src="images/Lookupselected.jpg" onmouseout=this.src="images/Lookup.jpg" /></a></li>
-    <li rel="setsubs"><a href="settings.php"><img src="images/Settings.jpg" onmouseover=this.src="images/Settingsselected.jpg" 
-        onmouseout=this.src="images/Settings.jpg" /></a></li>
-    <li class="selected" rel="helpsubs"><a href="help.php"><img src="images/Help.jpg" 
-        onmouseover=this.src="images/Helpselected.jpg" onmouseout=this.src="images/Help.jpg" /></a></li>
-    <li rel="aboutsubs"><a href="about.php"><img src="images/About_Us.jpg" 
-        onmouseover=this.src="images/About_Usselected.jpg" onmouseout=this.src="images/About_Us.jpg" /></a></li>
-    <li rel="contactsubs"><a href="contact.php"><img src="images/Contact_Us.jpg" 
-        onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images/Contact_Us.jpg" /></a></li>
+			<li rel="homesubs"><a href="home.php"><img 
+
+src="images/Home.jpg" onmouseover=this.src="images/Homeselected.jpg" 
+
+onmouseout=this.src="images/Home.jpg" /></a></li>
+			<li rel="tradesubs"><a href="trading.php"><img 
+
+src="images/Trade.jpg" onmouseover=this.src="images/Tradeselected.jpg" 
+
+onmouseout=this.src="images/Trade.jpg" /></a></li>
+            <li rel="looksubs"><a href="lookup.php"><img src="images/Lookup.jpg" 
+
+onmouseover=this.src="images/Lookupselected.jpg" onmouseout=this.src="images/Lookup.jpg" /></a></li>
+			<li rel="setsubs"><a href="settings.php"><img 
+
+src="images/Settings.jpg" onmouseover=this.src="images/Settingsselected.jpg" 
+
+onmouseout=this.src="images/Settings.jpg" /></a></li>
+            <li class="selected" rel="helpsubs"><a href="help.php"><img src="images/Help.jpg" 
+
+onmouseover=this.src="images/Helpselected.jpg" onmouseout=this.src="images/Help.jpg" /></a></li>
+            <li rel="aboutsubs"><a href="about.php"><img src="images/About_Us.jpg" 
+
+onmouseover=this.src="images/About_Usselected.jpg" onmouseout=this.src="images/About_Us.jpg" 
+
+/></a></li>
+            <li rel="contactsubs"><a href="contact.php"><img src="images/Contact_Us.jpg" 
+
+onmouseover=this.src="images/Contact_Usselected.jpg" onmouseout=this.src="images/Contact_Us.jpg" 
+
+/></a></li>
 </ul>
 
-<div id="homesubs" class="submenustyle"></div>
+<div id="homesubs" class="submenustyle">
+</div>
+
 <div id="tradesubs" class="submenustyle">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="buy.php">Buy</a>
@@ -70,7 +91,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/webServiceCaller.include.php';
 <a href="newspg.php">NASDAQ News</a>
 </div>
 
-<div id="setsubs" class="submenustyle"></div>
+<div id="setsubs" class="submenustyle">
+</div>
 
 <div id="helpsubs" class="submenustyle">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -83,42 +105,40 @@ include $_SERVER['DOCUMENT_ROOT'] . '/webServiceCaller.include.php';
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="faq.php"><img src="images/FAQ.jpg" onmouseover=this.src="images/FAQselected.jpg" 
-    onmouseout=this.src="images/FAQ.jpg" /></a>
+
+onmouseout=this.src="images/FAQ.jpg" /></a>
 <a href="glossary.php"><img src="images/Glossaryselected.jpg" 
-    onmouseover=this.src="images/Glossaryselected.jpg" onmouseout=this.src="images/Glossaryselected.jpg" /></a>
+
+onmouseover=this.src="images/Glossaryselected.jpg" onmouseout=this.src="images/Glossaryselected.jpg" /></a>
 </div>
-<div id="aboutsubs" class="submenustyle"></div>
-<div id="contactsubs" class="submenustyle"></div>
+
+<div id="aboutsubs" class="submenustyle">
+</div>
+
+<div id="contactsubs" class="submenustyle">
+</div>
 
 <script type="text/javascript">
 //initialize tab menu, by passing in ID of UL
 initalizetab("maintab")
 </script>
-
 <!-- end #menu -->
 
-<?php  
-
-class TradeHistory
-{
-   public $numShares,$price,$symbol,$date,$userID;
-};
-function GetTradeHistory
-{
-   $history = new TradeHistory(
-   $req->history->numShares,               
-   $req->history->price,                  
-   $req->history->symbol,                
-   $req->history->transDate,             
-   $req->history->userID,     
-   );
-   $history->mysql_query("CALL getTradeHistory(userID)")
-      or die('Could not locate trade history: ' .mysql_error());
-   $token = $POST['token'];
-   $userID = mysql_query("call getUserID(token)");
-};
-   echo 'trade history php called';
-?>
+<!--begin trade history -->
+<form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" autocomplete="off">
+   <input type="hidden" name="department" value="UA" />
+   <input type="hidden" name="transtype" value="viewOrderHistory" />
+   <?php echo (isset($resultObj->behavior) ? $resultObj->behavior : ""); ?><br />
+   <?php echo (isset($resultObj->success) ? $resultObj->success : ""); ?><br />
+   <?php echo (isset($resultObj->statuscode) ?
+	  $resultObj->statuscode : ""); ?><br />
+   <?php echo (isset($resultObj->statusdesc) ?
+	  json_encode($resultObj->statusdesc) : ""); ?><br />
+   <br />
+   <strong>Debug log:</strong><br />
+   <?php echo htmlentities($debuglog); ?>
+</form>
+<!--end trade history -->
 
 <div id="footer">
     <p> &copy; 2012 Southern Oregon University 1250 Siskiyou Boulevard Ashland, OR 97520 541-552-7672</p>
@@ -128,6 +148,5 @@ function GetTradeHistory
 </div>
 <!-- end #footer -->
 </body>
+
 </html>
-
-
