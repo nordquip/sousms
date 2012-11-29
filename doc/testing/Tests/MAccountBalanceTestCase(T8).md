@@ -16,7 +16,7 @@
 	</tr>
 	<tr>
 		<td>User does not select Profile</td>
-		<td>System does not respond/td>
+		<td>System does not respond</td>
 		<td>Page remains the same</td>
 	</tr>
 	<tr>
