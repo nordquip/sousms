@@ -1,7 +1,7 @@
-## MAccountBalanceTestCase
+## MProfileTestCase
 
 ### Test Case Description
-* User verifies the latest balance available for their personal .
+* User wants to be directed to their personal account (profile).
 
 ### Pre-Requisites
 * User is verified at log in.
@@ -15,14 +15,14 @@
 		<th>Expected Output</th>
 	</tr>
 	<tr>
-		<td>User does not Select Balance</td>
+		<td>User does not select Profile</td>
 		<td>System does not respond</td>
 		<td>Page remains the same</td>
 	</tr>
 	<tr>
-		<td>User Selects Balance</td>
+		<td>User Selects Profile</td>
 		<td>System Responds</td>
-		<td>Page is refreshed with the account's updated balance</td>
+		<td>User is directed to their account</td>
 	</tr>
 	
 </table>

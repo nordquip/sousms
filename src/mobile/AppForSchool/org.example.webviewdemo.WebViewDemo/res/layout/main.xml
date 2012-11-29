@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
+<merge>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sl_sub"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    
-    <LinearLayout 
+
+	<WebView  
+		android:id="@+id/webview_compontent"
+	    android:layout_width="fill_parent" 
+	    android:layout_height="fill_parent" 
+	    android:layout_weight="1.0"   
+	/>
+</LinearLayout>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_sub"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+        <LinearLayout 
     	android:orientation="horizontal"
     	android:layout_width="fill_parent" 
     	android:layout_height="wrap_content">
@@ -43,11 +61,11 @@
 	    android:layout_weight="1.0"
 	    />
     </LinearLayout>
-    
-	<WebView  
-		android:id="@+id/webview_compontent"
+    	<WebView  
+		android:id="@+id/webview_compontent1"
 	    android:layout_width="fill_parent" 
 	    android:layout_height="fill_parent" 
 	    android:layout_weight="1.0"   
 	/>
 </LinearLayout>
+</merge>

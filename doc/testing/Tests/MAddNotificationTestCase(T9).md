@@ -1,7 +1,7 @@
-## MAddNotificationTestCase
+## MHomeTestCase
 
 ### Test Case Description
-* Test Case for when a User wants to add a notification about a specific stock.
+* Test Case for when a User wants to be directed back to the home page.
 
 ### Pre-Requisites
 * User is verified at log in.
@@ -15,30 +15,28 @@
 		<th>Expected Output</th>
 	</tr>
 	<tr>
-		<td>User requests a notification for stock ""</td>
+		<td>User selects Home tab</td>
 		<td>System responds with an error message</td>
-		<td>"Invalid Stock Symbol -> "" "</td>
+		<td>Cannot find /home.html</td>
 	</tr>
 	<tr>
-		<td>User requests a notification for stock "12344555"</td>
-		<td>System Responds with an error message</td>
-		<td>"Invalid Characters -> "12344555" "</td>
+		<td>User selects Home tab</td>
+		<td>System does not respond</td>
+		<td>No action</td>
 	</tr>
-	<tr>
-		<td>User requests a notification for stock "#$%#"</td>
-		<td>System Responds with an error message</td>
-		<td>"Invalid Characters -> "#$%#" "</td>
+</table>
+
+###Sunny Day	
+<table>
+         <tr>
+		<th>Inputs</th>
+		<th>System Action</th>
+		<th>Expected Output</th>
+	 </tr>
+         <tr>
+		<td>User selects Home tab</td>
+		<td>System Responds by directing them to the Home page</td>
+		<td>User is back at Home page</td>
 	</tr>
-	<tr>
-		<td>User requests a notification for stock "GGOG"</td>
-		<td>System responds with an error message</td>
-		<td>"Invalid Stock Symbol -> "GGOG" "</td>
-	</tr>
-	<tr>
-		<td>User specifies price change at "-$%$%"</td>
-		<td>system responds with an error message</td>
-		<td>"Invalid Price -> "-$%$%" "</td>
-	</tr>
-	
 </table>
 
