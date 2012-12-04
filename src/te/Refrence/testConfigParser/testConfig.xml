@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<data>
+  <mysqlUser>root</mysqlUser>
+  <mysqlPassword>Uncomfortably_Secure</mysqlPassword>
+  <mysqlDatabase>sousms</mysqlDatabase>
+  <mysqlPort>1337</mysqlPort>
+  <loginHash>qwertpoiuy</loginHash>
+</data>
