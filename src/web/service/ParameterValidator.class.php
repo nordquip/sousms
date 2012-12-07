@@ -41,6 +41,9 @@ class ParameterValidator {
 			case "limitprice":
 				$valid = $this->checkLimitPrice($paramValue);
 				break;
+			case "orderid":
+				$valid = $this->checkOrderId($paramValue);
+				break;
 			default:
 				$this->msg = "Unknown Parameter: $paramName";
 		}
@@ -122,6 +125,19 @@ class ParameterValidator {
 			$this->msg = "Invalid limit price: " . (strlen($limitprice) == 0 ? "(empty)" : $limitprice);
 		} else {
 			$limitprice = floatval(preg_replace('/[^0-9.]/', '', $limitprice));
+			$valid = true;
+		}
+		return $valid;
+	}
+	
+	private function checkOrderId(&$orderid) {
+		$valid = false;
+		$this->translatedValue = null; //variable passed in by reference, not translated
+		$this->msg = "";
+		if (!isset($orderid) || !preg_match("/^[0-9]+$/", $orderid)) {
+			$this->msg = "Invalid order ID: " . (strlen($orderid) == 0 ? "(empty)" : $orderid);
+		} else {
+			$orderid = intval($orderid, 10);
 			$valid = true;
 		}
 		return $valid;

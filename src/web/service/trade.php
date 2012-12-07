@@ -9,6 +9,7 @@ include("DbConn.class.php");
 include("ParameterValidator.class.php");
 include("TradeEngineBuy.class.php");
 include("TradeEngineSell.class.php");
+include("MiscBehaviors.class.php");
 include("WebServiceMsg.class.php");
 
 //this list contains the parameters that are expected by each behavior
@@ -18,9 +19,14 @@ $behaviors = array(
 	"marketSell" => array("token", "symbol", "shares"),
 	"limitOrderBuy" => array("token", "symbol", "shares", "limitprice"),
 	"limitOrderSell" => array("token", "symbol", "shares", "limitprice"),
-	"cancelOrder" => array("token", "symbol"),
+	"cancelOrder" => array("token", "orderid"),
 	"viewOpenOrders" => array("token"),
-	"viewOrderHistory" => array("token")
+	"viewOrderHistory" => array("token"),
+	"getCurrentCash" => array("token"),
+	"getPortfolio" => array("token"),
+	"getStockPrices" => array(""),
+	"getClientInfo" => array("token"),
+	"getProfileInfo" => array("token")
 );
 
 if (!isset($_POST["jsondata"])) {
@@ -83,6 +89,13 @@ if (!isset($_POST["jsondata"])) {
 						$msg->statusdesc[] = $v->getMessage();
 					}
 				}
+				//does requested behavior require "orderid" param?
+				if (in_array("orderid", $behaviors[$b])) {
+					if (!$v->isValid("orderid", $req->orderid)) {
+						$msg->statuscode = 5;
+						$msg->statusdesc[] = $v->getMessage();
+					}
+				}
 				//if there were any errors, set behavior to "test" to send back parameter error messages
 				if ($msg->statuscode != 0) {
 					$b = "test"; 
@@ -127,16 +140,56 @@ if (!isset($_POST["jsondata"])) {
 				$ls = null;
 				break;
 			case "cancelOrder":
-				$msg->statuscode = 1;
-				$msg->statusdesc[] = "Behavior not yet implemented";
+				$o = new MiscBehaviors($myConn->getConn());
+				$msg->success = $o->cancelOrder($userID, $req->orderid);
+				$msg->statuscode = ($msg->success ? 0 : 1);
+				$msg->statusdesc[] = ($msg->success ? "Successfully canceled order #" : "Could not cancel order #") . $req->orderid;
+				$o = null;
 				break;
 			case "viewOpenOrders":
-				$msg->statuscode = 1;
-				$msg->statusdesc[] = "Behavior not yet implemented";
+				$o = new MiscBehaviors($myConn->getConn());
+				$msg->retval = $o->getOpenOrders($userID);
+				$msg->statuscode = 0;
+				$o = null;
 				break;
 			case "viewOrderHistory":
-				$msg->statuscode = 1;
-				$msg->statusdesc[] = "Behavior not yet implemented";
+				$o = new MiscBehaviors($myConn->getConn());
+				$msg->retval = $o->getOrderHistory($userID);
+				$msg->statuscode = 0;
+				$o = null;
+				break;
+			case "getCurrentCash":
+				$o = new MiscBehaviors($myConn->getConn());
+				$msg->retval = $o->getCurrentCash($userID);
+				$msg->statuscode = 0;
+				$msg->statusdesc = array_merge($msg->statusdesc, $o->getMessage());
+				$o = null;
+				break;
+			case "getPortfolio":
+				$o = new MiscBehaviors($myConn->getConn());
+				$msg->retval = $o->getPortfolio($userID);
+				$msg->statuscode = 0;
+				$o = null;
+				break;
+			case "getStockPrices":
+				$o = new MiscBehaviors($myConn->getConn());
+				$msg->retval = $o->getStockPrices();
+				$msg->statuscode = 0;
+				$msg->statusdesc = array_merge($msg->statusdesc, $o->getMessage());
+				$o = null;
+				break;
+			case "getClientInfo":
+				$o = new MiscBehaviors($myConn->getConn());
+				$msg->retval = $o->getClientInfo($userID);
+				$msg->statuscode = 0;
+				$msg->statusdesc = array_merge($msg->statusdesc, $o->getMessage());
+				$o = null;
+				break;
+			case "getProfileInfo":
+				$o = new MiscBehaviors($myConn->getConn());
+				$msg->retval = $o->getProfileInfo($userID);
+				$msg->statuscode = 0;
+				$o = null;
 				break;
 			}
 			header("Content-Type: application/json;charset=UTF-8");

@@ -19,6 +19,11 @@ $behaviors = array(
 	"cancelOrder" => "Cancel Order",
 	"viewOpenOrders" => "View Open Orders",
 	"viewOrderHistory" => "View Order History",
+	"getCurrentCash" => "Get Client Cash",
+	"getPortfolio" => "Get Client Portfolio",
+	"getStockPrices" => "Get All Stock Prices",
+	"getClientInfo" => "Get Client Information",
+	"getProfileInfo" => "Get Profile Information",
 	"currentCash" => "Current Cash"
 );
 
@@ -80,8 +85,10 @@ function callService(&$reqTxt,
 	$symbol,
 	$shares,
 	$limitprice,
+	$orderid,
 	$username,
-	$password)
+	$password,
+	$currentcash)
 {
 	global $behaviors;
 	try {
@@ -95,6 +102,7 @@ function callService(&$reqTxt,
 			"symbol" => $symbol,
 			"shares" => $shares,
 			"limitprice" => $limitprice,
+			"orderid" => $orderid,
 			"username" => $username,
 			"password" => $password,
 			"currentcash" => $currentcash
@@ -123,6 +131,7 @@ $transtype = (isset($_POST["transtype"]) ? $_POST["transtype"] : "");
 $symbol = (isset($_POST["symbol"]) ? $_POST["symbol"] : "");
 $shares = (isset($_POST["shares"]) ? $_POST["shares"] : "");
 $limitprice = (isset($_POST["limitprice"]) ? $_POST["limitprice"] : "");
+$orderid = (isset($_POST["orderid"]) ? $_POST["orderid"] : "");
 $username = (isset($_POST["username"]) ? $_POST["username"] : "");
 $password = (isset($_POST["password"]) ? $_POST["password"] : "");
 $currentcash = (isset($_POST["currentcash"]) ? $_POST["currentcash"] : "");
@@ -139,6 +148,7 @@ if (strlen($transtype) > 0) {
 		$symbol,
 		$shares,
 		$limitprice,
+		$orderid,
 		$username,
 		$password,
 		$currentcash);

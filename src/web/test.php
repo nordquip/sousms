@@ -39,7 +39,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/webServiceCaller.include.php';
 #content fieldset dd {
 	clear: right;
 }
-#content #limit.hide {
+#content #limit.hide, #content #order.hide {
 	display: none;
 }
 #content #debug {
@@ -54,6 +54,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/webServiceCaller.include.php';
 var checkTransType = function (element) {
 	var behavior = element.options[element.selectedIndex].value;
 	document.getElementById("limit").className = (behavior.indexOf("limit") !== -1 ? "" : "hide");
+	document.getElementById("order").className = (behavior.indexOf("cancel") !== -1 ? "" : "hide");
 };
 window.onload = function () {
 	if (document.forms[0] && document.forms[0].transtype) {
@@ -90,6 +91,10 @@ window.onload = function () {
   <dl id="limit" class="hide">
     <dt><label for="f4">Limit Price</label></dt>
     <dd><input type="text" id="f4" name="limitprice" size="8" title="Example: $###,###.##" value="<?php echo htmlentities($limitprice); ?>" /></dd>
+  </dl>
+  <dl id="order" class="hide">
+    <dt><label for="f5">Order ID</label></dt>
+    <dd><input type="text" id="f5" name="orderid" size="8" title="Example: ####" value="<?php echo htmlentities($orderid); ?>" /></dd>
   </dl>
   <div class="c"><input type="submit" value="Submit Transaction" /></div>
   </fieldset>
